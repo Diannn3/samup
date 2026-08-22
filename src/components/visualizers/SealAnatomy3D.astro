@@ -1,0 +1,164 @@
+---
+// SealAnatomy3D.astro - Interactive breakdown of the SAM-UP Official Emblem
+---
+
+<div class="glass-panel rounded-3xl p-8 lg:p-12 border border-[#D4AF37]/20 shadow-2xl relative overflow-hidden">
+  <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="flex flex-col lg:flex-row gap-10 items-center">
+    <!-- Visual Emblem Showcase (Left) -->
+    <div class="w-full lg:w-1/2 flex flex-col items-center justify-center relative min-h-[380px]">
+      <!-- Official Seal with Interactive Highlight Overlays -->
+      <div class="relative w-72 h-72 sm:w-88 sm:h-88 flex items-center justify-center group">
+        <!-- Pulse Glow Backdrop -->
+        <div class="absolute inset-0 rounded-full bg-[#D4AF37]/15 blur-2xl animate-pulse"></div>
+
+        <!-- Authentic Official Seal Image -->
+        <img 
+          src="/sam-up-seal.png" 
+          alt="Official Seal of SAM-UP (Est. 1984)" 
+          class="w-full h-full object-contain relative z-10 filter drop-shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-transform duration-500 group-hover:scale-105"
+        />
+
+        <!-- Interactive SVG Overlay Rings for Layer Inspection -->
+        <svg class="w-full h-full absolute inset-0 z-20 pointer-events-none" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer Circle Highlight -->
+          <circle id="overlay-outer" cx="250" cy="250" r="235" stroke="#D4AF37" stroke-width="4" fill="none" class="opacity-0 transition-opacity duration-300" />
+          <!-- Inner Circle Highlight -->
+          <circle id="overlay-inner" cx="250" cy="250" r="162" stroke="#00F0FF" stroke-width="4" fill="none" class="opacity-0 transition-opacity duration-300" />
+          <!-- Piu Center Highlight Box -->
+          <rect id="overlay-piu" x="130" y="130" width="240" height="260" rx="20" stroke="#F5D77F" stroke-width="3" stroke-dasharray="8 8" fill="rgba(212,175,55,0.12)" class="opacity-0 transition-opacity duration-300" />
+        </svg>
+      </div>
+
+      <div class="mt-4 text-xs font-mono text-[#D4AF37]/80">
+        Authentic Official Seal & Interlocking "Piu" Monolith (Est. Nov 27, 1984)
+      </div>
+    </div>
+
+    <!-- Symbology Details Cards (Right) -->
+    <div class="w-full lg:w-1/2 flex flex-col gap-3">
+      <!-- Item 1: Central Piu -->
+      <div id="info-piu" class="symbology-card active p-4 rounded-2xl bg-slate-900/80 border border-[#D4AF37]/30 transition-colors cursor-pointer hover:border-[#D4AF37]/60">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🏛️</span>
+            <h4 class="text-base font-display font-bold text-[#F5D77F]">The Interlocking "Piu" (Π)</h4>
+          </div>
+          <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/30">Core Monolith</span>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Signifies the summation ($\sum$) of all efforts, mathematical intellect, and capabilities of members in their pursuit to form an organization meeting their needs as applied mathematicians. The iconic interlocking contour unites the uppercase Greek $\Pi$ (Pi) with the lower loop and descending anchor.
+        </p>
+      </div>
+
+      <!-- Item 2: The Outer Circle -->
+      <div id="info-outer" class="symbology-card p-4 rounded-2xl bg-slate-950/60 border border-slate-800 transition-colors cursor-pointer hover:border-slate-700">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🌐</span>
+            <h4 class="text-base font-display font-bold text-slate-200">The Outer Circle</h4>
+          </div>
+          <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-400">Macro Society</span>
+        </div>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Signifies the <strong>Philippine Society</strong> at large, reminding applied mathematicians that abstract quantitative models exist to empower the nation and drive societal advancement.
+        </p>
+      </div>
+
+      <!-- Item 3: The Inner Circle -->
+      <div id="info-inner" class="symbology-card p-4 rounded-2xl bg-slate-950/60 border border-slate-800 transition-colors cursor-pointer hover:border-slate-700">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">⭕</span>
+            <h4 class="text-base font-display font-bold text-slate-200">The Inner Circle</h4>
+          </div>
+          <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-400">The Organization</span>
+        </div>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Signifies <strong>SAM-UP itself</strong> and the unbreakable bond of unity, loyalty, and commitment among all resident, affiliate, and alumni members.
+        </p>
+      </div>
+
+      <!-- Item 4: Twin Stars & Foundation -->
+      <div id="info-stars" class="symbology-card p-4 rounded-2xl bg-slate-950/60 border border-slate-800 transition-colors cursor-pointer hover:border-slate-700">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">⭐</span>
+            <h4 class="text-base font-display font-bold text-slate-200">Twin Stars & 1984 Foundation</h4>
+          </div>
+          <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-400">Principles & Year</span>
+        </div>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          The two stars signify the <strong>Inviolate Principles & Objectives</strong> of the constitution. <strong>1984</strong> marks the official founding year recognized by the UPLB Office of Student Affairs on Nov 27, 1984.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initSealInteractions() {
+    const piuCard = document.getElementById('info-piu');
+    const outerCard = document.getElementById('info-outer');
+    const innerCard = document.getElementById('info-inner');
+    const starsCard = document.getElementById('info-stars');
+
+    const overlayOuter = document.getElementById('overlay-outer');
+    const overlayInner = document.getElementById('overlay-inner');
+    const overlayPiu = document.getElementById('overlay-piu');
+
+    const cards = [piuCard, outerCard, innerCard, starsCard];
+
+    function activateCard(targetCard, overlayEl) {
+      cards.forEach(c => {
+        if (c) {
+          c.classList.remove('active', 'border-[#D4AF37]/60', 'bg-slate-900/80');
+          c.classList.add('border-slate-800', 'bg-slate-950/60');
+          const title = c.querySelector('h4');
+          if (title) {
+            title.classList.remove('text-[#F5D77F]');
+            title.classList.add('text-slate-200');
+          }
+        }
+      });
+
+      [overlayOuter, overlayInner, overlayPiu].forEach(ov => {
+        if (ov) ov.classList.remove('opacity-100');
+      });
+
+      if (targetCard) {
+        targetCard.classList.add('active', 'border-[#D4AF37]/60', 'bg-slate-900/80');
+        targetCard.classList.remove('border-slate-800', 'bg-slate-950/60');
+        const title = targetCard.querySelector('h4');
+        if (title) {
+          title.classList.add('text-[#F5D77F]');
+          title.classList.remove('text-slate-200');
+        }
+      }
+
+      if (overlayEl) {
+        overlayEl.classList.add('opacity-100');
+      }
+    }
+
+    if (piuCard) {
+      piuCard.addEventListener('mouseenter', () => activateCard(piuCard, overlayPiu));
+      piuCard.addEventListener('click', () => activateCard(piuCard, overlayPiu));
+    }
+    if (outerCard) {
+      outerCard.addEventListener('mouseenter', () => activateCard(outerCard, overlayOuter));
+      outerCard.addEventListener('click', () => activateCard(outerCard, overlayOuter));
+    }
+    if (innerCard) {
+      innerCard.addEventListener('mouseenter', () => activateCard(innerCard, overlayInner));
+      innerCard.addEventListener('click', () => activateCard(innerCard, overlayInner));
+    }
+    if (starsCard) {
+      starsCard.addEventListener('mouseenter', () => activateCard(starsCard, overlayOuter));
+      starsCard.addEventListener('click', () => activateCard(starsCard, overlayOuter));
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initSealInteractions);
+</script>

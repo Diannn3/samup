@@ -1,0 +1,30 @@
+{
+  "name": "discord-steward",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n daemon,dashboard -c auto \"npm run dev -w @discord-steward/daemon\" \"npm run dev -w @discord-steward/dashboard\"",
+    "build": "npm run build -w @discord-steward/shared && npm run build -w @discord-steward/database && npm run build -w @discord-steward/core && npm run build -w @discord-steward/daemon && npm run build -w @discord-steward/mcp && npm run build -w @discord-steward/dashboard",
+    "test": "npm run test -w @discord-steward/shared && npm run test -w @discord-steward/database && npm run test -w @discord-steward/core && npm run test -w @discord-steward/daemon",
+    "typecheck": "npm run typecheck -w @discord-steward/shared && npm run typecheck -w @discord-steward/database && npm run typecheck -w @discord-steward/core && npm run typecheck -w @discord-steward/daemon && npm run typecheck -w @discord-steward/mcp && npm run typecheck -w @discord-steward/dashboard",
+    "db:init": "npm run db:init -w @discord-steward/database",
+    "generate:secrets": "node scripts/generate-secrets.mjs",
+    "start": "concurrently -k -n daemon,dashboard -c auto \"npm run start -w @discord-steward/daemon\" \"npm run start -w @discord-steward/dashboard\"",
+    "bootstrap": "node scripts/bootstrap.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "concurrently": "^9.1.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

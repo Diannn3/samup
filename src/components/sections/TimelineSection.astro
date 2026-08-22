@@ -1,0 +1,107 @@
+---
+import seniorExecs from '../../data/senior_executives.json';
+
+const leadershipTermCount = seniorExecs.length;
+---
+
+<section id="timeline" class="py-20 lg:py-32 bg-[#07090D] relative overflow-hidden math-grid-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4AF37]/10 text-[#F5D77F] font-mono text-xs mb-4 border border-[#D4AF37]/30">
+        40+ Years of Hegemony • 1984 - 2026+
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-display font-bold text-slate-100 mb-6">
+        Chronology & <span class="gold-gradient-text">Senior Executives</span>
+      </h2>
+      <p class="text-base sm:text-lg text-slate-300 leading-relaxed font-light">
+        A legacy of {leadershipTermCount} leadership terms from our founding in 1984 to the digital research frontier of 2026–2027.
+      </p>
+    </div>
+
+    <!-- Major Era Milestones Carousel / Stepper -->
+    <div class="grid md:grid-cols-4 gap-4 mb-16">
+      <div class="p-6 rounded-3xl bg-slate-950 border border-slate-800">
+        <div class="text-xs font-mono text-[#D4AF37] mb-1">1984 – 1990</div>
+        <h4 class="text-lg font-display font-bold text-slate-100 mb-2">The Genesis Era</h4>
+        <p class="text-xs text-slate-400">Founded by Edmund Campos at UPLB IMSP CAS. Official OSA recognition on Nov 27, 1984.</p>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-slate-950 border border-slate-800">
+        <div class="text-xs font-mono text-[#D4AF37] mb-1">1991 – 2010</div>
+        <h4 class="text-lg font-display font-bold text-slate-100 mb-2">Expansion & Wizardry</h4>
+        <p class="text-xs text-slate-400">Birth of the UPLB Math Wizard, regional domination, and growth into a premier student body.</p>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-slate-950 border border-slate-800">
+        <div class="text-xs font-mono text-[#D4AF37] mb-1">2011 – 2023</div>
+        <h4 class="text-lg font-display font-bold text-slate-100 mb-2">Constitutional Modernization</h4>
+        <p class="text-xs text-slate-400">Ratification of modern constitution, alumni scholarship endowments, and national reach.</p>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-slate-950 border border-[#D4AF37]/40 shadow-xl shadow-[#D4AF37]/5">
+        <div class="text-xs font-mono text-emerald-400 mb-1">2024 – 2027+</div>
+        <h4 class="text-lg font-display font-bold text-slate-100 mb-2">The Centennial & AI Era</h4>
+        <p class="text-xs text-slate-400">Chair lecture awards, topological data analysis, Math Building Academic Hub, and digital governance.</p>
+      </div>
+    </div>
+
+    <!-- Searchable Senior Executives Directory -->
+    <div class="glass-panel rounded-3xl p-6 lg:p-10 border border-[#D4AF37]/20 shadow-2xl">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-display font-bold text-slate-100">
+            Roll of Senior Executives (1984 – 2027)
+          </h3>
+          <span class="text-xs font-mono text-slate-400">Complete Historical Archive • {leadershipTermCount} Terms</span>
+        </div>
+        <div class="relative w-full sm:w-72">
+          <input 
+            type="text" 
+            id="exec-search-input"
+            placeholder="Search leader or term..." 
+            class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#D4AF37] transition-colors"
+          />
+        </div>
+      </div>
+
+      <!-- Executive Grid Container -->
+      <div id="exec-grid-container" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 max-h-[460px] overflow-y-auto pr-2">
+        {seniorExecs.map((exec, idx) => (
+          <div class="exec-card p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-[#D4AF37]/40 transition-colors flex items-center gap-3">
+            <div class="w-8 h-8 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-xs font-mono text-[#F5D77F] font-bold flex-shrink-0">
+              {idx + 1}
+            </div>
+            <div class="overflow-hidden">
+              <div class="text-xs font-bold text-slate-100 truncate exec-name">{exec.name}</div>
+              <div class="text-[11px] font-mono text-[#D4AF37] exec-term">{exec.term}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupExecSearch() {
+    const input = document.getElementById('exec-search-input');
+    const cards = document.querySelectorAll('.exec-card');
+
+    input?.addEventListener('input', (e) => {
+      const query = ((e.target as HTMLInputElement).value || '').toLowerCase();
+      cards.forEach(card => {
+        const name = card.querySelector('.exec-name')?.textContent?.toLowerCase() || '';
+        const term = card.querySelector('.exec-term')?.textContent?.toLowerCase() || '';
+        if (name.includes(query) || term.includes(query)) {
+          (card as HTMLElement).style.display = 'flex';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupExecSearch);
+  document.addEventListener('astro:page-load', setupExecSearch);
+</script>

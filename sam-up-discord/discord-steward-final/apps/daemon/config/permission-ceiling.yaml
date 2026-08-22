@@ -1,0 +1,10 @@
+forbiddenGuildPermissions:
+  - Administrator
+
+forbiddenActions:
+  - deleteGuild
+  - transferOwnership
+  - grantAdministrator
+
+structuralActionsRequirePlan: true
+memberPunishmentsRequireCase: true

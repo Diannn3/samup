@@ -1,0 +1,76 @@
+---
+import { FrostedGlassCard } from '../ui/FrostedGlassCard';
+import { Trophy, Compass, Award, ArrowRight } from 'lucide-react';
+---
+
+<section class="relative py-24 border-b border-[var(--border)] overflow-hidden">
+  {/* Atmospheric mesh gradient backing */}
+  <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.08)_0%,transparent_70%)] top-0 right-[-10%]" aria-hidden="true" />
+  <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(16,185,129,0.07)_0%,transparent_70%)] bottom-0 left-[-10%]" aria-hidden="true" />
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+      <div class="max-w-2xl space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--border)] text-xs font-mono text-[var(--primary)]">
+          <Trophy class="w-3.5 h-3.5" aria-hidden="true" />
+          <span>FLAGSHIP OUTREACH & TOURNAMENTS</span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
+          Current Initiatives & Programs
+        </h2>
+        <p class="text-[var(--muted-foreground)] text-sm sm:text-base">
+          Active competitions, tutorial clinics, and community outreach organized by SAM-UP.
+        </p>
+      </div>
+
+      <a
+        href="/events"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline shrink-0"
+      >
+        <span>View Full Event Calendar</span>
+        <ArrowRight class="w-4 h-4" aria-hidden="true" />
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <FrostedGlassCard
+        client:idle
+        tag="ANNUAL CHAMPIONSHIP"
+        title="36th UPLB Math Wizard"
+        subtitle="The flagship inter-high school and collegiate mathematics competition organized by the Scholastics Committee, challenging the brightest minds in Luzon."
+        href="/events"
+        showArrow={true}
+      >
+        <div class="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs font-mono text-[var(--muted-foreground)]">
+          <span>CAS Auditorium • Feb 2027</span>
+        </div>
+      </FrostedGlassCard>
+
+      <FrostedGlassCard
+        client:idle
+        tag="ACADEMIC SERVICE"
+        title="CAS Peer Tutorial Caravans"
+        subtitle="Free peer-to-peer tutoring caravans and comprehensive exam review crash courses hosted at the UPLB Math Building for foundational courses."
+        href="/events"
+        showArrow={true}
+      >
+        <div class="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs font-mono text-[var(--muted-foreground)]">
+          <span>UPLB Math Building 103</span>
+        </div>
+      </FrostedGlassCard>
+
+      <FrostedGlassCard
+        client:idle
+        tag="VARSITY & LEAGUES"
+        title="STRASUC & Intramural Athletics"
+        subtitle="SAM-UP members actively represent UPLB in swimming, track, and university sports leagues, championing physical discipline alongside academic rigor."
+        href="/events"
+        showArrow={true}
+      >
+        <div class="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs font-mono text-[var(--muted-foreground)]">
+          <span>Copeland Gymnasium</span>
+        </div>
+      </FrostedGlassCard>
+    </div>
+  </div>
+</section>

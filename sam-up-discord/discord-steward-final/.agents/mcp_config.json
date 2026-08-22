@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "discord-steward": {
+      "command": "node",
+      "args": ["apps/mcp/dist/index.js"],
+      "cwd": "."
+    }
+  }
+}

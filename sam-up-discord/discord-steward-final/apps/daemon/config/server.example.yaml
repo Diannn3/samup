@@ -1,0 +1,89 @@
+version: 1
+guildId: "YOUR_GUILD_ID"
+organizationName: "Your Student Organization"
+
+protected:
+  roleIds: []
+  channelIds: []
+  ticketKeywords:
+    - ticket
+    - verify
+    - verification
+
+roles:
+  - key: member
+    name: Member
+    color: "#95A5A6"
+    hoist: false
+    mentionable: false
+    permissions: []
+
+  - key: officer
+    name: Officer
+    color: "#5865F2"
+    hoist: true
+    mentionable: true
+    permissions:
+      - ManageMessages
+      - ModerateMembers
+
+categories:
+  - key: information
+    name: INFORMATION
+
+  - key: community
+    name: COMMUNITY
+
+  - key: officers
+    name: OFFICERS
+
+channels:
+  - key: rules
+    name: rules
+    type: text
+    categoryKey: information
+    topic: "Official server rules"
+    permissions:
+      - subject: everyone
+        deny: [SendMessages]
+
+  - key: announcements
+    name: announcements
+    type: announcement
+    categoryKey: information
+    topic: "Official announcements"
+    permissions:
+      - subject: everyone
+        deny: [SendMessages]
+      - subject: "role:officer"
+        allow: [ViewChannel, SendMessages]
+
+  - key: general
+    name: general
+    type: text
+    categoryKey: community
+
+  - key: officer-chat
+    name: officer-chat
+    type: text
+    categoryKey: officers
+    permissions:
+      - subject: everyone
+        deny: [ViewChannel]
+      - subject: "role:officer"
+        allow: [ViewChannel, SendMessages, ReadMessageHistory]
+
+
+automodRules:
+  - key: mention-spam
+    name: Steward Mention Spam
+    enabled: true
+    trigger:
+      type: mentionSpam
+      mentionTotalLimit: 6
+      raidProtectionEnabled: true
+    actions:
+      blockMessage: true
+      customMessage: Too many mentions. Please slow down.
+    exemptRoleIds: []
+    exemptChannelIds: []

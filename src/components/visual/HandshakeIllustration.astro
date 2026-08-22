@@ -1,0 +1,81 @@
+---
+// HandshakeIllustration.astro - Accessible SVG diagram of the Article V Left-Hand Grip
+---
+
+<div class="surface-card p-6 sm:p-10 border border-[var(--border)] relative overflow-hidden">
+  <div class="grid lg:grid-cols-12 gap-8 items-center">
+    {/* Geometric Canvas Diagram (Left) */}
+    <div class="lg:col-span-5 flex flex-col items-center justify-center">
+      <div class="relative w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center">
+        <svg class="w-full h-full" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Geometric diagram of the SAM-UP Left-Hand Grip">
+          {/* Compass grid lines */}
+          <circle cx="180" cy="180" r="140" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="4 4" />
+          <circle cx="180" cy="180" r="100" stroke="var(--border)" stroke-width="1.5" />
+          <line x1="40" y1="180" x2="320" y2="180" stroke="var(--border)" stroke-width="1" />
+          <line x1="180" y1="40" x2="180" y2="320" stroke="var(--border)" stroke-width="1" />
+
+          {/* Left Hand Iconography Frame */}
+          <rect x="110" y="110" width="140" height="140" rx="20" stroke="var(--primary)" stroke-width="2" fill="var(--surface-raised)" />
+
+          {/* 3 Joined Fingers Base (Equality, Unity, Loyalty) */}
+          <rect x="135" y="140" width="18" height="50" rx="9" fill="var(--primary)" />
+          <rect x="160" y="132" width="18" height="58" rx="9" fill="var(--primary)" />
+          <rect x="185" y="138" width="18" height="52" rx="9" fill="var(--primary)" />
+
+          {/* Extended Index Finger (Academic Excellence) */}
+          <rect x="210" y="120" width="18" height="70" rx="9" fill="#F1F4F9" stroke="var(--primary)" stroke-width="1.5" />
+
+          {/* Spread Thumb (Camaraderie) */}
+          <path d="M 130 190 C 115 190, 105 205, 105 220 C 105 230, 120 235, 135 225 Z" fill="var(--primary)" />
+
+          {/* Center Left-Hand Grip Badge */}
+          <text x="180" y="275" fill="var(--primary)" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle" letter-spacing="0.1em">
+            ARTICLE V • LEFT HAND
+          </text>
+        </svg>
+      </div>
+      <p class="mt-2 text-xs font-mono text-[var(--muted-foreground)] text-center">
+        The Constitutional Grip of Uniqueness, Rigor, and Brotherhood
+      </p>
+    </div>
+
+    {/* Symbology Descriptions (Right) */}
+    <div class="lg:col-span-7 space-y-4">
+      <div class="p-4 rounded-xl bg-[var(--surface-raised)] border border-[var(--border)]">
+        <div class="text-xs font-mono uppercase text-[var(--primary)] font-bold mb-1">
+          01. The Left Hand
+        </div>
+        <h4 class="font-display font-bold text-sm sm:text-base text-[var(--foreground)] mb-1">
+          Uniqueness & Distinct Identity
+        </h4>
+        <p class="text-xs sm:text-sm text-[var(--muted-foreground)] leading-relaxed">
+          The left-hand handshake distinguishes members from other organizations, symbolizing our unique collective standing as applied mathematicians.
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-[var(--surface-raised)] border border-[var(--border)]">
+        <div class="text-xs font-mono uppercase text-[var(--primary)] font-bold mb-1">
+          02. Three Joined Fingers
+        </div>
+        <h4 class="font-display font-bold text-sm sm:text-base text-[var(--foreground)] mb-1">
+          Equality, Unity, and Loyalty
+        </h4>
+        <p class="text-xs sm:text-sm text-[var(--muted-foreground)] leading-relaxed">
+          The middle, ring, and pinky fingers are clasped firmly together, representing the indivisible triad of egalitarian brotherhood, communal cohesion, and unyielding organizational loyalty.
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-[var(--surface-raised)] border border-[var(--border)]">
+        <div class="text-xs font-mono uppercase text-[var(--primary)] font-bold mb-1">
+          03. Index Finger & Thumb
+        </div>
+        <h4 class="font-display font-bold text-sm sm:text-base text-[var(--foreground)] mb-1">
+          Academic Excellence & Camaraderie
+        </h4>
+        <p class="text-xs sm:text-sm text-[var(--muted-foreground)] leading-relaxed">
+          The extended index finger embodies rigorous Academic Excellence. The spread thumb signifies open Camaraderie. In the grip, the index finger rests firmly between the fellow member's thumb and index.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+---
+import { FrostedGlassCard } from '../ui/FrostedGlassCard';
+import { Landmark, ArrowRight, ShieldCheck, HeartHandshake, Award } from 'lucide-react';
+---
+
+<section class="relative py-24 border-b border-[var(--border)] overflow-hidden">
+  {/* Atmospheric gradient background blobs */}
+  <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.09)_0%,transparent_70%)] top-10 left-1/4" aria-hidden="true" />
+  <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(16,185,129,0.08)_0%,transparent_70%)] bottom-10 right-1/4" aria-hidden="true" />
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--border)] text-xs font-mono text-[var(--primary)]">
+        <Landmark class="w-3.5 h-3.5" aria-hidden="true" />
+        <span>HISTORICAL LINEAGE • 1984–PRESENT</span>
+      </div>
+      <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-[var(--foreground)] tracking-tight">
+        Egalitarian Brotherhood & The Triad of Excellence
+      </h2>
+      <p class="text-[var(--muted-foreground)] text-base sm:text-lg leading-relaxed">
+        Founded on November 27, 1984 by pioneering applied mathematics scholars at UPLB, SAM-UP stands on four inviolate constitutional principles.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <FrostedGlassCard
+        client:idle
+        tag="PRINCIPLE I"
+        title="Scholastic Rigor"
+        subtitle="Uncompromising dedication to mathematical precision, continuous inquiry, and peer academic mentorship across pure and applied disciplines."
+        href="/about"
+        showArrow={true}
+      />
+
+      <FrostedGlassCard
+        client:idle
+        tag="PRINCIPLE II"
+        title="Egalitarian Brotherhood"
+        subtitle="A constitutional fraternity of equals where every member holds an equal voice, dismantling hierarchy in pursuit of collective growth."
+        href="/about"
+        showArrow={true}
+      />
+
+      <FrostedGlassCard
+        client:idle
+        tag="PRINCIPLE III"
+        title="Social Responsibility"
+        subtitle="Bridging mathematical abstractions with tangible community service, regional tutorials, and public school outreach across Laguna."
+        href="/about"
+        showArrow={true}
+      />
+    </div>
+
+    <div class="mt-12 text-center">
+      <a
+        href="/about"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--foreground)] font-semibold text-sm hover:border-[var(--border-primary)] transition-all shadow-sm"
+      >
+        <span>Read the Complete Constitutional Preamble</span>
+        <ArrowRight class="w-4 h-4 text-[var(--primary)]" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</section>

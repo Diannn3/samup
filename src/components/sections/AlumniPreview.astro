@@ -1,0 +1,88 @@
+---
+import { organization } from '../../data/organization';
+import { featuredAlumni } from '../../data/alumni';
+import { FrostedGlassCard } from '../ui/FrostedGlassCard';
+import { ShinyText } from '../ui/ShinyText';
+import { Award, GraduationCap, Building2, ArrowRight } from 'lucide-react';
+---
+
+<section class="relative py-24 border-b border-[var(--border)] overflow-hidden">
+  {/* Atmospheric gradient blobs */}
+  <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.1)_0%,transparent_70%)] top-10 right-[-10%]" aria-hidden="true" />
+  <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(16,185,129,0.08)_0%,transparent_70%)] bottom-10 left-[-10%]" aria-hidden="true" />
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* Left Column: Context & Stats */}
+      <div class="lg:col-span-5 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--border)] text-xs font-mono text-[var(--primary)] shadow-sm">
+          <span>ALUMNI LEGACY & EXCELLENCE</span>
+        </div>
+
+        <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-[var(--foreground)] tracking-tight">
+          Four Decades of Applied Mathematics Leadership
+        </h2>
+
+        <p class="text-base text-[var(--muted-foreground)] leading-relaxed">
+          From IMSP faculty chairs and actuarial directors to algorithmic traders and data research scientists, SAM-UP alumni carry our mathematical rigor across the globe.
+        </p>
+
+        {/* Highlight Stats with Frosted Glass Cards */}
+        <div class="grid grid-cols-2 gap-4 pt-2">
+          <div class="frosted-glass-card p-5 shadow-md">
+            <div class="text-3xl font-mono font-bold text-[var(--primary)]">
+              <ShinyText client:idle text="500+" variant="gold" />
+            </div>
+            <div class="text-xs text-[var(--muted-foreground)] mt-1.5 font-medium">Alumni in Industry & Academia</div>
+          </div>
+          <div class="frosted-glass-card p-5 shadow-md">
+            <div class="text-3xl font-mono font-bold text-[var(--foreground)]">
+              <ShinyText client:idle text="100%" variant="silver" />
+            </div>
+            <div class="text-xs text-[var(--muted-foreground)] mt-1.5 font-medium">Applied Math Faculty Placement</div>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <a
+            href="/alumni"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
+          >
+            <span>Explore Roll of 46 Senior Executives</span>
+            <ArrowRight class="w-4 h-4" aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+
+      {/* Right Column: Featured Spotlight Card with FrostedGlassCard */}
+      <div class="lg:col-span-7">
+        <FrostedGlassCard
+          client:idle
+          tag="CENTENNIAL PROFESSORIAL CHAIR AWARDEE"
+          title={featuredAlumni.name}
+          subtitle={`Assistant Professor at the UPLB Institute of Mathematical Sciences and Physics. Research integrates operations research, topological data analysis (TDA), and computer vision models for Filipino Sign Language (FSL) recognition.`}
+          href="/alumni"
+          showArrow={true}
+        >
+          <div class="mt-4 pt-4 border-t border-[var(--border-subtle)] space-y-4">
+            <p class="text-sm text-[var(--foreground)]/90 italic border-l-2 border-[var(--primary)] pl-4 py-1">
+              "{featuredAlumni.quote}"
+            </p>
+
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-[var(--surface-raised)] text-[var(--muted-foreground)] border border-[var(--border)]">
+                Operations Research
+              </span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-[var(--surface-raised)] text-[var(--muted-foreground)] border border-[var(--border)]">
+                Topological Data Analysis
+              </span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-[var(--surface-raised)] text-[var(--muted-foreground)] border border-[var(--border)]">
+                AI / FSL Recognition
+              </span>
+            </div>
+          </div>
+        </FrostedGlassCard>
+      </div>
+    </div>
+  </div>
+</section>

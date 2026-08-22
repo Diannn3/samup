@@ -1,0 +1,943 @@
+version: 1
+guildId: "1523679969836793928"
+organizationName: SAM-UP
+protected:
+  roleIds:
+    - "1524456128547651624"
+    - "1524456211922026567"
+    - "1525514911646617811"
+  colorEditableRoleIds:
+    - "1524456211922026567"
+  channelIds:
+    - "1530416136414433451"
+    - "1524461452856000693"
+  ticketKeywords:
+    - ticket
+    - verify
+    - verification
+roles:
+  - key: admin
+    name: Admin
+    color: "#B42318"
+    hoist: true
+    mentionable: true
+    permissions:
+      - Administrator
+    existingId: "1525920121003049050"
+  - key: executive
+    name: Executive
+    color: "#C69214"
+    hoist: true
+    mentionable: true
+    permissions:
+      - ManageGuild
+      - ManageRoles
+      - ManageChannels
+      - KickMembers
+      - BanMembers
+      - ManageMessages
+      - ModerateMembers
+    existingId: "1530197322804363375"
+  - key: moderator
+    name: Moderator
+    color: "#2563EB"
+    hoist: true
+    mentionable: true
+    permissions:
+      - KickMembers
+      - BanMembers
+      - ManageMessages
+      - ModerateMembers
+    existingId: "1530427891714621562"
+  - key: member
+    name: Member
+    color: "#15803D"
+    hoist: true
+    mentionable: false
+    permissions: []
+    existingId: "1524452540702392543"
+  - key: alumni
+    name: Alumni
+    color: "#7E57C2"
+    hoist: true
+    mentionable: false
+    permissions: []
+    existingId: "1524452601746292946"
+  - key: alumnis
+    name: Alumnis
+    color: "#7E57C2"
+    hoist: false
+    mentionable: false
+    permissions: []
+    existingId: "1530887109223776346"
+  - key: applicant
+    name: Applicant
+    color: "#D97706"
+    hoist: true
+    mentionable: false
+    permissions: []
+    existingId: "1530427893489074266"
+  - key: verified
+    name: Verified
+    color: "#0F766E"
+    hoist: false
+    mentionable: false
+    permissions: []
+    existingId: "1524456211922026567"
+  - key: unverified
+    name: Unverified
+    color: "#64748B"
+    hoist: false
+    mentionable: false
+    permissions: []
+    existingId: "1525514911646617811"
+categories:
+  - key: start-here
+    name: START HERE
+    existingId: "1530416136414433451"
+  - key: official
+    name: OFFICIAL
+    existingId: "1524451819647139980"
+  - key: tambayan
+    name: TAMBAYAN
+    existingId: "1523679969836793929"
+  - key: academics
+    name: ACADEMICS
+    existingId: "1525515376211922987"
+  - key: interests
+    name: INTERESTS
+    existingId: "1523679970285846528"
+  - key: voice-tambayan
+    name: VOICE TAMBAYAN
+    existingId: "1530198274311720970"
+  - key: private-staff
+    name: PRIVATE STAFF
+    existingId: "1530418361618399272"
+  - key: decoy-tambayan
+    name: TAMBAYAN
+    existingId: "1530889283781656628"
+  - key: decoy-voice-tambayan
+    name: VOICE TAMBAYAN
+    existingId: "1530889286759747695"
+channels:
+  - key: verification
+    name: 【✅】verification
+    type: text
+    categoryKey: start-here
+    existingId: "1524461452856000693"
+    permissions:
+      - subject: everyone
+        deny:
+          - SendMessages
+          - CreatePublicThreads
+          - CreatePrivateThreads
+          - SendMessagesInThreads
+      - subject: role:moderator
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ManageMessages
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ManageMessages
+  - key: server-guidelines
+    name: 【📜】server-guidelines
+    type: text
+    categoryKey: start-here
+    existingId: "1530415617100877925"
+    permissions:
+      - subject: everyone
+        deny:
+          - SendMessages
+          - CreatePublicThreads
+          - CreatePrivateThreads
+          - SendMessagesInThreads
+      - subject: role:moderator
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ManageMessages
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ManageMessages
+  - key: welcome-to-sam-up
+    name: 【🌻】welcome-to-sam-up
+    type: text
+    categoryKey: start-here
+    existingId: "1523679970285846529"
+    permissions:
+      - subject: everyone
+        deny:
+          - SendMessages
+          - CreatePublicThreads
+          - CreatePrivateThreads
+          - SendMessagesInThreads
+      - subject: role:moderator
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ManageMessages
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ManageMessages
+  - key: roles-and-membership
+    name: 【👤】roles-and-membership
+    type: text
+    categoryKey: start-here
+    existingId: "1530418366840574094"
+    permissions:
+      - subject: everyone
+        deny:
+          - SendMessages
+          - CreatePublicThreads
+          - CreatePrivateThreads
+          - SendMessagesInThreads
+      - subject: role:moderator
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ManageMessages
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ManageMessages
+  - key: channel-directory
+    name: 【🪧】channel-directory
+    type: text
+    categoryKey: start-here
+    existingId: "1530418368840994876"
+    permissions:
+      - subject: everyone
+        deny:
+          - SendMessages
+          - CreatePublicThreads
+          - CreatePrivateThreads
+          - SendMessagesInThreads
+      - subject: role:moderator
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ManageMessages
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ManageMessages
+      - subject: role:alumnis
+        deny:
+          - ViewChannel
+  - key: arrivals
+    name: 【👋】arrivals
+    type: text
+    categoryKey: start-here
+    existingId: "1530465873746329651"
+    permissions:
+      - subject: everyone
+        deny:
+          - SendMessages
+          - CreatePublicThreads
+          - CreatePrivateThreads
+          - SendMessagesInThreads
+      - subject: role:moderator
+        allow:
+          - ViewChannel
+          - ManageMessages
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - ManageMessages
+  - key: announcements
+    name: 【📢】announcements
+    type: announcement
+    categoryKey: official
+    existingId: "1524451849762246749"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+          - SendMessages
+          - CreatePublicThreads
+          - CreatePrivateThreads
+          - SendMessagesInThreads
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - SendMessages
+          - MentionEveryone
+          - AttachFiles
+          - EmbedLinks
+  - key: events-and-calendar
+    name: 【📅】events-and-calendar
+    type: text
+    categoryKey: official
+    existingId: "1530418370439020615"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+          - SendMessages
+          - CreatePublicThreads
+          - CreatePrivateThreads
+          - SendMessagesInThreads
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - SendMessages
+          - MentionEveryone
+          - AttachFiles
+          - EmbedLinks
+  - key: opportunities
+    name: 【💼】opportunities
+    type: text
+    categoryKey: official
+    existingId: "1530418372137717851"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+          - SendMessages
+          - CreatePublicThreads
+          - CreatePrivateThreads
+          - SendMessagesInThreads
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - SendMessages
+          - MentionEveryone
+          - AttachFiles
+          - EmbedLinks
+  - key: random
+    name: 【🎲】random
+    type: text
+    categoryKey: tambayan
+    existingId: "1530418375795281933"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: memes-and-media
+    name: 【📷】memes-and-media
+    type: text
+    categoryKey: tambayan
+    existingId: "1530418378785820765"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: suggestions
+    name: 【💡】suggestions
+    type: text
+    categoryKey: tambayan
+    existingId: "1530418381755518979"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: bot-commands
+    name: 【🤖】bot-commands
+    type: text
+    categoryKey: tambayan
+    existingId: "1524454471441186826"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: academic-help
+    name: 【📚】academic-help
+    type: text
+    categoryKey: academics
+    existingId: "1530418384192143461"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: academic-chat
+    name: 【📝】academic-chat
+    type: text
+    categoryKey: academics
+    existingId: "1530418386239230003"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: resources
+    name: 【📁】resources
+    type: text
+    categoryKey: academics
+    existingId: "1530418388038582383"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: acad-nights-stage
+    name: 【🎙️】Acad Nights (Tambay Only)
+    type: stage
+    categoryKey: academics
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+    existingId: "1530445523863998525"
+  - key: gaming
+    name: 【🎮】gaming
+    type: text
+    categoryKey: interests
+    existingId: "1530418391263871137"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: music-and-movies
+    name: 【🎵】music-and-movies
+    type: text
+    categoryKey: interests
+    existingId: "1530418393763676340"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: tambayan-voice
+    name: 【🔊】Tambayan
+    type: voice
+    categoryKey: voice-tambayan
+    existingId: "1523679970285846530"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: study-room
+    name: 【📚】Study Room
+    type: voice
+    categoryKey: voice-tambayan
+    existingId: "1530188771356573797"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: gaming-room
+    name: 【🎮】Gaming Room
+    type: voice
+    categoryKey: voice-tambayan
+    existingId: "1530418399698489507"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: music-room
+    name: 【🎵】Music Room
+    type: voice
+    categoryKey: voice-tambayan
+    existingId: "1530418401393115247"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: moderator-chat
+    name: 【🔒】moderator-chat
+    type: text
+    categoryKey: private-staff
+    existingId: "1530418403461038150"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:moderator
+        allow:
+          - ViewChannel
+      - subject: role:executive
+        allow:
+          - ViewChannel
+  - key: verification-support
+    name: 【🛡️】verification-support
+    type: text
+    categoryKey: private-staff
+    existingId: "1530418409752498328"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:moderator
+        allow:
+          - ViewChannel
+      - subject: role:executive
+        allow:
+          - ViewChannel
+  - key: server-logs
+    name: 【📝】server-logs
+    type: text
+    categoryKey: private-staff
+    existingId: "1530418413015531732"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:moderator
+        allow:
+          - ViewChannel
+        deny:
+          - SendMessages
+          - CreatePublicThreads
+          - CreatePrivateThreads
+          - SendMessagesInThreads
+      - subject: role:executive
+        allow:
+          - ViewChannel
+        deny:
+          - SendMessages
+          - CreatePublicThreads
+          - CreatePrivateThreads
+          - SendMessagesInThreads
+  - key: gen-chat
+    name: 【💬】gen-chat
+    type: text
+    categoryKey: tambayan
+    existingId: "1525915448158322830"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: alum-chat
+    name: 【🎓】alum-chat
+    type: text
+    categoryKey: tambayan
+    existingId: "1524452707853795590"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+  - key: lobby-voice
+    name: 【🛋️】Lobby
+    type: voice
+    categoryKey: tambayan
+    existingId: "1530191848268759144"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: alumni-vc-voice
+    name: 【🎓】Alumni VC
+    type: voice
+    categoryKey: voice-tambayan
+    existingId: "1524452983335813230"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+  - key: sports-night
+    name: 【🏅】sports-night
+    type: text
+    categoryKey: tambayan
+    existingId: "1530199758692683908"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: members-announcements
+    name: 【📢】members-announcements
+    type: text
+    categoryKey: official
+    existingId: "1524453960348467290"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+          - SendMessages
+          - CreatePublicThreads
+          - CreatePrivateThreads
+          - SendMessagesInThreads
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - SendMessages
+          - MentionEveryone
+          - AttachFiles
+          - EmbedLinks
+  - key: acad-nights-2-voice
+    name: 【📚】Acad Nights 2
+    type: voice
+    categoryKey: academics
+    existingId: "1530190913953988608"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: sports-night-voice
+    name: 【🏅】Sports Night
+    type: voice
+    categoryKey: voice-tambayan
+    existingId: "1530199793937285270"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: acad-nights-voice
+    name: 【📚】Acad Nights
+    type: voice
+    categoryKey: academics
+    existingId: "1530190754251673751"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+      - subject: role:applicant
+        allow:
+          - ViewChannel
+  - key: sports-night-members-only
+    name: 【🏅】sports-night-members-only
+    type: text
+    categoryKey: tambayan
+    existingId: "1530199213655195698"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+  - key: sports-night-members-only-voice
+    name: 【🏅】sports night (members only)
+    type: voice
+    categoryKey: voice-tambayan
+    existingId: "1530199135871963196"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:member
+        allow:
+          - ViewChannel
+      - subject: role:alumni
+        allow:
+          - ViewChannel
+  - key: decoy-member-chat
+    name: 【💬】member-chat
+    type: text
+    categoryKey: decoy-tambayan
+    existingId: "1530889288890192023"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:alumnis
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ReadMessageHistory
+      - subject: role:admin
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ReadMessageHistory
+          - ManageMessages
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ReadMessageHistory
+          - ManageMessages
+      - subject: role:moderator
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ReadMessageHistory
+          - ManageMessages
+  - key: decoy-alum-chat
+    name: 【🎓】alum-chat
+    type: text
+    categoryKey: decoy-tambayan
+    existingId: "1530889290593337519"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:alumnis
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ReadMessageHistory
+      - subject: role:admin
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ReadMessageHistory
+          - ManageMessages
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ReadMessageHistory
+          - ManageMessages
+      - subject: role:moderator
+        allow:
+          - ViewChannel
+          - SendMessages
+          - ReadMessageHistory
+          - ManageMessages
+  - key: decoy-tambayan-voice
+    name: 【🔊】Tambayan
+    type: voice
+    categoryKey: decoy-voice-tambayan
+    existingId: "1530889292333842464"
+    permissions:
+      - subject: everyone
+        deny:
+          - ViewChannel
+      - subject: role:alumnis
+        allow:
+          - ViewChannel
+          - Connect
+          - Speak
+      - subject: role:admin
+        allow:
+          - ViewChannel
+          - Connect
+          - Speak
+          - MuteMembers
+          - MoveMembers
+      - subject: role:executive
+        allow:
+          - ViewChannel
+          - Connect
+          - Speak
+          - MuteMembers
+          - MoveMembers
+      - subject: role:moderator
+        allow:
+          - ViewChannel
+          - Connect
+          - Speak
+          - MuteMembers
+          - MoveMembers
+

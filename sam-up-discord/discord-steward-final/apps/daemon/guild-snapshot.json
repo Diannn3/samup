@@ -1,0 +1,1629 @@
+{
+  "guildId": "1523679969836793928",
+  "guildName": "SAM-UP",
+  "ownerId": "1047023395029663744",
+  "generatedAt": "2026-07-25T03:47:27.105Z",
+  "verificationLevel": 1,
+  "memberCount": 12,
+  "roles": [
+    {
+      "id": "1523679969836793928",
+      "name": "@everyone",
+      "color": "#000000",
+      "position": 0,
+      "managed": false,
+      "mentionable": false,
+      "hoist": false,
+      "permissions": [
+        "CreateInstantInvite",
+        "AddReactions",
+        "Stream",
+        "ViewChannel",
+        "SendMessages",
+        "EmbedLinks",
+        "AttachFiles",
+        "ReadMessageHistory",
+        "MentionEveryone",
+        "UseExternalEmojis",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "ChangeNickname",
+        "UseApplicationCommands",
+        "RequestToSpeak",
+        "CreatePublicThreads",
+        "CreatePrivateThreads",
+        "UseExternalStickers",
+        "SendMessagesInThreads",
+        "UseEmbeddedActivities",
+        "UseSoundboard",
+        "CreateGuildExpressions",
+        "CreateEvents",
+        "UseExternalSounds",
+        "SendVoiceMessages",
+        "SetVoiceChannelStatus",
+        "SendPolls",
+        "UseExternalApps"
+      ]
+    },
+    {
+      "id": "1524452540702392543",
+      "name": "Member",
+      "color": "#000000",
+      "position": 9,
+      "managed": false,
+      "mentionable": false,
+      "hoist": false,
+      "permissions": []
+    },
+    {
+      "id": "1524452601746292946",
+      "name": "Alumni",
+      "color": "#000000",
+      "position": 8,
+      "managed": false,
+      "mentionable": false,
+      "hoist": false,
+      "permissions": []
+    },
+    {
+      "id": "1524454740329762900",
+      "name": "VoiceMaster",
+      "color": "#000000",
+      "position": 7,
+      "managed": true,
+      "mentionable": false,
+      "hoist": false,
+      "permissions": [
+        "ManageChannels",
+        "ViewChannel",
+        "SendMessages",
+        "EmbedLinks",
+        "ReadMessageHistory",
+        "UseExternalEmojis",
+        "Connect",
+        "Speak",
+        "MoveMembers",
+        "ChangeNickname",
+        "ManageRoles",
+        "UseApplicationCommands",
+        "SetVoiceChannelStatus"
+      ]
+    },
+    {
+      "id": "1524456128547651624",
+      "name": "Ticket Tool",
+      "color": "#000000",
+      "position": 6,
+      "managed": true,
+      "mentionable": false,
+      "hoist": false,
+      "permissions": [
+        "ManageChannels",
+        "ManageGuild",
+        "ViewChannel",
+        "SendMessages",
+        "ManageMessages",
+        "EmbedLinks",
+        "AttachFiles",
+        "ReadMessageHistory",
+        "ManageRoles",
+        "UseApplicationCommands"
+      ]
+    },
+    {
+      "id": "1524456211922026567",
+      "name": "Verified",
+      "color": "#000000",
+      "position": 5,
+      "managed": false,
+      "mentionable": false,
+      "hoist": false,
+      "permissions": []
+    },
+    {
+      "id": "1525514911646617811",
+      "name": "Unverified",
+      "color": "#000000",
+      "position": 4,
+      "managed": false,
+      "mentionable": false,
+      "hoist": false,
+      "permissions": []
+    },
+    {
+      "id": "1525515261300445288",
+      "name": "Dyno",
+      "color": "#000000",
+      "position": 10,
+      "managed": true,
+      "mentionable": false,
+      "hoist": false,
+      "permissions": [
+        "CreateInstantInvite",
+        "KickMembers",
+        "BanMembers",
+        "Administrator",
+        "ManageChannels",
+        "ManageGuild",
+        "ViewAuditLog",
+        "ViewChannel",
+        "SendMessages",
+        "ManageMessages",
+        "EmbedLinks",
+        "ReadMessageHistory",
+        "UseExternalEmojis",
+        "Connect",
+        "Speak",
+        "MoveMembers",
+        "UseVAD",
+        "ChangeNickname",
+        "ManageNicknames",
+        "ManageRoles",
+        "ManageWebhooks",
+        "ManageEmojisAndStickers",
+        "ManageGuildExpressions",
+        "UseExternalStickers",
+        "SendMessagesInThreads",
+        "ModerateMembers"
+      ]
+    },
+    {
+      "id": "1525903518072836279",
+      "name": "carl-bot",
+      "color": "#000000",
+      "position": 11,
+      "managed": true,
+      "mentionable": false,
+      "hoist": false,
+      "permissions": [
+        "KickMembers",
+        "BanMembers",
+        "ManageChannels",
+        "ManageGuild",
+        "AddReactions",
+        "ViewAuditLog",
+        "ViewChannel",
+        "SendMessages",
+        "ManageMessages",
+        "EmbedLinks",
+        "AttachFiles",
+        "ReadMessageHistory",
+        "MentionEveryone",
+        "UseExternalEmojis",
+        "Connect",
+        "Speak",
+        "MuteMembers",
+        "ChangeNickname",
+        "ManageNicknames",
+        "ManageRoles",
+        "ManageWebhooks",
+        "ManageEmojisAndStickers",
+        "ManageGuildExpressions"
+      ]
+    },
+    {
+      "id": "1525920121003049050",
+      "name": "Admin",
+      "color": "#000000",
+      "position": 3,
+      "managed": false,
+      "mentionable": false,
+      "hoist": false,
+      "permissions": [
+        "Administrator"
+      ]
+    },
+    {
+      "id": "1530197322804363375",
+      "name": "Executive",
+      "color": "#f1c40f",
+      "position": 2,
+      "managed": false,
+      "mentionable": false,
+      "hoist": false,
+      "permissions": [
+        "CreateInstantInvite",
+        "KickMembers",
+        "BanMembers",
+        "AddReactions",
+        "ViewAuditLog",
+        "PrioritySpeaker",
+        "Stream",
+        "ViewChannel",
+        "SendMessages",
+        "ManageMessages",
+        "EmbedLinks",
+        "AttachFiles",
+        "ReadMessageHistory",
+        "MentionEveryone",
+        "UseExternalEmojis",
+        "Connect",
+        "Speak",
+        "MuteMembers",
+        "DeafenMembers",
+        "MoveMembers",
+        "UseVAD",
+        "ChangeNickname",
+        "ManageNicknames",
+        "UseApplicationCommands",
+        "RequestToSpeak",
+        "CreatePublicThreads",
+        "CreatePrivateThreads",
+        "UseExternalStickers",
+        "SendMessagesInThreads",
+        "UseEmbeddedActivities",
+        "ModerateMembers",
+        "UseSoundboard",
+        "CreateGuildExpressions",
+        "CreateEvents",
+        "SendPolls",
+        "UseExternalApps"
+      ]
+    },
+    {
+      "id": "1530416461426852005",
+      "name": "Jarvis ng PUMAS",
+      "color": "#000000",
+      "position": 1,
+      "managed": true,
+      "mentionable": false,
+      "hoist": false,
+      "permissions": [
+        "Administrator"
+      ]
+    }
+  ],
+  "channels": [
+    {
+      "id": "1525915448158322830",
+      "name": "gen-chat",
+      "type": "GuildText",
+      "parentId": "1523679969836793929",
+      "position": 9,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1524452707853795590",
+      "name": "alum-chat",
+      "type": "GuildText",
+      "parentId": "1523679970285846528",
+      "position": 12,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452601746292946",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530418409752498328",
+      "name": "【🛡️】verification-support",
+      "type": "GuildText",
+      "parentId": "1530418361618399272",
+      "position": 34,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530191848268759144",
+      "name": "lobby",
+      "type": "GuildVoice",
+      "parentId": "1523679969836793929",
+      "position": 2,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1530418391263871137",
+      "name": "【🎮】gaming",
+      "type": "GuildText",
+      "parentId": "1523679970285846528",
+      "position": 28,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452601746292946",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1524452983335813230",
+      "name": "Alumni VC",
+      "type": "GuildVoice",
+      "parentId": "1523679970285846528",
+      "position": 4,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452601746292946",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1524451819647139980",
+      "name": "OFFICIAL",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 1,
+      "topic": null,
+      "permissionOverwrites": []
+    },
+    {
+      "id": "1523679969836793929",
+      "name": "TAMBAYAN",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 2,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1524454471441186826",
+      "name": "【🤖】bot-commands",
+      "type": "GuildText",
+      "parentId": "1523679969836793929",
+      "position": 11,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530418401393115247",
+      "name": "【🎵】Music Room",
+      "type": "GuildVoice",
+      "parentId": "1530198274311720970",
+      "position": 9,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1530418366840574094",
+      "name": "【👤】roles-and-membership",
+      "type": "GuildText",
+      "parentId": "1530416136414433451",
+      "position": 16,
+      "topic": null,
+      "permissionOverwrites": []
+    },
+    {
+      "id": "1530418413015531732",
+      "name": "【📝】server-logs",
+      "type": "GuildText",
+      "parentId": "1530418361618399272",
+      "position": 35,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1523679970285846529",
+      "name": "【🌻】welcome-to-sam-up",
+      "type": "GuildText",
+      "parentId": "1530416136414433451",
+      "position": 1,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530418399698489507",
+      "name": "【🎮】Gaming Room",
+      "type": "GuildVoice",
+      "parentId": "1530198274311720970",
+      "position": 8,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1530418372137717851",
+      "name": "【💼】opportunities",
+      "type": "GuildText",
+      "parentId": "1524451819647139980",
+      "position": 19,
+      "topic": null,
+      "permissionOverwrites": []
+    },
+    {
+      "id": "1530415617100877925",
+      "name": "【📜】server-guidelines",
+      "type": "GuildText",
+      "parentId": "1530416136414433451",
+      "position": 2,
+      "topic": null,
+      "permissionOverwrites": []
+    },
+    {
+      "id": "1530416136414433451",
+      "name": "START HERE",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 0,
+      "topic": null,
+      "permissionOverwrites": []
+    },
+    {
+      "id": "1530418393763676340",
+      "name": "【🎵】music-and-movies",
+      "type": "GuildText",
+      "parentId": "1523679970285846528",
+      "position": 29,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452601746292946",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530199213655195698",
+      "name": "sports-night-members-only",
+      "type": "GuildText",
+      "parentId": "1530198274311720970",
+      "position": 14,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "id": "1524456211922026567",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1523679970285846528",
+      "name": "INTERESTS",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 3,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452601746292946",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530199758692683908",
+      "name": "sports-night",
+      "type": "GuildText",
+      "parentId": "1524451819647139980",
+      "position": 7,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1524456211922026567",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1524452601746292946",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1524453960348467290",
+      "name": "members-announcements",
+      "type": "GuildText",
+      "parentId": "1523679969836793929",
+      "position": 8,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1530418386239230003",
+      "name": "【📝】academic-chat",
+      "type": "GuildText",
+      "parentId": "1525515376211922987",
+      "position": 25,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1524451849762246749",
+      "name": "【📢】announcements",
+      "type": "GuildText",
+      "parentId": "1524451819647139980",
+      "position": 5,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1524456211922026567",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1524452601746292946",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "AddReactions",
+            "ViewChannel",
+            "SendMessages",
+            "SendTTSMessages",
+            "ManageMessages",
+            "EmbedLinks",
+            "AttachFiles",
+            "ReadMessageHistory",
+            "MentionEveryone",
+            "UseExternalEmojis",
+            "UseApplicationCommands",
+            "ManageThreads",
+            "CreatePublicThreads",
+            "CreatePrivateThreads",
+            "UseExternalStickers",
+            "SendMessagesInThreads",
+            "UseEmbeddedActivities",
+            "SendVoiceMessages",
+            "SendPolls",
+            "UseExternalApps",
+            "PinMessages",
+            "BypassSlowmode"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530190913953988608",
+      "name": "acad nights 2",
+      "type": "GuildVoice",
+      "parentId": "1525515376211922987",
+      "position": 6,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1530418370439020615",
+      "name": "【📅】events-and-calendar",
+      "type": "GuildText",
+      "parentId": "1524451819647139980",
+      "position": 18,
+      "topic": null,
+      "permissionOverwrites": []
+    },
+    {
+      "id": "1525515414652850296",
+      "name": "bot-commands",
+      "type": "GuildText",
+      "parentId": "1525515376211922987",
+      "position": 13,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530199793937285270",
+      "name": "sports night",
+      "type": "GuildVoice",
+      "parentId": "1524451819647139980",
+      "position": 1,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1524456211922026567",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1524452601746292946",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel",
+            "Connect"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530418375795281933",
+      "name": "【🎲】random",
+      "type": "GuildText",
+      "parentId": "1523679969836793929",
+      "position": 21,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530188771356573797",
+      "name": "【📚】Study Room",
+      "type": "GuildVoice",
+      "parentId": "1523679969836793929",
+      "position": 3,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1530198274311720970",
+      "name": "VOICE TAMBAYAN",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 5,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1525515376211922987",
+      "name": "ACADEMICS",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 4,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530418378785820765",
+      "name": "【📷】memes-and-media",
+      "type": "GuildText",
+      "parentId": "1523679969836793929",
+      "position": 22,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530415126664970400",
+      "name": "【🎫】ticket-0020",
+      "type": "GuildText",
+      "parentId": null,
+      "position": 0,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "718625784973230100",
+          "type": "member",
+          "allow": [
+            "ViewChannel",
+            "SendMessages"
+          ],
+          "deny": []
+        },
+        {
+          "id": "557628352828014614",
+          "type": "member",
+          "allow": [
+            "ManageChannels",
+            "ViewChannel",
+            "SendMessages",
+            "ManageMessages",
+            "EmbedLinks",
+            "AttachFiles",
+            "ReadMessageHistory",
+            "MentionEveryone"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1523679970285846530",
+      "name": "【🔊】Tambayan",
+      "type": "GuildVoice",
+      "parentId": "1524451819647139980",
+      "position": 0,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1524456211922026567",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1524452601746292946",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel",
+            "Connect"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530190754251673751",
+      "name": "acad nights",
+      "type": "GuildVoice",
+      "parentId": "1525515376211922987",
+      "position": 5,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1530418403461038150",
+      "name": "【🔒】moderator-chat",
+      "type": "GuildText",
+      "parentId": "1530418361618399272",
+      "position": 32,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530418368840994876",
+      "name": "【🪧】channel-directory",
+      "type": "GuildText",
+      "parentId": "1530416136414433451",
+      "position": 17,
+      "topic": null,
+      "permissionOverwrites": []
+    },
+    {
+      "id": "1524461452856000693",
+      "name": "【✅】verification",
+      "type": "GuildText",
+      "parentId": "1530416136414433451",
+      "position": 4,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "557628352828014614",
+          "type": "member",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "472911936951156740",
+          "type": "member",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "155149108183695360",
+          "type": "member",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1525514911646617811",
+          "type": "role",
+          "allow": [
+            "ViewChannel"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel",
+            "SendMessages"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1530418381755518979",
+      "name": "【💡】suggestions",
+      "type": "GuildText",
+      "parentId": "1523679969836793929",
+      "position": 23,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1530418384192143461",
+      "name": "【📚】academic-help",
+      "type": "GuildText",
+      "parentId": "1525515376211922987",
+      "position": 24,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1530199135871963196",
+      "name": "sports night (members only)",
+      "type": "GuildVoice",
+      "parentId": "1530198274311720970",
+      "position": 7,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1530418361618399272",
+      "name": "PRIVATE STAFF",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 6,
+      "topic": null,
+      "permissionOverwrites": []
+    },
+    {
+      "id": "1530418388038582383",
+      "name": "【📁】resources",
+      "type": "GuildText",
+      "parentId": "1525515376211922987",
+      "position": 26,
+      "topic": null,
+      "permissionOverwrites": [
+        {
+          "id": "1524452540702392543",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        },
+        {
+          "id": "1523679969836793928",
+          "type": "role",
+          "allow": [],
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "id": "1530197322804363375",
+          "type": "role",
+          "allow": [
+            "ViewChannel",
+            "Connect"
+          ],
+          "deny": []
+        }
+      ]
+    },
+    {
+      "id": "1530415877265297408",
+      "name": "【🔗】important-links",
+      "type": "GuildText",
+      "parentId": "1530416136414433451",
+      "position": 3,
+      "topic": null,
+      "permissionOverwrites": []
+    }
+  ],
+  "automodRules": [],
+  "bots": [
+    {
+      "id": "1530404236620464179",
+      "username": "PUMAS Bot",
+      "displayName": "PUMAS Bot",
+      "topRolePosition": 1
+    },
+    {
+      "id": "155149108183695360",
+      "username": "Dyno",
+      "displayName": "Dyno",
+      "topRolePosition": 10
+    },
+    {
+      "id": "235148962103951360",
+      "username": "Carl-bot",
+      "displayName": "Carl-bot",
+      "topRolePosition": 11
+    },
+    {
+      "id": "472911936951156740",
+      "username": "VoiceMaster",
+      "displayName": "VoiceMaster",
+      "topRolePosition": 7
+    },
+    {
+      "id": "557628352828014614",
+      "username": "Ticket Tool",
+      "displayName": "Ticket Tool",
+      "topRolePosition": 6
+    }
+  ],
+  "ticketHints": [
+    {
+      "kind": "channel",
+      "id": "1530418409752498328",
+      "name": "【🛡️】verification-support",
+      "reason": "Name matches a common ticket or verification pattern."
+    },
+    {
+      "kind": "channel",
+      "id": "1530415126664970400",
+      "name": "【🎫】ticket-0020",
+      "reason": "Name matches a common ticket or verification pattern."
+    },
+    {
+      "kind": "channel",
+      "id": "1524461452856000693",
+      "name": "【✅】verification",
+      "reason": "Name matches a common ticket or verification pattern."
+    },
+    {
+      "kind": "role",
+      "id": "1524456128547651624",
+      "name": "Ticket Tool",
+      "reason": "Role name suggests ticket or verification access."
+    },
+    {
+      "kind": "bot",
+      "id": "557628352828014614",
+      "name": "Ticket Tool",
+      "reason": "Bot name suggests ticket or verification ownership."
+    }
+  ]
+}

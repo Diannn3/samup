@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+coverage/
+plans/*.json
+state/*.json
+.DS_Store

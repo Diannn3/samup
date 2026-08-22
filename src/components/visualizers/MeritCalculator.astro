@@ -1,0 +1,169 @@
+---
+// MeritCalculator.astro - Live Interactive Merit & Fee Calculator based on SAM-UP Bylaws 2026-2027
+---
+
+<div class="glass-panel rounded-3xl p-8 lg:p-12 border border-[#D4AF37]/20 shadow-2xl relative overflow-hidden">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4AF37]/10 text-[#F5D77F] font-mono text-xs mb-3 border border-[#D4AF37]/30">
+        Bylaws 2026-2027 Article VI Section 4
+      </div>
+      <h3 class="text-2xl sm:text-4xl font-display font-bold text-slate-100 mb-2">
+        Interactive Semestral Fee & Merit Calculator
+      </h3>
+      <p class="text-sm text-slate-400 max-w-2xl mx-auto">
+        SAM-UP rewards academic excellence, committee leadership, and peer service with up to a 50% discount on semestral dues.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8 items-start">
+      <!-- Options Checklist (Left 2 cols) -->
+      <div class="lg:col-span-2 space-y-4">
+        <!-- Category: Academic Honors -->
+        <div class="p-4 rounded-2xl bg-slate-900/70 border border-slate-800">
+          <h4 class="text-xs font-mono text-[#D4AF37] uppercase tracking-wider mb-3">Honorific Scholarships (Pick One)</h4>
+          <div class="grid sm:grid-cols-3 gap-2">
+            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-[#D4AF37]/50 cursor-pointer transition-colors text-xs">
+              <input type="radio" name="scholar" value="20" class="merit-input accent-[#D4AF37]" />
+              <div>
+                <div class="font-bold text-slate-200">Univ. Scholar</div>
+                <div class="text-[10px] text-emerald-400 font-mono">+20 Pts (20%)</div>
+              </div>
+            </label>
+            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-[#D4AF37]/50 cursor-pointer transition-colors text-xs">
+              <input type="radio" name="scholar" value="15" class="merit-input accent-[#D4AF37]" />
+              <div>
+                <div class="font-bold text-slate-200">College Scholar</div>
+                <div class="text-[10px] text-emerald-400 font-mono">+15 Pts (15%)</div>
+              </div>
+            </label>
+            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-[#D4AF37]/50 cursor-pointer transition-colors text-xs">
+              <input type="radio" name="scholar" value="10" class="merit-input accent-[#D4AF37]" />
+              <div>
+                <div class="font-bold text-slate-200">Honor Roll</div>
+                <div class="text-[10px] text-emerald-400 font-mono">+10 Pts (10%)</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Category: Attendance & Organizational Roles -->
+        <div class="p-4 rounded-2xl bg-slate-900/70 border border-slate-800">
+          <h4 class="text-xs font-mono text-[#D4AF37] uppercase tracking-wider mb-3">Attendance & Organizational Roles (Select All Applicable)</h4>
+          <div class="grid sm:grid-cols-2 gap-2 text-xs">
+            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-[#D4AF37]/50 cursor-pointer transition-colors">
+              <input type="checkbox" value="10" class="merit-input merit-check accent-[#D4AF37]" />
+              <div>
+                <div class="font-medium text-slate-200">Perfect Body Attendance</div>
+                <div class="text-[10px] text-emerald-400 font-mono">+10 Pts (10%)</div>
+              </div>
+            </label>
+            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-[#D4AF37]/50 cursor-pointer transition-colors">
+              <input type="checkbox" value="10" class="merit-input merit-check accent-[#D4AF37]" />
+              <div>
+                <div class="font-medium text-slate-200">Event / FRA Head</div>
+                <div class="text-[10px] text-emerald-400 font-mono">+10 Pts (10%)</div>
+              </div>
+            </label>
+            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-[#D4AF37]/50 cursor-pointer transition-colors">
+              <input type="checkbox" value="5" class="merit-input merit-check accent-[#D4AF37]" />
+              <div>
+                <div class="font-medium text-slate-200">Volunteer Tutor</div>
+                <div class="text-[10px] text-emerald-400 font-mono">+5 Pts (5%)</div>
+              </div>
+            </label>
+            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-[#D4AF37]/50 cursor-pointer transition-colors">
+              <input type="checkbox" value="10" class="merit-input merit-check accent-[#D4AF37]" />
+              <div>
+                <div class="font-medium text-slate-200">Marketing Deliverables</div>
+                <div class="text-[10px] text-emerald-400 font-mono">+10 Pts (10%)</div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Calculation Card (Right 1 col) -->
+      <div class="p-6 rounded-3xl bg-slate-950 border border-[#D4AF37]/40 shadow-2xl flex flex-col justify-between h-full">
+        <div>
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-widest mb-1">Fee Breakdown</div>
+          <div class="text-sm font-semibold text-slate-200 mb-6">Base Semestral Dues: ₱125.00</div>
+
+          <!-- Total Points -->
+          <div class="mb-4 p-4 rounded-2xl bg-slate-900/90 border border-slate-800 text-center">
+            <span class="text-xs font-mono text-slate-400 block mb-1">ACCUMULATED MERIT</span>
+            <span id="merit-points-display" class="text-3xl font-display font-extrabold text-[#F5D77F]">0</span>
+            <span class="text-xs font-mono text-slate-400 ml-1">/ 50 Max Pts</span>
+          </div>
+
+          <!-- Discount % -->
+          <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-slate-800">
+            <span class="text-slate-400">Discount Applied:</span>
+            <span id="discount-pct-display" class="text-emerald-400 font-bold">0%</span>
+          </div>
+          <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-slate-800">
+            <span class="text-slate-400">Total Savings:</span>
+            <span id="savings-display" class="text-emerald-400 font-bold">- ₱0.00</span>
+          </div>
+        </div>
+
+        <!-- Final Fee Amount -->
+        <div class="mt-6 pt-4 border-t border-[#D4AF37]/30 text-center">
+          <span class="text-xs font-mono text-slate-400 block mb-1">FINAL DUE AMOUNT</span>
+          <div class="text-4xl font-display font-extrabold text-[#F5D77F]" id="final-fee-display">
+            ₱125.00
+          </div>
+          <span class="text-[11px] font-mono text-slate-500 block mt-2">Payable via GCash / Finance Subteam</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupCalculator() {
+    const baseFee = 125.0;
+    const scholarRadios = document.querySelectorAll('input[name="scholar"]');
+    const meritChecks = document.querySelectorAll('.merit-check');
+    
+    const pointsDisplay = document.getElementById('merit-points-display');
+    const discountDisplay = document.getElementById('discount-pct-display');
+    const savingsDisplay = document.getElementById('savings-display');
+    const feeDisplay = document.getElementById('final-fee-display');
+
+    function calculate() {
+      let totalPoints = 0;
+
+      // Scholar points
+      scholarRadios.forEach((r) => {
+        if ((r as HTMLInputElement).checked) {
+          totalPoints += parseInt((r as HTMLInputElement).value, 10) || 0;
+        }
+      });
+
+      // Checkbox points
+      meritChecks.forEach((c) => {
+        if ((c as HTMLInputElement).checked) {
+          totalPoints += parseInt((c as HTMLInputElement).value, 10) || 0;
+        }
+      });
+
+      // Cap at 50% max discount per Bylaws
+      const cappedPoints = Math.min(50, totalPoints);
+      const discountAmount = (baseFee * cappedPoints) / 100.0;
+      const finalDue = baseFee - discountAmount;
+
+      if (pointsDisplay) pointsDisplay.textContent = totalPoints.toString();
+      if (discountDisplay) discountDisplay.textContent = `${cappedPoints}%`;
+      if (savingsDisplay) savingsDisplay.textContent = `- ₱${discountAmount.toFixed(2)}`;
+      if (feeDisplay) feeDisplay.textContent = `₱${finalDue.toFixed(2)}`;
+    }
+
+    document.querySelectorAll('.merit-input').forEach(input => {
+      input.addEventListener('change', calculate);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupCalculator);
+  document.addEventListener('astro:page-load', setupCalculator);
+</script>

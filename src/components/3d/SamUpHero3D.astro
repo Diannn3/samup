@@ -1,0 +1,201 @@
+---
+// 3D Hero Viewport Component for SAM-UP with HUD Overlay and Viewport Controls
+---
+
+<div class="relative w-full h-full min-h-[580px] lg:min-h-[720px] flex items-center justify-center overflow-hidden rounded-3xl border border-[#D4AF37]/20 bg-[#07090D]/80 glass-panel shadow-2xl">
+  <!-- 3D Canvas Mount Point -->
+  <div id="samup-3d-canvas-container" class="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing z-0"></div>
+
+  <!-- Telemetry HUD Overlays (Top Left) -->
+  <div class="absolute top-6 left-6 z-10 pointer-events-none hidden sm:flex flex-col gap-2 font-mono text-xs text-slate-400">
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/80 border border-[#D4AF37]/30 backdrop-blur-md text-[#F5D77F]">
+      <span class="w-2 h-2 rounded-full bg-[#D4AF37] animate-ping"></span>
+      <span class="font-semibold tracking-wider">KEYSHOT WEBGL 3.0 ENGINE</span>
+    </div>
+    <div class="text-[11px] text-slate-400/80 pl-1">
+      <div>ORIGIN: <span class="text-slate-200">14.1675° N, 121.2433° E (UPLB IMSP)</span></div>
+      <div>CORE SYMBOL: <span class="text-[#D4AF37] font-semibold">Π (PIU MONOLITH)</span></div>
+      <div>EPOCH: <span class="text-slate-200">NOV 27, 1984</span></div>
+    </div>
+  </div>
+
+  <!-- Telemetry HUD Overlays (Top Right - Live Status) -->
+  <div class="absolute top-6 right-6 z-10 pointer-events-none hidden md:flex flex-col items-end gap-1.5 font-mono text-xs text-slate-400">
+    <div class="flex items-center gap-2 px-3 py-1 rounded-md bg-slate-900/80 border border-slate-700/60 backdrop-blur-md">
+      <span class="text-emerald-400">●</span>
+      <span class="text-slate-300">SHADERS: PBR PHYSICAL</span>
+    </div>
+    <div class="text-[10px] text-slate-500">
+      ANISOTROPIC CLEARCOAT 0.9 • ROUGHNESS 0.18
+    </div>
+  </div>
+
+  <!-- Interactive 3D HUD Controls Toolbar (Bottom Center) -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-wrap items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-slate-950/85 border border-[#D4AF37]/30 backdrop-blur-xl shadow-2xl shadow-black/80 max-w-[95%]">
+    <!-- Camera Modes -->
+    <div class="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800">
+      <button 
+        id="btn-cam-orbital" 
+        class="cam-btn active px-3 py-1 text-xs font-medium rounded-lg text-slate-300 hover:text-white bg-[#D4AF37]/20 border border-[#D4AF37]/40 transition-colors"
+        title="Orbital Cinematic Pan">
+        🎥 Orbit
+      </button>
+      <button 
+        id="btn-cam-frontal" 
+        class="cam-btn px-3 py-1 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors"
+        title="Frontal Seal Lock">
+        🛡️ Front
+      </button>
+      <button 
+        id="btn-cam-macro" 
+        class="cam-btn px-3 py-1 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors"
+        title="Macro Detailing View">
+        🔍 Macro
+      </button>
+      <button 
+        id="btn-cam-wireframe" 
+        class="cam-btn px-3 py-1 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors"
+        title="Mathematical Wireframe">
+        📐 Wire
+      </button>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-5 w-[1px] bg-slate-800 hidden sm:block"></div>
+
+    <!-- Lighting Switcher -->
+    <div class="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800">
+      <button 
+        id="btn-light-gold" 
+        class="light-btn active px-2.5 py-1 text-xs font-medium rounded-lg text-amber-300 bg-amber-950/40 border border-amber-500/30 transition-colors"
+        title="KeyShot Studio Gold">
+        ✨ Gold
+      </button>
+      <button 
+        id="btn-light-cyber" 
+        class="light-btn px-2.5 py-1 text-xs font-medium rounded-lg text-slate-400 hover:text-cyan-300 hover:bg-slate-800 transition-colors"
+        title="Cyber Obsidian Studio">
+        💎 Cyber
+      </button>
+      <button 
+        id="btn-light-sunset" 
+        class="light-btn px-2.5 py-1 text-xs font-medium rounded-lg text-slate-400 hover:text-orange-300 hover:bg-slate-800 transition-colors"
+        title="Golden Hour Sunset">
+        🌅 Sunset
+      </button>
+    </div>
+
+    <!-- Pause/Play Rotation Button -->
+    <button 
+      id="btn-toggle-rotate" 
+      class="p-1.5 px-3 text-xs font-medium rounded-xl text-slate-300 bg-slate-900 hover:bg-slate-800 border border-slate-700/80 transition-colors flex items-center gap-1.5"
+      title="Toggle Continuous Levitation & Spin">
+      <span id="rotate-icon">⏸️</span>
+      <span class="hidden sm:inline">Spin</span>
+    </button>
+  </div>
+
+  <!-- Interactive Drag Hint -->
+  <div class="absolute bottom-20 left-1/2 -translate-x-1/2 pointer-events-none text-center opacity-60 hover:opacity-100 transition-opacity">
+    <span class="text-[11px] font-mono text-slate-400 bg-black/40 px-3 py-1 rounded-full border border-slate-800 backdrop-blur-sm">
+      Drag to orbit 360° in 3D • Scroll to zoom
+    </span>
+  </div>
+</div>
+
+<script>
+  import { SamUp3DScene } from './SamUp3DScene.client.js';
+
+  let sceneInstance = null;
+
+  function init3D() {
+    const container = document.getElementById('samup-3d-canvas-container');
+    if (!container) return;
+
+    if (sceneInstance) {
+      sceneInstance.destroy();
+      sceneInstance = null;
+    }
+
+    sceneInstance = new SamUp3DScene(container);
+
+    // Setup HUD Button Events
+    const camButtons = document.querySelectorAll('.cam-btn');
+    const lightButtons = document.querySelectorAll('.light-btn');
+
+    document.getElementById('btn-cam-orbital')?.addEventListener('click', () => {
+      setCamActive('btn-cam-orbital');
+      window.dispatchEvent(new CustomEvent('samup:camera-mode', { detail: { mode: 'orbital' } }));
+    });
+
+    document.getElementById('btn-cam-frontal')?.addEventListener('click', () => {
+      setCamActive('btn-cam-frontal');
+      window.dispatchEvent(new CustomEvent('samup:camera-mode', { detail: { mode: 'frontal' } }));
+    });
+
+    document.getElementById('btn-cam-macro')?.addEventListener('click', () => {
+      setCamActive('btn-cam-macro');
+      window.dispatchEvent(new CustomEvent('samup:camera-mode', { detail: { mode: 'macro' } }));
+    });
+
+    document.getElementById('btn-cam-wireframe')?.addEventListener('click', () => {
+      setCamActive('btn-cam-wireframe');
+      window.dispatchEvent(new CustomEvent('samup:camera-mode', { detail: { mode: 'wireframe' } }));
+    });
+
+    function setCamActive(id) {
+      camButtons.forEach(btn => {
+        btn.classList.remove('bg-[#D4AF37]/20', 'border-[#D4AF37]/40', 'text-white');
+        btn.classList.add('text-slate-400');
+      });
+      const active = document.getElementById(id);
+      if (active) {
+        active.classList.add('bg-[#D4AF37]/20', 'border-[#D4AF37]/40', 'text-white');
+        active.classList.remove('text-slate-400');
+      }
+    }
+
+    document.getElementById('btn-light-gold')?.addEventListener('click', () => {
+      setLightActive('btn-light-gold');
+      window.dispatchEvent(new CustomEvent('samup:lighting-mode', { detail: { mode: 'studio_gold' } }));
+    });
+
+    document.getElementById('btn-light-cyber')?.addEventListener('click', () => {
+      setLightActive('btn-light-cyber');
+      window.dispatchEvent(new CustomEvent('samup:lighting-mode', { detail: { mode: 'cyber_obsidian' } }));
+    });
+
+    document.getElementById('btn-light-sunset')?.addEventListener('click', () => {
+      setLightActive('btn-light-sunset');
+      window.dispatchEvent(new CustomEvent('samup:lighting-mode', { detail: { mode: 'golden_hour' } }));
+    });
+
+    function setLightActive(id) {
+      lightButtons.forEach(btn => {
+        btn.classList.remove('bg-amber-950/40', 'border-amber-500/30', 'text-amber-300', 'bg-cyan-950/40', 'border-cyan-500/30', 'text-cyan-300', 'bg-orange-950/40', 'border-orange-500/30', 'text-orange-300');
+        btn.classList.add('text-slate-400');
+      });
+      const active = document.getElementById(id);
+      if (active) {
+        active.classList.remove('text-slate-400');
+        if (id === 'btn-light-gold') active.classList.add('bg-amber-950/40', 'border-amber-500/30', 'text-amber-300');
+        if (id === 'btn-light-cyber') active.classList.add('bg-cyan-950/40', 'border-cyan-500/30', 'text-cyan-300');
+        if (id === 'btn-light-sunset') active.classList.add('bg-orange-950/40', 'border-orange-500/30', 'text-orange-300');
+      }
+    }
+
+    const toggleRotateBtn = document.getElementById('btn-toggle-rotate');
+    const rotateIcon = document.getElementById('rotate-icon');
+    let isRotating = true;
+
+    toggleRotateBtn?.addEventListener('click', () => {
+      isRotating = !isRotating;
+      if (rotateIcon) rotateIcon.textContent = isRotating ? '⏸️' : '▶️';
+      window.dispatchEvent(new CustomEvent('samup:toggle-rotation'));
+    });
+  }
+
+  // Initialize on page load & Astro client navigation
+  document.addEventListener('DOMContentLoaded', init3D);
+  document.addEventListener('astro:page-load', init3D);
+</script>

@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SealExplorer } from '../components/interactive/SealExplorer';
+import HandshakeIllustration from '../components/visual/HandshakeIllustration.astro';
+import { FrostedGlassCard } from '../components/ui/FrostedGlassCard';
+import { ShieldCheck, Award, Users, BookOpen, Scale, Sparkles, Landmark, Compass } from 'lucide-react';
+---
+
+<BaseLayout
+  title="About & Heritage | Society of Applied Mathematics of UPLB"
+  description="Explore the constitutional history, inviolate principles, seal symbology, and governance structure of SAM-UP since 1984."
+>
+  {/* Page Header with Ambient Gradient Mesh */}
+  <section class="py-20 sm:py-24 border-b border-[var(--border)] relative overflow-hidden">
+    <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.12)_0%,transparent_70%)] top-0 left-[-10%]" aria-hidden="true" />
+    <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(16,185,129,0.1)_0%,transparent_70%)] bottom-0 right-[-10%]" aria-hidden="true" />
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl space-y-4">
+        <div class="coord-badge">
+          <Landmark class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+          <span>CONSTITUTIONAL HERITAGE & HISTORY • EST. 1984</span>
+        </div>
+        <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight">
+          Four Decades of <span class="text-gold-gradient">Mathematical Excellence</span>
+        </h1>
+        <p class="text-base sm:text-lg text-[var(--muted-foreground)] leading-relaxed font-normal">
+          Founded on November 27, 1984, at the Institute of Mathematical Sciences and Physics (IMSP), College of Arts and Sciences, University of the Philippines Los Baños.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-24">
+    {/* Foundation & Purpose Charter */}
+    <section class="space-y-8">
+      <div class="max-w-3xl space-y-3">
+        <div class="coord-badge">
+          <span>ARTICLE I • PURPOSES & OBJECTIVES</span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
+          The Constitutional Mandate
+        </h2>
+        <p class="text-base text-[var(--muted-foreground)] leading-relaxed">
+          The Society of Applied Mathematics of UPLB is established as an academic, non-sectarian, and non-profit student organization dedicated to three fundamental tenets:
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-6">
+        <FrostedGlassCard
+          client:idle
+          tag="TENET 01"
+          title="Academic Rigor"
+          subtitle="Cultivating advanced mathematical problem-solving skills, quantitative logic, and intellectual excellence across all applied mathematical disciplines."
+          showArrow={false}
+        />
+
+        <FrostedGlassCard
+          client:idle
+          tag="TENET 02"
+          title="Societal Relevance"
+          subtitle="Applying quantitative, statistical, and computational models to solve critical national, industrial, economic, and scientific challenges in Philippine society."
+          showArrow={false}
+        />
+
+        <FrostedGlassCard
+          client:idle
+          tag="TENET 03"
+          title="Lifelong Camaraderie"
+          subtitle="Fostering an unbreakable bond of unity, mutual support, and egalitarian brotherhood among all resident, affiliate, and alumni members across generations."
+          showArrow={false}
+        />
+      </div>
+    </section>
+
+    {/* Inviolate Principles & Triad */}
+    <section class="space-y-8">
+      <div class="max-w-3xl space-y-3">
+        <div class="coord-badge">
+          <span>ETHICAL FOUNDATION</span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
+          Inviolate Principles & The Triad of Excellence
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <FrostedGlassCard
+          client:idle
+          tag="CONSTITUTIONAL DOCTRINE"
+          title="The Four Inviolate Principles"
+          showArrow={false}
+        >
+          <ul class="space-y-3 text-xs sm:text-sm text-[var(--foreground)]/80 list-none p-0 m-0 mt-2">
+            <li class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+              <strong class="text-[var(--primary)] block mb-0.5 font-semibold">01. Egalitarian Brotherhood:</strong>
+              Absolute equality among all members regardless of batch, socioeconomic standing, or year level. No member is above another.
+            </li>
+            <li class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+              <strong class="text-[var(--primary)] block mb-0.5 font-semibold">02. Collective Leadership:</strong>
+              Democratic consensus, communal responsibility, and transparent institutional dialogue over authoritarian hierarchy.
+            </li>
+            <li class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+              <strong class="text-[var(--primary)] block mb-0.5 font-semibold">03. Constructive Self-Criticism:</strong>
+              Continuous organizational introspection, rigorous academic honesty, and active pursuit of institutional refinement.
+            </li>
+            <li class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+              <strong class="text-[var(--primary)] block mb-0.5 font-semibold">04. Community Service:</strong>
+              Direct orientation toward serving the Filipino people through free peer education and open scientific knowledge sharing.
+            </li>
+          </ul>
+        </FrostedGlassCard>
+
+        <FrostedGlassCard
+          client:idle
+          tag="CORE PILLARS"
+          title="The Triad of Excellence"
+          showArrow={false}
+        >
+          <ul class="space-y-3 text-xs sm:text-sm text-[var(--foreground)]/80 list-none p-0 m-0 mt-2">
+            <li class="p-4 rounded-xl bg-white/5 border border-white/10">
+              <strong class="text-[var(--primary)] block mb-1 font-semibold">Prestige:</strong>
+              Distinction in mathematical research, national tournament victories, and rigorous professional mastery in industry and academia.
+            </li>
+            <li class="p-4 rounded-xl bg-white/5 border border-white/10">
+              <strong class="text-[var(--primary)] block mb-1 font-semibold">Service:</strong>
+              Dedicated semestral peer tutorial caravans, high school outreach, and academic reviewer repositories for the UPLB community.
+            </li>
+            <li class="p-4 rounded-xl bg-white/5 border border-white/10">
+              <strong class="text-[var(--primary)] block mb-1 font-semibold">Leadership:</strong>
+              Developing ethical, critical-thinking leaders capable of orchestrating complex initiatives in technology, policy, and research.
+            </li>
+          </ul>
+        </FrostedGlassCard>
+      </div>
+    </section>
+
+    {/* Interactive Seal Anatomy Explorer */}
+    <section class="space-y-8">
+      <div class="max-w-3xl space-y-3">
+        <div class="coord-badge">
+          <span>ARTICLE II • EMBLEM & SYMBOLOGY</span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
+          Interactive Seal Anatomy Explorer
+        </h2>
+        <p class="text-base text-[var(--muted-foreground)]">
+          Select each layer below to inspect its constitutional meaning, geometric symbology, and historical significance.
+        </p>
+      </div>
+
+      <SealExplorer client:load />
+    </section>
+
+    {/* Handshake Symbology */}
+    <section class="space-y-8">
+      <div class="max-w-3xl space-y-3">
+        <div class="coord-badge">
+          <span>ARTICLE V • THE LEFT-HAND GRIP</span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
+          The Constitutional Handshake
+        </h2>
+      </div>
+
+      <HandshakeIllustration />
+    </section>
+
+    {/* Standing Committees */}
+    <section class="space-y-8">
+      <div class="max-w-3xl space-y-3">
+        <div class="coord-badge">
+          <span>GOVERNANCE STRUCTURE</span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
+          Constitutional Standing Committees
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <FrostedGlassCard
+          client:idle
+          tag="GOVERNANCE"
+          title="Executive Committee"
+          subtitle="Composed of the Senior Executive, Vice Senior Executive, and Committee Heads overseeing general policy, executive decisions, and constitutional compliance."
+          showArrow={false}
+        />
+
+        <FrostedGlassCard
+          client:idle
+          tag="ACADEMICS"
+          title="Scholastics Committee"
+          subtitle="Directs the nationwide UPLB Math Wizard, semestral peer tutorial caravans, mock exam review workshops, and academic reviewer archives."
+          showArrow={false}
+        />
+
+        <FrostedGlassCard
+          client:idle
+          tag="CULTURE & SPORTS"
+          title="Socio-Cultural Committee"
+          subtitle="Coordinates anniversary celebrations, cultural galas, athletic delegations at STRASUC and intramurals, and fellowship assemblies."
+          showArrow={false}
+        />
+
+        <FrostedGlassCard
+          client:idle
+          tag="TREASURY & AUDIT"
+          title="Financial Affairs Committee"
+          subtitle="Manages organization budgets, transparent financial auditing, project fundraising, and the semestral merit discount assessment system."
+          showArrow={false}
+        />
+
+        <FrostedGlassCard
+          client:idle
+          tag="RECRUITMENT"
+          title="Membership Affairs Committee"
+          subtitle="Oversees applicant orientation, the four-phase recruitment process, residency monitoring, and general member welfare."
+          showArrow={false}
+        />
+
+        <FrostedGlassCard
+          client:idle
+          tag="COMMUNICATIONS"
+          title="Secretariat & Public Relations"
+          subtitle="Preserves constitutional archives, coordinates official university correspondence, and directs public communications and branding."
+          showArrow={false}
+        />
+      </div>
+    </section>
+  </div>
+</BaseLayout>

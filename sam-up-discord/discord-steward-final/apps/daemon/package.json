@@ -1,0 +1,24 @@
+{
+  "name": "@discord-steward/daemon",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@discord-steward/core": "*",
+    "@discord-steward/database": "*",
+    "@discord-steward/shared": "*",
+    "@fastify/cors": "^11.0.0",
+    "discord.js": "^14.26.4",
+    "dotenv": "^16.5.0",
+    "fastify": "^5.8.5",
+    "zod": "^4.0.0"
+  }
+}
