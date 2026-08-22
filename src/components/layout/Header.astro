@@ -1,7 +1,6 @@
 ---
 import { mainNav, membershipAction } from '../../data/navigation';
 import { MobileNav } from '../interactive/MobileNav';
-import { Magnet } from '../ui/Magnet';
 
 interface Props {
   currentPath?: string;
@@ -54,14 +53,12 @@ const { currentPath = Astro.url.pathname } = Astro.props;
       {/* Primary Action & Mobile Menu Trigger */}
       <div class="flex items-center gap-3">
         <div class="hidden sm:inline-flex">
-          <Magnet client:idle strength={12}>
-            <a
-              href={membershipAction.href}
-              class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-xs hover:bg-[var(--primary-hover)] transition-all shadow-md shadow-[var(--primary)]/20"
-            >
-              {membershipAction.label}
-            </a>
-          </Magnet>
+          <a
+            href={membershipAction.href}
+            class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-xs hover:bg-[var(--primary-hover)] transition-all shadow-md shadow-[var(--primary)]/20"
+          >
+            {membershipAction.label}
+          </a>
         </div>
 
         {/* Mobile Navigation Island */}

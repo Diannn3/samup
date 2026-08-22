@@ -1,7 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { FrostedGlassCard } from '../components/ui/FrostedGlassCard';
-import { Magnet } from '../components/ui/Magnet';
 import { ArrowLeft, Compass } from 'lucide-react';
 ---
 
@@ -13,7 +11,7 @@ import { ArrowLeft, Compass } from 'lucide-react';
     <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.12)_0%,transparent_70%)] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" aria-hidden="true" />
 
     <div class="max-w-lg w-full relative z-10">
-      <FrostedGlassCard client:load showArrow={false} className="p-8 sm:p-12 text-center shadow-2xl">
+      <div class="frosted-glass-card p-8 sm:p-12 text-center shadow-2xl">
         <div class="w-16 h-16 rounded-2xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 mx-auto flex items-center justify-center text-[var(--primary)] shadow-xl mb-6">
           <Compass class="w-8 h-8" aria-hidden="true" />
         </div>
@@ -30,16 +28,14 @@ import { ArrowLeft, Compass } from 'lucide-react';
           </p>
         </div>
 
-        <Magnet client:load strength={12}>
-          <a
-            href="/"
-            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-all shadow-md shadow-[var(--primary)]/20"
-          >
-            <ArrowLeft class="w-4 h-4" aria-hidden="true" />
-            <span>Return to Origin</span>
-          </a>
-        </Magnet>
-      </FrostedGlassCard>
+        <a
+          href="/"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-all shadow-md shadow-[var(--primary)]/20"
+        >
+          <ArrowLeft class="w-4 h-4" aria-hidden="true" />
+          <span>Return to Origin</span>
+        </a>
+      </div>
     </div>
   </div>
 </BaseLayout>

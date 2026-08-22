@@ -1,8 +1,7 @@
 ---
 import { organization } from '../../data/organization';
-import { FrostedGlassCard } from '../ui/FrostedGlassCard';
 import { Magnet } from '../ui/Magnet';
-import { CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Sparkles, ArrowUpRight } from 'lucide-react';
 ---
 
 <section id="membership" class="relative py-24 lg:py-32 border-b border-[var(--border)] overflow-hidden">
@@ -25,74 +24,88 @@ import { CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
       </p>
     </div>
 
-    {/* Membership Cards Grid with Frosted Glass Components */}
+    {/* Membership Cards — static Astro cards; React reserved for the primary CTA Magnet */}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-      {/* Resident Member Track */}
-      <FrostedGlassCard
-        client:idle
-        tag="PRIMARY PATHWAY"
-        title="Resident Member"
-        subtitle="For officially enrolled BS Applied Mathematics undergraduates at UPLB who wish to take active governance, research, and leadership roles in the organization."
-        showArrow={false}
-      >
-        <div class="space-y-4 mt-2">
-          <ul class="space-y-2.5 text-xs text-[var(--foreground)]/85 pt-2">
-            <li class="flex items-start gap-2">
-              <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-              <span>Full constitutional voting & executive eligibility</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-              <span>Access to exclusive academic reviewers & problem sets</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-              <span>Direct mentorship from alumni senior executives</span>
-            </li>
-          </ul>
+      {/* Resident Member Track — primary pathway, Magnet CTA */}
+      <div class="frosted-glass-card p-6 sm:p-7 flex flex-col justify-between">
+        <div class="relative z-10 w-full">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="text-[11px] font-mono font-bold tracking-widest uppercase text-[var(--primary)] px-2.5 py-0.5 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/20">
+              PRIMARY PATHWAY
+            </span>
+          </div>
+          <h3 class="font-display font-bold text-xl sm:text-2xl text-[var(--foreground)] tracking-tight leading-snug">
+            Resident Member
+          </h3>
+          <p class="text-sm text-[var(--foreground)]/80 mt-2 leading-relaxed font-normal">
+            For officially enrolled BS Applied Mathematics undergraduates at UPLB who wish to take active governance, research, and leadership roles in the organization.
+          </p>
 
-          <div class="pt-6 border-t border-[var(--border-subtle)]">
-            <Magnet client:idle strength={12} className="w-full">
-              <a
-                href="https://forms.gle/samup-recruitment-2026"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-all shadow-md"
-              >
-                <span>Apply for Resident Appshood</span>
-                <ArrowRight class="w-4 h-4" aria-hidden="true" />
-              </a>
-            </Magnet>
+          <div class="mt-4">
+            <ul class="space-y-2.5 text-xs text-[var(--foreground)]/85 pt-2">
+              <li class="flex items-start gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
+                <span>Full constitutional voting & executive eligibility</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
+                <span>Access to exclusive academic reviewers & problem sets</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
+                <span>Direct mentorship from alumni senior executives</span>
+              </li>
+            </ul>
+
+            <div class="pt-6 mt-4 border-t border-[var(--border-subtle)]">
+              <Magnet client:idle strength={12} className="w-full">
+                <a
+                  href="https://forms.gle/samup-recruitment-2026"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-all shadow-md"
+                >
+                  <span>Apply for Resident Membership</span>
+                  <ArrowRight class="w-4 h-4" aria-hidden="true" />
+                </a>
+              </Magnet>
+            </div>
           </div>
         </div>
-      </FrostedGlassCard>
+      </div>
 
-      {/* Affiliate Member Track */}
-      <FrostedGlassCard
-        client:idle
-        tag="CROSS-DISCIPLINARY"
-        title="Affiliate Member"
-        subtitle="For students in Statistics, Computer Science, Engineering, Physics, or related degrees with a strong passion for quantitative problem-solving and collaboration."
-        showArrow={false}
-      >
-        <div class="space-y-4 mt-2">
-          <ul class="space-y-2.5 text-xs text-[var(--foreground)]/85 pt-2">
-            <li class="flex items-start gap-2">
-              <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-              <span>Cross-disciplinary research teams & colloquiums</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-              <span>Participate in tutorial caravans & community initiatives</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-              <span>Inter-organizational networking & sports leagues</span>
-            </li>
-          </ul>
+      {/* Affiliate Member Track — static card, plain anchor CTA */}
+      <div class="frosted-glass-card p-6 sm:p-7 flex flex-col justify-between">
+        <div class="relative z-10 w-full">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="text-[11px] font-mono font-bold tracking-widest uppercase text-[var(--primary)] px-2.5 py-0.5 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/20">
+              CROSS-DISCIPLINARY
+            </span>
+          </div>
+          <h3 class="font-display font-bold text-xl sm:text-2xl text-[var(--foreground)] tracking-tight leading-snug">
+            Affiliate Member
+          </h3>
+          <p class="text-sm text-[var(--foreground)]/80 mt-2 leading-relaxed font-normal">
+            For students in Statistics, Computer Science, Engineering, Physics, or related degrees with a strong passion for quantitative problem-solving and collaboration.
+          </p>
 
-          <div class="pt-6 border-t border-[var(--border-subtle)]">
-            <Magnet client:idle strength={10} className="w-full">
+          <div class="mt-4">
+            <ul class="space-y-2.5 text-xs text-[var(--foreground)]/85 pt-2">
+              <li class="flex items-start gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
+                <span>Cross-disciplinary research teams & colloquiums</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
+                <span>Participate in tutorial caravans & community initiatives</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
+                <span>Inter-organizational networking & sports leagues</span>
+              </li>
+            </ul>
+
+            <div class="pt-6 mt-4 border-t border-[var(--border-subtle)]">
               <a
                 href="https://forms.gle/samup-recruitment-2026"
                 target="_blank"
@@ -102,10 +115,10 @@ import { CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
                 <span>Register Interest as Affiliate</span>
                 <ArrowRight class="w-4 h-4" aria-hidden="true" />
               </a>
-            </Magnet>
+            </div>
           </div>
         </div>
-      </FrostedGlassCard>
+      </div>
     </div>
   </div>
 </section>

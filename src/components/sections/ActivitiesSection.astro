@@ -1,7 +1,6 @@
 ---
 import { activities } from '../../data/activities';
-import { FrostedGlassCard } from '../ui/FrostedGlassCard';
-import { Trophy, BookOpen, Users, Compass } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const getTag = (id: string) => {
   switch (id) {
@@ -33,22 +32,34 @@ const getTag = (id: string) => {
       </p>
     </div>
 
-    {/* Frosted Glass Cards Grid matching Reference Design */}
+    {/* Static Astro card grid — no hydration */}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {activities.map((activity) => (
-        <FrostedGlassCard
-          client:idle
-          tag={getTag(activity.id)}
-          title={activity.title}
-          subtitle={activity.description}
-          href="/events"
-          showArrow={true}
-        >
-          <div class="pt-4 mt-4 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs font-mono text-[var(--muted-foreground)]">
-            <span class="text-[var(--foreground)] font-semibold">{activity.metrics || 'Annual Flagship'}</span>
-            <span class="text-[var(--primary)] font-medium">Explore Event Syllabus →</span>
+        <a href="/events" class="block no-underline focus-visible:outline-none group">
+          <div class="frosted-glass-card p-6 sm:p-7 flex flex-col justify-between h-full">
+            <div class="relative z-10 w-full">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-[11px] font-mono font-bold tracking-widest uppercase text-[var(--primary)] px-2.5 py-0.5 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/20">
+                  {getTag(activity.id)}
+                </span>
+                <ArrowUpRight
+                  class="w-5 h-5 text-[var(--muted-foreground)] group-hover:text-[var(--primary)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all ml-auto shrink-0"
+                  aria-hidden="true"
+                />
+              </div>
+              <h3 class="font-display font-bold text-xl sm:text-2xl text-[var(--foreground)] group-hover:text-white transition-colors tracking-tight leading-snug">
+                {activity.title}
+              </h3>
+              <p class="text-sm text-[var(--foreground)]/80 mt-2 leading-relaxed font-normal">
+                {activity.description}
+              </p>
+              <div class="pt-4 mt-4 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs font-mono text-[var(--muted-foreground)]">
+                <span class="text-[var(--foreground)] font-semibold">{activity.metrics || 'Annual Flagship'}</span>
+                <span class="text-[var(--primary)] font-medium">Explore Event Syllabus →</span>
+              </div>
+            </div>
           </div>
-        </FrostedGlassCard>
+        </a>
       ))}
     </div>
   </div>

@@ -2,7 +2,6 @@
 import { organization } from '../../data/organization';
 import { featuredAlumni } from '../../data/alumni';
 import { FrostedGlassCard } from '../ui/FrostedGlassCard';
-import { ShinyText } from '../ui/ShinyText';
 import { Award, GraduationCap, Building2, ArrowRight } from 'lucide-react';
 ---
 
@@ -27,19 +26,20 @@ import { Award, GraduationCap, Building2, ArrowRight } from 'lucide-react';
           From IMSP faculty chairs and actuarial directors to algorithmic traders and data research scientists, SAM-UP alumni carry our mathematical rigor across the globe.
         </p>
 
-        {/* Highlight Stats with Frosted Glass Cards */}
+        {/* Static facts — verified counts from organization data. Alumni totals and
+             placement rates are NOT verifiable from current sources; no numeric claims. */}
         <div class="grid grid-cols-2 gap-4 pt-2">
           <div class="frosted-glass-card p-5 shadow-md">
             <div class="text-3xl font-mono font-bold text-[var(--primary)]">
-              <ShinyText client:idle text="500+" variant="gold" />
+              {organization.totalLeadershipTerms}
             </div>
-            <div class="text-xs text-[var(--muted-foreground)] mt-1.5 font-medium">Alumni in Industry & Academia</div>
+            <div class="text-xs text-[var(--muted-foreground)] mt-1.5 font-medium">Documented Leadership Terms</div>
           </div>
           <div class="frosted-glass-card p-5 shadow-md">
             <div class="text-3xl font-mono font-bold text-[var(--foreground)]">
-              <ShinyText client:idle text="100%" variant="silver" />
+              IMSP
             </div>
-            <div class="text-xs text-[var(--muted-foreground)] mt-1.5 font-medium">Applied Math Faculty Placement</div>
+            <div class="text-xs text-[var(--muted-foreground)] mt-1.5 font-medium">Alumni Across Industry & Academia</div>
           </div>
         </div>
 

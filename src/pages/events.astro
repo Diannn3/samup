@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { flagshipEvents, getEventLocationLabel } from '../data/events';
-import { FrostedGlassCard } from '../components/ui/FrostedGlassCard';
+import GlassCard from '../components/ui/GlassCard.astro';
 import { Calendar, Users, ArrowRight, Sparkles, Trophy, MapPin } from 'lucide-react';
 ---
 
@@ -31,11 +31,10 @@ import { Calendar, Users, ArrowRight, Sparkles, Trophy, MapPin } from 'lucide-re
   </section>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-16">
-    {/* Events Grid with FrostedGlassCard */}
+    {/* Events Grid — static Astro cards */}
     <div class="grid md:grid-cols-2 gap-8">
       {flagshipEvents.map((event) => (
-        <FrostedGlassCard
-          client:idle
+        <GlassCard
           tag={event.category}
           title={event.title}
           subtitle={event.description}
@@ -61,7 +60,7 @@ import { Calendar, Users, ArrowRight, Sparkles, Trophy, MapPin } from 'lucide-re
               <span class="text-[var(--primary)] font-semibold">{event.ctaText || 'Learn More'} →</span>
             </div>
           </div>
-        </FrostedGlassCard>
+        </GlassCard>
       ))}
     </div>
 

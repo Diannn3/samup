@@ -1,5 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
 
+// Source inspiration (Magnet):
+// @url:`https://reactbits.dev/components/magnet`
+// Repository: @url:`https://github.com/DavidHDev/react-bits`
+// Adapted for SAM-UP; preserve applicable license notice (MIT + Commons Clause):
+// https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md
+// SAM-UP policy: primary CTA anchors only (hero + one membership CTA).
+// Disabled — leaving a fully usable static anchor — on touch pointers and
+// prefers-reduced-motion, with live media-query change listeners.
+
 interface MagnetProps {
   children: React.ReactNode;
   className?: string;
@@ -16,10 +25,26 @@ export const Magnet: React.FC<MagnetProps> = ({
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
   useEffect(() => {
-    const isTouch = window.matchMedia('(pointer: coarse)').matches;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    setIsDisabled(isTouch || reducedMotion);
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+
+    const coarseMq = window.matchMedia('(pointer: coarse)');
+    const reducedMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const sync = () => setIsDisabled(coarseMq.matches || reducedMq.matches);
+    sync();
+
+    coarseMq.addEventListener('change', sync);
+    reducedMq.addEventListener('change', sync);
+    return () => {
+      coarseMq.removeEventListener('change', sync);
+      reducedMq.removeEventListener('change', sync);
+    };
   }, []);
+
+  // Re-center immediately if the media state flips while displaced.
+  useEffect(() => {
+    if (isDisabled) setPosition({ x: 0, y: 0 });
+  }, [isDisabled]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!magnetRef.current || isDisabled) return;

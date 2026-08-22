@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { MeritCalculator } from '../components/interactive/MeritCalculator';
-import { FrostedGlassCard } from '../components/ui/FrostedGlassCard';
+import GlassCard from '../components/ui/GlassCard.astro';
 import { MapPin, BookOpen, Calculator, FileText, CheckCircle2, Compass, Sparkles } from 'lucide-react';
 ---
 
@@ -50,32 +50,28 @@ import { MapPin, BookOpen, Calculator, FileText, CheckCircle2, Compass, Sparkles
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <FrostedGlassCard
-          client:idle
+        <GlassCard
           tag="MB 101–105"
           title="Ground Floor Classrooms"
           subtitle="Primary lecture venues for foundational undergraduate mathematics, Calculus review caravans, and general study sessions."
           showArrow={false}
         />
 
-        <FrostedGlassCard
-          client:idle
+        <GlassCard
           tag="MB 201–206"
           title="Upper Seminar Rooms"
           subtitle="Advanced lecture halls for Linear Algebra (Math 110), Differential Equations (Math 180), and faculty colloquiums."
           showArrow={false}
         />
 
-        <FrostedGlassCard
-          client:idle
+        <GlassCard
           tag="IMSP LAB"
           title="Computational Facility"
           subtitle="Equipped for numerical modeling, MATLAB / Python programming, scientific computing, and statistical data science."
           showArrow={false}
         />
 
-        <FrostedGlassCard
-          client:idle
+        <GlassCard
           tag="SAM-UP LOUNGE"
           title="Member Hub & Tambayan"
           subtitle="The central tambayan for peer academic collaboration, problem set discussions, and organizational fellowship."
@@ -97,32 +93,28 @@ import { MapPin, BookOpen, Calculator, FileText, CheckCircle2, Compass, Sparkles
       </div>
 
       <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-        <FrostedGlassCard
-          client:idle
+        <GlassCard
           tag="CALCULUS"
           title="Math 27 / 28"
           subtitle="Limits, derivatives, integration techniques, multivariable calculus, and vector analysis."
           showArrow={false}
         />
 
-        <FrostedGlassCard
-          client:idle
+        <GlassCard
           tag="ALGEBRA"
           title="Math 110"
           subtitle="Vector spaces, matrix decompositions, eigenvalues, linear transformations, and inner products."
           showArrow={false}
         />
 
-        <FrostedGlassCard
-          client:idle
+        <GlassCard
           tag="DIFFERENTIAL"
           title="Math 180"
           subtitle="First-order ODEs, higher-order linear systems, Laplace transforms, and boundary value problems."
           showArrow={false}
         />
 
-        <FrostedGlassCard
-          client:idle
+        <GlassCard
           tag="OPTIMIZATION"
           title="Math 165"
           subtitle="Linear programming, Simplex algorithm, duality theory, transportation, and network optimization."

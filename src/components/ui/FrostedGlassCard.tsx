@@ -1,6 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
+// Cursor-tracking spotlight adapted from React Bits Spotlight Card:
+// @url:`https://reactbits.dev/components/spotlight-card`
+// Repository: @url:`https://github.com/DavidHDev/react-bits`
+// Adapted for SAM-UP; preserve applicable license notice (MIT + Commons Clause):
+// https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md
+// SAM-UP adaptations:
+//   - Featured-card use only (one per view); all other cards are static Astro
+//   - Keyboard focus receives an equivalent spotlight state via :focus-within
+//   - Touch (pointer: coarse) and prefers-reduced-motion get a static card
+
 interface FrostedGlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
   tag?: string;
   title?: string;
@@ -27,13 +37,19 @@ export const FrostedGlassCard: React.FC<FrostedGlassCardProps> = ({
   const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState<number>(0);
   const [isTouch, setIsTouch] = useState<boolean>(false);
+  const [reducedMotion, setReducedMotion] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsTouch(window.matchMedia('(pointer: coarse)').matches);
+    const coarse = window.matchMedia('(pointer: coarse)').matches;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setIsTouch(coarse);
+    setReducedMotion(reduced);
   }, []);
 
+  const spotlightDisabled = isTouch || reducedMotion;
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current || isTouch) return;
+    if (!cardRef.current || spotlightDisabled) return;
     const rect = cardRef.current.getBoundingClientRect();
     setPosition({
       x: e.clientX - rect.left,
@@ -54,15 +70,19 @@ export const FrostedGlassCard: React.FC<FrostedGlassCardProps> = ({
       className={`frosted-glass-card group p-6 sm:p-7 flex flex-col justify-between ${className}`}
       {...props}
     >
-      {/* Dynamic Cursor Spotlight Layer */}
-      <div
-        className="pointer-events-none absolute inset-0 transition-opacity duration-300 z-0"
-        style={{
-          opacity,
-          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 75%)`
-        }}
-        aria-hidden="true"
-      />
+      {/* Dynamic Cursor Spotlight Layer — hover/focus enhancement only.
+          All content is fully readable without it. Keyboard focus gets the
+          same warm glow via .frosted-glass-card:focus-within in global.css. */}
+      {!spotlightDisabled && (
+        <div
+          className="pointer-events-none absolute inset-0 transition-opacity duration-300 z-0"
+          style={{
+            opacity,
+            background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 75%)`
+          }}
+          aria-hidden="true"
+        />
+      )}
 
       <div className="relative z-10 w-full">
         {/* Top Row: Tag Badge & Top-Right Arrow */}
