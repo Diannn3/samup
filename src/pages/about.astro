@@ -1,15 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SealExplorer } from '../components/interactive/SealExplorer';
-import HandshakeIllustration from '../components/visual/HandshakeIllustration.astro';
 import GlassCard from '../components/ui/GlassCard.astro';
+import { organization } from '../data/organization';
+import { objectives, principles, emblem, preamble, membershipRules } from '../data/mission';
+import { milestones } from '../data/milestones';
+import { Landmark, Scale, Target, Users } from 'lucide-react';
 ---
 
 <BaseLayout
-  title="About & Heritage | Society of Applied Mathematics of UPLB"
-  description="Founded November 27, 1984 at the UPLB Institute of Mathematical Sciences and Physics — explore the constitution, principles, and governance of SAM-UP."
+  title="About SAM-UP | Society of Applied Mathematics of UPLB"
+  description={`Who SAM-UP is, what it stands for, and its documented history since 1984. ${organization.tagline}.`}
 >
-  {/* Page Header with Ambient Gradient Mesh */}
+  {/* Page Header */}
   <section class="py-20 sm:py-24 border-b border-[var(--border)] relative overflow-hidden">
     <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.12)_0%,transparent_70%)] top-0 left-[-10%]" aria-hidden="true" />
     <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(16,185,129,0.09)_0%,transparent_70%)] bottom-0 right-[-10%]" aria-hidden="true" />
@@ -17,193 +19,166 @@ import GlassCard from '../components/ui/GlassCard.astro';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl space-y-4">
         <div class="coord-badge">
-          <span>EST. NOVEMBER 27, 1984 • UPLB IMSP</span>
+          <span>EST. NOVEMBER 27, 1984 • UPLB IMS</span>
         </div>
         <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight">
-          About & <span class="text-gold-gradient">Heritage</span>
+          About <span class="text-gold-gradient">SAM-UP</span>
         </h1>
         <p class="text-base sm:text-lg text-[var(--muted-foreground)] leading-relaxed font-normal">
-          The constitutional foundation, inviolate principles, and governance structure of the Society of Applied Mathematics of UPLB.
+          The Society of Applied Mathematics of the University of the Philippines Los Baños — a self-governing academic organization promoting the relevance of Applied Mathematics to Philippine society.
         </p>
       </div>
     </div>
   </section>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-24">
-    {/* Constitutional Mandate */}
+    {/* Who We Are */}
     <section class="space-y-8">
       <div class="max-w-3xl space-y-3">
         <div class="coord-badge">
-          <span>CONSTITUTIONAL FOUNDATION</span>
+          <Landmark class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+          <span>WHO WE ARE</span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
+          A Society of Applied Mathematicians at UPLB
+        </h2>
+        <p class="text-base text-[var(--muted-foreground)] leading-relaxed">
+          SAM-UP is a self-governing, academic organization based at the University of the Philippines Los Baños, officially recognized by the Office of Student Affairs on November 27, 1984. It serves students of the Institute of Mathematical Sciences and Physics (IMSP) under the College of Arts and Sciences.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-6">
+        <GlassCard tag="NAME & NATURE" title="Self-Governing" subtitle="The organization shall be a self-governing, academic organization based on the University of the Philippines Los Baños." showArrow={false} />
+        <GlassCard tag="RECOGNITION" title="OSA-Recognized Since 1984" subtitle="The organization officially began to exist after being recognized by the Office of Student Affairs on November 27, 1984." showArrow={false} />
+        <GlassCard tag="HOME" title="UPLB IMSP • CAS" subtitle="Based at the Institute of Mathematical Sciences and Physics, College of Arts and Sciences, University of the Philippines Los Baños." showArrow={false} />
+      </div>
+    </section>
+
+    {/* Mission & Vision */}
+    <section class="space-y-8">
+      <div class="max-w-3xl space-y-3">
+        <div class="coord-badge">
+          <Target class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+          <span>MISSION & PRINCIPLES</span>
         </div>
         <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
           The Constitutional Mandate
         </h2>
         <p class="text-base text-[var(--muted-foreground)] leading-relaxed">
-          The Society of Applied Mathematics of UPLB is established as an academic, non-sectarian, and non-profit student organization dedicated to three fundamental tenets:
+          The Preamble and Articles III–IV of the Constitution define why SAM-UP exists and what it works toward.
         </p>
       </div>
 
-      <div class="grid sm:grid-cols-3 gap-6">
-        <GlassCard
-          tag="TENET 01"
-          title="Academic Rigor"
-          subtitle="Cultivating advanced mathematical problem-solving skills, quantitative logic, and intellectual excellence across all applied mathematical disciplines."
-          showArrow={false}
-        />
+      <div class="frosted-glass-card p-8 sm:p-10">
+        <div class="relative z-10">
+          <div class="text-[10px] font-mono text-[var(--muted-foreground)] uppercase tracking-wider mb-4">PREAMBLE (EXCERPT)</div>
+          <blockquote class="font-display text-lg sm:text-xl text-[var(--foreground)]/90 leading-relaxed italic border-l-2 border-[var(--primary)] pl-6">
+            “{preamble.full}”
+          </blockquote>
+        </div>
+      </div>
 
-        <GlassCard
-          tag="TENET 02"
-          title="Societal Relevance"
-          subtitle="Applying quantitative, statistical, and computational models to solve critical national, industrial, economic, and scientific challenges in Philippine society."
-          showArrow={false}
-        />
+      <div class="grid md:grid-cols-2 gap-8">
+        <GlassCard tag="ARTICLE IV — OBJECTIVES" title="Mission: The Five Objectives" showArrow={false}>
+          <ol class="space-y-3 text-xs sm:text-sm text-[var(--foreground)]/85 leading-relaxed list-decimal list-inside mt-2">
+            {objectives.map((obj) => (
+              <li>{obj.text.charAt(0).toUpperCase() + obj.text.slice(1)}</li>
+            ))}
+          </ol>
+        </GlassCard>
 
-        <GlassCard
-          tag="TENET 03"
-          title="Lifelong Camaraderie"
-          subtitle="Fostering an unbreakable bond of unity, mutual support, and egalitarian brotherhood among all resident, affiliate, and alumni members across generations."
-          showArrow={false}
-        />
+        <GlassCard tag="ARTICLE III — PRINCIPLES" title="Vision Anchors: The Three Principles" showArrow={false}>
+          <ul class="space-y-4 text-xs sm:text-sm text-[var(--foreground)]/85 leading-relaxed mt-2">
+            {principles.map((p) => (
+              <li class="flex items-start gap-2.5">
+                <Scale class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
+                <span>{p.text}</span>
+              </li>
+            ))}
+          </ul>
+        </GlassCard>
       </div>
     </section>
 
-    {/* Inviolate Principles & Triad */}
+    {/* Principles & Identity — the seal, the handshake, the colors */}
     <section class="space-y-8">
       <div class="max-w-3xl space-y-3">
         <div class="coord-badge">
-          <span>ETHICAL FOUNDATION</span>
+          <span>PRINCIPLES & IDENTITY</span>
         </div>
         <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          Inviolate Principles & The Triad of Excellence
+          The Seal, the Più, and the Handshake
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <GlassCard tag="ARTICLE II" title="The Seal" subtitle={emblem.seal} showArrow={false} />
+        <GlassCard tag="ARTICLE II" title="The Più" subtitle={emblem.piu} showArrow={false} />
+        <GlassCard tag="ARTICLE II" title="Black & Gold" subtitle={emblem.colors} showArrow={false} />
+      </div>
+
+      <div class="frosted-glass-card p-6 sm:p-8 flex items-start gap-6">
+        <div class="w-12 h-12 rounded-xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center text-[var(--primary)] shrink-0">
+          <Users class="w-6 h-6" aria-hidden="true" />
+        </div>
+        <div class="min-w-0">
+          <div class="text-[10px] font-mono text-[var(--muted-foreground)] uppercase tracking-wider mb-2">ARTICLE V — THE HANDSHAKE</div>
+          <p class="text-sm text-[var(--foreground)]/85 leading-relaxed">
+            SAM-UP's unique left-hand handshake symbolizes the bond of all the objectives of the organization. The adjoined fingers, the index finger, and the thumb represent the three principles, academic excellence and camaraderie within the organization, respectively; the use of the left hand signifies uniqueness.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* Organizational Milestones */}
+    <section class="space-y-8">
+      <div class="max-w-3xl space-y-3">
+        <div class="coord-badge">
+          <span>ORGANIZATIONAL MILESTONES</span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
+          Documented Milestones
+        </h2>
+        <p class="text-base text-[var(--muted-foreground)] leading-relaxed">
+          Only milestones supported by the Constitution and the leadership archive are listed.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {milestones.map((m) => (
+          <GlassCard tag={m.year} title={m.title} subtitle={m.description} showArrow={false} />
+        ))}
+      </div>
+
+      <div class="pt-2">
+        <a
+          href="/alumni"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
+        >
+          <span>Explore the full leadership archive</span>
+          <Landmark class="w-4 h-4" aria-hidden="true" />
+        </a>
+      </div>
+    </section>
+
+    {/* Membership summary — constitutional eligibility */}
+    <section class="space-y-8">
+      <div class="max-w-3xl space-y-3">
+        <div class="coord-badge">
+          <span>ARTICLE VII — MEMBERSHIP</span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
+          Who Can Join
         </h2>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
-        <GlassCard tag="CONSTITUTIONAL DOCTRINE" title="The Four Inviolate Principles" showArrow={false}>
-          <ul class="space-y-3 text-xs sm:text-sm text-[var(--foreground)]/80 list-none p-0 m-0 mt-2">
-            <li class="p-3.5 rounded-xl bg-white/5 border border-white/10">
-              <strong class="text-[var(--primary)] block mb-0.5 font-semibold">01. Egalitarian Brotherhood:</strong>
-              Absolute equality among all members regardless of batch, socioeconomic standing, or year level. No member is above another.
-            </li>
-            <li class="p-3.5 rounded-xl bg-white/5 border border-white/10">
-              <strong class="text-[var(--primary)] block mb-0.5 font-semibold">02. Collective Leadership:</strong>
-              Democratic consensus, communal responsibility, and transparent institutional dialogue over authoritarian hierarchy.
-            </li>
-            <li class="p-3.5 rounded-xl bg-white/5 border border-white/10">
-              <strong class="text-[var(--primary)] block mb-0.5 font-semibold">03. Constructive Self-Criticism:</strong>
-              Continuous organizational introspection, rigorous academic honesty, and active pursuit of institutional refinement.
-            </li>
-            <li class="p-3.5 rounded-xl bg-white/5 border border-white/10">
-              <strong class="text-[var(--primary)] block mb-0.5 font-semibold">04. Community Service:</strong>
-              Direct orientation toward serving the Filipino people through free peer education and open scientific knowledge sharing.
-            </li>
-          </ul>
+        <GlassCard tag="RESIDENT MEMBER" title="BS Applied Mathematics Students" showArrow={false}>
+          <p class="text-xs sm:text-sm text-[var(--foreground)]/85 leading-relaxed mt-2">{membershipRules.resident}</p>
         </GlassCard>
-
-        <GlassCard tag="CORE PILLARS" title="The Triad of Excellence" showArrow={false}>
-          <ul class="space-y-3 text-xs sm:text-sm text-[var(--foreground)]/80 list-none p-0 m-0 mt-2">
-            <li class="p-4 rounded-xl bg-white/5 border border-white/10">
-              <strong class="text-[var(--primary)] block mb-1 font-semibold">Prestige:</strong>
-              Distinction in mathematical research, national tournament victories, and rigorous professional mastery in industry and academia.
-            </li>
-            <li class="p-4 rounded-xl bg-white/5 border border-white/10">
-              <strong class="text-[var(--primary)] block mb-1 font-semibold">Service:</strong>
-              Dedicated semestral peer tutorial caravans, high school outreach, and academic reviewer repositories for the UPLB community.
-            </li>
-            <li class="p-4 rounded-xl bg-white/5 border border-white/10">
-              <strong class="text-[var(--primary)] block mb-1 font-semibold">Leadership:</strong>
-              Developing ethical, critical-thinking leaders capable of orchestrating complex initiatives in technology, policy, and research.
-            </li>
-          </ul>
+        <GlassCard tag="AFFILIATE MEMBER" title="Other UPLB Degree Programs" showArrow={false}>
+          <p class="text-xs sm:text-sm text-[var(--foreground)]/85 leading-relaxed mt-2">{membershipRules.affiliate}</p>
         </GlassCard>
-      </div>
-    </section>
-
-    {/* Interactive Seal Anatomy Explorer */}
-    <section class="space-y-8">
-      <div class="max-w-3xl space-y-3">
-        <div class="coord-badge">
-          <span>ARTICLE II • EMBLEM & SYMBOLOGY</span>
-        </div>
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          Interactive Seal Anatomy Explorer
-        </h2>
-        <p class="text-base text-[var(--muted-foreground)]">
-          Select each layer below to inspect its constitutional meaning, geometric symbology, and historical significance.
-        </p>
-      </div>
-
-      <SealExplorer client:load />
-    </section>
-
-    {/* Handshake Symbology */}
-    <section class="space-y-8">
-      <div class="max-w-3xl space-y-3">
-        <div class="coord-badge">
-          <span>ARTICLE V • THE LEFT-HAND GRIP</span>
-        </div>
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          The Constitutional Handshake
-        </h2>
-      </div>
-
-      <HandshakeIllustration />
-    </section>
-
-    {/* Standing Committees */}
-    <section class="space-y-8">
-      <div class="max-w-3xl space-y-3">
-        <div class="coord-badge">
-          <span>GOVERNANCE STRUCTURE</span>
-        </div>
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          Constitutional Standing Committees
-        </h2>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <GlassCard
-          tag="GOVERNANCE"
-          title="Executive Committee"
-          subtitle="Composed of the Senior Executive, Vice Senior Executive, and Committee Heads overseeing general policy, executive decisions, and constitutional compliance."
-          showArrow={false}
-        />
-
-        <GlassCard
-          tag="ACADEMICS"
-          title="Scholastics Committee"
-          subtitle="Directs the nationwide UPLB Math Wizard, semestral peer tutorial caravans, mock exam review workshops, and academic reviewer archives."
-          showArrow={false}
-        />
-
-        <GlassCard
-          tag="CULTURE & SPORTS"
-          title="Socio-Cultural Committee"
-          subtitle="Coordinates anniversary celebrations, cultural galas, athletic delegations at STRASUC and intramurals, and fellowship assemblies."
-          showArrow={false}
-        />
-
-        <GlassCard
-          tag="TREASURY & AUDIT"
-          title="Financial Affairs Committee"
-          subtitle="Manages organization budgets, transparent financial auditing, project fundraising, and the semestral merit discount assessment system."
-          showArrow={false}
-        />
-
-        <GlassCard
-          tag="RECRUITMENT"
-          title="Membership Affairs Committee"
-          subtitle="Oversees applicant orientation, the four-phase recruitment process, residency monitoring, and general member welfare."
-          showArrow={false}
-        />
-
-        <GlassCard
-          tag="COMMUNICATIONS"
-          title="Secretariat & Public Relations"
-          subtitle="Preserves constitutional archives, coordinates official university correspondence, and directs public communications and branding."
-          showArrow={false}
-        />
       </div>
     </section>
   </div>

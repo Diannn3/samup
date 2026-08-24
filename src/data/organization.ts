@@ -11,7 +11,7 @@ export const organization = {
   college: 'College of Arts and Sciences (CAS)',
   officialColors: ['Black', 'Gold'],
   totalLeadershipTerms: seniorExecs.length,
-  activeExecutive: seniorExecs[seniorExecs.length - 1],
+  latestRecordedExecutive: seniorExecs[seniorExecs.length - 1],
   mottos: [
     { tag: '#TatakSAMUP', label: 'Academic Rigor & Integrity' },
     { tag: '#BeyondSAMUP', label: 'Applied Mathematics in Society' },

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { Menu, X, ChevronRight, GraduationCap } from 'lucide-react';
-import { mainNav, membershipAction } from '../../data/navigation';
+import { Menu, X, ChevronRight } from 'lucide-react';
+import { mainNav } from '../../data/navigation';
 
 interface MobileNavProps {
   currentPath?: string;
@@ -122,9 +122,13 @@ export const MobileNav: React.FC<MobileNavProps> = ({ currentPath = '/' }) => {
               {/* Header */}
               <div className="flex items-center justify-between pb-6 border-b border-[var(--border)]">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-md bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center font-bold text-xs font-mono">
-                    Π
-                  </div>
+                  <img
+                    src="/sam-up-seal.png"
+                    alt="SAM-UP seal"
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 object-contain"
+                  />
                   <span className="font-display font-bold text-sm tracking-wide text-[var(--foreground)]">
                     SAM-UP
                   </span>
@@ -163,17 +167,9 @@ export const MobileNav: React.FC<MobileNavProps> = ({ currentPath = '/' }) => {
               </nav>
             </div>
 
-            {/* Footer CTA */}
+            {/* Organization context */}
             <div className="pt-6 border-t border-[var(--border)]">
-              <a
-                href={membershipAction.href}
-                onClick={closeMenu}
-                className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-colors shadow-md"
-              >
-                <GraduationCap className="w-4 h-4" aria-hidden="true" />
-                <span>{membershipAction.label}</span>
-              </a>
-              <p className="mt-3 text-center text-xs text-[var(--muted-foreground)]">
+              <p className="text-center text-xs text-[var(--muted-foreground)]">
                 Est. Nov 27, 1984 • IMSP CAS UPLB
               </p>
             </div>

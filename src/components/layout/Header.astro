@@ -1,5 +1,5 @@
 ---
-import { mainNav, membershipAction } from '../../data/navigation';
+import { mainNav } from '../../data/navigation';
 import { MobileNav } from '../interactive/MobileNav';
 
 interface Props {
@@ -17,9 +17,13 @@ const { currentPath = Astro.url.pathname } = Astro.props;
     <div class="flex items-center justify-between h-20">
       {/* Brand Identity */}
       <a href="/" class="flex items-center gap-3 group focus-visible:outline-none">
-        <div class="w-10 h-10 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center font-display font-black text-xl shadow-lg shadow-[var(--primary)]/20 group-hover:scale-105 transition-transform">
-          Π
-        </div>
+        <img
+          src="/sam-up-seal.png"
+          alt="SAM-UP seal"
+          width="40"
+          height="40"
+          class="w-10 h-10 object-contain group-hover:scale-105 transition-transform"
+        />
         <div class="flex flex-col">
           <span class="font-display font-bold text-base sm:text-lg tracking-wide text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors leading-tight">
             SAM-UP
@@ -31,7 +35,7 @@ const { currentPath = Astro.url.pathname } = Astro.props;
       </a>
 
       {/* Desktop Navigation in Frosted Glass Pill */}
-      <nav class="hidden lg:flex items-center gap-1.5 p-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 shadow-inner" aria-label="Primary Navigation">
+      <nav class="hidden lg:ml-auto lg:flex items-center gap-1.5 p-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 shadow-inner" aria-label="Primary Navigation">
         {mainNav.map((item) => {
           const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
           return (
@@ -50,18 +54,8 @@ const { currentPath = Astro.url.pathname } = Astro.props;
         })}
       </nav>
 
-      {/* Primary Action & Mobile Menu Trigger */}
-      <div class="flex items-center gap-3">
-        <div class="hidden sm:inline-flex">
-          <a
-            href={membershipAction.href}
-            class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-xs hover:bg-[var(--primary-hover)] transition-all shadow-md shadow-[var(--primary)]/20"
-          >
-            {membershipAction.label}
-          </a>
-        </div>
-
-        {/* Mobile Navigation Island */}
+      {/* Mobile Navigation Island */}
+      <div class="flex items-center gap-3 lg:hidden">
         <MobileNav client:load currentPath={currentPath} />
       </div>
     </div>

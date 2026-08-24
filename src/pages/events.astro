@@ -2,14 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { flagshipEvents, getEventLocationLabel } from '../data/events';
 import GlassCard from '../components/ui/GlassCard.astro';
-import { Calendar, Users, ArrowRight, Sparkles, Trophy, MapPin } from 'lucide-react';
+import { Calendar, Users, ArrowRight, Sparkles, Trophy, MapPin, Info } from 'lucide-react';
 ---
 
 <BaseLayout
   title="Events & Programs | Society of Applied Mathematics of UPLB"
-  description="Explore SAM-UP's flagship academic tournaments, peer tutorial caravans, research colloquiums, and athletic initiatives."
+  description="SAM-UP's events and programs: the annual UPLB Math Wizard competition, peer tutorial caravans, and athletic participation."
 >
-  {/* Page Header with Ambient Gradient Mesh */}
+  {/* Page Header */}
   <section class="py-20 sm:py-24 border-b border-[var(--border)] relative overflow-hidden">
     <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.12)_0%,transparent_70%)] top-0 left-[-10%]" aria-hidden="true" />
     <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(16,185,129,0.09)_0%,transparent_70%)] bottom-0 right-[-10%]" aria-hidden="true" />
@@ -18,33 +18,37 @@ import { Calendar, Users, ArrowRight, Sparkles, Trophy, MapPin } from 'lucide-re
       <div class="max-w-3xl space-y-4">
         <div class="coord-badge">
           <Sparkles class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
-          <span>OUTREACH, TOURNAMENTS & COLLOQUIUMS</span>
+          <span>EVENTS & PROGRAMS</span>
         </div>
         <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight">
-          Flagship Events & <span class="text-gold-gradient">Programs</span>
+          Events & <span class="text-gold-gradient">Programs</span>
         </h1>
         <p class="text-base sm:text-lg text-[var(--muted-foreground)] leading-relaxed font-normal">
-          From nationwide mathematical championships to grassroots peer tutoring caravans at the UPLB Math Building, SAM-UP initiatives champion academic excellence and service.
+          From the annual UPLB Math Wizard competition to peer tutorial caravans at the Mathematics Building, SAM-UP organizes activities that serve the UPLB community.
         </p>
       </div>
     </div>
   </section>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-16">
-    {/* Events Grid — static Astro cards */}
+    {/* Events Grid — canonical data from src/data/events.ts */}
     <div class="grid md:grid-cols-2 gap-8">
       {flagshipEvents.map((event) => (
         <GlassCard
-          tag={event.category}
+          tag={event.badge}
           title={event.title}
           subtitle={event.description}
-          href={event.ctaLink || 'https://facebook.com/SAMUPLB'}
+          href={event.ctaLink || '/events'}
           showArrow={true}
         >
-          <div class="space-y-3 pt-2">
+          <div class="space-y-3 pt-3 mt-3 border-t border-[var(--border-subtle)]">
             <div class="flex items-center gap-2 text-xs font-mono text-[var(--foreground)]/80">
               <Calendar class="w-3.5 h-3.5 text-[var(--primary)] shrink-0" aria-hidden="true" />
               <span>{event.schedule}</span>
+              <span class="text-[var(--border)]" aria-hidden="true">•</span>
+              <span class={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${event.status === 'active' ? 'bg-[var(--success)]/10 text-[var(--success)] border border-[var(--success)]/25' : 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border border-[var(--border)]'}`}>
+                {event.status}
+              </span>
             </div>
 
             <div class="flex items-center gap-2 text-xs font-mono text-[var(--foreground)]/80">
@@ -52,9 +56,9 @@ import { Calendar, Users, ArrowRight, Sparkles, Trophy, MapPin } from 'lucide-re
               <span>Audience: {event.targetAudience}</span>
             </div>
 
-            <div class="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs font-mono text-[var(--muted-foreground)]">
-              <span class="flex items-center gap-1.5 text-[var(--muted-foreground)]">
-                <MapPin class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+            <div class="flex items-center justify-between text-xs font-mono text-[var(--muted-foreground)]">
+              <span class="flex items-center gap-1.5">
+                <MapPin class="w-3.5 h-3.5 text-[var(--primary)] shrink-0" aria-hidden="true" />
                 <span>{getEventLocationLabel(event)}</span>
               </span>
               <span class="text-[var(--primary)] font-semibold">{event.ctaText || 'Learn More'} →</span>
@@ -64,18 +68,18 @@ import { Calendar, Users, ArrowRight, Sparkles, Trophy, MapPin } from 'lucide-re
       ))}
     </div>
 
-    {/* Future Notice Frosted Banner */}
-    <div class="frosted-glass-card p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+    {/* Official updates notice */}
+    <div class="frosted-glass-card p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
       <div class="space-y-2 text-center md:text-left">
         <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-[var(--primary)]">
-          <Sparkles class="w-4 h-4" aria-hidden="true" />
-          <span>STAY CONNECTED</span>
+          <Info class="w-4 h-4" aria-hidden="true" />
+          <span>OFFICIAL UPDATES</span>
         </div>
         <h3 class="font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
-          Looking for the upcoming semester event calendar?
+          Schedules are announced on Facebook
         </h3>
         <p class="text-sm text-[var(--muted-foreground)] max-w-xl">
-          Tournament registration dates, live bracket announcements, and peer tutorial caravan schedules are announced regularly on our official Facebook page.
+          Event dates, venues, and registration details are published each semester on the official SAM-UP Facebook page — the organization's verified announcement channel.
         </p>
       </div>
 

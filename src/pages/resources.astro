@@ -1,15 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { MeritCalculator } from '../components/interactive/MeritCalculator';
 import GlassCard from '../components/ui/GlassCard.astro';
-import { MapPin, BookOpen, Calculator, FileText, CheckCircle2, Compass, Sparkles } from 'lucide-react';
+import { BookOpen, ArrowRight } from 'lucide-react';
 ---
 
 <BaseLayout
-  title="Academic Hub & Resources | Society of Applied Mathematics of UPLB"
-  description="Access Math Building room directories, tutorial caravan information, study resources, and the semestral merit calculator."
+  title="Academic Resources | Society of Applied Mathematics of UPLB"
+  description="Course coverage of SAM-UP's peer tutorial caravans: Calculus, Linear Algebra, Differential Equations, and Optimization."
 >
-  {/* Page Header with Ambient Gradient Mesh */}
+  {/* Page Header */}
   <section class="py-20 sm:py-24 border-b border-[var(--border)] relative overflow-hidden">
     <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.12)_0%,transparent_70%)] top-0 left-[-10%]" aria-hidden="true" />
     <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(16,185,129,0.09)_0%,transparent_70%)] bottom-0 right-[-10%]" aria-hidden="true" />
@@ -17,74 +16,24 @@ import { MapPin, BookOpen, Calculator, FileText, CheckCircle2, Compass, Sparkles
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl space-y-4">
         <div class="coord-badge">
-          <Compass class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
-          <span>ACADEMIC SUPPORT & FACILITIES • UPLB MATH BUILDING</span>
+          <BookOpen class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+          <span>PEER TUTORIAL CARAVANS</span>
         </div>
         <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight">
-          Academic Hub & <span class="text-gold-gradient">Member Resources</span>
+          Academic <span class="text-gold-gradient">Resources</span>
         </h1>
         <p class="text-base sm:text-lg text-[var(--muted-foreground)] leading-relaxed font-normal">
-          Comprehensive study resources, Math Building facility guides, peer tutorial schedules, and a semestral merit discount assessment tool.
+          SAM-UP's peer tutorial caravans cover foundational mathematics courses at UPLB. Sessions run each semester — see Events & Programs for the current schedule.
         </p>
       </div>
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-24">
-    {/* Math Building Facilities & Directory */}
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-16">
+    {/* Course coverage — sourced from events.ts tutorial descriptions */}
     <section class="space-y-8">
       <div class="max-w-3xl space-y-3">
         <div class="coord-badge">
-          <MapPin class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
-          <span>FACILITY DIRECTORY</span>
-        </div>
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          UPLB Mathematics Building Navigation
-        </h2>
-        <p class="text-base text-[var(--muted-foreground)]">
-          The home of SAM-UP peer tutorial caravans, mock exams, and executive assemblies.
-        </p>
-        <aside role="note" class="border-l-2 border-[var(--primary)]/70 pl-4 text-xs sm:text-sm text-[var(--muted-foreground)]">
-          Planning aid only: confirm current room assignments, access rules, and event details with SAM-UP before attending.
-        </aside>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <GlassCard
-          tag="MB 101–105"
-          title="Ground Floor Classrooms"
-          subtitle="Primary lecture venues for foundational undergraduate mathematics, Calculus review caravans, and general study sessions."
-          showArrow={false}
-        />
-
-        <GlassCard
-          tag="MB 201–206"
-          title="Upper Seminar Rooms"
-          subtitle="Advanced lecture halls for Linear Algebra (Math 110), Differential Equations (Math 180), and faculty colloquiums."
-          showArrow={false}
-        />
-
-        <GlassCard
-          tag="IMSP LAB"
-          title="Computational Facility"
-          subtitle="Equipped for numerical modeling, MATLAB / Python programming, scientific computing, and statistical data science."
-          showArrow={false}
-        />
-
-        <GlassCard
-          tag="SAM-UP LOUNGE"
-          title="Member Hub & Tambayan"
-          subtitle="The central tambayan for peer academic collaboration, problem set discussions, and organizational fellowship."
-          showArrow={false}
-        />
-      </div>
-    </section>
-
-    {/* Peer Tutorial Caravan Coverage */}
-    <section class="space-y-8">
-      <div class="max-w-3xl space-y-3">
-        <div class="coord-badge">
-          <BookOpen class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
           <span>COURSE COVERAGE</span>
         </div>
         <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
@@ -93,55 +42,45 @@ import { MapPin, BookOpen, Calculator, FileText, CheckCircle2, Compass, Sparkles
       </div>
 
       <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-        <GlassCard
-          tag="CALCULUS"
-          title="Math 27 / 28"
-          subtitle="Limits, derivatives, integration techniques, multivariable calculus, and vector analysis."
-          showArrow={false}
-        />
-
-        <GlassCard
-          tag="ALGEBRA"
-          title="Math 110"
-          subtitle="Vector spaces, matrix decompositions, eigenvalues, linear transformations, and inner products."
-          showArrow={false}
-        />
-
-        <GlassCard
-          tag="DIFFERENTIAL"
-          title="Math 180"
-          subtitle="First-order ODEs, higher-order linear systems, Laplace transforms, and boundary value problems."
-          showArrow={false}
-        />
-
-        <GlassCard
-          tag="OPTIMIZATION"
-          title="Math 165"
-          subtitle="Linear programming, Simplex algorithm, duality theory, transportation, and network optimization."
-          showArrow={false}
-        />
+        <GlassCard tag="CALCULUS" title="Math 27 / 28" subtitle="Limits, derivatives, integration techniques, multivariable calculus, and vector analysis." showArrow={false} />
+        <GlassCard tag="ALGEBRA" title="Math 110" subtitle="Vector spaces, matrix decompositions, eigenvalues, linear transformations, and inner products." showArrow={false} />
+        <GlassCard tag="DIFFERENTIAL" title="Math 180" subtitle="First-order ODEs, higher-order linear systems, Laplace transforms, and boundary value problems." showArrow={false} />
+        <GlassCard tag="OPTIMIZATION" title="Math 165" subtitle="Linear programming, Simplex algorithm, duality theory, transportation, and network optimization." showArrow={false} />
       </div>
     </section>
 
-    {/* Semestral Merit Calculator */}
-    <section class="space-y-8">
-      <div class="max-w-3xl space-y-3">
-        <div class="coord-badge">
-          <Calculator class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
-          <span>ARTICLE VI • FINANCIAL GOVERNANCE</span>
+    {/* Schedule pointer — the verified update channel */}
+    <section class="frosted-glass-card p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="space-y-2 text-center md:text-left">
+        <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-[var(--primary)]">
+          <BookOpen class="w-4 h-4" aria-hidden="true" />
+          <span>TUTORIAL SCHEDULES</span>
         </div>
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          Interactive Semestral Merit Calculator
-        </h2>
-        <p class="text-base text-[var(--muted-foreground)]">
-          Compute your semestral dues discount based on academic honors and organizational participation under the 2026–2027 SAM-UP Bylaws.
+        <h3 class="font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
+          When are the next sessions?
+        </h3>
+        <p class="text-sm text-[var(--muted-foreground)] max-w-xl">
+          Tutorial caravan schedules are announced each semester on the official SAM-UP Facebook page and posted on the Events & Programs page.
         </p>
-        <aside role="note" class="border-l-2 border-[var(--primary)]/70 pl-4 text-xs sm:text-sm text-[var(--muted-foreground)]">
-          Estimate only: confirm current dues, points, and eligibility with the SAM-UP Treasurer before relying on this result.
-        </aside>
       </div>
 
-      <MeritCalculator client:load />
+      <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+        <a
+          href="/events"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-all shadow-md shadow-[var(--primary)]/20"
+        >
+          <span>View Events & Programs</span>
+          <ArrowRight class="w-4 h-4" aria-hidden="true" />
+        </a>
+        <a
+          href="https://facebook.com/SAMUPLB"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--foreground)] font-semibold text-sm hover:border-[var(--border-primary)] transition-all shadow-sm"
+        >
+          <span>Follow @SAMUPLB</span>
+        </a>
+      </div>
     </section>
   </div>
 </BaseLayout>

@@ -5,11 +5,10 @@ export interface NavItem {
 }
 
 export const mainNav: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'About & Heritage', href: '/about' },
+  { label: 'About SAM-UP', href: '/about' },
   { label: 'Events & Programs', href: '/events' },
-  { label: 'Alumni & Leadership', href: '/alumni' },
-  { label: 'Academic Hub', href: '/resources' }
+  { label: 'Leadership Archive', href: '/alumni' },
+  { label: 'Resources', href: '/resources' }
 ];
 
 export const membershipAction: NavItem = {

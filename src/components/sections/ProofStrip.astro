@@ -4,17 +4,17 @@
 // @url:`https://reactbits.dev/text-animations/split-flap-text`
 // Repository: @url:`https://github.com/DavidHDev/react-bits`
 import { organization } from '../../data/organization';
+import { objectives } from '../../data/mission';
 import { SplitFlapText } from '../ui/SplitFlapText';
 import { Compass, ShieldCheck, Award } from 'lucide-react';
 
 // All values derive from src/data/organization.ts + senior_executives.json (verified sources).
-const activeTerm = organization.activeExecutive.term; // e.g. "2nd Sem 26-27"
-const activeExec = organization.activeExecutive.name.toUpperCase();
-const terms = String(organization.totalLeadershipTerms); // 46 — length of senior_executives.json
+const latestRecordedTerm = organization.latestRecordedExecutive.term; // e.g. "2nd Sem 26-27"
+const terms = String(organization.totalLeadershipTerms); // length of senior_executives.json
 const founding = String(organization.foundingYear); // 1984
 
-// Featured rail: cycles verified facts. SSR/first paint shows the settled active term.
-const railPhrases = [activeTerm, `${terms} TERMS`, `${founding}`];
+// Featured rail: cycles verified facts. SSR/first paint shows the latest recorded term.
+const railPhrases = [latestRecordedTerm, `${terms} TERMS`, `${founding}`];
 ---
 
 <section class="relative py-8 border-b border-[var(--border)] bg-[var(--background)]/40 backdrop-blur-md overflow-hidden" aria-label="Verified society facts">
@@ -37,11 +37,8 @@ const railPhrases = [activeTerm, `${terms} TERMS`, `${founding}`];
             charset="numeric"
             fontSize={18}
             padTo={12}
-            aria-label={`Active term ${activeTerm}, ${terms} leadership terms, founded ${founding}`}
+            aria-label={`Latest recorded term ${latestRecordedTerm}, ${terms} leadership terms, founded ${founding}`}
           />
-          <div class="text-[10px] font-mono text-[var(--muted-foreground)] mt-1.5 truncate">
-            ACTIVE TERM • {activeExec}
-          </div>
         </div>
       </div>
 
@@ -56,15 +53,17 @@ const railPhrases = [activeTerm, `${terms} TERMS`, `${founding}`];
         </div>
       </div>
 
-      {/* 3. Foundation Epoch (verified) */}
-      <div class="frosted-glass-card p-4 sm:p-5 flex items-center gap-3.5 shadow-sm">
-        <div class="w-10 h-10 rounded-xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center text-[var(--primary)] shrink-0">
-          <ShieldCheck class="w-5 h-5" aria-hidden="true" />
-        </div>
-        <div>
-          <div class="text-[10px] font-mono text-[var(--muted-foreground)] uppercase tracking-wider">FOUNDING EPOCH</div>
-          <div class="font-display font-bold text-sm text-[var(--foreground)] mt-0.5">Nov 27, 1984</div>
-        </div>
+      {/* 3. Constitutional Objectives (verified, first three) */}
+      <div class="frosted-glass-card p-4 sm:p-5 shadow-sm col-span-2 lg:col-span-1">
+        <div class="text-[10px] font-mono text-[var(--muted-foreground)] uppercase tracking-wider mb-2">CONSTITUTIONAL OBJECTIVES</div>
+        <ul class="space-y-1.5">
+          {objectives.slice(0, 2).map((obj) => (
+            <li class="text-xs text-[var(--foreground)]/85 leading-snug flex items-start gap-1.5">
+              <ShieldCheck class="w-3.5 h-3.5 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
+              <span>{obj.text.replace('to promote', 'Promote').replace('to contribute', 'Contribute').replace(';', '.')}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </div>

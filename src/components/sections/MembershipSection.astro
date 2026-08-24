@@ -1,7 +1,8 @@
 ---
 import { organization } from '../../data/organization';
+import { membershipRules } from '../../data/mission';
 import { Magnet } from '../ui/Magnet';
-import { CheckCircle2, ArrowRight, Sparkles, ArrowUpRight } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Sparkles, Mail } from 'lucide-react';
 ---
 
 <section id="membership" class="relative py-24 lg:py-32 border-b border-[var(--border)] overflow-hidden">
@@ -20,7 +21,7 @@ import { CheckCircle2, ArrowRight, Sparkles, ArrowUpRight } from 'lucide-react';
         Membership & Recruitment Pathways
       </h2>
       <p class="text-[var(--muted-foreground)] text-base sm:text-lg leading-relaxed">
-        SAM-UP admits undergraduate scholars at UPLB through a structured, values-based orientation process governed by our Constitution.
+        Membership is governed by Article VII of the SAM-UP Constitution. Two pathways are open to UPLB students.
       </p>
     </div>
 
@@ -38,37 +39,36 @@ import { CheckCircle2, ArrowRight, Sparkles, ArrowUpRight } from 'lucide-react';
             Resident Member
           </h3>
           <p class="text-sm text-[var(--foreground)]/80 mt-2 leading-relaxed font-normal">
-            For officially enrolled BS Applied Mathematics undergraduates at UPLB who wish to take active governance, research, and leadership roles in the organization.
+            For BS Applied Mathematics students. {membershipRules.resident}
           </p>
 
           <div class="mt-4">
             <ul class="space-y-2.5 text-xs text-[var(--foreground)]/85 pt-2">
               <li class="flex items-start gap-2">
                 <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-                <span>Full constitutional voting & executive eligibility</span>
+                <span>Full constitutional voting rights and executive eligibility</span>
               </li>
               <li class="flex items-start gap-2">
                 <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-                <span>Access to exclusive academic reviewers & problem sets</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-                <span>Direct mentorship from alumni senior executives</span>
+                <span>Active participation in standing committees</span>
               </li>
             </ul>
 
             <div class="pt-6 mt-4 border-t border-[var(--border-subtle)]">
               <Magnet client:idle strength={12} className="w-full">
                 <a
-                  href="https://forms.gle/samup-recruitment-2026"
+                  href={organization.socials.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-all shadow-md"
                 >
-                  <span>Apply for Resident Membership</span>
+                  <span>Express Interest via Facebook</span>
                   <ArrowRight class="w-4 h-4" aria-hidden="true" />
                 </a>
               </Magnet>
+              <p class="text-[11px] text-[var(--muted-foreground)] mt-3 leading-relaxed font-mono">
+                Recruitment details are announced each semester on the official page.
+              </p>
             </div>
           </div>
         </div>
@@ -86,39 +86,46 @@ import { CheckCircle2, ArrowRight, Sparkles, ArrowUpRight } from 'lucide-react';
             Affiliate Member
           </h3>
           <p class="text-sm text-[var(--foreground)]/80 mt-2 leading-relaxed font-normal">
-            For students in Statistics, Computer Science, Engineering, Physics, or related degrees with a strong passion for quantitative problem-solving and collaboration.
+            For students outside BS Applied Mathematics. {membershipRules.affiliate}
           </p>
 
           <div class="mt-4">
             <ul class="space-y-2.5 text-xs text-[var(--foreground)]/85 pt-2">
               <li class="flex items-start gap-2">
                 <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-                <span>Cross-disciplinary research teams & colloquiums</span>
+                <span>Participation in committees, events, and initiatives</span>
               </li>
               <li class="flex items-start gap-2">
                 <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-                <span>Participate in tutorial caravans & community initiatives</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <CheckCircle2 class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-                <span>Inter-organizational networking & sports leagues</span>
+                <span>Converts to Resident Member upon shifting to BS Applied Mathematics</span>
               </li>
             </ul>
 
             <div class="pt-6 mt-4 border-t border-[var(--border-subtle)]">
               <a
-                href="https://forms.gle/samup-recruitment-2026"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`mailto:${organization.socials.email}`}
                 class="inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-xl bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--foreground)] font-semibold text-sm hover:border-[var(--border-primary)] transition-all shadow-sm"
               >
-                <span>Register Interest as Affiliate</span>
+                <span>Email the Organization</span>
                 <ArrowRight class="w-4 h-4" aria-hidden="true" />
               </a>
             </div>
           </div>
         </div>
       </div>
+    </div>
+
+    {/* Contact strip — verified channels */}
+    <div class="max-w-5xl mx-auto mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs font-mono text-[var(--muted-foreground)]">
+      <span class="flex items-center gap-1.5">
+        <span class="text-[var(--primary)]" aria-hidden="true">FB</span>
+        <a href={organization.socials.facebook} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--foreground)] transition-colors">facebook.com/SAMUPLB</a>
+      </span>
+      <span aria-hidden="true">•</span>
+      <span class="flex items-center gap-1.5">
+        <Mail class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+        <a href={`mailto:${organization.socials.email}`} class="hover:text-[var(--foreground)] transition-colors">samup.uplb@gmail.com</a>
+      </span>
     </div>
   </div>
 </section>

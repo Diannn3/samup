@@ -1,8 +1,7 @@
 ---
 import { organization } from '../../data/organization';
-import { featuredAlumni } from '../../data/alumni';
 import { FrostedGlassCard } from '../ui/FrostedGlassCard';
-import { Award, GraduationCap, Building2, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 ---
 
 <section class="relative py-24 border-b border-[var(--border)] overflow-hidden">
@@ -15,19 +14,18 @@ import { Award, GraduationCap, Building2, ArrowRight } from 'lucide-react';
       {/* Left Column: Context & Stats */}
       <div class="lg:col-span-5 space-y-6">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--border)] text-xs font-mono text-[var(--primary)] shadow-sm">
-          <span>ALUMNI LEGACY & EXCELLENCE</span>
+          <span>DOCUMENTED LEADERSHIP TERMS</span>
         </div>
 
         <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-[var(--foreground)] tracking-tight">
-          Four Decades of Applied Mathematics Leadership
+          The Leadership Archive
         </h2>
 
         <p class="text-base text-[var(--muted-foreground)] leading-relaxed">
-          From IMSP faculty chairs and actuarial directors to algorithmic traders and data research scientists, SAM-UP alumni carry our mathematical rigor across the globe.
+          From 1984 to the current academic year, SAM-UP's senior executives are recorded in a searchable archive. Each term represents one academic-semester of governance under the organization's Constitution.
         </p>
 
-        {/* Static facts — verified counts from organization data. Alumni totals and
-             placement rates are NOT verifiable from current sources; no numeric claims. */}
+        {/* Static verified facts only */}
         <div class="grid grid-cols-2 gap-4 pt-2">
           <div class="frosted-glass-card p-5 shadow-md">
             <div class="text-3xl font-mono font-bold text-[var(--primary)]">
@@ -37,9 +35,9 @@ import { Award, GraduationCap, Building2, ArrowRight } from 'lucide-react';
           </div>
           <div class="frosted-glass-card p-5 shadow-md">
             <div class="text-3xl font-mono font-bold text-[var(--foreground)]">
-              IMSP
+              1984
             </div>
-            <div class="text-xs text-[var(--muted-foreground)] mt-1.5 font-medium">Alumni Across Industry & Academia</div>
+            <div class="text-xs text-[var(--muted-foreground)] mt-1.5 font-medium">First Recorded Term</div>
           </div>
         </div>
 
@@ -48,38 +46,25 @@ import { Award, GraduationCap, Building2, ArrowRight } from 'lucide-react';
             href="/alumni"
             class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
           >
-            <span>Explore Roll of 46 Senior Executives</span>
+            <span>Search the Archive of {organization.totalLeadershipTerms} Terms</span>
             <ArrowRight class="w-4 h-4" aria-hidden="true" />
           </a>
         </div>
       </div>
 
-      {/* Right Column: Featured Spotlight Card with FrostedGlassCard */}
+      {/* Right Column: Latest archive entry — not a current-roster claim */}
       <div class="lg:col-span-7">
         <FrostedGlassCard
           client:idle
-          tag="CENTENNIAL PROFESSORIAL CHAIR AWARDEE"
-          title={featuredAlumni.name}
-          subtitle={`Assistant Professor at the UPLB Institute of Mathematical Sciences and Physics. Research integrates operations research, topological data analysis (TDA), and computer vision models for Filipino Sign Language (FSL) recognition.`}
+          tag={`LATEST ARCHIVE ENTRY — ${organization.latestRecordedExecutive.term}`}
+          title={`${organization.latestRecordedExecutive.name}`}
+          subtitle={`Senior Executive for the ${organization.latestRecordedExecutive.term} term. The latest entry in SAM-UP's documented leadership archive, which begins with Edmund Campos (1984).`}
           href="/alumni"
           showArrow={true}
         >
-          <div class="mt-4 pt-4 border-t border-[var(--border-subtle)] space-y-4">
-            <p class="text-sm text-[var(--foreground)]/90 italic border-l-2 border-[var(--primary)] pl-4 py-1">
-              "{featuredAlumni.quote}"
-            </p>
-
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-[var(--surface-raised)] text-[var(--muted-foreground)] border border-[var(--border)]">
-                Operations Research
-              </span>
-              <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-[var(--surface-raised)] text-[var(--muted-foreground)] border border-[var(--border)]">
-                Topological Data Analysis
-              </span>
-              <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-[var(--surface-raised)] text-[var(--muted-foreground)] border border-[var(--border)]">
-                AI / FSL Recognition
-              </span>
-            </div>
+          <div class="pt-4 mt-4 border-t border-[var(--border-subtle)] text-xs font-mono text-[var(--muted-foreground)] flex items-center justify-between">
+            <span>ARCHIVE ENTRY {organization.totalLeadershipTerms} OF {organization.totalLeadershipTerms}</span>
+            <span class="text-[var(--primary)] font-medium">1984–LATEST RECORDED</span>
           </div>
         </FrostedGlassCard>
       </div>

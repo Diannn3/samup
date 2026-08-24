@@ -1,73 +1,47 @@
 ---
 import { SamUp3DExperience } from '../interactive/SamUp3DExperience';
 import { organization } from '../../data/organization';
-import { Magnet } from '../ui/Magnet';
-import { ArrowRight, Compass, ShieldCheck } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 ---
 
 <section class="relative min-h-[85vh] lg:min-h-[90vh] flex items-center border-b border-[var(--border)] overflow-hidden">
   {/* Full-Hero 3D Background Universe */}
   <SamUp3DExperience client:load />
 
-  {/* Ambient Textured Depth Overlays with WebGradients-style Top Glow */}
+  {/* Ambient Textured Depth Overlays */}
   <div class="absolute inset-0 bg-dots-pattern opacity-15 pointer-events-none [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_60%,transparent_100%)]" aria-hidden="true" />
   <div class="absolute top-0 inset-x-0 h-44 bg-gradient-to-b from-[var(--background)] via-[var(--background)]/70 to-transparent pointer-events-none" aria-hidden="true" />
   <div class="absolute bottom-0 inset-x-0 h-44 bg-gradient-to-t from-[var(--background)] via-[var(--background)]/70 to-transparent pointer-events-none" aria-hidden="true" />
 
   {/* Foreground Editorial Content */}
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 relative z-10 w-full pointer-events-none">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 pb-40 sm:py-16 lg:py-24 relative z-10 w-full pointer-events-none">
     <div class="max-w-xl sm:max-w-2xl space-y-6 text-left pointer-events-auto">
-      {/* Tactical Coordinate & Epoch Badge — static typography; no hydration needed */}
+      {/* Identity badge — founding facts from the Constitution */}
       <div class="flex flex-wrap items-center gap-2">
         <div class="coord-badge shadow-sm">
-          <Compass class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
-          <span>IMSP CAS UPLB • 14.1675° N, 121.2433° E</span>
-        </div>
-        <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[var(--surface)]/80 border border-[var(--border)] text-[11px] font-mono text-[var(--muted-foreground)]">
-          <ShieldCheck class="w-3 h-3 text-[var(--primary)]" aria-hidden="true" />
-          <span>Constitutional Epoch: Nov 27, 1984</span>
+          <span>EST. NOVEMBER 27, 1984 • UPLB IMS</span>
         </div>
       </div>
 
-      {/* Main Ceremonial Headline */}
+      {/* Identity Headline — what SAM-UP is, plainly */}
       <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight leading-[1.08] drop-shadow-lg">
-        Bridging Abstract Reason with <span class="text-gold-gradient">Real-World Impact.</span>
+        The Society of Applied Mathematics of <span class="text-gold-gradient">UPLB</span>
       </h1>
 
-      {/* Institutional Mission Lead */}
+      {/* Who We Are — constitutional positioning, no prestige inflation */}
       <p class="text-base sm:text-lg text-[var(--foreground)]/90 leading-relaxed max-w-xl drop-shadow-md font-normal">
-        The premier academic student organization of the Institute of Mathematical Sciences and Physics at the University of the Philippines Los Baños, fostering mathematical rigor, service, and leadership for over four decades.
+        A self-governing academic organization of BS Applied Mathematics students at the University of the Philippines Los Baños, promoting the relevance of Applied Mathematics to Philippine society since 1984.
       </p>
 
-      {/* Primary CTA Buttons — Magnet on the primary CTA only */}
+      {/* Primary CTA — direct path to the organization story */}
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
-        <Magnet client:idle strength={14}>
-          <a
-            href="#membership"
-            class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-all shadow-lg shadow-[var(--primary)]/20"
-          >
-            <span>Learn About Membership</span>
-            <ArrowRight class="w-4 h-4" aria-hidden="true" />
-          </a>
-        </Magnet>
-
         <a
           href="/about"
           class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[var(--surface)]/90 backdrop-blur-md border border-[var(--border)] text-[var(--foreground)] font-semibold text-sm hover:border-[var(--border-primary)] hover:bg-[var(--surface-raised)] transition-all shadow-sm"
         >
-          Explore Our Heritage
+          Learn About SAM-UP
           <ArrowRight class="w-4 h-4" aria-hidden="true" />
         </a>
-      </div>
-
-      {/* Micro Status Strip */}
-      <div class="pt-4 flex items-center gap-4 text-xs font-mono text-[var(--muted-foreground)]">
-        <span class="flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-[var(--primary)] animate-pulse" aria-hidden="true" />
-          <span>AY 2026–2027 Active Term</span>
-        </span>
-        <span class="text-[var(--border)]" aria-hidden="true">•</span>
-        <span>46 Leadership Terms</span>
       </div>
     </div>
   </div>
