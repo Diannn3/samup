@@ -1,0 +1,44 @@
+---
+import "../../styles/global.css";
+import "../../styles/monochrome-spatial.css";
+import { WorldContainer } from "../../components/reporting/WorldContainer";
+import { STATIONS } from "../../data/reporting/stations";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>SAM-UP Applicant Reporting // Aedrian "Dian" Ponce</title>
+    <meta name="description" content="A monochrome spatial reporting and applicant conversation experience for the Society of Applied Mathematics of UPLB (SAM-UP)." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-[#fafafa] text-neutral-900 antialiased overflow-hidden m-0 p-0">
+    {/* Screen Reader & Semantic DOM Navigation Fallback */}
+    <header class="sr-only">
+      <h1>SAM-UP Applicant Reporting — Aedrian "Dian" Ponce</h1>
+      <p>Marketing Deputy Head (Promotions), Society of Applied Mathematics of UPLB</p>
+    </header>
+
+    <nav aria-label="Stations" class="sr-only">
+      <ol>
+        {STATIONS.map((station) => (
+          <li>
+            <h2>[{station.index}] {station.title}</h2>
+            <p>{station.subtitle}</p>
+            <p>{station.description}</p>
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    {/* Master Walkable Spatial Experience */}
+    <main class="w-screen h-screen">
+      <WorldContainer client:only="react" />
+    </main>
+  </body>
+</html>

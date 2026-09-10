@@ -1,0 +1,220 @@
+/* ==========================================================================
+   MONOCHROME SPATIAL INSTRUMENT — SYSTEM STYLESHEET
+   Society of Applied Mathematics of UPLB (SAM-UP) Applicant Reporting Experience
+   Standards: Apple Interface Engineering, Emil Kowalski Motion Rubric, WCAG 2.2 AA
+   ========================================================================== */
+
+:root {
+  /* Strict 11-Stop Monochrome Palette (Zero Color Accents) */
+  --mono-100: #ffffff;
+  --mono-95:  #fafafa;
+  --mono-90:  #f5f5f5;
+  --mono-85:  #eaeaea;
+  --mono-75:  #d9d9d9;
+  --mono-65:  #bfbfbf;
+  --mono-50:  #8a8a8a;
+  --mono-35:  #5a5a5a;
+  --mono-20:  #2a2a2a;
+  --mono-10:  #111111;
+  --mono-0:   #000000;
+
+  /* Thematic Variables (Light Canvas Default) */
+  --canvas-bg: var(--mono-95);
+  --canvas-grid: rgba(0, 0, 0, 0.06);
+  --canvas-grid-subtle: rgba(0, 0, 0, 0.025);
+  --canvas-line: rgba(0, 0, 0, 0.85);
+  --canvas-line-muted: rgba(0, 0, 0, 0.25);
+  
+  --ink-primary: var(--mono-0);
+  --ink-secondary: var(--mono-35);
+  --ink-tertiary: var(--mono-50);
+  --ink-inverse: var(--mono-100);
+
+  /* Apple Liquid Glass Variables */
+  --glass-surface: rgba(255, 255, 255, 0.78);
+  --glass-surface-hover: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-border-hover: rgba(0, 0, 0, 0.18);
+  --glass-bevel: inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  --glass-blur: 24px;
+  --glass-saturate: 180%;
+
+  /* Fonts */
+  --font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Darkroom / Math in Sight Theme Override */
+.theme-darkroom {
+  --canvas-bg: #09090b;
+  --canvas-grid: rgba(255, 255, 255, 0.07);
+  --canvas-grid-subtle: rgba(255, 255, 255, 0.03);
+  --canvas-line: rgba(255, 255, 255, 0.9);
+  --canvas-line-muted: rgba(255, 255, 255, 0.3);
+
+  --ink-primary: var(--mono-100);
+  --ink-secondary: var(--mono-65);
+  --ink-tertiary: var(--mono-50);
+  --ink-inverse: var(--mono-0);
+
+  --glass-surface: rgba(18, 18, 20, 0.82);
+  --glass-surface-hover: rgba(26, 26, 30, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-hover: rgba(255, 255, 255, 0.28);
+  --glass-bevel: inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+  --glass-shadow: 0 16px 44px -4px rgba(0, 0, 0, 0.6);
+}
+
+/* High Contrast Mode (WCAG 2.2 AAA Accessibility) */
+@media (prefers-contrast: more) {
+  :root {
+    --canvas-grid: rgba(0, 0, 0, 0.2);
+    --glass-surface: rgba(255, 255, 255, 0.96);
+    --glass-border: #000000;
+  }
+  .theme-darkroom {
+    --canvas-grid: rgba(255, 255, 255, 0.25);
+    --glass-surface: rgba(10, 10, 10, 0.98);
+    --glass-border: #ffffff;
+  }
+}
+
+/* ==========================================================================
+   GLASSMORPHISM & PHYSICAL BEVELS
+   ========================================================================== */
+
+.spatial-glass-panel {
+  position: relative;
+  background: var(--glass-surface);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border: 1px solid var(--glass-border);
+  border-radius: 1.5rem;
+  box-shadow: var(--glass-shadow), var(--glass-bevel);
+  transition: background 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.spatial-glass-panel:hover {
+  background: var(--glass-surface-hover);
+  border-color: var(--glass-border-hover);
+}
+
+/* Razor-Thin Top Edge Specular Highlight */
+.spatial-glass-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 30%, rgba(255, 255, 255, 0.8) 70%, transparent 100%);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.theme-darkroom .spatial-glass-panel::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 30%, rgba(255, 255, 255, 0.4) 70%, transparent 100%);
+}
+
+/* Universal Focus Outline Reset for Custom Spatial Inputs */
+input:focus,
+input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Glass Pill for Floating HUD & Nav */
+.spatial-glass-pill {
+  background: var(--glass-surface);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.12), inset 0 1px 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Apple 3D Glass Orb Ambient Motion */
+@keyframes floatGlassOrb {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-14px) rotate(1.5deg) scale(1.015);
+  }
+}
+
+.apple-glass-orb {
+  animation: floatGlassOrb 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Technical Coordinate Badge */
+.spatial-coord-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-secondary);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.25rem;
+  padding: 0.15rem 0.45rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.theme-darkroom .spatial-coord-tag {
+  color: var(--mono-65);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================================================================
+   CONTACT SHEET & FILM STRIP (MATH IN SIGHT / PORTFOLIO)
+   ========================================================================== */
+
+.film-contact-strip {
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  position: relative;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.theme-darkroom .film-contact-strip {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.film-frame-number {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--ink-tertiary);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Continuous Curvature Squircle */
+.squircle-card {
+  border-radius: 1.25rem;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY & REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
