@@ -1,6 +1,7 @@
 ---
 import { mainNav } from '../../data/navigation';
 import { MobileNav } from '../interactive/MobileNav';
+import { Compass } from 'lucide-react';
 
 interface Props {
   currentPath?: string;
@@ -53,6 +54,17 @@ const { currentPath = Astro.url.pathname } = Astro.props;
           );
         })}
       </nav>
+
+      {/* Spatial Reporting Dossier Bridge Pill */}
+      <div class="hidden lg:flex items-center ml-3">
+        <a
+          href="/reporting"
+          class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/15 border border-[var(--border-primary)]/40 hover:border-[var(--border-primary)] text-[var(--primary)] hover:text-white font-mono text-xs font-semibold tracking-wider transition-all shadow-sm"
+        >
+          <Compass class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+          <span>Reporting Dossier ↗</span>
+        </a>
+      </div>
 
       {/* Mobile Navigation Island */}
       <div class="flex items-center gap-3 lg:hidden">

@@ -14,22 +14,20 @@ import { ArrowRight } from 'lucide-react';
   <div class="absolute bottom-0 inset-x-0 h-44 bg-gradient-to-t from-[var(--background)] via-[var(--background)]/70 to-transparent pointer-events-none" aria-hidden="true" />
 
   {/* Foreground Editorial Content */}
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 pb-40 sm:py-16 lg:py-24 relative z-10 w-full pointer-events-none">
-    <div class="max-w-xl sm:max-w-2xl space-y-6 text-left pointer-events-auto">
-      {/* Identity badge — founding facts from the Constitution */}
-      <div class="flex flex-wrap items-center gap-2">
-        <div class="coord-badge shadow-sm">
-          <span>EST. NOVEMBER 27, 1984 • UPLB IMS</span>
-        </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-28 sm:py-16 lg:py-24 relative z-10 w-full pointer-events-none">
+    <div class="max-w-xl md:max-w-md lg:max-w-2xl space-y-6 text-left pointer-events-auto p-6 sm:p-0 rounded-3xl bg-[#06080C]/85 sm:bg-transparent backdrop-blur-xl sm:backdrop-blur-none border border-white/10 sm:border-none shadow-2xl sm:shadow-none">
+      {/* Identity Headline — what SAM-UP is, plainly without kicker pills */}
+      <div class="space-y-3">
+        <h1 class="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight leading-[1.08] drop-shadow-lg">
+          The Society of Applied Mathematics of <span class="text-gold-gradient">UPLB</span>
+        </h1>
+        <p class="font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[var(--primary)]/95 drop-shadow">
+          1984.11.27 // UPLB.IMSP • Self-Governing Academic Society
+        </p>
       </div>
 
-      {/* Identity Headline — what SAM-UP is, plainly */}
-      <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight leading-[1.08] drop-shadow-lg">
-        The Society of Applied Mathematics of <span class="text-gold-gradient">UPLB</span>
-      </h1>
-
       {/* Who We Are — constitutional positioning, no prestige inflation */}
-      <p class="text-base sm:text-lg text-[var(--foreground)]/90 leading-relaxed max-w-xl drop-shadow-md font-normal">
+      <p class="text-sm sm:text-lg text-[var(--foreground)]/90 leading-relaxed max-w-xl drop-shadow-md font-normal">
         A self-governing academic organization of BS Applied Mathematics students at the University of the Philippines Los Baños, promoting the relevance of Applied Mathematics to Philippine society since 1984.
       </p>
 
@@ -40,7 +38,7 @@ import { ArrowRight } from 'lucide-react';
           class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[var(--surface)]/90 backdrop-blur-md border border-[var(--border)] text-[var(--foreground)] font-semibold text-sm hover:border-[var(--border-primary)] hover:bg-[var(--surface-raised)] transition-all shadow-sm"
         >
           Learn About SAM-UP
-          <ArrowRight class="w-4 h-4" aria-hidden="true" />
+          <ArrowRight class="w-4 h-4 ml-2" aria-hidden="true" />
         </a>
       </div>
     </div>

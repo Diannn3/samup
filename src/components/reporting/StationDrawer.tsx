@@ -44,7 +44,7 @@ export const StationDrawer: React.FC = () => {
               {activeStation.roles && activeStation.roles.length > 0 && (
                 <>
                   <span className="hidden sm:inline">•</span>
-                  <span className="hidden sm:inline text-neutral-400 truncate max-w-[200px]">
+                  <span className="hidden sm:inline text-neutral-400">
                     {activeStation.roles.join(", ")}
                   </span>
                 </>

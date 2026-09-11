@@ -17,12 +17,12 @@ import { ArrowLeft, Compass } from 'lucide-react';
         </div>
 
         <div class="space-y-3 mb-8">
-          <div class="coord-badge mx-auto">
-            <span>ERROR 404 • TOPOLOGY BOUNDARY</span>
-          </div>
           <h1 class="font-display font-black text-4xl sm:text-5xl text-[var(--foreground)] tracking-tight">
             Coordinate Undefined
           </h1>
+          <p class="font-mono text-xs uppercase tracking-widest text-[var(--primary)]/90">
+            ERROR 404 // TOPOLOGY BOUNDARY
+          </p>
           <p class="text-sm text-[var(--muted-foreground)] leading-relaxed max-w-sm mx-auto">
             The requested route <span class="font-mono text-[var(--primary)]">{Astro.url.pathname}</span> lies outside the defined manifold of this platform.
           </p>

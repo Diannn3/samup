@@ -1,5 +1,5 @@
 import React from "react";
-import { ChevronLeft, ChevronRight, Compass, Film, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, Compass, Film, ExternalLink, ArrowLeft } from "lucide-react";
 import { STATIONS } from "../../data/reporting/stations";
 import { useReportingStore } from "../../stores/reportingStore";
 
@@ -25,18 +25,26 @@ export const MobileNarrativeDeck: React.FC = () => {
 
   return (
     <div className="md:hidden fixed top-4 inset-x-4 z-40 pointer-events-auto">
-      <div className="spatial-glass-panel p-4 shadow-xl border border-black/10 bg-white/90 text-neutral-900 rounded-2xl">
-        {/* Navigation Step Header */}
-        <div className="flex items-center justify-between text-[11px] font-mono text-neutral-500 border-b border-black/5 pb-2 mb-3">
+      <div className="spatial-glass-panel p-4 shadow-xl border border-black/10 bg-white/95 text-neutral-900 rounded-2xl backdrop-blur-xl">
+        {/* Navigation Step Header & Portal Exit Bridge */}
+        <div className="flex items-center justify-between text-[11px] font-mono text-neutral-500 border-b border-black/5 pb-2.5 mb-3">
           <div className="flex items-center gap-2">
-            <Compass className="w-3.5 h-3.5 text-neutral-700" />
-            <span className="font-bold text-neutral-900">
+            <a
+              href="/"
+              className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-900 font-bold border border-neutral-200 transition-colors"
+              title="Return to SAM-UP Portal"
+            >
+              <ArrowLeft className="w-3 h-3" />
+              <span>Portal</span>
+            </a>
+            <span className="text-neutral-300">|</span>
+            <span className="font-semibold text-neutral-700">
               STATION {currentIndex + 1} / {STATIONS.length}
             </span>
           </div>
           <button
             onClick={() => openPortfolio()}
-            className="flex items-center gap-1 text-neutral-700 hover:text-black font-semibold"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-900 font-semibold border border-neutral-200 transition-colors"
           >
             <Film className="w-3.5 h-3.5" />
             <span>Portfolio</span>

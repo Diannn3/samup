@@ -16,13 +16,12 @@ import { Calendar, Users, ArrowRight, Sparkles, Trophy, MapPin, Info } from 'luc
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl space-y-4">
-        <div class="coord-badge">
-          <Sparkles class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
-          <span>EVENTS & PROGRAMS</span>
-        </div>
         <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight">
           Events & <span class="text-gold-gradient">Programs</span>
         </h1>
+        <p class="font-mono text-xs uppercase tracking-widest text-[var(--primary)]/90">
+          UPLB.IMSP // Academic Competitions & Community Outreach
+        </p>
         <p class="text-base sm:text-lg text-[var(--muted-foreground)] leading-relaxed font-normal">
           From the annual UPLB Math Wizard competition to peer tutorial caravans at the Mathematics Building, SAM-UP organizes activities that serve the UPLB community.
         </p>
@@ -46,8 +45,8 @@ import { Calendar, Users, ArrowRight, Sparkles, Trophy, MapPin, Info } from 'luc
               <Calendar class="w-3.5 h-3.5 text-[var(--primary)] shrink-0" aria-hidden="true" />
               <span>{event.schedule}</span>
               <span class="text-[var(--border)]" aria-hidden="true">•</span>
-              <span class={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${event.status === 'active' ? 'bg-[var(--success)]/10 text-[var(--success)] border border-[var(--success)]/25' : 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border border-[var(--border)]'}`}>
-                {event.status}
+              <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/5 text-[var(--muted-foreground)] border border-white/10">
+                {event.status === 'active' ? 'Scheduled' : event.status}
               </span>
             </div>
 

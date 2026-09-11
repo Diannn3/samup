@@ -39,6 +39,15 @@ export const WorldContainer: React.FC = () => {
 
       {/* Top Left Persistent Architectural Title & Navigation HUD */}
       <div className="fixed top-8 left-8 z-30 pointer-events-none hidden md:block max-w-sm">
+        {/* Return to Institutional Home Link */}
+        <a
+          href="/"
+          className="pointer-events-auto inline-flex items-center gap-1.5 px-3 py-1.5 mb-3 rounded-full bg-white/80 dark:bg-black/80 hover:bg-white dark:hover:bg-black border border-black/10 dark:border-white/10 text-[11px] font-mono font-medium text-neutral-800 dark:text-neutral-200 transition-all shadow-sm group"
+        >
+          <span className="group-hover:-translate-x-0.5 transition-transform font-bold">←</span>
+          <span>Return to SAM-UP Portal</span>
+        </a>
+
         <div className="space-y-1">
           <h1 className="text-3xl lg:text-4xl font-black tracking-tighter text-neutral-950 dark:text-white leading-[0.95]">
             Design.<br />

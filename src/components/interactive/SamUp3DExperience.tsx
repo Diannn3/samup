@@ -283,11 +283,11 @@ export const SamUp3DExperience: React.FC = () => {
           opacity: 0.2
         });
 
-        // 5. Responsive Coordinate Offsets
+        // 5. Responsive Coordinate Offsets (Calibrated for Apple HIG & Ergonomics)
         const getLogoOffset = (w: number) => {
           if (w >= 1024) return { x: 2.85, y: 0.1, z: 0, scale: 1.05 };
-          if (w >= 768) return { x: 3.25, y: 0.05, z: -0.4, scale: 0.76 };
-          return { x: 1.55, y: -1.55, z: -1.1, scale: 0.62 };
+          if (w >= 768) return { x: 2.15, y: 0.05, z: -0.6, scale: 0.68 }; // Generous tablet text clearance
+          return { x: 0, y: -0.85, z: -0.8, scale: 0.58 }; // Decoupled mobile hero beneath title
         };
 
         let currentOffset = getLogoOffset(width);
@@ -650,16 +650,16 @@ export const SamUp3DExperience: React.FC = () => {
       {/* Three.js Canvas Mount */}
       <div ref={containerRef} aria-hidden="true" className="hero-3d-canvas w-full h-full relative cursor-grab active:cursor-grabbing" />
 
-      {/* Floating 3D Controls Pill */}
-      <div className="hero-3d-controls absolute bottom-3 left-3 right-3 md:bottom-6 md:left-auto md:right-6 flex flex-wrap justify-center md:justify-end items-center gap-2 p-2.5 rounded-xl bg-[var(--surface)]/85 backdrop-blur-md border border-[var(--border)] text-xs z-30 shadow-lg pointer-events-auto">
-        {/* Camera Presets */}
-        <div role="group" aria-label="Camera Views" className="flex items-center gap-1">
+      {/* Floating 3D Controls Pill (Single-row Apple Segmented Control with >=44px touch targets & scroll cues) */}
+      <div className="hero-3d-controls absolute bottom-4 inset-x-4 md:inset-x-auto md:bottom-6 md:right-6 flex items-center gap-2 p-1.5 rounded-full bg-[#07090e]/95 backdrop-blur-2xl border border-white/10 text-xs z-30 shadow-2xl pointer-events-auto overflow-x-auto no-scrollbar max-w-full [mask-image:linear-gradient(to_right,black_86%,transparent_100%)] md:[mask-image:none]">
+        {/* Camera Presets Segment */}
+        <div role="group" aria-label="Camera Views" className="flex items-center gap-1 shrink-0 bg-white/5 p-1 rounded-full border border-white/5">
           <button
             type="button"
             onClick={() => handleCameraChange('orbital')}
             aria-pressed={cameraMode === 'orbital'}
-            className={`min-h-11 sm:min-h-0 px-2.5 py-1 rounded-md font-medium transition-colors ${
-              cameraMode === 'orbital' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
+            className={`min-h-[44px] px-3.5 rounded-full font-medium transition-all ${
+              cameraMode === 'orbital' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold shadow-sm' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-white/5'
             }`}
           >
             Orbit
@@ -668,8 +668,8 @@ export const SamUp3DExperience: React.FC = () => {
             type="button"
             onClick={() => handleCameraChange('frontal')}
             aria-pressed={cameraMode === 'frontal'}
-            className={`min-h-11 sm:min-h-0 px-2.5 py-1 rounded-md font-medium transition-colors ${
-              cameraMode === 'frontal' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
+            className={`min-h-[44px] px-3.5 rounded-full font-medium transition-all ${
+              cameraMode === 'frontal' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold shadow-sm' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-white/5'
             }`}
           >
             Front
@@ -678,8 +678,8 @@ export const SamUp3DExperience: React.FC = () => {
             type="button"
             onClick={() => handleCameraChange('macro')}
             aria-pressed={cameraMode === 'macro'}
-            className={`min-h-11 sm:min-h-0 px-2.5 py-1 rounded-md font-medium transition-colors ${
-              cameraMode === 'macro' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
+            className={`min-h-[44px] px-3.5 rounded-full font-medium transition-all ${
+              cameraMode === 'macro' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold shadow-sm' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-white/5'
             }`}
           >
             Macro
@@ -688,24 +688,24 @@ export const SamUp3DExperience: React.FC = () => {
             type="button"
             onClick={() => handleCameraChange('wireframe')}
             aria-pressed={cameraMode === 'wireframe'}
-            className={`min-h-11 sm:min-h-0 px-2.5 py-1 rounded-md font-medium transition-colors ${
-              cameraMode === 'wireframe' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
+            className={`min-h-[44px] px-3.5 rounded-full font-medium transition-all ${
+              cameraMode === 'wireframe' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold shadow-sm' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-white/5'
             }`}
           >
             Wire
           </button>
         </div>
 
-        <div className="h-4 w-px bg-[var(--border)]" aria-hidden="true" />
+        <div className="h-5 w-px bg-white/10 shrink-0" aria-hidden="true" />
 
         {/* Shader Shading Mode (PBR vs Clay) */}
-        <div role="group" aria-label="Material Shading" className="flex items-center gap-1">
+        <div role="group" aria-label="Material Shading" className="flex items-center gap-1 shrink-0 bg-white/5 p-1 rounded-full border border-white/5">
           <button
             type="button"
             onClick={() => handleRenderModeChange('pbr')}
             aria-pressed={renderMode === 'pbr'}
-            className={`min-h-11 min-w-11 sm:min-h-0 sm:min-w-0 px-2 py-1 rounded-md font-medium transition-colors ${
-              renderMode === 'pbr' ? 'bg-[var(--surface-raised)] text-[var(--primary)] border border-[var(--border-primary)]' : 'text-[var(--muted-foreground)]'
+            className={`min-h-[44px] px-3.5 rounded-full font-medium transition-all ${
+              renderMode === 'pbr' ? 'bg-white/15 text-[var(--primary)] font-bold border border-[var(--border-primary)] shadow-sm' : 'text-[var(--muted-foreground)] hover:text-white'
             }`}
             title="Full PBR Textured"
           >
@@ -715,8 +715,8 @@ export const SamUp3DExperience: React.FC = () => {
             type="button"
             onClick={() => handleRenderModeChange('clay')}
             aria-pressed={renderMode === 'clay'}
-            className={`min-h-11 min-w-11 sm:min-h-0 sm:min-w-0 px-2 py-1 rounded-md font-medium transition-colors ${
-              renderMode === 'clay' ? 'bg-[var(--surface-raised)] text-[var(--primary)] border border-[var(--border-primary)]' : 'text-[var(--muted-foreground)]'
+            className={`min-h-[44px] px-3.5 rounded-full font-medium transition-all ${
+              renderMode === 'clay' ? 'bg-white/15 text-[var(--primary)] font-bold border border-[var(--border-primary)] shadow-sm' : 'text-[var(--muted-foreground)] hover:text-white'
             }`}
             title="Clay AO Shading"
           >
@@ -724,49 +724,49 @@ export const SamUp3DExperience: React.FC = () => {
           </button>
         </div>
 
-        <div className="h-4 w-px bg-[var(--border)]" aria-hidden="true" />
+        <div className="h-5 w-px bg-white/10 shrink-0" aria-hidden="true" />
 
         {/* Lighting Environments */}
-        <div role="group" aria-label="Lighting Environments" className="flex items-center gap-1">
+        <div role="group" aria-label="Lighting Environments" className="flex items-center gap-1 shrink-0">
           <button
             type="button"
             onClick={() => handleLightingChange('gold')}
             aria-pressed={lightingMode === 'gold'}
-            className={`min-h-11 min-w-11 sm:min-h-0 sm:min-w-0 p-1.5 rounded-md transition-colors ${
-              lightingMode === 'gold' ? 'bg-[var(--surface-raised)] text-[var(--primary)] border border-[var(--border-primary)]' : 'text-[var(--muted-foreground)]'
+            className={`min-h-[44px] min-w-[44px] p-2.5 rounded-full transition-all flex items-center justify-center ${
+              lightingMode === 'gold' ? 'bg-white/15 text-[var(--primary)] border border-[var(--border-primary)] shadow-sm' : 'text-[var(--muted-foreground)] hover:text-white hover:bg-white/5'
             }`}
             title="Studio Gold Lighting"
           >
-            <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+            <Sparkles className="w-4 h-4" aria-hidden="true" />
             <span className="sr-only">Studio Gold</span>
           </button>
           <button
             type="button"
             onClick={() => handleLightingChange('cyber')}
             aria-pressed={lightingMode === 'cyber'}
-            className={`min-h-11 min-w-11 sm:min-h-0 sm:min-w-0 p-1.5 rounded-md transition-colors ${
-              lightingMode === 'cyber' ? 'bg-[var(--surface-raised)] text-[var(--primary)] border border-[var(--border-primary)]' : 'text-[var(--muted-foreground)]'
+            className={`min-h-[44px] min-w-[44px] p-2.5 rounded-full transition-all flex items-center justify-center ${
+              lightingMode === 'cyber' ? 'bg-white/15 text-[var(--primary)] border border-[var(--border-primary)] shadow-sm' : 'text-[var(--muted-foreground)] hover:text-white hover:bg-white/5'
             }`}
             title="Cyber Lighting"
           >
-            <Shield className="w-3.5 h-3.5" aria-hidden="true" />
+            <Shield className="w-4 h-4" aria-hidden="true" />
             <span className="sr-only">Cyber Obsidian</span>
           </button>
           <button
             type="button"
             onClick={() => handleLightingChange('sunset')}
             aria-pressed={lightingMode === 'sunset'}
-            className={`min-h-11 min-w-11 sm:min-h-0 sm:min-w-0 p-1.5 rounded-md transition-colors ${
-              lightingMode === 'sunset' ? 'bg-[var(--surface-raised)] text-[var(--primary)] border border-[var(--border-primary)]' : 'text-[var(--muted-foreground)]'
+            className={`min-h-[44px] min-w-[44px] p-2.5 rounded-full transition-all flex items-center justify-center ${
+              lightingMode === 'sunset' ? 'bg-white/15 text-[var(--primary)] border border-[var(--border-primary)] shadow-sm' : 'text-[var(--muted-foreground)] hover:text-white hover:bg-white/5'
             }`}
             title="Sunset Lighting"
           >
-            <Sun className="w-3.5 h-3.5" aria-hidden="true" />
+            <Sun className="w-4 h-4" aria-hidden="true" />
             <span className="sr-only">Sunset Horizon</span>
           </button>
         </div>
 
-        <div className="h-4 w-px bg-[var(--border)]" aria-hidden="true" />
+        <div className="h-5 w-px bg-white/10 shrink-0" aria-hidden="true" />
 
         {/* Rotation Toggle */}
         <button
@@ -775,12 +775,12 @@ export const SamUp3DExperience: React.FC = () => {
           aria-pressed={isAutoRotating}
           disabled={prefersReducedMotion}
           title={prefersReducedMotion ? 'Rotation disabled because reduced motion is enabled' : undefined}
-          className="flex items-center gap-1 min-h-11 sm:min-h-0 px-2 py-1 rounded-md bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--foreground)] hover:border-[var(--border-primary)] transition-colors"
+          className="flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-full bg-white/5 border border-white/10 text-[var(--foreground)] hover:border-[var(--border-primary)] hover:bg-white/10 transition-all shrink-0 font-medium"
         >
           {isAutoRotating ? (
-            <Pause className="w-3 h-3" aria-hidden="true" />
+            <Pause className="w-3.5 h-3.5" aria-hidden="true" />
           ) : (
-            <Play className="w-3 h-3" aria-hidden="true" />
+            <Play className="w-3.5 h-3.5" aria-hidden="true" />
           )}
           <span>{isAutoRotating ? 'Pause' : 'Spin'}</span>
         </button>
