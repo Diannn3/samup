@@ -13,7 +13,8 @@
     "astro": "astro",
     "qa:visual": "node scripts/visual-qa.mjs",
     "qa:motion": "node scripts/motion-touch-check.mjs",
-    "qa:all": "npm run qa:audit && npm run qa:motion && npm run qa:visual"
+    "qa:all": "npm run qa:bundle && npm run qa:audit && npm run qa:motion && npm run qa:visual",
+    "qa:bundle": "node scripts/check-bundle-budget.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.4",
