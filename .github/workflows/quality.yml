@@ -40,6 +40,9 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
+      - name: Enforce homepage bundle budget
+        run: npm run qa:bundle
+
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
 
