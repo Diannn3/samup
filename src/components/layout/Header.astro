@@ -1,6 +1,7 @@
 ---
-import { mainNav } from '../../data/navigation';
+import { mainNav, membershipAction } from '../../data/navigation';
 import { MobileNav } from '../interactive/MobileNav';
+import { ArrowRight } from 'lucide-react';
 
 interface Props {
   currentPath?: string;
@@ -9,12 +10,12 @@ interface Props {
 const { currentPath = Astro.url.pathname } = Astro.props;
 ---
 
-<header class="fixed top-0 inset-x-0 z-40 bg-[var(--background)]/65 backdrop-blur-2xl border-b border-[var(--border)] transition-colors">
+<header class="fixed top-0 inset-x-0 z-40 bg-[var(--background)]/78 backdrop-blur-xl border-b border-[var(--border)] transition-colors">
   <div class="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" aria-hidden="true" />
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
-      <a href="/" class="flex items-center gap-3 group focus-visible:outline-none">
+    <div class="flex items-center justify-between h-20 gap-6">
+      <a href="/" class="flex items-center gap-3 group focus-visible:outline-none shrink-0">
         <img
           src="/sam-up-seal.png"
           alt="SAM-UP seal"
@@ -32,24 +33,34 @@ const { currentPath = Astro.url.pathname } = Astro.props;
         </div>
       </a>
 
-      <nav class="hidden lg:ml-auto lg:flex items-center gap-1.5 p-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 shadow-inner" aria-label="Primary Navigation">
-        {mainNav.map((item) => {
-          const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
-          return (
-            <a
-              href={item.href}
-              aria-current={isActive ? 'page' : undefined}
-              class={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
-                isActive
-                  ? 'bg-white/15 text-[var(--primary)] shadow-sm border border-[var(--border-primary)]/50'
-                  : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-white/5'
-              }`}
-            >
-              {item.label}
-            </a>
-          );
-        })}
-      </nav>
+      <div class="hidden lg:flex items-center gap-2 ml-auto">
+        <nav class="flex items-center gap-0.5" aria-label="Primary Navigation">
+          {mainNav.map((item) => {
+            const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+            return (
+              <a
+                href={item.href}
+                aria-current={isActive ? 'page' : undefined}
+                class={`px-3.5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-colors ${
+                  isActive
+                    ? 'bg-white/8 text-[var(--primary)]'
+                    : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-white/5'
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
+        </nav>
+
+        <a
+          href={membershipAction.href}
+          class="ml-2 inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-4 py-2.5 text-xs font-bold text-[var(--primary-foreground)] shadow-sm transition-transform hover:-translate-y-0.5"
+        >
+          {membershipAction.label}
+          <ArrowRight class="w-3.5 h-3.5" aria-hidden="true" />
+        </a>
+      </div>
 
       <div class="flex items-center gap-3 lg:hidden">
         <MobileNav client:load currentPath={currentPath} />
