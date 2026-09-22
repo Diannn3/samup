@@ -18,5 +18,6 @@ export const membershipAction: NavItem = {
 };
 
 export const utilityNav: NavItem[] = [
+  { label: 'Governance', href: '/governance' },
   { label: 'Leadership Archive', href: '/alumni' },
 ];
