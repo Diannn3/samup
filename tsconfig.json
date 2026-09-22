@@ -8,6 +8,17 @@
       "@/*": ["src/*"]
     }
   },
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "include": [
+    ".astro/types.d.ts",
+    "src/**/*",
+    "astro.config.mjs"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "sam-up-discord",
+    "qa-local",
+    "qa-screens",
+    ".lighthouseci"
+  ]
 }
