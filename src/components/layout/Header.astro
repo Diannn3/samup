@@ -1,6 +1,6 @@
 ---
 import { mainNav, membershipAction } from '../../data/navigation';
-import { MobileNav } from '../interactive/MobileNav';
+import MobileNavDialog from './MobileNavDialog.astro';
 import { ArrowRight } from 'lucide-react';
 
 interface Props {
@@ -63,7 +63,7 @@ const { currentPath = Astro.url.pathname } = Astro.props;
       </div>
 
       <div class="flex items-center gap-3 lg:hidden">
-        <MobileNav client:load currentPath={currentPath} />
+        <MobileNavDialog currentPath={currentPath} />
       </div>
     </div>
   </div>
