@@ -151,26 +151,120 @@ const indexedItems = [
   </main>
 </BaseLayout>
 
-<script>
-  const input = document.querySelector<HTMLInputElement>('#site-search-input');
-  const items = Array.from(document.querySelectorAll<HTMLElement>('[data-search-item]'));
-  const count = document.querySelector<HTMLElement>('#site-search-count');
-  const empty = document.querySelector<HTMLElement>('#site-search-empty');
+<script is:inline type="module">
+  const input = document.querySelector('#site-search-input');
+  const results = document.querySelector('#site-search-results');
+  const count = document.querySelector('#site-search-count');
+  const empty = document.querySelector('#site-search-empty');
 
-  const filterSearch = () => {
-    const query = input?.value.trim().toLocaleLowerCase() ?? '';
-    let visible = 0;
+  const fallbackMarkup = results?.innerHTML ?? '';
+  const fallbackItems = () => Array.from(results?.querySelectorAll('[data-search-item]') ?? []);
 
-    for (const item of items) {
-      const haystack = item.dataset.searchText ?? '';
-      const matches = !query || haystack.includes(query);
-      item.hidden = !matches;
-      if (matches) visible += 1;
-    }
+  let pagefindApi = null;
+  let pagefindLoadAttempted = false;
 
+  const setCount = (visible) => {
     if (count) count.textContent = `${visible} public ${visible === 1 ? 'entry' : 'entries'}`;
     if (empty) empty.hidden = visible !== 0;
   };
 
-  input?.addEventListener('input', filterSearch);
+  const restoreFallback = () => {
+    if (!results) return;
+    results.innerHTML = fallbackMarkup;
+    setCount(fallbackItems().length);
+  };
+
+  const filterFallback = (query) => {
+    const normalized = query.trim().toLocaleLowerCase();
+    let visible = 0;
+
+    for (const item of fallbackItems()) {
+      const haystack = item.dataset.searchText ?? '';
+      const matches = !normalized || haystack.includes(normalized);
+      item.hidden = !matches;
+      if (matches) visible += 1;
+    }
+
+    setCount(visible);
+  };
+
+  const loadPagefind = async () => {
+    if (pagefindApi || pagefindLoadAttempted) return pagefindApi;
+    pagefindLoadAttempted = true;
+
+    try {
+      pagefindApi = await import('/pagefind/pagefind.js');
+      await pagefindApi.init();
+      return pagefindApi;
+    } catch {
+      pagefindApi = null;
+      return null;
+    }
+  };
+
+  const renderResult = (data) => {
+    const item = document.createElement('li');
+    item.className = 'search-index-item';
+
+    const link = document.createElement('a');
+    link.href = data.url;
+    link.className = 'group grid sm:grid-cols-[8rem_1fr_auto] gap-4 sm:gap-6 py-6';
+
+    const type = document.createElement('div');
+    type.className = 'font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]';
+    type.textContent = 'search result';
+
+    const body = document.createElement('div');
+
+    const title = document.createElement('h2');
+    title.className = 'font-display font-bold text-xl text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors';
+    title.textContent = data.meta?.title || data.url;
+
+    const excerpt = document.createElement('p');
+    excerpt.className = 'mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]';
+    excerpt.textContent = data.plain_excerpt || '';
+
+    body.append(title, excerpt);
+
+    const arrow = document.createElement('span');
+    arrow.className = 'hidden sm:block text-[var(--muted-foreground)] group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all';
+    arrow.setAttribute('aria-hidden', 'true');
+    arrow.textContent = '→';
+
+    link.append(type, body, arrow);
+    item.append(link);
+    return item;
+  };
+
+  const runSearch = async () => {
+    if (!input || !results) return;
+    const query = input.value.trim();
+
+    if (!query) {
+      restoreFallback();
+      return;
+    }
+
+    const pagefind = await loadPagefind();
+    if (!pagefind) {
+      filterFallback(query);
+      return;
+    }
+
+    const search = await pagefind.debouncedSearch(query, {}, 180);
+    if (search === null) return;
+
+    const loaded = await Promise.all(search.results.slice(0, 20).map((result) => result.data()));
+    const publicResults = loaded.filter((result) => !result.url.startsWith('/reporting'));
+
+    results.replaceChildren(...publicResults.map(renderResult));
+    setCount(publicResults.length);
+  };
+
+  input?.addEventListener('focus', () => {
+    void loadPagefind();
+  });
+  input?.addEventListener('input', () => {
+    void runSearch();
+  });
 </script>
