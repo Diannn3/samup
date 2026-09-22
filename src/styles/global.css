@@ -201,141 +201,6 @@ textarea:focus-visible,
 /* (ShinyText shimmer keyframes removed with the component — claims are static now.) */
 
 /* ===== Split Flap Data Rail (React Bits adaptation, see SplitFlapText.tsx for source) ===== */
-/* Tile chrome tuned to SAM-UP obsidian/gold instrument-panel language. */
-.split-flap-text {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.125rem;
-  color: var(--split-flap-text-color, #f1f4f9);
-  font-family: var(--font-mono);
-  font-size: var(--split-flap-font-size, 22px);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  white-space: pre;
-  user-select: none;
-  font-variant-numeric: tabular-nums;
-}
-
-.split-flap-text__tile {
-  position: relative;
-  width: 0.82em;
-  height: 1.16em;
-  overflow: hidden;
-  border-radius: 0.1875rem;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.14), transparent 44%),
-    linear-gradient(180deg, #131a26, #0b0f18);
-  box-shadow:
-    0 0.035em 0.08em rgba(255, 255, 255, 0.08) inset,
-    0 -0.05em 0.1em rgba(0, 0, 0, 0.38) inset,
-    0 0.16em 0.38em rgba(0, 0, 0, 0.28);
-  perspective: 520px;
-  transform-style: preserve-3d;
-  isolation: isolate;
-}
-
-.split-flap-text__tile::before {
-  content: '';
-  position: absolute;
-  z-index: 8;
-  top: calc(50% - 0.5px);
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.18) 18%,
-    rgba(0, 0, 0, 0.64) 50%,
-    rgba(255, 255, 255, 0.14) 82%,
-    transparent
-  );
-  pointer-events: none;
-}
-
-.split-flap-text__tile::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 9;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: inherit;
-  pointer-events: none;
-}
-
-.split-flap-text__half,
-.split-flap-text__flap {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 34%), #0d121c;
-  backface-visibility: hidden;
-}
-
-.split-flap-text__half--top,
-.split-flap-text__flap--front { top: 0; }
-
-.split-flap-text__half--bottom,
-.split-flap-text__flap--back { bottom: 0; }
-
-.split-flap-text__half--bottom,
-.split-flap-text__flap--back {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.04), transparent 38%), #080b12;
-}
-
-.split-flap-text__char {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 200%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--split-flap-text-color, #f1f4f9);
-  text-shadow: 0 0.025em 0 rgba(255, 255, 255, 0.16), 0 0.09em 0.16em rgba(0, 0, 0, 0.42);
-}
-
-.split-flap-text__half--top .split-flap-text__char,
-.split-flap-text__flap--front .split-flap-text__char { top: 0; }
-
-.split-flap-text__half--bottom .split-flap-text__char,
-.split-flap-text__flap--back .split-flap-text__char { bottom: 0; }
-
-.split-flap-text__flap {
-  z-index: 6;
-  will-change: transform, filter;
-  transform-style: preserve-3d;
-}
-
-.split-flap-text__flap--front {
-  transform-origin: center bottom;
-  animation: split-flap-front 0.12s cubic-bezier(0.23, 1, 0.32, 1) both;
-}
-
-.split-flap-text__flap--back {
-  transform-origin: center top;
-  transform: rotateX(90deg);
-  animation: split-flap-back 0.12s cubic-bezier(0.23, 1, 0.32, 1) both;
-}
-
-@keyframes split-flap-front {
-  0% { transform: rotateX(0deg); filter: brightness(1.08); }
-  100% { transform: rotateX(-90deg); filter: brightness(0.52); }
-}
-
-@keyframes split-flap-back {
-  0%, 45% { transform: rotateX(90deg); filter: brightness(0.58); }
-  100% { transform: rotateX(0deg); filter: brightness(1); }
-}
-
-/* Reduced motion + touch: settled board, no flap animation (JS already skips the loop). */
-@media (prefers-reduced-motion: reduce) {
-  .split-flap-text__flap { animation: none !important; }
-}
-
 /* Ambient Floating Glow Blobs */
 .glow-blob {
   position: absolute;
@@ -424,4 +289,43 @@ textarea:focus-visible,
   color: var(--foreground);
   font-family: var(--font-mono);
   font-size: 0.9em;
+}
+
+
+/* Windows High Contrast / forced-colors support. */
+@media (forced-colors: active) {
+  :root {
+    --background: Canvas;
+    --foreground: CanvasText;
+    --surface: Canvas;
+    --surface-raised: Canvas;
+    --surface-overlay: Canvas;
+    --muted: Canvas;
+    --muted-foreground: CanvasText;
+    --primary: LinkText;
+    --primary-foreground: Canvas;
+    --primary-hover: LinkText;
+    --border: ButtonBorder;
+    --border-subtle: ButtonBorder;
+    --border-primary: LinkText;
+    --ring: Highlight;
+  }
+
+  a,
+  button,
+  input,
+  dialog,
+  [role="button"] {
+    forced-color-adjust: auto;
+  }
+
+  .text-gold-gradient {
+    background: none !important;
+    color: LinkText !important;
+    -webkit-text-fill-color: currentColor !important;
+  }
+
+  .glow-blob {
+    display: none !important;
+  }
 }
