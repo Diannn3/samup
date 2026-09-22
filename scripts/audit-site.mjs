@@ -8,6 +8,7 @@ const publicRoutes = [
   '/explore/',
   '/explore/shortest-paths/',
   '/events/',
+  '/events/nimp-2026/',
   '/resources/',
   '/join/',
   '/partners/',
@@ -59,6 +60,10 @@ try {
           .map((link) => link.getAttribute('href'));
         const headerHrefs = [...document.querySelectorAll('header a[href]')]
           .map((link) => link.getAttribute('href'));
+        const robots = document.querySelector('meta[name="robots"]')?.getAttribute('content') || '';
+        const externalFontLinks = [...document.querySelectorAll('link[href]')]
+          .map((link) => link.getAttribute('href') || '')
+          .filter((href) => /fonts\.(googleapis|gstatic)\.com/i.test(href));
 
         return {
           title: document.title,
@@ -71,6 +76,8 @@ try {
           invalidImages,
           unsafeBlankLinks,
           headerHrefs,
+          robots,
+          externalFontLinks,
           hasMain: Boolean(document.querySelector('main#main-content')),
           hasSkipLink: Boolean(document.querySelector('a.skip-link[href="#main-content"]')),
         };
@@ -105,6 +112,14 @@ try {
 
       if (result.headerHrefs.some((href) => href === '/reporting' || href?.startsWith('/reporting/'))) {
         addIssue(`${viewport.name} ${route}: institutional header exposes /reporting`);
+      }
+
+      if (result.externalFontLinks.length) {
+        addIssue(`${viewport.name} ${route}: external Google Fonts link detected: ${result.externalFontLinks.join(', ')}`);
+      }
+
+      if (route === '/404/' && !/noindex/i.test(result.robots)) {
+        addIssue(`${viewport.name} /404/: missing noindex robots metadata`);
       }
 
       if (route === '/events/' && /UPLB Math Wizard/i.test(result.text)) {
