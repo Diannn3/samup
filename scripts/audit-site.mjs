@@ -7,6 +7,7 @@ const publicRoutes = [
   '/about/',
   '/explore/',
   '/explore/shortest-paths/',
+  '/programs/',
   '/events/',
   '/events/nimp-2026/',
   '/resources/',
@@ -172,6 +173,24 @@ try {
 
     await context.close();
   }
+
+  const searchContext = await browser.newContext({ viewport: viewports[2] });
+  const searchPage = await searchContext.newPage();
+  await searchPage.goto(new URL('/search/', baseURL).href, {
+    waitUntil: 'networkidle',
+    timeout: 30_000,
+  });
+  const searchInput = searchPage.locator('#site-search-input');
+  await searchInput.fill('shortest path');
+  await searchPage.waitForTimeout(700);
+  const searchResultHrefs = await searchPage.locator('#site-search-results a[href]').evaluateAll((links) =>
+    links.map((link) => link.getAttribute('href')),
+  );
+  if (!searchResultHrefs.some((href) => href?.includes('/explore/shortest-paths'))) {
+    addIssue(`search: Pagefind did not return the shortest-path explainer (${JSON.stringify(searchResultHrefs)})`);
+  }
+  await searchPage.close();
+  await searchContext.close();
 
   const reportingContext = await browser.newContext({ viewport: viewports[0] });
   const reportingPage = await reportingContext.newPage();
