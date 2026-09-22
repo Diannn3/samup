@@ -1,55 +1,78 @@
-// Visual QA: screenshot all routes at required widths, normal + reduced motion.
+// Visual QA: screenshot core public routes at representative widths,
+// in normal and reduced-motion environments.
 import { chromium } from '@playwright/test';
 import { mkdirSync } from 'node:fs';
 
-const BASE = 'http://localhost:4322';
-const ROUTES = ['/', '/about', '/alumni', '/events', '/resources'];
+const BASE = process.env.SAM_UP_BASE_URL || 'http://127.0.0.1:4321';
+const ROUTES = [
+  '/',
+  '/explore',
+  '/join',
+  '/partners',
+  '/governance',
+  '/events',
+  '/resources',
+  '/archive',
+  '/about',
+];
+
 const WIDTHS = [
   { name: '375', width: 375, height: 812 },
   { name: '768', width: 768, height: 1024 },
   { name: '1024', width: 1024, height: 768 },
-  { name: '1440', width: 1440, height: 900 }
+  { name: '1440', width: 1440, height: 900 },
 ];
-const OUT = 'qa-screens';
 
+const OUT = process.env.SAM_UP_QA_DIR || 'qa-screens';
 mkdirSync(OUT, { recursive: true });
 
 const browser = await chromium.launch();
-let failures = [];
+const failures = [];
 
 for (const route of ROUTES) {
-  for (const mode of [{ name: 'motion', reduced: false }, { name: 'reduced', reduced: true }]) {
+  for (const mode of [
+    { name: 'motion', reduced: false },
+    { name: 'reduced', reduced: true },
+  ]) {
     const context = await browser.newContext({
       viewport: { width: 1440, height: 900 },
-      reducedMotion: mode.reduced ? 'reduce' : 'no-preference'
+      reducedMotion: mode.reduced ? 'reduce' : 'no-preference',
     });
+
     const page = await context.newPage();
-    const slug = route === '/' ? 'home' : route.slice(1);
+    const slug = route === '/' ? 'home' : route.slice(1).replaceAll('/', '-');
     await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' });
 
     for (const vp of WIDTHS) {
       await page.setViewportSize({ width: vp.width, height: vp.height });
-      await page.waitForTimeout(400);
-      await page.screenshot({ path: `${OUT}/${slug}-${vp.name}-${mode.name}.png`, fullPage: false });
+      await page.waitForTimeout(250);
+      await page.screenshot({
+        path: `${OUT}/${slug}-${vp.name}-${mode.name}.png`,
+        fullPage: false,
+      });
 
-      // horizontal overflow check
-      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      );
       if (overflow > 1) failures.push(`${route} ${vp.name} ${mode.name}: overflow ${overflow}px`);
     }
 
-    // keyboard: Tab reaches interactive elements with visible focus (home only)
     if (route === '/' && mode.name === 'motion') {
       await page.setViewportSize({ width: 1440, height: 900 });
       await page.keyboard.press('Tab');
-      await page.keyboard.press('Tab');
-      await page.keyboard.press('Tab');
-      const focused = await page.evaluate(() => {
+      const focusState = await page.evaluate(() => {
         const el = document.activeElement;
-        if (!el) return 'none';
+        if (!el) return { tag: 'none', visible: false };
         const style = getComputedStyle(el);
-        return `${el.tagName}.${(el.className || '').toString().slice(0, 40)} shadow=${style.boxShadow.slice(0, 50)}`;
+        return {
+          tag: el.tagName,
+          href: el.getAttribute('href'),
+          label: el.getAttribute('aria-label') || el.textContent?.trim().slice(0, 60) || '',
+          visible: style.outlineStyle !== 'none' || style.boxShadow !== 'none',
+        };
       });
-      console.log(`KEYBOARD FOCUS: ${focused}`);
+
+      if (!focusState.visible) failures.push(`home keyboard: first focused element lacks visible focus (${JSON.stringify(focusState)})`);
     }
 
     await context.close();
@@ -57,10 +80,11 @@ for (const route of ROUTES) {
 }
 
 await browser.close();
-console.log('SCREENSHOTS SAVED');
+
 if (failures.length) {
-  console.log('OVERFLOW FAILURES:');
-  failures.forEach((f) => console.log(`  ${f}`));
+  console.error('Visual QA failed:');
+  failures.forEach((failure) => console.error(`- ${failure}`));
+  process.exitCode = 1;
 } else {
-  console.log('NO HORIZONTAL OVERFLOW at any width');
+  console.log(`Visual QA passed: ${ROUTES.length} routes × ${WIDTHS.length} widths × 2 motion modes.`);
 }
