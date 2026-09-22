@@ -18,6 +18,7 @@ export const membershipAction: NavItem = {
 };
 
 export const utilityNav: NavItem[] = [
+  { label: 'Search', href: '/search' },
   { label: 'Governance', href: '/governance' },
   { label: 'Archive', href: '/archive' },
 ];
