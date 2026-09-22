@@ -1,71 +1,61 @@
 ---
 import { principles, objectives, emblem } from '../../data/mission';
-import GlassCard from '../ui/GlassCard.astro';
-import { Target, Scale, Landmark } from 'lucide-react';
+import { ArrowRight, Scale, Sigma } from 'lucide-react';
 ---
 
-<section id="mission" class="relative py-24 lg:py-32 border-b border-[var(--border)] overflow-hidden">
-  {/* Atmospheric Background Gradient Blobs */}
-  <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(240,204,78,0.12)_0%,transparent_70%)] top-10 left-[-10%]" aria-hidden="true" />
-  <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(16,185,129,0.1)_0%,transparent_70%)] bottom-10 right-[-10%]" aria-hidden="true" />
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    {/* Section Header */}
-    <div class="max-w-3xl mb-14 space-y-4">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface-raised)] border border-[var(--border)] text-xs font-mono text-[var(--primary)] shadow-sm">
-        <Target class="w-3.5 h-3.5" aria-hidden="true" />
-        <span>MISSION & PRINCIPLES</span>
-      </div>
-      <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-[var(--foreground)] tracking-tight">
-        What SAM-UP Stands For
-      </h2>
-      <p class="text-[var(--muted-foreground)] text-base sm:text-lg leading-relaxed">
-        SAM-UP's Constitution defines the organization's objectives and the principles every member upholds. This is the complete, unedited mandate.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      {/* Constitutional Objectives — Mission */}
-      <div class="lg:col-span-7">
-        <GlassCard tag="ARTICLE IV — OBJECTIVES" title="The Constitutional Mission" showArrow={false}>
-          <ol class="space-y-4 mt-2 text-sm text-[var(--foreground)]/85 leading-relaxed list-decimal list-inside">
-            {objectives.map((obj) => (
-              <li>{obj.text.charAt(0).toUpperCase() + obj.text.slice(1)}</li>
-            ))}
-          </ol>
-        </GlassCard>
-      </div>
-
-      {/* Principles — Vision-adjacent beliefs */}
-      <div class="lg:col-span-5">
-        <GlassCard tag="ARTICLE III — PRINCIPLES" title="The Three Principles" showArrow={false}>
-          <ul class="space-y-4 mt-2 text-sm text-[var(--foreground)]/85 leading-relaxed">
-            {principles.map((p) => (
-              <li class="flex items-start gap-2.5">
-                <Scale class="w-4 h-4 text-[var(--primary)] shrink-0 mt-1" aria-hidden="true" />
-                <span>{p.text}</span>
-              </li>
-            ))}
-          </ul>
-          <div class="pt-4 mt-4 border-t border-[var(--border-subtle)]">
-            <p class="text-xs text-[var(--muted-foreground)] leading-relaxed italic">
-              {emblem.piu}
-            </p>
-          </div>
-        </GlassCard>
-      </div>
-    </div>
-
-    {/* Identity note — Più seal meaning */}
-    <div class="mt-10 flex items-start gap-4 p-6 frosted-glass-card">
-      <div class="w-10 h-10 rounded-xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center text-[var(--primary)] shrink-0">
-        <Landmark class="w-5 h-5" aria-hidden="true" />
-      </div>
-      <div class="min-w-0">
-        <div class="text-[10px] font-mono text-[var(--muted-foreground)] uppercase tracking-wider mb-1">ARTICLE II — COLOR AND EMBLEM</div>
-        <p class="text-sm text-[var(--foreground)]/85 leading-relaxed">
-          {emblem.seal} {emblem.circles}
+<section id="mission" class="relative py-20 sm:py-24 border-b border-[var(--border)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+          <Sigma class="w-4 h-4" aria-hidden="true" />
+          <span>Constitution • Articles III–IV</span>
+        </div>
+        <h2 class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]">
+          What SAM-UP is organized to do.
+        </h2>
+        <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+          The Constitution defines principles and objectives. The website keeps those categories intact rather than inventing a separate corporate mission-and-vision system.
         </p>
+        <a href="/governance/constitution-2018" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline">
+          Constitution summary
+          <ArrowRight class="w-4 h-4" aria-hidden="true" />
+        </a>
+      </div>
+
+      <div class="lg:col-span-8">
+        <div class="grid md:grid-cols-5 gap-8">
+          <div class="md:col-span-3">
+            <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--primary)]">Article IV • Objectives</div>
+            <ol class="mt-5 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+              {objectives.map((objective, index) => (
+                <li class="grid grid-cols-[2.75rem_1fr] gap-3 py-4">
+                  <span class="font-mono text-xs text-[var(--primary)]">{String(index + 1).padStart(2, '0')}</span>
+                  <span class="text-sm leading-relaxed text-[var(--foreground)]/90">
+                    {objective.text.charAt(0).toUpperCase() + objective.text.slice(1)}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div class="md:col-span-2">
+            <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--primary)]">Article III • Principles</div>
+            <ul class="mt-5 space-y-5">
+              {principles.map((principle) => (
+                <li class="flex items-start gap-3">
+                  <Scale class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
+                  <span class="text-sm leading-relaxed text-[var(--muted-foreground)]">{principle.text}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-7 pt-5 border-t border-[var(--border)]">
+              <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">The piu</div>
+              <p class="mt-2 text-xs leading-relaxed text-[var(--muted-foreground)]">{emblem.piu}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
