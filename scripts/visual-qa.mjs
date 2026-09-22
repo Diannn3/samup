@@ -13,6 +13,7 @@ const ROUTES = [
   '/events',
   '/resources',
   '/archive',
+  '/search',
   '/about',
 ];
 
