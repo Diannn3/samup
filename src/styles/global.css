@@ -358,3 +358,72 @@ textarea:focus-visible,
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Editorial article rhythm for collection-driven Applied Mathematics content. */
+.article-prose {
+  color: var(--muted-foreground);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.article-prose > * + * {
+  margin-top: 1.25rem;
+}
+
+.article-prose h2,
+.article-prose h3 {
+  color: var(--foreground);
+  font-family: var(--font-serif);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-top: 2.5rem;
+}
+
+.article-prose h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.article-prose h3 {
+  font-size: clamp(1.2rem, 2.3vw, 1.5rem);
+}
+
+.article-prose strong {
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.article-prose ul,
+.article-prose ol {
+  padding-left: 1.4rem;
+}
+
+.article-prose ul {
+  list-style: disc;
+}
+
+.article-prose ol {
+  list-style: decimal;
+}
+
+.article-prose li + li {
+  margin-top: 0.45rem;
+}
+
+.article-prose a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--border-primary);
+}
+
+.article-prose code {
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  background: var(--surface-raised);
+  padding: 0.1rem 0.35rem;
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
