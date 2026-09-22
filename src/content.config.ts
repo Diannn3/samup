@@ -2,6 +2,9 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+const publishableVisibilities = new Set(['public', 'public-summary-only', 'historical']);
+const blockedEvidenceStatuses = new Set(['needs-approval', 'unknown', 'blocked']);
+
 const evidenceSchema = z.object({
   status: z.enum([
     'verified-current',
@@ -24,9 +27,25 @@ const evidenceSchema = z.object({
   sourceUrl: z.string().url().optional(),
   sourceDocument: z.string().optional(),
   sourceDate: z.string().optional(),
-  reviewedAt: z.string().min(1),
-  validUntil: z.string().optional(),
+  reviewedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Use YYYY-MM-DD for reviewedAt'),
+  validUntil: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Use YYYY-MM-DD for validUntil').optional(),
   notes: z.string().optional(),
+}).superRefine((evidence, ctx) => {
+  if (publishableVisibilities.has(evidence.visibility) && blockedEvidenceStatuses.has(evidence.status)) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: `Publishable visibility "${evidence.visibility}" cannot use evidence status "${evidence.status}". Quarantine or approve the record first.`,
+      path: ['status'],
+    });
+  }
+
+  if (evidence.visibility === 'historical' && evidence.status !== 'historical') {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Historical visibility requires historical evidence status.',
+      path: ['status'],
+    });
+  }
 });
 
 const programs = defineCollection({
@@ -44,6 +63,37 @@ const programs = defineCollection({
     audience: z.string().optional(),
     summary: z.string().min(1),
     evidence: evidenceSchema,
+  }).superRefine((program, ctx) => {
+    if (program.lifecycle === 'historical') {
+      if (program.evidence.status !== 'historical' || program.evidence.visibility !== 'historical') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Historical programs must use historical evidence status and visibility.',
+          path: ['evidence'],
+        });
+      }
+    }
+
+    if (program.lifecycle === 'current' || program.lifecycle === 'scheduled') {
+      if (program.evidence.status !== 'verified-current' || program.evidence.visibility !== 'public') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Current or scheduled programs require verified-current evidence with public visibility.',
+          path: ['evidence'],
+        });
+      }
+    }
+
+    if (
+      program.lifecycle === 'needs-verification' &&
+      publishableVisibilities.has(program.evidence.visibility)
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Programs needing verification cannot use a publishable visibility state.',
+        path: ['evidence', 'visibility'],
+      });
+    }
   }),
 });
 
