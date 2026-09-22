@@ -1,0 +1,50 @@
+name: Install Pagefind
+
+on:
+  push:
+    branches:
+      - feat/samup-trust-foundation
+    paths:
+      - '.github/workflows/install-pagefind.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout implementation branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/samup-trust-foundation
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Add Pagefind
+        run: npm install --save-dev pagefind
+
+      - name: Verify build
+        run: npm run build
+
+      - name: Commit regenerated dependency files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          if git diff --cached --quiet; then
+            echo "No Pagefind dependency changes to commit."
+            exit 0
+          fi
+          git commit -m "chore(search): add Pagefind build indexer"
+          git push origin HEAD:feat/samup-trust-foundation
