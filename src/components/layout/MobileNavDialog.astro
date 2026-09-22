@@ -98,6 +98,7 @@ const { currentPath = Astro.url.pathname } = Astro.props;
     dialog.showModal();
     document.body.style.overflow = 'hidden';
     trigger.setAttribute('aria-label', 'Close Navigation Menu');
+    window.requestAnimationFrame(() => closeButton?.focus());
   };
 
   const closeMenu = () => {
