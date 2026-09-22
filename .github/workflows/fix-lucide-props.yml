@@ -60,9 +60,35 @@ jobs:
             }
 
             let next = original;
+
             for (const icon of icons) {
-              const pattern = new RegExp(`<${icon}\\b([^>]*)\\bclass=`, 'g');
-              next = next.replace(pattern, `<${icon}$1className=`);
+              let cursor = 0;
+              const marker = `<${icon}`;
+
+              while (true) {
+                const start = next.indexOf(marker, cursor);
+                if (start === -1) break;
+
+                const nameEnd = start + marker.length;
+                const nextChar = next[nameEnd];
+                if (nextChar && /[A-Za-z0-9_$]/.test(nextChar)) {
+                  cursor = nameEnd;
+                  continue;
+                }
+
+                const end = next.indexOf('>', nameEnd);
+                if (end === -1) break;
+
+                const openingTag = next.slice(start, end + 1);
+                const fixedTag = openingTag.replace(/\bclass=/g, 'className=');
+
+                if (fixedTag !== openingTag) {
+                  next = next.slice(0, start) + fixedTag + next.slice(end + 1);
+                  cursor = start + fixedTag.length;
+                } else {
+                  cursor = end + 1;
+                }
+              }
             }
 
             if (next !== original) {
@@ -85,7 +111,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No Lucide prop changes to commit."
           else
-            git commit -m "fix(types): use React className prop for Lucide icons in Astro"
+            git commit -m "fix(types): normalize Lucide className props in Astro"
             git pull --rebase origin feat/samup-trust-foundation
             git push origin HEAD:feat/samup-trust-foundation
           fi
