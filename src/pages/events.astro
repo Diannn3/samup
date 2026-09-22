@@ -2,83 +2,96 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { flagshipEvents, getEventLocationLabel } from '../data/events';
 import GlassCard from '../components/ui/GlassCard.astro';
-import { Calendar, Users, ArrowRight, Sparkles, Trophy, MapPin, Info } from 'lucide-react';
+import { Calendar, Users, ArrowRight, Trophy, MapPin, Info, ShieldCheck } from 'lucide-react';
 ---
 
 <BaseLayout
   title="Events & Programs | Society of Applied Mathematics of UPLB"
-  description="SAM-UP's events and programs: the annual UPLB Math Wizard competition, peer tutorial caravans, and athletic participation."
+  description="Verified public programs and event updates from the Society of Applied Mathematics of UPLB."
 >
-  {/* Page Header */}
   <section class="py-20 sm:py-24 border-b border-[var(--border)] relative overflow-hidden">
     <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.12)_0%,transparent_70%)] top-0 left-[-10%]" aria-hidden="true" />
-    <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(16,185,129,0.09)_0%,transparent_70%)] bottom-0 right-[-10%]" aria-hidden="true" />
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl space-y-4">
         <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight">
-          Events & <span class="text-gold-gradient">Programs</span>
+          Programs & <span class="text-gold-gradient">Updates</span>
         </h1>
         <p class="font-mono text-xs uppercase tracking-widest text-[var(--primary)]/90">
-          UPLB.IMSP // Academic Competitions & Community Outreach
+          SOURCE-AWARE PUBLIC PROGRAM DIRECTORY
         </p>
         <p class="text-base sm:text-lg text-[var(--muted-foreground)] leading-relaxed font-normal">
-          From the annual UPLB Math Wizard competition to peer tutorial caravans at the Mathematics Building, SAM-UP organizes activities that serve the UPLB community.
+          This page only treats a SAM-UP program or event as current when its status is supported by an approved source. For the latest schedules and registration announcements, use SAM-UP's official public channel.
         </p>
       </div>
     </div>
   </section>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-16">
-    {/* Events Grid — canonical data from src/data/events.ts */}
-    <div class="grid md:grid-cols-2 gap-8">
-      {flagshipEvents.map((event) => (
-        <GlassCard
-          tag={event.badge}
-          title={event.title}
-          subtitle={event.description}
-          href={event.ctaLink || '/events'}
-          showArrow={true}
-        >
-          <div class="space-y-3 pt-3 mt-3 border-t border-[var(--border-subtle)]">
-            <div class="flex items-center gap-2 text-xs font-mono text-[var(--foreground)]/80">
-              <Calendar class="w-3.5 h-3.5 text-[var(--primary)] shrink-0" aria-hidden="true" />
-              <span>{event.schedule}</span>
-              <span class="text-[var(--border)]" aria-hidden="true">•</span>
-              <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/5 text-[var(--muted-foreground)] border border-white/10">
-                {event.status === 'active' ? 'Scheduled' : event.status}
-              </span>
-            </div>
+    {flagshipEvents.length > 0 ? (
+      <div class="grid md:grid-cols-2 gap-8">
+        {flagshipEvents.map((event) => (
+          <GlassCard
+            tag={event.badge}
+            title={event.title}
+            subtitle={event.description}
+            href={event.ctaLink || '/events'}
+            showArrow={true}
+          >
+            <div class="space-y-3 pt-3 mt-3 border-t border-[var(--border-subtle)]">
+              <div class="flex items-center gap-2 text-xs font-mono text-[var(--foreground)]/80">
+                <Calendar class="w-3.5 h-3.5 text-[var(--primary)] shrink-0" aria-hidden="true" />
+                <span>{event.schedule}</span>
+                <span class="text-[var(--border)]" aria-hidden="true">•</span>
+                <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/5 text-[var(--muted-foreground)] border border-white/10">
+                  {event.status}
+                </span>
+              </div>
 
-            <div class="flex items-center gap-2 text-xs font-mono text-[var(--foreground)]/80">
-              <Users class="w-3.5 h-3.5 text-[var(--primary)] shrink-0" aria-hidden="true" />
-              <span>Audience: {event.targetAudience}</span>
-            </div>
+              <div class="flex items-center gap-2 text-xs font-mono text-[var(--foreground)]/80">
+                <Users class="w-3.5 h-3.5 text-[var(--primary)] shrink-0" aria-hidden="true" />
+                <span>Audience: {event.targetAudience}</span>
+              </div>
 
-            <div class="flex items-center justify-between text-xs font-mono text-[var(--muted-foreground)]">
-              <span class="flex items-center gap-1.5">
-                <MapPin class="w-3.5 h-3.5 text-[var(--primary)] shrink-0" aria-hidden="true" />
-                <span>{getEventLocationLabel(event)}</span>
-              </span>
-              <span class="text-[var(--primary)] font-semibold">{event.ctaText || 'Learn More'} →</span>
+              <div class="flex items-center justify-between text-xs font-mono text-[var(--muted-foreground)]">
+                <span class="flex items-center gap-1.5">
+                  <MapPin class="w-3.5 h-3.5 text-[var(--primary)] shrink-0" aria-hidden="true" />
+                  <span>{getEventLocationLabel(event)}</span>
+                </span>
+                <span class="text-[var(--primary)] font-semibold">{event.ctaText || 'Learn More'} →</span>
+              </div>
             </div>
+          </GlassCard>
+        ))}
+      </div>
+    ) : (
+      <section class="frosted-glass-card p-8 sm:p-10" aria-labelledby="program-verification-heading">
+        <div class="max-w-2xl space-y-4">
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--primary)]">
+            <ShieldCheck class="w-4 h-4" aria-hidden="true" />
+            <span>VERIFICATION IN PROGRESS</span>
           </div>
-        </GlassCard>
-      ))}
-    </div>
+          <h2 id="program-verification-heading" class="font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
+            No program is being labeled “current” here without a current source.
+          </h2>
+          <p class="text-sm sm:text-base text-[var(--muted-foreground)] leading-relaxed">
+            Existing repository records are being re-verified against current SAM-UP and UPLB sources. This prevents historical or recurring activities from being presented as currently scheduled when their present status has not been confirmed.
+          </p>
+        </div>
+      </section>
+    )}
 
-    {/* Official updates notice */}
-    <div class="frosted-glass-card p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+    <section class="frosted-glass-card p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
       <div class="space-y-2 text-center md:text-left">
         <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-[var(--primary)]">
           <Info class="w-4 h-4" aria-hidden="true" />
           <span>OFFICIAL UPDATES</span>
         </div>
-        <h3 class="font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
-          Schedules are announced on Facebook
-        </h3>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
+          Verify schedules through SAM-UP's official page
+        </h2>
         <p class="text-sm text-[var(--muted-foreground)] max-w-xl">
-          Event dates, venues, and registration details are published each semester on the official SAM-UP Facebook page — the organization's verified announcement channel.
+          Current event dates, venues, application instructions, and registration details should be confirmed against SAM-UP's latest official announcement.
         </p>
       </div>
 
@@ -88,9 +101,9 @@ import { Calendar, Users, ArrowRight, Sparkles, Trophy, MapPin, Info } from 'luc
         rel="noopener noreferrer"
         class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-all shrink-0 shadow-md shadow-[var(--primary)]/20"
       >
-        <span>Follow @SAMUPLB</span>
+        <span>Open official SAM-UP page</span>
         <ArrowRight class="w-4 h-4" aria-hidden="true" />
       </a>
-    </div>
+    </section>
   </div>
 </BaseLayout>
