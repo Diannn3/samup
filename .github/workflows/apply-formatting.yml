@@ -37,12 +37,6 @@ jobs:
       - name: Verify formatting
         run: npm run format:check
 
-      - name: Verify Astro diagnostics
-        run: npm run check
-
-      - name: Verify build
-        run: npm run build
-
       - name: Commit mechanical formatting
         run: |
           git config user.name "github-actions[bot]"
@@ -50,8 +44,14 @@ jobs:
           git add .
           if git diff --cached --quiet; then
             echo "No formatting changes to commit."
-            exit 0
+          else
+            git commit -m "style: apply repository formatting baseline"
+            git pull --rebase origin feat/samup-trust-foundation
+            git push origin HEAD:feat/samup-trust-foundation
           fi
-          git commit -m "style: apply repository formatting baseline"
-          git pull --rebase origin feat/samup-trust-foundation
-          git push origin HEAD:feat/samup-trust-foundation
+
+      - name: Verify Astro diagnostics
+        run: npm run check
+
+      - name: Verify build
+        run: npm run build
