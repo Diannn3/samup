@@ -50,6 +50,10 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
             <div>
               <h2 class="font-display font-bold text-2xl text-[var(--foreground)]">{program.data.title}</h2>
               <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">{program.data.summary}</p>
+              <a href={`/events/${program.data.slug}`} class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline">
+                View verified record
+                <ArrowRight class="w-4 h-4" aria-hidden="true" />
+              </a>
 
               <dl class="mt-5 grid sm:grid-cols-2 gap-x-8 gap-y-3 text-xs">
                 <div class="flex gap-2">
