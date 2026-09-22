@@ -101,9 +101,16 @@ const { currentPath = Astro.url.pathname } = Astro.props;
     window.requestAnimationFrame(() => closeButton?.focus());
   };
 
+  const restoreClosedState = () => {
+    document.body.style.overflow = '';
+    trigger?.setAttribute('aria-label', 'Open Navigation Menu');
+    trigger?.focus();
+  };
+
   const closeMenu = () => {
     if (!dialog?.open) return;
     dialog.close();
+    restoreClosedState();
   };
 
   trigger?.addEventListener('click', () => {
@@ -117,11 +124,12 @@ const { currentPath = Astro.url.pathname } = Astro.props;
     element.addEventListener('click', closeMenu);
   });
 
-  dialog?.addEventListener('close', () => {
-    document.body.style.overflow = '';
-    trigger?.setAttribute('aria-label', 'Open Navigation Menu');
-    trigger?.focus();
+  dialog?.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    closeMenu();
   });
+
+  dialog?.addEventListener('close', restoreClosedState);
 
   dialog?.addEventListener('click', (event) => {
     if (event.target === dialog) closeMenu();
