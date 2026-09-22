@@ -15,6 +15,7 @@ const publicRoutes = [
   '/governance/constitution-2018/',
   '/archive/',
   '/chronicle/',
+  '/search/',
   '/alumni/',
   '/404/',
 ];
