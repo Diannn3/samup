@@ -22,7 +22,7 @@ concurrency:
 jobs:
   build-and-audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
@@ -36,6 +36,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Run Astro diagnostics
+        run: npm run check
 
       - name: Build Astro site
         run: npm run build
@@ -59,6 +65,11 @@ jobs:
           cat /tmp/samup-preview.log
           exit 1
 
+      - name: Automated accessibility audit
+        env:
+          SAM_UP_BASE_URL: http://127.0.0.1:4321
+        run: npm run test:a11y
+
       - name: Browser audit
         env:
           SAM_UP_BASE_URL: http://127.0.0.1:4321
@@ -75,11 +86,23 @@ jobs:
           SAM_UP_QA_DIR: qa-local
         run: npm run qa:visual
 
+      - name: Lighthouse budgets
+        run: npm run perf:lhci
+
       - name: Upload visual QA snapshots on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: samup-visual-qa-${{ github.run_id }}
           path: qa-local/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Upload Lighthouse reports on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: samup-lighthouse-${{ github.run_id }}
+          path: .lighthouseci/
           if-no-files-found: ignore
           retention-days: 7
