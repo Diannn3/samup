@@ -1,9 +1,18 @@
 ---
+import { getCollection } from 'astro:content';
 import { currentRecruitment, recruitmentLinks } from '../../data/recruitment';
-import { flagshipEvents } from '../../data/events';
 import { ArrowRight, ShieldCheck, CalendarClock, BadgeCheck } from 'lucide-react';
 
-const verifiedProgramCount = flagshipEvents.length;
+const verifiedPrograms = await getCollection('programs', ({ data }) =>
+  data.evidence.visibility === 'public' &&
+  data.evidence.status !== 'unknown' &&
+  data.evidence.status !== 'blocked' &&
+  data.evidence.status !== 'needs-approval' &&
+  data.lifecycle !== 'historical' &&
+  data.lifecycle !== 'cancelled'
+);
+
+const verifiedProgramCount = verifiedPrograms.length;
 ---
 
 <section class="relative py-20 sm:py-24 border-b border-[var(--border)]">
@@ -70,11 +79,11 @@ const verifiedProgramCount = flagshipEvents.length;
             <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">Programs directory</div>
             <h3 class="mt-2 font-display font-bold text-xl text-[var(--foreground)]">
               {verifiedProgramCount > 0
-                ? `${verifiedProgramCount} source-backed public program${verifiedProgramCount === 1 ? '' : 's'}`
+                ? `${verifiedProgramCount} source-backed current program${verifiedProgramCount === 1 ? '' : 's'}`
                 : 'Current program listings are being re-verified'}
             </h3>
             <p class="mt-2 max-w-2xl text-sm leading-relaxed text-[var(--muted-foreground)]">
-              Historical or recurring activities are not automatically labeled current. The Programs page links to the official update channel while records are reviewed.
+              Historical or recurring activities are not automatically labeled current. The Programs page only reads publishable entries from the typed content collection.
             </p>
           </div>
           <a
