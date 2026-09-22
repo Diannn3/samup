@@ -1,109 +1,84 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { flagshipEvents, getEventLocationLabel } from '../data/events';
-import GlassCard from '../components/ui/GlassCard.astro';
-import { Calendar, Users, ArrowRight, Trophy, MapPin, Info, ShieldCheck } from 'lucide-react';
+import { Calendar, Users, ArrowRight, MapPin, ShieldCheck, ExternalLink } from 'lucide-react';
 ---
 
 <BaseLayout
-  title="Events & Programs | Society of Applied Mathematics of UPLB"
-  description="Verified public programs and event updates from the Society of Applied Mathematics of UPLB."
+  title="Programs & Updates | Society of Applied Mathematics of UPLB"
+  description="Source-aware public program information and official update links from the Society of Applied Mathematics of UPLB."
 >
-  <section class="py-20 sm:py-24 border-b border-[var(--border)] relative overflow-hidden">
-    <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.12)_0%,transparent_70%)] top-0 left-[-10%]" aria-hidden="true" />
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="max-w-3xl space-y-4">
-        <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight">
-          Programs & <span class="text-gold-gradient">Updates</span>
+  <section class="border-b border-[var(--border)] py-20 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <div class="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">Programs & events</div>
+        <h1 class="mt-5 font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-[-0.035em] leading-[0.98] text-[var(--foreground)]">
+          Current only when <span class="text-gold-gradient">verified.</span>
         </h1>
-        <p class="font-mono text-xs uppercase tracking-widest text-[var(--primary)]/90">
-          SOURCE-AWARE PUBLIC PROGRAM DIRECTORY
-        </p>
-        <p class="text-base sm:text-lg text-[var(--muted-foreground)] leading-relaxed font-normal">
-          This page only treats a SAM-UP program or event as current when its status is supported by an approved source. For the latest schedules and registration announcements, use SAM-UP's official public channel.
+        <p class="mt-6 max-w-3xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
+          This directory distinguishes current public programs from historical or unverified records. Dates, venues, registration windows, and SAM-UP's role are not inferred from older repository content.
         </p>
       </div>
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-16">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-14">
     {flagshipEvents.length > 0 ? (
-      <div class="grid md:grid-cols-2 gap-8">
+      <section class="divide-y divide-[var(--border)] border-y border-[var(--border)]" aria-label="Verified public programs">
         {flagshipEvents.map((event) => (
-          <GlassCard
-            tag={event.badge}
-            title={event.title}
-            subtitle={event.description}
+          <a
             href={event.ctaLink || '/events'}
-            showArrow={true}
+            class="group grid lg:grid-cols-[13rem_1fr_auto] gap-5 lg:gap-8 py-7"
           >
-            <div class="space-y-3 pt-3 mt-3 border-t border-[var(--border-subtle)]">
-              <div class="flex items-center gap-2 text-xs font-mono text-[var(--foreground)]/80">
-                <Calendar class="w-3.5 h-3.5 text-[var(--primary)] shrink-0" aria-hidden="true" />
-                <span>{event.schedule}</span>
-                <span class="text-[var(--border)]" aria-hidden="true">•</span>
-                <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/5 text-[var(--muted-foreground)] border border-white/10">
-                  {event.status}
-                </span>
-              </div>
-
-              <div class="flex items-center gap-2 text-xs font-mono text-[var(--foreground)]/80">
-                <Users class="w-3.5 h-3.5 text-[var(--primary)] shrink-0" aria-hidden="true" />
-                <span>Audience: {event.targetAudience}</span>
-              </div>
-
-              <div class="flex items-center justify-between text-xs font-mono text-[var(--muted-foreground)]">
-                <span class="flex items-center gap-1.5">
-                  <MapPin class="w-3.5 h-3.5 text-[var(--primary)] shrink-0" aria-hidden="true" />
-                  <span>{getEventLocationLabel(event)}</span>
-                </span>
-                <span class="text-[var(--primary)] font-semibold">{event.ctaText || 'Learn More'} →</span>
+            <div>
+              <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">{event.badge}</div>
+              <div class="mt-2 text-xs text-[var(--muted-foreground)]">{event.category}</div>
+            </div>
+            <div>
+              <h2 class="font-display font-bold text-2xl text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">{event.title}</h2>
+              <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">{event.description}</p>
+              <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs font-mono text-[var(--muted-foreground)]">
+                <span class="inline-flex items-center gap-1.5"><Calendar class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />{event.schedule}</span>
+                <span class="inline-flex items-center gap-1.5"><Users class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />{event.targetAudience}</span>
+                <span class="inline-flex items-center gap-1.5"><MapPin class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />{getEventLocationLabel(event)}</span>
               </div>
             </div>
-          </GlassCard>
+            <ArrowRight class="hidden lg:block w-5 h-5 text-[var(--muted-foreground)] group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all" aria-hidden="true" />
+          </a>
         ))}
-      </div>
+      </section>
     ) : (
-      <section class="frosted-glass-card p-8 sm:p-10" aria-labelledby="program-verification-heading">
-        <div class="max-w-2xl space-y-4">
-          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--primary)]">
+      <section class="grid lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-7 rounded-[1.5rem] border border-[var(--border)] p-8 sm:p-10">
+          <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
             <ShieldCheck class="w-4 h-4" aria-hidden="true" />
-            <span>VERIFICATION IN PROGRESS</span>
+            <span>Verification in progress</span>
           </div>
-          <h2 id="program-verification-heading" class="font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
-            No program is being labeled “current” here without a current source.
+          <h2 class="mt-4 font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
+            No legacy program is being labeled current just to make this page look full.
           </h2>
-          <p class="text-sm sm:text-base text-[var(--muted-foreground)] leading-relaxed">
-            Existing repository records are being re-verified against current SAM-UP and UPLB sources. This prevents historical or recurring activities from being presented as currently scheduled when their present status has not been confirmed.
+          <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+            Existing repository records are being checked for current ownership, SAM-UP's specific role, schedule, audience, and public status. Records remain quarantined until the evidence is publishable.
           </p>
         </div>
+
+        <aside class="lg:col-span-5 border-t border-[var(--border)] pt-6">
+          <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">Need the latest schedule?</div>
+          <h2 class="mt-3 font-display font-bold text-2xl text-[var(--foreground)]">Use the official announcement channel.</h2>
+          <p class="mt-3 text-sm leading-relaxed text-[var(--muted-foreground)]">
+            The website should not outrun the organization. Check SAM-UP's current public announcement for dates, venues, registration, and participation instructions.
+          </p>
+          <a
+            href="https://facebook.com/SAMUPLB"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
+          >
+            Official SAM-UP page
+            <ExternalLink class="w-4 h-4" aria-hidden="true" />
+          </a>
+        </aside>
       </section>
     )}
-
-    <section class="frosted-glass-card p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
-      <div class="space-y-2 text-center md:text-left">
-        <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-[var(--primary)]">
-          <Info class="w-4 h-4" aria-hidden="true" />
-          <span>OFFICIAL UPDATES</span>
-        </div>
-        <h2 class="font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
-          Verify schedules through SAM-UP's official page
-        </h2>
-        <p class="text-sm text-[var(--muted-foreground)] max-w-xl">
-          Current event dates, venues, application instructions, and registration details should be confirmed against SAM-UP's latest official announcement.
-        </p>
-      </div>
-
-      <a
-        href="https://facebook.com/SAMUPLB"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-all shrink-0 shadow-md shadow-[var(--primary)]/20"
-      >
-        <span>Open official SAM-UP page</span>
-        <ArrowRight class="w-4 h-4" aria-hidden="true" />
-      </a>
-    </section>
-  </div>
+  </main>
 </BaseLayout>
