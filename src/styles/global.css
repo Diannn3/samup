@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: "Cinzel", Georgia, "Times New Roman", serif;
+  --font-serif: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
@@ -28,37 +28,34 @@
 }
 
 :root {
-  /* Rich Organic Obsidian, Deep Pine & Imperial Gold Palette */
-  --background: #06080c;
-  --foreground: #f1f4f9;
-  --surface: rgba(13, 17, 25, 0.55);
-  --surface-raised: rgba(19, 24, 34, 0.65);
-  --surface-overlay: rgba(24, 32, 46, 0.75);
-  --muted: #131a26;
-  --muted-foreground: #94a3b8;
-  --primary: #f0cc4e;
-  --primary-foreground: #06080c;
-  --primary-hover: #ffd752;
-  --border: rgba(255, 255, 255, 0.1);
-  --border-subtle: rgba(255, 255, 255, 0.05);
-  --border-primary: rgba(240, 204, 78, 0.4);
-  --ring: #f0cc4e;
-  --destructive: #ef4444;
-  --success: #10b981;
+  /* Mathematical Editorial Institution: graphite, warm paper, official gold */
+  --background: #080807;
+  --foreground: #f4f0e8;
+  --surface: rgba(18, 17, 14, 0.82);
+  --surface-raised: rgba(29, 27, 22, 0.9);
+  --surface-overlay: rgba(36, 33, 26, 0.94);
+  --muted: #191815;
+  --muted-foreground: #a9a39a;
+  --primary: #e4bd4f;
+  --primary-foreground: #080807;
+  --primary-hover: #f0cc60;
+  --border: rgba(244, 240, 232, 0.12);
+  --border-subtle: rgba(244, 240, 232, 0.065);
+  --border-primary: rgba(228, 189, 79, 0.42);
+  --ring: #e4bd4f;
+  --destructive: #ef6464;
+  --success: #65c987;
 
-  /* Frosted Glass & Specular Variables */
-  --glass-bg: rgba(15, 20, 30, 0.42);
-  --glass-bg-hover: rgba(22, 29, 42, 0.58);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-border-hover: rgba(240, 204, 78, 0.45);
-  --glass-highlight: inset 0 1px 1px 0 rgba(255, 255, 255, 0.18), inset 0 0 16px 0 rgba(240, 204, 78, 0.03);
-  --glass-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.45);
+  /* Elevated/special identity surfaces — glass is an exception, not the canvas */
+  --glass-bg: rgba(20, 19, 16, 0.78);
+  --glass-bg-hover: rgba(28, 26, 21, 0.86);
+  --glass-border: rgba(244, 240, 232, 0.12);
+  --glass-border-hover: rgba(228, 189, 79, 0.42);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 16px 44px rgba(0, 0, 0, 0.28);
 
-  /* Curated Rich Mesh & Linear Gradients */
-  --gradient-gold-sheen: linear-gradient(135deg, #fff7d6 0%, #f0cc4e 50%, #c49a1b 100%);
-  --gradient-emerald-glow: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 60%);
-  --gradient-amber-glow: radial-gradient(circle at 20% 80%, rgba(240, 204, 78, 0.14) 0%, transparent 60%);
-  --gradient-blue-glow: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+  --gradient-gold-sheen: linear-gradient(120deg, #fff2bd 0%, #e4bd4f 48%, #b78927 100%);
+  --gradient-amber-glow: radial-gradient(circle at 30% 20%, rgba(228, 189, 79, 0.12) 0%, transparent 62%);
 }
 
 /* Base resets & typography */
@@ -78,13 +75,10 @@ body {
   font-size: 1rem;
   line-height: 1.625;
   position: relative;
-  /* Deep Organic Chromatic Gradient Mesh Background */
-  background-image: 
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(240, 204, 78, 0.12), transparent 70%),
-    radial-gradient(circle 800px at 90% 30%, rgba(16, 185, 129, 0.09), transparent 60%),
-    radial-gradient(circle 700px at 10% 60%, rgba(240, 204, 78, 0.08), transparent 60%),
-    radial-gradient(circle 900px at 80% 85%, rgba(59, 130, 246, 0.08), transparent 70%),
-    radial-gradient(circle 600px at 30% 100%, rgba(16, 185, 129, 0.07), transparent 60%);
+  /* Restrained warm field; section-level graphics carry the visual identity. */
+  background-image:
+    radial-gradient(ellipse 70% 45% at 65% -10%, rgba(228, 189, 79, 0.085), transparent 72%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.012), transparent 22%);
   background-attachment: fixed;
 }
 
@@ -95,7 +89,7 @@ body::before {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.016;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   background-repeat: repeat;
 }
