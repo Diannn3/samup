@@ -15,6 +15,7 @@ Before changing public claims or redesigning the information architecture, read:
 
 - `docs/SAMUP_REDESIGN_SOURCE_OF_TRUTH.md`
 - `docs/content-audit.md`
+- `docs/PUBLIC_CONTENT_PUBLISHING_WORKFLOW.md`
 
 The redesign source-of-truth defines source precedence, public/private boundaries, evidence requirements, current known content defects, accessibility/performance expectations, and the atomic implementation sequence.
 
@@ -38,9 +39,9 @@ Do not infer current officers, event status, recruitment eligibility, sponsor cl
 - React islands where interaction is justified
 - Tailwind CSS
 - TypeScript
-- Playwright for browser QA
-- Three.js for the current public hero experiment
-- PixiJS + Pixi Viewport + Zustand for the separate reporting experience
+- Playwright for browser, progressive-enhancement, touch, and visual QA
+- Fontsource variable families for self-hosted typography
+- PixiJS + Pixi Viewport + Zustand only for the separate reporting experience
 
 The public website follows a **static-first Astro** policy. Core content should remain readable and usable without JavaScript.
 
@@ -83,13 +84,22 @@ npm run build
 npm run preview
 ```
 
-Current browser audit:
+Quality checks:
 
 ```bash
 npm run qa:audit
+npm run qa:motion
+npm run qa:visual
+npm run qa:all
 ```
 
-Additional format/type/accessibility/performance gates are being added incrementally as part of the redesign. Do not invent commands that are not yet present in `package.json`.
+For canonical URLs and structured-data origins, set the production deployment variable:
+
+```bash
+PUBLIC_SITE_URL=https://your-production-domain.example
+```
+
+If `PUBLIC_SITE_URL` is absent, Astro does not invent a canonical production origin.
 
 ## Content safety
 
