@@ -93,6 +93,12 @@ jobs:
         if: failure()
         run: node scripts/report-lighthouse-cls.mjs
 
+      - name: Report DOM layout-shift sources
+        if: failure()
+        env:
+          SAM_UP_BASE_URL: http://127.0.0.1:4321
+        run: node scripts/cls-diagnostic.mjs
+
       - name: Upload visual QA snapshots on failure
         if: failure()
         uses: actions/upload-artifact@v4
