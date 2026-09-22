@@ -2,6 +2,8 @@
 import '@fontsource-variable/plus-jakarta-sans/wght.css';
 import '@fontsource-variable/newsreader/wght.css';
 import '@fontsource-variable/jetbrains-mono/wght.css';
+import plusJakartaLatinUrl from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
+import newsreaderLatinUrl from '@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
@@ -78,6 +80,20 @@ const schemaOrg = {
     <meta property="twitter:image" content={socialImage} />
     <meta property="twitter:image:alt" content={imageAlt} />
 
+    <link
+      rel="preload"
+      href={plusJakartaLatinUrl}
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href={newsreaderLatinUrl}
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
     <link rel="icon" type="image/png" href="/sam-up-seal.png" />
 
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)}></script>
