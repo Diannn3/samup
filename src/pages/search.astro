@@ -24,6 +24,13 @@ const chronicle = await getCollection('chronicle', ({ data }) =>
   data.evidence.status !== 'needs-approval'
 );
 
+const programs = await getCollection('programs', ({ data }) =>
+  (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
+  data.evidence.status !== 'unknown' &&
+  data.evidence.status !== 'blocked' &&
+  data.evidence.status !== 'needs-approval'
+);
+
 const resources = await getCollection('resources', ({ data }) =>
   (data.evidence.visibility === 'public' || data.evidence.visibility === 'public-summary-only') &&
   data.evidence.status !== 'unknown' &&
@@ -33,7 +40,7 @@ const resources = await getCollection('resources', ({ data }) =>
 
 const fixedPages = [
   { title: 'Explore Applied Mathematics', description: 'Applied Mathematics explainers and models.', href: '/explore', type: 'section' },
-  { title: 'Programs & Updates', description: 'Source-aware program status and official update links.', href: '/events', type: 'section' },
+  { title: 'Programs & Updates', description: 'Source-aware program status and official update links.', href: '/programs', type: 'section' },
   { title: 'Academic Resources', description: 'Approved public reviewers, guides, tutorials, and references.', href: '/resources', type: 'section' },
   { title: 'Join SAM-UP', description: 'Current recruitment guidance and OSA application scope.', href: '/join', type: 'section' },
   { title: 'Partner with SAM-UP', description: 'Public-safe partnership and collaboration information.', href: '/partners', type: 'section' },
@@ -51,6 +58,12 @@ const indexedItems = [
     description: entry.data.summary,
     href: `/explore/${entry.data.slug}`,
     type: 'applied math',
+  })),
+  ...programs.map((entry) => ({
+    title: entry.data.title,
+    description: entry.data.summary,
+    href: `/events/${entry.data.slug}/`,
+    type: entry.data.lifecycle === 'historical' ? 'historical program' : 'program',
   })),
   ...governance.map((entry) => ({
     title: entry.data.title,
