@@ -1,13 +1,16 @@
 // Canonical event & program data model.
-// Evidence policy: only facts supported by the repository or constitution.
-// Locations: only peer tutorials have a verified home (UPLB Math Building,
-// per tutorial caravan descriptions); others defer to official updates.
-// MIA Colloquium removed: no supporting source in repository or wiki.
+// Evidence policy: only facts supported by approved SAM-UP or current official sources.
+//
+// IMPORTANT:
+// The Annual Search for the UPLB Math Wizard is intentionally not represented here.
+// Current public evidence identifies UPLB Mathematical Sciences Society (UPLB MASS)
+// as its organizer. Do not add it as a SAM-UP program unless a current authoritative
+// source documents SAM-UP's specific role.
 
 export interface OrgEvent {
   id: string;
   title: string;
-  category: 'Competition' | 'Academic Outreach' | 'Athletics & Socials';
+  category: 'Academic Outreach' | 'Athletics & Socials';
   badge: string;
   description: string;
   targetAudience: string;
@@ -23,20 +26,6 @@ export const getEventLocationLabel = (event: OrgEvent) =>
   event.venue ?? 'See official updates';
 
 export const flagshipEvents: OrgEvent[] = [
-  {
-    id: 'math-wizard',
-    title: 'UPLB Math Wizard',
-    category: 'Competition',
-    badge: 'Annual Tournament',
-    description:
-      'The annual UPLB Math Wizard competition organized by the Scholastics Committee, covering advanced calculus, combinatorics, and applied problem-solving.',
-    targetAudience: 'High School & University Students',
-    schedule: 'Annual',
-    ctaText: 'View Guidelines & Updates',
-    ctaLink: 'https://facebook.com/SAMUPLB',
-    venue: null,
-    status: 'informational',
-  },
   {
     id: 'peer-tutorials',
     title: 'CAS Peer Tutorial Caravans',
