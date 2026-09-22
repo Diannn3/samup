@@ -1,7 +1,7 @@
-import React from "react";
-import { X, ArrowRight, Film, ExternalLink } from "lucide-react";
-import { useReportingStore } from "../../stores/reportingStore";
-import { ProfileLedger } from "./ProfileLedger";
+import React from 'react';
+import { X, ArrowRight, Film, ExternalLink } from 'lucide-react';
+import { useReportingStore } from '../../stores/reportingStore';
+import { ProfileLedger } from './ProfileLedger';
 
 export const StationDrawer: React.FC = () => {
   const activeStation = useReportingStore((s) => s.activeStation);
@@ -11,7 +11,7 @@ export const StationDrawer: React.FC = () => {
 
   if (!isInspecting || !activeStation) return null;
 
-  const isDarkroom = activeStation.theme === "darkroom";
+  const isDarkroom = activeStation.theme === 'darkroom';
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-end pointer-events-none p-4 md:p-6">
@@ -24,7 +24,7 @@ export const StationDrawer: React.FC = () => {
       {/* Slide-over Drawer Panel */}
       <div
         className={`relative w-full max-w-xl max-h-[92vh] overflow-y-auto pointer-events-auto spatial-glass-panel rounded-3xl p-6 md:p-8 pb-12 md:pb-16 shadow-2xl transition-all duration-300 ${
-          isDarkroom ? "theme-darkroom text-white" : "text-neutral-900"
+          isDarkroom ? 'theme-darkroom text-white' : 'text-neutral-900'
         }`}
       >
         {/* Direct Title & Controls Header (NO Eyebrow Pills above H2) */}
@@ -38,15 +38,11 @@ export const StationDrawer: React.FC = () => {
                 STATION {activeStation.index}
               </span>
               <span>•</span>
-              <span className="uppercase tracking-wider">
-                {activeStation.category}
-              </span>
+              <span className="uppercase tracking-wider">{activeStation.category}</span>
               {activeStation.roles && activeStation.roles.length > 0 && (
                 <>
                   <span className="hidden sm:inline">•</span>
-                  <span className="hidden sm:inline text-neutral-400">
-                    {activeStation.roles.join(", ")}
-                  </span>
+                  <span className="hidden sm:inline text-neutral-400">{activeStation.roles.join(', ')}</span>
                 </>
               )}
             </div>
@@ -66,38 +62,40 @@ export const StationDrawer: React.FC = () => {
         </div>
 
         {/* Custom Station Embed: About / Profile Ledger */}
-        {activeStation.id === "st-01" && (
+        {activeStation.id === 'st-01' && (
           <div className="mb-6 pt-2">
             <ProfileLedger />
           </div>
         )}
 
         {/* Key Highlights as Bento Squircle Cards */}
-        {activeStation.bulletPoints && activeStation.bulletPoints.length > 0 && activeStation.id !== "st-01" && (
-          <div className="space-y-3 mb-6">
-            <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-bold">
-              Key Focus Areas
+        {activeStation.bulletPoints &&
+          activeStation.bulletPoints.length > 0 &&
+          activeStation.id !== 'st-01' && (
+            <div className="space-y-3 mb-6">
+              <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-bold">
+                Key Focus Areas
+              </div>
+              <div className="grid grid-cols-1 gap-2.5">
+                {activeStation.bulletPoints.map((point, idx) => (
+                  <div
+                    key={idx}
+                    className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.05] dark:border-white/[0.06] flex items-start gap-3"
+                  >
+                    <span className="font-mono text-xs text-neutral-400 shrink-0 select-none">
+                      0{idx + 1}
+                    </span>
+                    <p className="text-xs md:text-sm text-neutral-700 dark:text-neutral-200 leading-relaxed font-normal">
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-1 gap-2.5">
-              {activeStation.bulletPoints.map((point, idx) => (
-                <div 
-                  key={idx} 
-                  className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.05] dark:border-white/[0.06] flex items-start gap-3"
-                >
-                  <span className="font-mono text-xs text-neutral-400 shrink-0 select-none">
-                    0{idx + 1}
-                  </span>
-                  <p className="text-xs md:text-sm text-neutral-700 dark:text-neutral-200 leading-relaxed font-normal">
-                    {point}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+          )}
 
         {/* Math in Sight Specific Action */}
-        {activeStation.id === "st-06" && (
+        {activeStation.id === 'st-06' && (
           <div className="p-5 rounded-2xl bg-black/60 border border-white/15 space-y-3 mb-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-xs font-mono text-neutral-200">
@@ -107,10 +105,11 @@ export const StationDrawer: React.FC = () => {
               <span className="text-[10px] font-mono text-neutral-400">35MM CONTACT SHEET</span>
             </div>
             <p className="text-xs text-neutral-300 leading-relaxed">
-              Explore the complete 35mm film stills, production details, and visual breakdown in the editorial portfolio.
+              Explore the complete 35mm film stills, production details, and visual breakdown in the editorial
+              portfolio.
             </p>
             <button
-              onClick={() => openPortfolio("math-in-sight")}
+              onClick={() => openPortfolio('math-in-sight')}
               className="w-full flex items-center justify-between px-4 py-2.5 text-xs font-mono font-semibold rounded-xl bg-white text-black hover:bg-neutral-200 transition-all"
             >
               <span>View Film Stills & Stills Archive</span>
@@ -122,7 +121,7 @@ export const StationDrawer: React.FC = () => {
         )}
 
         {/* Direct Link to Portfolio if tagged */}
-        {activeStation.portfolioTag && activeStation.id !== "st-06" && (
+        {activeStation.portfolioTag && activeStation.id !== 'st-06' && (
           <div className="pt-4 border-t border-black/10 dark:border-white/10 flex justify-between items-center">
             <span className="text-xs font-mono text-neutral-500">Related Creative Work Available</span>
             <button

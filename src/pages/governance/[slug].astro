@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { ArrowLeft, FileText, ShieldCheck } from 'lucide-react';
+
+export async function getStaticPaths() {
+  const entries = await getCollection(
+    'governance',
+    ({ data }) =>
+      (data.evidence.visibility === 'public' || data.evidence.visibility === 'public-summary-only') &&
+      data.evidence.status !== 'unknown' &&
+      data.evidence.status !== 'blocked' &&
+      data.evidence.status !== 'needs-approval',
+  );
+
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'governance'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+---
+
+<BaseLayout title={`${data.title} | Governance | SAM-UP`} description={data.summary}>
+  <article>
+    <header class="border-b border-[var(--border)] py-16 sm:py-20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <a
+          href="/governance"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted-foreground)] hover:text-[var(--primary)] transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+          Governance
+        </a>
+
+        <div class="mt-8 flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+          <FileText className="w-4 h-4" aria-hidden="true" />
+          <span>
+            {data.documentType} • {data.versionLabel}
+          </span>
+        </div>
+
+        <h1 class="mt-4 font-display font-black text-4xl sm:text-6xl tracking-[-0.03em] text-[var(--foreground)]">
+          {data.title}
+        </h1>
+        <p class="mt-5 max-w-3xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
+          {data.summary}
+        </p>
+
+        <div class="mt-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+          <ShieldCheck className="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+          {data.evidence.visibility} • reviewed {data.evidence.reviewedAt}
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-8 article-prose">
+          <Content />
+        </div>
+
+        <aside class="lg:col-span-4">
+          <div class="sticky top-28 rounded-2xl border border-[var(--border)] p-5">
+            <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--primary)]">
+              Source record
+            </div>
+            <dl class="mt-4 space-y-4 text-sm">
+              <div>
+                <dt class="text-xs text-[var(--muted-foreground)]">Source</dt>
+                <dd class="mt-1 text-[var(--foreground)]">{data.evidence.sourceLabel}</dd>
+              </div>
+              {data.evidence.sourceDocument && (
+                <div>
+                  <dt class="text-xs text-[var(--muted-foreground)]">Document</dt>
+                  <dd class="mt-1 text-[var(--foreground)]">{data.evidence.sourceDocument}</dd>
+                </div>
+              )}
+              {data.evidence.sourceDate && (
+                <div>
+                  <dt class="text-xs text-[var(--muted-foreground)]">Source date</dt>
+                  <dd class="mt-1 text-[var(--foreground)]">{data.evidence.sourceDate}</dd>
+                </div>
+              )}
+              <div>
+                <dt class="text-xs text-[var(--muted-foreground)]">Evidence state</dt>
+                <dd class="mt-1 text-[var(--foreground)]">{data.evidence.status}</dd>
+              </div>
+            </dl>
+
+            {data.evidence.notes && (
+              <p class="mt-5 pt-5 border-t border-[var(--border)] text-xs leading-relaxed text-[var(--muted-foreground)]">
+                {data.evidence.notes}
+              </p>
+            )}
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,171 +1,233 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import GlassCard from '../components/ui/GlassCard.astro';
 import { organization } from '../data/organization';
-import { objectives, principles, emblem, preamble, membershipRules } from '../data/mission';
+import { objectives, principles, emblem } from '../data/mission';
 import { milestones } from '../data/milestones';
-import { Landmark, Scale, Target, Users } from 'lucide-react';
+import { ArrowRight, Landmark, Scale, Sigma, Users, ShieldCheck } from 'lucide-react';
 ---
 
 <BaseLayout
   title="About SAM-UP | Society of Applied Mathematics of UPLB"
-  description={`Who SAM-UP is, what it stands for, and its documented history since 1984. ${organization.tagline}.`}
+  description="The documented identity, constitutional objectives, principles, seal, and history of the Society of Applied Mathematics of UPLB."
 >
-  {/* Page Header */}
-  <section class="py-20 sm:py-24 border-b border-[var(--border)] relative overflow-hidden">
-    <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.12)_0%,transparent_70%)] top-0 left-[-10%]" aria-hidden="true" />
-    <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(16,185,129,0.09)_0%,transparent_70%)] bottom-0 right-[-10%]" aria-hidden="true" />
+  <section class="relative overflow-hidden border-b border-[var(--border)] py-20 sm:py-24 lg:py-28">
+    <div class="absolute inset-0 pointer-events-none opacity-50" aria-hidden="true">
+      <div class="absolute right-[8%] top-[-18rem] h-[38rem] w-[38rem] rounded-full border border-[var(--border)]"></div>
+      <div class="absolute right-[13%] top-[-13rem] h-[28rem] w-[28rem] rounded-full border border-[var(--border-primary)]/40"></div>
+    </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="max-w-3xl space-y-4">
-        <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight">
-          About <span class="text-gold-gradient">SAM-UP</span>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-4xl">
+        <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
+          <Landmark className="w-4 h-4" aria-hidden="true" />
+          <span>About SAM-UP</span>
+        </div>
+        <h1 class="mt-5 font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-[-0.035em] leading-[0.98] text-[var(--foreground)]">
+          A society built around the <span class="text-gold-gradient">usefulness of mathematics.</span>
         </h1>
-        <p class="font-mono text-xs uppercase tracking-widest text-[var(--primary)]/90">
-          1984.11.27 // UPLB.IMSP • Self-Governing Academic Society
-        </p>
-        <p class="text-base sm:text-lg text-[var(--muted-foreground)] leading-relaxed font-normal">
-          The Society of Applied Mathematics of the University of the Philippines Los Baños — a self-governing academic organization promoting the relevance of Applied Mathematics to Philippine society.
+        <p class="mt-6 max-w-3xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
+          The Society of Applied Mathematics of the University of the Philippines Los Baños is a
+          self-governing academic organization whose Constitution centers the relevance, appreciation, and
+          wider application of Applied Mathematics to Philippine society.
         </p>
       </div>
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-24">
-    {/* Who We Are */}
-    <section class="space-y-8">
-      <div class="max-w-3xl space-y-3">
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          A Society of Applied Mathematicians at UPLB
-        </h2>
-        <p class="text-base text-[var(--muted-foreground)] leading-relaxed">
-          SAM-UP is a self-governing, academic organization based at the University of the Philippines Los Baños, officially recognized by the Office of Student Affairs on November 27, 1984. It serves students of the Institute of Mathematical Sciences and Physics (IMSP) under the College of Arts and Sciences.
-        </p>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-24">
+    <section class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+      <div class="lg:col-span-4">
+        <div class="text-xs font-mono uppercase tracking-wider text-[var(--primary)]">Identity</div>
+        <h2 class="mt-4 font-display font-black text-3xl text-[var(--foreground)]">Documented since 1984.</h2>
       </div>
 
-      <div class="grid sm:grid-cols-3 gap-6">
-        <GlassCard tag="NAME & NATURE" title="Self-Governing" subtitle="The organization shall be a self-governing, academic organization based on the University of the Philippines Los Baños." showArrow={false} />
-        <GlassCard tag="RECOGNITION" title="OSA-Recognized Since 1984" subtitle="The organization officially began to exist after being recognized by the Office of Student Affairs on November 27, 1984." showArrow={false} />
-        <GlassCard tag="HOME" title="UPLB IMSP • CAS" subtitle="Based at the Institute of Mathematical Sciences and Physics, College of Arts and Sciences, University of the Philippines Los Baños." showArrow={false} />
-      </div>
-    </section>
-
-    {/* Mission & Vision */}
-    <section class="space-y-8">
-      <div class="max-w-3xl space-y-3">
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          The Constitutional Mandate
-        </h2>
-        <p class="text-base text-[var(--muted-foreground)] leading-relaxed">
-          The Preamble and Articles III–IV of the Constitution define why SAM-UP exists and what it works toward.
-        </p>
-      </div>
-
-      <div class="frosted-glass-card p-8 sm:p-10">
-        <div class="relative z-10">
-          <div class="text-[10px] font-mono text-[var(--muted-foreground)] uppercase tracking-wider mb-4">PREAMBLE (EXCERPT)</div>
-          <blockquote class="font-display text-lg sm:text-xl text-[var(--foreground)]/90 leading-relaxed italic border-l-2 border-[var(--primary)] pl-6">
-            “{preamble.full}”
-          </blockquote>
+      <div class="lg:col-span-8 grid sm:grid-cols-3 gap-px overflow-hidden rounded-[1.5rem] border border-[var(--border)] bg-[var(--border)]">
+        <div class="bg-[var(--background)] p-6">
+          <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+            Name & nature
+          </div>
+          <div class="mt-3 font-display font-bold text-xl text-[var(--foreground)]">Self-governing</div>
+          <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+            The Constitution defines SAM-UP as a self-governing academic organization based at UPLB.
+          </p>
         </div>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-8">
-        <GlassCard tag="ARTICLE IV — OBJECTIVES" title="Mission: The Five Objectives" showArrow={false}>
-          <ol class="space-y-3 text-xs sm:text-sm text-[var(--foreground)]/85 leading-relaxed list-decimal list-inside mt-2">
-            {objectives.map((obj) => (
-              <li>{obj.text.charAt(0).toUpperCase() + obj.text.slice(1)}</li>
-            ))}
-          </ol>
-        </GlassCard>
-
-        <GlassCard tag="ARTICLE III — PRINCIPLES" title="Vision Anchors: The Three Principles" showArrow={false}>
-          <ul class="space-y-4 text-xs sm:text-sm text-[var(--foreground)]/85 leading-relaxed mt-2">
-            {principles.map((p) => (
-              <li class="flex items-start gap-2.5">
-                <Scale class="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-                <span>{p.text}</span>
-              </li>
-            ))}
-          </ul>
-        </GlassCard>
-      </div>
-    </section>
-
-    {/* Principles & Identity — the seal, the handshake, the colors */}
-    <section class="space-y-8">
-      <div class="max-w-3xl space-y-3">
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          The Seal, the Più, and the Handshake
-        </h2>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <GlassCard tag="ARTICLE II" title="The Seal" subtitle={emblem.seal} showArrow={false} />
-        <GlassCard tag="ARTICLE II" title="The Più" subtitle={emblem.piu} showArrow={false} />
-        <GlassCard tag="ARTICLE II" title="Black & Gold" subtitle={emblem.colors} showArrow={false} />
-      </div>
-
-      <div class="frosted-glass-card p-6 sm:p-8 flex items-start gap-6">
-        <div class="w-12 h-12 rounded-xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center text-[var(--primary)] shrink-0">
-          <Users class="w-6 h-6" aria-hidden="true" />
+        <div class="bg-[var(--background)] p-6">
+          <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+            Recognition
+          </div>
+          <div class="mt-3 font-display font-bold text-xl text-[var(--foreground)]">
+            {organization.foundingYear}
+          </div>
+          <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+            The Constitution states that the organization officially began after OSA recognition on November
+            27, 1984.
+          </p>
         </div>
-        <div class="min-w-0">
-          <div class="text-[10px] font-mono text-[var(--muted-foreground)] uppercase tracking-wider mb-2">ARTICLE V — THE HANDSHAKE</div>
-          <p class="text-sm text-[var(--foreground)]/85 leading-relaxed">
-            SAM-UP's unique left-hand handshake symbolizes the bond of all the objectives of the organization. The adjoined fingers, the index finger, and the thumb represent the three principles, academic excellence and camaraderie within the organization, respectively; the use of the left hand signifies uniqueness.
+        <div class="bg-[var(--background)] p-6">
+          <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+            Official colors
+          </div>
+          <div class="mt-3 font-display font-bold text-xl text-[var(--foreground)]">Black + Gold</div>
+          <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+            The palette used by this site comes directly from Article II of the Constitution.
           </p>
         </div>
       </div>
     </section>
 
-    {/* Organizational Milestones */}
-    <section class="space-y-8">
-      <div class="max-w-3xl space-y-3">
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          Documented Milestones
+    <section id="mission" class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+          <Sigma className="w-4 h-4" aria-hidden="true" />
+          <span>Article IV</span>
+        </div>
+        <h2 class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]">
+          Five constitutional objectives.
         </h2>
-        <p class="text-base text-[var(--muted-foreground)] leading-relaxed">
-          Only milestones supported by the Constitution and the leadership archive are listed.
+        <p class="mt-4 text-sm leading-relaxed text-[var(--muted-foreground)]">
+          SAM-UP's Constitution defines objectives rather than a separate invented marketing “mission
+          statement.”
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
-        {milestones.map((m) => (
-          <GlassCard tag={m.year} title={m.title} subtitle={m.description} showArrow={false} />
+      <ol class="lg:col-span-8 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+        {objectives.map((objective, index) => (
+          <li class="grid grid-cols-[3rem_1fr] gap-4 py-5 sm:py-6">
+            <span class="font-mono text-xs text-[var(--primary)]">{String(index + 1).padStart(2, '0')}</span>
+            <span class="text-sm sm:text-base leading-relaxed text-[var(--foreground)]/90">
+              {objective.text.charAt(0).toUpperCase() + objective.text.slice(1)}
+            </span>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+          <Scale className="w-4 h-4" aria-hidden="true" />
+          <span>Article III</span>
+        </div>
+        <h2 class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]">
+          Principles, in the Constitution's own framing.
+        </h2>
+      </div>
+
+      <div class="lg:col-span-8 grid gap-4">
+        {principles.map((principle, index) => (
+          <article class="grid sm:grid-cols-[4rem_1fr] gap-4 rounded-2xl border border-[var(--border)] p-5 sm:p-6">
+            <div class="font-mono text-xs text-[var(--primary)]">P{index + 1}</div>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--foreground)]/90">{principle.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      <div class="lg:col-span-5">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+          <ShieldCheck className="w-4 h-4" aria-hidden="true" />
+          <span>Article II • Seal & piu</span>
+        </div>
+        <h2 class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]">
+          The symbol is a statement about collective effort.
+        </h2>
+        <p class="mt-5 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">{emblem.piu}</p>
+        <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+          {emblem.circles}
+        </p>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="relative aspect-[4/3] max-w-2xl mx-auto rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
+          <div class="absolute inset-[10%] rounded-full border border-[var(--border)]"></div>
+          <div class="absolute inset-[20%] rounded-full border border-[var(--border-primary)]/50"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <img
+              src="/sam-up-seal.png"
+              alt="Official SAM-UP seal"
+              width="280"
+              height="280"
+              class="w-[42%] h-auto object-contain"
+            />
+          </div>
+          <div class="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">
+            <span>Outer circle • Philippine society</span>
+            <span>Inner circle • organization & unity</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="max-w-3xl">
+        <div class="text-xs font-mono uppercase tracking-wider text-[var(--primary)]">Documented history</div>
+        <h2 class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]">
+          A small number of claims, clearly sourced.
+        </h2>
+        <p class="mt-4 text-sm sm:text-base text-[var(--muted-foreground)]">
+          The redesign deliberately prefers a short verified timeline over an impressive-looking history
+          filled with unsupported milestones.
+        </p>
+      </div>
+
+      <div class="mt-10 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+        {milestones.map((milestone) => (
+          <article class="grid sm:grid-cols-[7rem_1fr] gap-4 sm:gap-8 py-6">
+            <div class="font-mono text-sm text-[var(--primary)]">{milestone.year}</div>
+            <div>
+              <h3 class="font-display font-bold text-xl text-[var(--foreground)]">{milestone.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+                {milestone.description}
+              </p>
+            </div>
+          </article>
         ))}
       </div>
 
-      <div class="pt-2">
+      <div class="mt-7 flex flex-wrap gap-4">
         <a
           href="/alumni"
           class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
         >
-          <span>Explore the full leadership archive</span>
-          <Landmark class="w-4 h-4" aria-hidden="true" />
+          Leadership archive
+          <ArrowRight className="w-4 h-4" aria-hidden="true" />
+        </a>
+        <a
+          href="/governance"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] hover:text-[var(--primary)] transition-colors"
+        >
+          Governance sources
+          <ArrowRight className="w-4 h-4" aria-hidden="true" />
         </a>
       </div>
     </section>
 
-    {/* Membership summary — constitutional eligibility */}
-    <section class="space-y-8">
-      <div class="max-w-3xl space-y-3">
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          Who Can Join
-        </h2>
-        <p class="font-mono text-xs uppercase tracking-widest text-[var(--primary)]/90">
-          ARTICLE VII — MEMBERSHIP // CONSTITUTIONAL ELIGIBILITY
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-8">
-        <GlassCard tag="RESIDENT MEMBER" title="BS Applied Mathematics Students" showArrow={false}>
-          <p class="text-xs sm:text-sm text-[var(--foreground)]/85 leading-relaxed mt-2">{membershipRules.resident}</p>
-        </GlassCard>
-        <GlassCard tag="AFFILIATE MEMBER" title="Other UPLB Degree Programs" showArrow={false}>
-          <p class="text-xs sm:text-sm text-[var(--foreground)]/85 leading-relaxed mt-2">{membershipRules.affiliate}</p>
-        </GlassCard>
+    <section class="rounded-[1.75rem] border border-[var(--border-primary)] bg-[var(--primary)] p-8 sm:p-10 lg:p-12 text-[var(--primary-foreground)]">
+      <div class="grid lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8">
+          <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-wider opacity-70">
+            <Users className="w-4 h-4" aria-hidden="true" />
+            <span>Interested in joining?</span>
+          </div>
+          <h2 class="mt-4 font-display font-black text-3xl sm:text-4xl">
+            Use current recruitment guidance, not an old constitutional shortcut.
+          </h2>
+          <p class="mt-4 max-w-2xl text-sm sm:text-base leading-relaxed opacity-80">
+            Membership classifications remain useful governance context, but present-day application
+            eligibility and timing should follow current OSA and SAM-UP guidance.
+          </p>
+        </div>
+        <div class="lg:col-span-4 lg:text-right">
+          <a
+            href="/join"
+            class="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--background)] px-6 py-3.5 text-sm font-bold text-[var(--foreground)]"
+          >
+            Current Join guidance
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </a>
+        </div>
       </div>
     </section>
-  </div>
+  </main>
 </BaseLayout>

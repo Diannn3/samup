@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
-import { Application, Container, Graphics, Text, TextStyle } from "pixi.js";
-import { Viewport } from "pixi-viewport";
-import { STATIONS, type Station } from "../../data/reporting/stations";
-import { useReportingStore } from "../../stores/reportingStore";
+import React, { useEffect, useRef } from 'react';
+import { Application, Container, Graphics, Text, TextStyle } from 'pixi.js';
+import { Viewport } from 'pixi-viewport';
+import { STATIONS, type Station } from '../../data/reporting/stations';
+import { useReportingStore } from '../../stores/reportingStore';
 
 export const SpatialCanvas: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,7 +49,7 @@ export const SpatialCanvas: React.FC = () => {
         antialias: true,
         autoDensity: true,
         resolution: Math.min(window.devicePixelRatio || 2, 2),
-        preference: "webgl",
+        preference: 'webgl',
       });
 
       if (isDestroyed || !containerRef.current) {
@@ -69,7 +69,7 @@ export const SpatialCanvas: React.FC = () => {
       });
 
       app.stage.addChild(viewport);
-      viewport.drag({ mouseButtons: "right" }).pinch().wheel().decelerate({ friction: 0.92 });
+      viewport.drag({ mouseButtons: 'right' }).pinch().wheel().decelerate({ friction: 0.92 });
       viewport.clampZoom({ minScale: 0.75, maxScale: 1.4 });
 
       // World Layers
@@ -94,13 +94,13 @@ export const SpatialCanvas: React.FC = () => {
 
       // Darkroom Label
       const darkroomLabelStyle = new TextStyle({
-        fontFamily: "JetBrains Mono, monospace",
+        fontFamily: 'JetBrains Mono, monospace',
         fontSize: 12,
         fill: 0x71717a,
         letterSpacing: 3,
       });
       const darkroomTag = new Text({
-        text: "[ ZONE 02 // CINEMATIC DARKROOM : MATH IN SIGHT ]",
+        text: '[ ZONE 02 // CINEMATIC DARKROOM : MATH IN SIGHT ]',
         style: darkroomLabelStyle,
       });
       darkroomTag.position.set(3240, 1980);
@@ -182,10 +182,10 @@ export const SpatialCanvas: React.FC = () => {
       STATIONS.forEach((station) => {
         const stationCont = new Container();
         stationCont.position.set(station.position.x, station.position.y);
-        stationCont.eventMode = "static";
-        stationCont.cursor = "pointer";
+        stationCont.eventMode = 'static';
+        stationCont.cursor = 'pointer';
 
-        const isDark = station.theme === "darkroom";
+        const isDark = station.theme === 'darkroom';
         const ringColor = isDark ? 0xffffff : 0x000000;
         const textColor = isDark ? 0xffffff : 0x000000;
         const subColor = isDark ? 0xa1a1aa : 0x52525b;
@@ -224,9 +224,9 @@ export const SpatialCanvas: React.FC = () => {
 
         // 4. Station Index Monospace Tag
         const indexStyle = new TextStyle({
-          fontFamily: "JetBrains Mono, monospace",
+          fontFamily: 'JetBrains Mono, monospace',
           fontSize: 10,
-          fontWeight: "700",
+          fontWeight: '700',
           fill: ringColor,
           letterSpacing: 1.5,
         });
@@ -240,9 +240,9 @@ export const SpatialCanvas: React.FC = () => {
 
         // 5. Station Monolithic Title
         const titleStyle = new TextStyle({
-          fontFamily: "Plus Jakarta Sans, sans-serif",
-          fontSize: station.id === "st-11" ? 30 : 16,
-          fontWeight: "800",
+          fontFamily: 'Plus Jakarta Sans, sans-serif',
+          fontSize: station.id === 'st-11' ? 30 : 16,
+          fontWeight: '800',
           fill: textColor,
           letterSpacing: -0.5,
         });
@@ -256,9 +256,9 @@ export const SpatialCanvas: React.FC = () => {
 
         // 6. Station Subtitle
         const subStyle = new TextStyle({
-          fontFamily: "JetBrains Mono, monospace",
+          fontFamily: 'JetBrains Mono, monospace',
           fontSize: 9,
-          fontWeight: "500",
+          fontWeight: '500',
           fill: subColor,
           letterSpacing: 0.5,
         });
@@ -267,12 +267,12 @@ export const SpatialCanvas: React.FC = () => {
           style: subStyle,
         });
         subText.anchor.set(0.5, 0);
-        subText.position.set(0, station.radius * 0.48 + (station.id === "st-11" ? 36 : 22));
+        subText.position.set(0, station.radius * 0.48 + (station.id === 'st-11' ? 36 : 22));
         stationCont.addChild(subText);
 
         // 7. Telemetry Coordinate Label
         const coordStyle = new TextStyle({
-          fontFamily: "JetBrains Mono, monospace",
+          fontFamily: 'JetBrains Mono, monospace',
           fontSize: 8,
           fill: isDark ? 0x71717a : 0xa1a1aa,
           letterSpacing: 1,
@@ -282,11 +282,11 @@ export const SpatialCanvas: React.FC = () => {
           style: coordStyle,
         });
         coordText.anchor.set(0.5, 0);
-        coordText.position.set(0, station.radius * 0.48 + (station.id === "st-11" ? 54 : 38));
+        coordText.position.set(0, station.radius * 0.48 + (station.id === 'st-11' ? 54 : 38));
         stationCont.addChild(coordText);
 
         // Click to walk or inspect
-        stationCont.on("pointerdown", () => {
+        stationCont.on('pointerdown', () => {
           const dx = posRef.current.x - station.position.x;
           const dy = posRef.current.y - station.position.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
@@ -321,10 +321,10 @@ export const SpatialCanvas: React.FC = () => {
         let ay = 0;
 
         if (!isModalOpenRef.current) {
-          if (keysRef.current["KeyW"] || keysRef.current["ArrowUp"]) ay -= 1;
-          if (keysRef.current["KeyS"] || keysRef.current["ArrowDown"]) ay += 1;
-          if (keysRef.current["KeyA"] || keysRef.current["ArrowLeft"]) ax -= 1;
-          if (keysRef.current["KeyD"] || keysRef.current["ArrowRight"]) ax += 1;
+          if (keysRef.current['KeyW'] || keysRef.current['ArrowUp']) ay -= 1;
+          if (keysRef.current['KeyS'] || keysRef.current['ArrowDown']) ay += 1;
+          if (keysRef.current['KeyA'] || keysRef.current['ArrowLeft']) ax -= 1;
+          if (keysRef.current['KeyD'] || keysRef.current['ArrowRight']) ax += 1;
         }
 
         // Mouse click target interpolation
@@ -383,7 +383,7 @@ export const SpatialCanvas: React.FC = () => {
           }
 
           // Proximity radial glow and expansion
-          const isDark = station.theme === "darkroom";
+          const isDark = station.theme === 'darkroom';
           const rColor = isDark ? 0xffffff : 0x000000;
           const baseRadius = station.radius * 0.4;
 
@@ -425,20 +425,20 @@ export const SpatialCanvas: React.FC = () => {
     // Keyboard Event Handlers
     const handleKeyDown = (e: KeyboardEvent) => {
       // Allow hotkeys even if modal is open
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         useReportingStore.getState().closeStationInspection();
         useReportingStore.getState().closePortfolio();
         useReportingStore.getState().setCommandPaletteOpen(false);
         return;
       }
 
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         useReportingStore.getState().toggleCommandPalette();
         return;
       }
 
-      if ((e.metaKey || e.ctrlKey) && (e.key === "p" || e.key === "P")) {
+      if ((e.metaKey || e.ctrlKey) && (e.key === 'p' || e.key === 'P')) {
         e.preventDefault();
         useReportingStore.getState().openPortfolio();
         return;
@@ -449,7 +449,7 @@ export const SpatialCanvas: React.FC = () => {
       keysRef.current[e.code] = true;
 
       // Enter or E to inspect nearest station
-      if (e.code === "KeyE" || e.code === "Enter") {
+      if (e.code === 'KeyE' || e.code === 'Enter') {
         const { nearestStation, distanceToNearest } = useReportingStore.getState();
         if (nearestStation && distanceToNearest < 180) {
           openStationInspection(nearestStation);
@@ -461,13 +461,13 @@ export const SpatialCanvas: React.FC = () => {
       keysRef.current[e.code] = false;
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
 
     return () => {
       isDestroyed = true;
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
       if (app) {
         app.destroy(true, { children: true, texture: true });
       }

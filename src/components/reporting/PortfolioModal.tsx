@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { X, Film, Eye, Tag, Calendar, User, ArrowLeft, ArrowUpRight, Sparkles } from "lucide-react";
-import { PORTFOLIO_ITEMS, type PortfolioItem } from "../../data/reporting/portfolio";
-import { useReportingStore } from "../../stores/reportingStore";
+import React, { useState } from 'react';
+import { X, Film, Eye, Tag, Calendar, User, ArrowLeft, ArrowUpRight, Sparkles } from 'lucide-react';
+import { PORTFOLIO_ITEMS, type PortfolioItem } from '../../data/reporting/portfolio';
+import { useReportingStore } from '../../stores/reportingStore';
 
 export const PortfolioModal: React.FC = () => {
   const isPortfolioOpen = useReportingStore((s) => s.isPortfolioOpen);
@@ -9,12 +9,12 @@ export const PortfolioModal: React.FC = () => {
   const selectedItem = useReportingStore((s) => s.selectedPortfolioItem);
   const setSelectedItem = useReportingStore((s) => s.setSelectedPortfolioItem);
 
-  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [activeCategory, setActiveCategory] = useState<string>('all');
 
   if (!isPortfolioOpen) return null;
 
   const filteredItems = PORTFOLIO_ITEMS.filter((item) =>
-    activeCategory === "all" ? true : item.category === activeCategory
+    activeCategory === 'all' ? true : item.category === activeCategory,
   );
 
   return (
@@ -53,12 +53,12 @@ export const PortfolioModal: React.FC = () => {
         <div className="flex items-center px-6 py-3 border-b border-white/5 bg-black/40 overflow-x-auto">
           <div className="inline-flex items-center gap-1.5 p-1 rounded-full bg-white/5 border border-white/10">
             {[
-              { id: "all", label: "All Works" },
-              { id: "cinema", label: "Cinema / Video" },
-              { id: "campaigns", label: "Campaigns" },
-              { id: "publications", label: "Publications" },
-              { id: "fieldwork", label: "Fieldwork" },
-              { id: "photography", label: "Photography" },
+              { id: 'all', label: 'All Works' },
+              { id: 'cinema', label: 'Cinema / Video' },
+              { id: 'campaigns', label: 'Campaigns' },
+              { id: 'publications', label: 'Publications' },
+              { id: 'fieldwork', label: 'Fieldwork' },
+              { id: 'photography', label: 'Photography' },
             ].map((cat) => (
               <button
                 key={cat.id}
@@ -68,8 +68,8 @@ export const PortfolioModal: React.FC = () => {
                 }}
                 className={`px-3.5 py-1.5 rounded-full transition-all whitespace-nowrap text-xs font-mono ${
                   activeCategory === cat.id
-                    ? "bg-white text-black font-semibold shadow-sm"
-                    : "text-neutral-400 hover:text-white hover:bg-white/5 font-medium"
+                    ? 'bg-white text-black font-semibold shadow-sm'
+                    : 'text-neutral-400 hover:text-white hover:bg-white/5 font-medium'
                 }`}
               >
                 {cat.label}
@@ -101,11 +101,9 @@ export const PortfolioModal: React.FC = () => {
                   <div className="font-mono text-xs uppercase tracking-widest text-neutral-400">
                     {selectedItem.event} • {selectedItem.year}
                   </div>
-                  <h2 className="text-2xl font-bold tracking-tight text-white">
-                    {selectedItem.title}
-                  </h2>
+                  <h2 className="text-2xl font-bold tracking-tight text-white">{selectedItem.title}</h2>
                   <p className="text-xs font-mono text-neutral-400">
-                    Roles: {selectedItem.roles.join(" • ")}
+                    Roles: {selectedItem.roles.join(' • ')}
                   </p>
                 </div>
 
@@ -125,17 +123,13 @@ export const PortfolioModal: React.FC = () => {
                     <h4 className="text-sm font-mono uppercase tracking-wider text-neutral-400 mb-1">
                       Project Narrative
                     </h4>
-                    <p className="text-sm leading-relaxed text-neutral-200">
-                      {selectedItem.details}
-                    </p>
+                    <p className="text-sm leading-relaxed text-neutral-200">{selectedItem.details}</p>
                   </div>
                   <div>
                     <h4 className="text-sm font-mono uppercase tracking-wider text-neutral-400 mb-1">
                       Visual Direction
                     </h4>
-                    <p className="text-xs text-neutral-400 leading-relaxed">
-                      {selectedItem.caption}
-                    </p>
+                    <p className="text-xs text-neutral-400 leading-relaxed">{selectedItem.caption}</p>
                   </div>
                 </div>
 
@@ -178,7 +172,9 @@ export const PortfolioModal: React.FC = () => {
                   <div className="space-y-3.5">
                     {/* Top Bar with Frame Index & Format */}
                     <div className="flex items-center justify-between text-[10px] font-mono text-neutral-400 border-b border-white/5 pb-2">
-                      <span className="font-semibold text-neutral-300">FRAME [{(idx + 1).toString().padStart(2, "0")}]</span>
+                      <span className="font-semibold text-neutral-300">
+                        FRAME [{(idx + 1).toString().padStart(2, '0')}]
+                      </span>
                       <span className="uppercase tracking-widest text-[9px] px-2 py-0.5 rounded-full bg-white/5 border border-white/5">
                         {item.category}
                       </span>
@@ -188,7 +184,7 @@ export const PortfolioModal: React.FC = () => {
                     <div className="aspect-[16/9] rounded-xl bg-black/50 border border-white/5 relative overflow-hidden flex items-center justify-center p-4 group-hover:border-white/20 transition-all">
                       {/* Generative Visual Accents based on Item */}
                       <div className="absolute inset-0 bg-radial from-white/[0.04] to-transparent pointer-events-none" />
-                      
+
                       <div className="relative text-center space-y-1.5 z-10">
                         <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 mx-auto flex items-center justify-center group-hover:scale-110 transition-transform">
                           <Film className="w-5 h-5 text-neutral-300 group-hover:text-white transition-colors" />
@@ -212,9 +208,7 @@ export const PortfolioModal: React.FC = () => {
                       <h4 className="font-bold text-sm tracking-tight text-white group-hover:text-neutral-100 transition-colors">
                         {item.title}
                       </h4>
-                      <p className="text-xs text-neutral-400 line-clamp-2 leading-relaxed">
-                        {item.caption}
-                      </p>
+                      <p className="text-xs text-neutral-400 line-clamp-2 leading-relaxed">{item.caption}</p>
                     </div>
                   </div>
 

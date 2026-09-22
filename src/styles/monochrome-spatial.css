@@ -7,16 +7,16 @@
 :root {
   /* Strict 11-Stop Monochrome Palette (Zero Color Accents) */
   --mono-100: #ffffff;
-  --mono-95:  #fafafa;
-  --mono-90:  #f5f5f5;
-  --mono-85:  #eaeaea;
-  --mono-75:  #d9d9d9;
-  --mono-65:  #bfbfbf;
-  --mono-50:  #8a8a8a;
-  --mono-35:  #5a5a5a;
-  --mono-20:  #2a2a2a;
-  --mono-10:  #111111;
-  --mono-0:   #000000;
+  --mono-95: #fafafa;
+  --mono-90: #f5f5f5;
+  --mono-85: #eaeaea;
+  --mono-75: #d9d9d9;
+  --mono-65: #bfbfbf;
+  --mono-50: #8a8a8a;
+  --mono-35: #5a5a5a;
+  --mono-20: #2a2a2a;
+  --mono-10: #111111;
+  --mono-0: #000000;
 
   /* Thematic Variables (Light Canvas Default) */
   --canvas-bg: var(--mono-95);
@@ -24,7 +24,7 @@
   --canvas-grid-subtle: rgba(0, 0, 0, 0.025);
   --canvas-line: rgba(0, 0, 0, 0.85);
   --canvas-line-muted: rgba(0, 0, 0, 0.25);
-  
+
   --ink-primary: var(--mono-0);
   --ink-secondary: var(--mono-35);
   --ink-tertiary: var(--mono-50);
@@ -41,8 +41,8 @@
   --glass-saturate: 180%;
 
   /* Fonts */
-  --font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
 /* Darkroom / Math in Sight Theme Override */
@@ -92,10 +92,11 @@
   border: 1px solid var(--glass-border);
   border-radius: 1.5rem;
   box-shadow: var(--glass-shadow), var(--glass-bevel);
-  transition: background 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    background 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
@@ -106,19 +107,31 @@
 
 /* Razor-Thin Top Edge Specular Highlight */
 .spatial-glass-panel::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 30%, rgba(255, 255, 255, 0.8) 70%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.8) 30%,
+    rgba(255, 255, 255, 0.8) 70%,
+    transparent 100%
+  );
   pointer-events: none;
   z-index: 20;
 }
 
 .theme-darkroom .spatial-glass-panel::before {
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 30%, rgba(255, 255, 255, 0.4) 70%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 30%,
+    rgba(255, 255, 255, 0.4) 70%,
+    transparent 100%
+  );
 }
 
 /* Universal Focus Outline Reset for Custom Spatial Inputs */
@@ -135,12 +148,15 @@ input:focus-visible {
   -webkit-backdrop-filter: blur(28px) saturate(190%);
   border: 1px solid var(--glass-border);
   border-radius: 9999px;
-  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.12), inset 0 1px 1px 0 rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 8px 32px -4px rgba(0, 0, 0, 0.12),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 /* Apple 3D Glass Orb Ambient Motion */
 @keyframes floatGlassOrb {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg) scale(1);
   }
   50% {

@@ -1,5 +1,5 @@
-import React from "react";
-import { User, Award, Compass, Layers, Quote } from "lucide-react";
+import React from 'react';
+import { User, Award, Compass, Layers, Quote } from 'lucide-react';
 
 export const ProfileLedger: React.FC = () => {
   return (
@@ -15,7 +15,9 @@ export const ProfileLedger: React.FC = () => {
           <div className="space-y-1.5 font-mono text-[11px]">
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">Name</span>
-              <span className="font-semibold text-neutral-900 dark:text-neutral-100 text-right">Aedrian "Dian" Ponce</span>
+              <span className="font-semibold text-neutral-900 dark:text-neutral-100 text-right">
+                Aedrian "Dian" Ponce
+              </span>
             </div>
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">Pronouns</span>
@@ -23,11 +25,15 @@ export const ProfileLedger: React.FC = () => {
             </div>
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">Batch</span>
-              <span className="font-semibold text-neutral-900 dark:text-neutral-100 text-right">UPLB Batch 2025</span>
+              <span className="font-semibold text-neutral-900 dark:text-neutral-100 text-right">
+                UPLB Batch 2025
+              </span>
             </div>
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">Program</span>
-              <span className="text-neutral-800 dark:text-neutral-200 font-medium text-right">BS Applied Math</span>
+              <span className="text-neutral-800 dark:text-neutral-200 font-medium text-right">
+                BS Applied Math
+              </span>
             </div>
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">Hometown</span>
@@ -45,15 +51,21 @@ export const ProfileLedger: React.FC = () => {
           <div className="space-y-1.5 font-mono text-[11px]">
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">SAM-UP Batch</span>
-              <span className="font-semibold text-neutral-900 dark:text-neutral-100 text-right">Florensimus Vincula</span>
+              <span className="font-semibold text-neutral-900 dark:text-neutral-100 text-right">
+                Florensimus Vincula
+              </span>
             </div>
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">Standing Comm</span>
-              <span className="text-neutral-800 dark:text-neutral-200 font-medium text-right">Business Committee</span>
+              <span className="text-neutral-800 dark:text-neutral-200 font-medium text-right">
+                Business Committee
+              </span>
             </div>
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">Current Role</span>
-              <span className="font-semibold text-neutral-900 dark:text-neutral-100 text-right">Marketing Deputy Head</span>
+              <span className="font-semibold text-neutral-900 dark:text-neutral-100 text-right">
+                Marketing Deputy Head
+              </span>
             </div>
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">Induction</span>
@@ -75,15 +87,21 @@ export const ProfileLedger: React.FC = () => {
           <div className="space-y-1.5 font-mono text-[11px]">
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">Razzmatazz '26</span>
-              <span className="font-semibold text-neutral-900 dark:text-neutral-100 text-right">Head of Logistics</span>
+              <span className="font-semibold text-neutral-900 dark:text-neutral-100 text-right">
+                Head of Logistics
+              </span>
             </div>
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">UPLB Tools</span>
-              <span className="text-neutral-800 dark:text-neutral-200 font-medium text-right">Webmaster & Interface</span>
+              <span className="text-neutral-800 dark:text-neutral-200 font-medium text-right">
+                Webmaster & Interface
+              </span>
             </div>
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">Residence</span>
-              <span className="text-neutral-800 dark:text-neutral-200 text-right">Catalan Compound, UPLB</span>
+              <span className="text-neutral-800 dark:text-neutral-200 text-right">
+                Catalan Compound, UPLB
+              </span>
             </div>
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">Design Stack</span>
@@ -113,7 +131,9 @@ export const ProfileLedger: React.FC = () => {
             </div>
             <div className="flex justify-between items-start gap-2 py-0.5">
               <span className="text-neutral-500 shrink-0">Daily Ritual</span>
-              <span className="text-neutral-800 dark:text-neutral-200 text-right">Strength Training / Gym</span>
+              <span className="text-neutral-800 dark:text-neutral-200 text-right">
+                Strength Training / Gym
+              </span>
             </div>
           </div>
         </div>
@@ -123,7 +143,8 @@ export const ProfileLedger: React.FC = () => {
       <div className="p-4 rounded-2xl bg-neutral-900 text-neutral-200 dark:bg-white dark:text-neutral-900 border border-black/10 dark:border-white/20 flex items-start gap-3 shadow-sm">
         <Quote className="w-4 h-4 mt-0.5 text-neutral-400 dark:text-neutral-500 shrink-0 select-none" />
         <p className="text-xs md:text-sm font-medium leading-relaxed italic">
-          "I tell you who I am → you tell me who you are → I tell you how I experienced SAM-UP → we talk about how we can build together."
+          "I tell you who I am → you tell me who you are → I tell you how I experienced SAM-UP → we talk about
+          how we can build together."
         </p>
       </div>
     </div>

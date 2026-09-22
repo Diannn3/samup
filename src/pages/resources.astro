@@ -1,85 +1,146 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import GlassCard from '../components/ui/GlassCard.astro';
-import { BookOpen, ArrowRight } from 'lucide-react';
+import { getCollection } from 'astro:content';
+import { ArrowRight, BookOpen, ExternalLink, ShieldCheck } from 'lucide-react';
+
+const resources = (
+  await getCollection(
+    'resources',
+    ({ data }) =>
+      (data.evidence.visibility === 'public' || data.evidence.visibility === 'public-summary-only') &&
+      data.evidence.status !== 'unknown' &&
+      data.evidence.status !== 'blocked' &&
+      data.evidence.status !== 'needs-approval',
+  )
+).sort((a, b) =>
+  (b.data.updatedAt ?? b.data.publishedAt ?? '').localeCompare(a.data.updatedAt ?? a.data.publishedAt ?? ''),
+);
 ---
 
 <BaseLayout
   title="Academic Resources | Society of Applied Mathematics of UPLB"
-  description="Course coverage of SAM-UP's peer tutorial caravans: Calculus, Linear Algebra, Differential Equations, and Optimization."
+  description="Source-aware public academic resources from the Society of Applied Mathematics of UPLB."
 >
-  {/* Page Header */}
-  <section class="py-20 sm:py-24 border-b border-[var(--border)] relative overflow-hidden">
-    <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.12)_0%,transparent_70%)] top-0 left-[-10%]" aria-hidden="true" />
-    <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(16,185,129,0.09)_0%,transparent_70%)] bottom-0 right-[-10%]" aria-hidden="true" />
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="max-w-3xl space-y-4">
-        <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight">
-          Academic <span class="text-gold-gradient">Resources</span>
+  <section class="border-b border-[var(--border)] py-20 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
+          <BookOpen className="w-4 h-4" aria-hidden="true" />
+          <span>Academic resources</span>
+        </div>
+        <h1 class="mt-5 font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-[-0.035em] leading-[0.98] text-[var(--foreground)]">
+          Useful materials, with <span class="text-gold-gradient">provenance.</span>
         </h1>
-        <p class="font-mono text-xs uppercase tracking-widest text-[var(--primary)]/90">
-          PEER TUTORIAL CARAVANS // UPLB.IMSP
-        </p>
-        <p class="text-base sm:text-lg text-[var(--muted-foreground)] leading-relaxed font-normal">
-          SAM-UP's peer tutorial caravans cover foundational mathematics courses at UPLB. Sessions run each semester — see Events & Programs for the current schedule.
+        <p class="mt-6 max-w-3xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
+          Reviewers, tutorial material, guides, and references belong here only when the material itself is
+          approved for public access and its source/update state is clear.
         </p>
       </div>
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-16">
-    {/* Course coverage — sourced from events.ts tutorial descriptions */}
-    <section class="space-y-8">
-      <div class="max-w-3xl space-y-3">
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          Peer Tutorial Caravan Syllabus
-        </h2>
-        <p class="font-mono text-xs uppercase tracking-widest text-[var(--primary)]/90">
-          COURSE COVERAGE // FOUNDATIONAL MATHEMATICS UPLB
-        </p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-        <GlassCard tag="CALCULUS" title="Math 27 / 28" subtitle="Limits, derivatives, integration techniques, multivariable calculus, and vector analysis." showArrow={false} />
-        <GlassCard tag="ALGEBRA" title="Math 110" subtitle="Vector spaces, matrix decompositions, eigenvalues, linear transformations, and inner products." showArrow={false} />
-        <GlassCard tag="DIFFERENTIAL" title="Math 180" subtitle="First-order ODEs, higher-order linear systems, Laplace transforms, and boundary value problems." showArrow={false} />
-        <GlassCard tag="OPTIMIZATION" title="Math 165" subtitle="Linear programming, Simplex algorithm, duality theory, transportation, and network optimization." showArrow={false} />
-      </div>
-    </section>
-
-    {/* Schedule pointer — the verified update channel */}
-    <section class="frosted-glass-card p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
-      <div class="space-y-2 text-center md:text-left">
-        <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-[var(--primary)]">
-          <BookOpen class="w-4 h-4" aria-hidden="true" />
-          <span>TUTORIAL SCHEDULES</span>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-14">
+    {resources.length > 0 ? (
+      <section
+        class="divide-y divide-[var(--border)] border-y border-[var(--border)]"
+        aria-label="Verified public academic resources"
+      >
+        {resources.map((resource) => (
+          <a
+            href={resource.data.externalUrl ?? '#'}
+            target={resource.data.externalUrl ? '_blank' : undefined}
+            rel={resource.data.externalUrl ? 'noopener noreferrer' : undefined}
+            class="group grid sm:grid-cols-[9rem_1fr_auto] gap-5 py-7"
+          >
+            <div>
+              <span class="rounded-full border border-[var(--border)] px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-[var(--primary)]">
+                {resource.data.type}
+              </span>
+            </div>
+            <div>
+              <h2 class="font-display font-bold text-xl text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+                {resource.data.title}
+              </h2>
+              <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+                {resource.data.summary}
+              </p>
+              {resource.data.courses && resource.data.courses.length > 0 && (
+                <p class="mt-3 text-xs font-mono text-[var(--muted-foreground)]">
+                  Courses: {resource.data.courses.join(', ')}
+                </p>
+              )}
+            </div>
+            {resource.data.externalUrl && (
+              <ExternalLink
+                className="hidden sm:block w-5 h-5 text-[var(--muted-foreground)] group-hover:text-[var(--primary)]"
+                aria-hidden="true"
+              />
+            )}
+          </a>
+        ))}
+      </section>
+    ) : (
+      <section class="grid lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-7 rounded-[1.5rem] border border-[var(--border)] p-8 sm:p-10">
+          <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+            <ShieldCheck className="w-4 h-4" aria-hidden="true" />
+            <span>Resource catalog review</span>
+          </div>
+          <h2 class="mt-4 font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
+            No unsupported syllabus is standing in for real resources.
+          </h2>
+          <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+            The old page inferred detailed course topics and an additional course from limited program
+            context. Those claims are gone. Approved files and links will populate this collection only after
+            source and visibility review.
+          </p>
         </div>
-        <h3 class="font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
-          When are the next sessions?
-        </h3>
-        <p class="text-sm text-[var(--muted-foreground)] max-w-xl">
-          Tutorial caravan schedules are announced each semester on the official SAM-UP Facebook page and posted on the Events & Programs page.
+
+        <aside class="lg:col-span-5 space-y-6">
+          <div class="border-t border-[var(--border)] pt-5">
+            <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">
+              01 / Source
+            </div>
+            <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+              A resource needs an identifiable file, page, or official destination.
+            </p>
+          </div>
+          <div class="border-t border-[var(--border)] pt-5">
+            <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">
+              02 / Visibility
+            </div>
+            <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+              Member-only databases and unapproved files stay private.
+            </p>
+          </div>
+          <div class="border-t border-[var(--border)] pt-5">
+            <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">
+              03 / Freshness
+            </div>
+            <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+              Schedules and course coverage need a current source rather than old assumptions.
+            </p>
+          </div>
+        </aside>
+      </section>
+    )}
+
+    <section class="border-t border-[var(--border)] pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+      <div>
+        <h2 class="font-display font-bold text-2xl text-[var(--foreground)]">
+          Looking for a current tutorial announcement?
+        </h2>
+        <p class="mt-2 text-sm text-[var(--muted-foreground)]">
+          Use Programs & Updates while the academic resource catalog is being verified.
         </p>
       </div>
-
-      <div class="flex flex-col sm:flex-row gap-3 shrink-0">
-        <a
-          href="/events"
-          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-all shadow-md shadow-[var(--primary)]/20"
-        >
-          <span>View Events & Programs</span>
-          <ArrowRight class="w-4 h-4" aria-hidden="true" />
-        </a>
-        <a
-          href="https://facebook.com/SAMUPLB"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--foreground)] font-semibold text-sm hover:border-[var(--border-primary)] transition-all shadow-sm"
-        >
-          <span>Follow @SAMUPLB</span>
-        </a>
-      </div>
+      <a
+        href="/programs"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline shrink-0"
+      >
+        Programs & Updates
+        <ArrowRight className="w-4 h-4" aria-hidden="true" />
+      </a>
     </section>
-  </div>
+  </main>
 </BaseLayout>

@@ -29,8 +29,7 @@ export const milestones: Milestone[] = [
     id: 'first-term',
     year: '1985',
     title: 'First recorded leadership term',
-    description:
-      `Edmund Campos served as Senior Executive for the 2nd Sem 84-85 term, the first entry in the documented leadership archive.`,
+    description: `Edmund Campos served as Senior Executive for the 2nd Sem 84-85 term, the first entry in the documented leadership archive.`,
     evidence: 'verified',
     source: 'src/data/senior_executives.json',
   },
@@ -38,8 +37,7 @@ export const milestones: Milestone[] = [
     id: 'latest-term',
     year: 'Latest',
     title: 'Forty-plus years of documented terms',
-    description:
-      `The leadership archive now records ${seniorExecs.length} terms from 1984 through its latest recorded entry.`,
+    description: `The leadership archive now records ${seniorExecs.length} terms from 1984 through its latest recorded entry.`,
     evidence: 'verified',
     source: 'src/data/senior_executives.json',
   },

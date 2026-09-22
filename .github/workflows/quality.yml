@@ -1,0 +1,119 @@
+name: SAM-UP Quality
+
+on:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+      - 'fix/**'
+      - 'refactor/**'
+      - 'chore/**'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: samup-quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Run Astro diagnostics
+        run: npm run check
+
+      - name: Build Astro site
+        run: npm run build
+
+      - name: Enforce homepage bundle budget
+        run: npm run qa:bundle
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start preview server
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4321 > /tmp/samup-preview.log 2>&1 &
+          echo $! > /tmp/samup-preview.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4321/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/samup-preview.log
+          exit 1
+
+      - name: Automated accessibility audit
+        env:
+          SAM_UP_BASE_URL: http://127.0.0.1:4321
+        run: npm run test:a11y
+
+      - name: Browser audit
+        env:
+          SAM_UP_BASE_URL: http://127.0.0.1:4321
+        run: npm run qa:audit
+
+      - name: Progressive enhancement audit
+        env:
+          SAM_UP_BASE_URL: http://127.0.0.1:4321
+        run: npm run qa:motion
+
+      - name: Visual viewport audit
+        env:
+          SAM_UP_BASE_URL: http://127.0.0.1:4321
+          SAM_UP_QA_DIR: qa-local
+        run: npm run qa:visual
+
+      - name: Lighthouse budgets
+        run: npm run perf:lhci
+
+      - name: Report Lighthouse CLS diagnostics
+        if: failure()
+        run: node scripts/report-lighthouse-cls.mjs
+
+      - name: Report DOM layout-shift sources
+        if: failure()
+        env:
+          SAM_UP_BASE_URL: http://127.0.0.1:4321
+        run: node scripts/cls-diagnostic.mjs
+
+      - name: Upload visual QA snapshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: samup-visual-qa-${{ github.run_id }}
+          path: qa-local/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Upload Lighthouse reports on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: samup-lighthouse-${{ github.run_id }}
+          path: .lighthouseci/
+          if-no-files-found: ignore
+          include-hidden-files: true
+          retention-days: 7

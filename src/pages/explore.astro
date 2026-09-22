@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ShortestPathDiagram from '../components/math/ShortestPathDiagram.astro';
+import { getCollection } from 'astro:content';
+import { ArrowRight, Sigma, BookOpen, Network, Calculator, LineChart } from 'lucide-react';
+
+const articles = (
+  await getCollection(
+    'appliedMath',
+    ({ data }) =>
+      data.evidence.visibility === 'public' &&
+      data.evidence.status !== 'unknown' &&
+      data.evidence.status !== 'blocked' &&
+      data.evidence.status !== 'needs-approval',
+  )
+).sort((a, b) => b.data.publishedAt.localeCompare(a.data.publishedAt));
+
+const featured = articles[0];
+---
+
+<BaseLayout
+  title="Explore Applied Mathematics | SAM-UP"
+  description="SAM-UP explains how mathematical models help people understand systems, compare trade-offs, and make better real-world decisions."
+>
+  <section class="relative overflow-hidden border-b border-[var(--border)] py-20 sm:py-24 lg:py-28">
+    <div class="absolute inset-0 pointer-events-none opacity-55" aria-hidden="true">
+      <div class="absolute inset-y-0 left-[12%] w-px bg-[var(--border)]"></div>
+      <div class="absolute inset-y-0 right-[12%] w-px bg-[var(--border)]"></div>
+      <div class="absolute top-[36%] inset-x-0 h-px bg-[var(--border)]"></div>
+      <div class="absolute left-[20%] top-[18%] h-2 w-2 rounded-full bg-[var(--primary)]"></div>
+      <div class="absolute right-[18%] bottom-[24%] h-2 w-2 rounded-full bg-[var(--primary)]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-4xl">
+        <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
+          <Sigma className="w-4 h-4" aria-hidden="true" />
+          <span>Explore Applied Mathematics</span>
+        </div>
+        <h1 class="mt-5 font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-[-0.035em] leading-[0.98] text-[var(--foreground)]">
+          Mathematics becomes useful when it helps us <span class="text-gold-gradient">choose well.</span>
+        </h1>
+        <p class="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
+          Models turn routes, schedules, networks, queues, risk, growth, and allocation problems into
+          structures we can inspect, compare, and reason about.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-20">
+    {featured && (
+      <section aria-labelledby="featured-explainer-heading">
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div class="lg:col-span-5">
+            <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+              <BookOpen className="w-4 h-4" aria-hidden="true" />
+              <span>Featured explainer • {featured.data.level}</span>
+            </div>
+            <h2
+              id="featured-explainer-heading"
+              class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight"
+            >
+              {featured.data.title}
+            </h2>
+            <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+              {featured.data.summary}
+            </p>
+
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span class="rounded-full border border-[var(--border)] px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+                {featured.data.concept}
+              </span>
+              <span class="rounded-full border border-[var(--border)] px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+                Reviewed {featured.data.evidence.reviewedAt}
+              </span>
+            </div>
+
+            <a
+              href={`/explore/${featured.data.slug}`}
+              class="mt-7 inline-flex min-h-11 items-center gap-2 rounded-xl bg-[var(--primary)] px-5 py-3 text-sm font-bold text-[var(--primary-foreground)] transition-transform hover:-translate-y-0.5"
+            >
+              Read the explainer
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+          </div>
+
+          <div class="lg:col-span-7">
+            {featured.data.slug === 'shortest-paths' ? (
+              <ShortestPathDiagram compact />
+            ) : (
+              <div class="aspect-[4/3] rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] flex items-center justify-center">
+                <Sigma className="w-16 h-16 text-[var(--primary)]" aria-hidden="true" />
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section aria-labelledby="applied-math-lenses-heading">
+      <div class="max-w-3xl">
+        <div class="text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+          Three useful lenses
+        </div>
+        <h2
+          id="applied-math-lenses-heading"
+          class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]"
+        >
+          What Applied Mathematics does
+        </h2>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-3 gap-px overflow-hidden rounded-[1.5rem] border border-[var(--border)] bg-[var(--border)]">
+        <article class="bg-[var(--background)] p-7">
+          <Network className="w-6 h-6 text-[var(--primary)]" aria-hidden="true" />
+          <h3 class="mt-5 font-display font-bold text-xl text-[var(--foreground)]">Model structure</h3>
+          <p class="mt-3 text-sm leading-relaxed text-[var(--muted-foreground)]">
+            Decide what matters, what can interact, and which constraints represent the real system.
+          </p>
+        </article>
+
+        <article class="bg-[var(--background)] p-7">
+          <Calculator className="w-6 h-6 text-[var(--primary)]" aria-hidden="true" />
+          <h3 class="mt-5 font-display font-bold text-xl text-[var(--foreground)]">Measure trade-offs</h3>
+          <p class="mt-3 text-sm leading-relaxed text-[var(--muted-foreground)]">
+            Convert competing goals—time, cost, risk, accuracy, capacity—into quantities we can compare.
+          </p>
+        </article>
+
+        <article class="bg-[var(--background)] p-7">
+          <LineChart className="w-6 h-6 text-[var(--primary)]" aria-hidden="true" />
+          <h3 class="mt-5 font-display font-bold text-xl text-[var(--foreground)]">Support decisions</h3>
+          <p class="mt-3 text-sm leading-relaxed text-[var(--muted-foreground)]">
+            Use analysis, simulation, optimization, or statistics to understand consequences before acting.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="all-explainers-heading">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+            SAM-UP explainers
+          </div>
+          <h2
+            id="all-explainers-heading"
+            class="mt-3 font-display font-black text-3xl text-[var(--foreground)]"
+          >
+            Learn one model at a time
+          </h2>
+        </div>
+        <p class="max-w-xl text-sm text-[var(--muted-foreground)]">
+          Each explainer is source-listed, accessibility-described, and designed to work without JavaScript.
+        </p>
+      </div>
+
+      <div class="mt-8 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+        {articles.map((article, index) => (
+          <a
+            href={`/explore/${article.data.slug}`}
+            class="group grid sm:grid-cols-[5rem_1fr_auto] gap-4 sm:gap-6 items-center py-6"
+          >
+            <div class="font-mono text-xs text-[var(--muted-foreground)]">
+              {String(index + 1).padStart(2, '0')}
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-xl text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+                {article.data.title}
+              </h3>
+              <p class="mt-1 text-sm text-[var(--muted-foreground)]">{article.data.summary}</p>
+            </div>
+            <ArrowRight
+              className="hidden sm:block w-5 h-5 text-[var(--muted-foreground)] group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all"
+              aria-hidden="true"
+            />
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

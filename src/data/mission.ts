@@ -80,10 +80,8 @@ export const principles = [
 /** Emblem symbology, Article II. The seal is the authentic Più identity. */
 export const emblem = {
   colors: 'The official colors of the organization shall be black and gold.',
-  seal:
-    'The official seal shall consist of two concentric circles, the central figure of which shall be called the "piu". The organization name, "1984", and two stars are inscribed between the circles.',
-  piu:
-    'The "piu" stands for the summation of all efforts and capabilities of the members in their pursuit to form an organization that would meet their interests and needs as applied mathematicians.',
+  seal: 'The official seal shall consist of two concentric circles, the central figure of which shall be called the "piu". The organization name, "1984", and two stars are inscribed between the circles.',
+  piu: 'The "piu" stands for the summation of all efforts and capabilities of the members in their pursuit to form an organization that would meet their interests and needs as applied mathematicians.',
   circles:
     'The outer circle signifies the Philippine Society; the inner circle signifies the organization itself and the unity among its members. The two stars signify the principles and the objectives of the organization.',
   evidence: 'verified' as EvidenceState,

@@ -2,73 +2,93 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { ExecutiveSearch } from '../components/interactive/ExecutiveSearch';
 import { organization } from '../data/organization';
-import { Mail, Landmark, Users } from 'lucide-react';
+import { Archive, ArrowRight, ShieldCheck } from 'lucide-react';
 ---
 
 <BaseLayout
   title="Leadership Archive | Society of Applied Mathematics of UPLB"
-  description={`Search all ${organization.totalLeadershipTerms} documented leadership terms of SAM-UP, from 1984 to the current academic year.`}
+  description={`Search ${organization.totalLeadershipTerms} documented Senior Executive term entries in SAM-UP's historical repository archive.`}
 >
-  {/* Page Header */}
-  <section class="py-20 sm:py-24 border-b border-[var(--border)] relative overflow-hidden">
-    <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.12)_0%,transparent_70%)] top-0 left-[-10%]" aria-hidden="true" />
-    <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(59,130,246,0.09)_0%,transparent_70%)] bottom-0 right-[-10%]" aria-hidden="true" />
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="max-w-3xl space-y-4">
-        <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight">
-          The <span class="text-gold-gradient">Leadership Archive</span>
+  <section class="border-b border-[var(--border)] py-20 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
+          <Archive className="w-4 h-4" aria-hidden="true" />
+          <span>Historical leadership records</span>
+        </div>
+        <h1 class="mt-5 font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-[-0.035em] leading-[0.98] text-[var(--foreground)]">
+          Leadership <span class="text-gold-gradient">Archive</span>
         </h1>
-        <p class="font-mono text-xs uppercase tracking-widest text-[var(--primary)]/90">
-          DOCUMENTED LEADERSHIP TERMS • 1984–PRESENT // UPLB.IMSP
-        </p>
-        <p class="text-base sm:text-lg text-[var(--muted-foreground)] leading-relaxed font-normal">
-          Search all {organization.totalLeadershipTerms} documented leadership terms of SAM-UP, from the first recorded Senior Executive in 1984 through the latest entry in the archive.
+        <p class="mt-6 max-w-3xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
+          Search {organization.totalLeadershipTerms} documented Senior Executive term entries beginning in
+          1984. This is a historical dataset—not a representation of SAM-UP's complete current Executive
+          Committee.
         </p>
       </div>
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-16">
-    {/* Searchable archive — data from senior_executives.json */}
-    <section class="space-y-8">
-      <div class="max-w-3xl space-y-3">
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
-          Roll of Senior Executives
-        </h2>
-        <p class="font-mono text-xs uppercase tracking-widest text-[var(--primary)]/90">
-          SEARCHABLE ARCHIVE // 1984–PRESENT
-        </p>
-        <p class="text-base text-[var(--muted-foreground)]">
-          Each entry records one academic-semester term of governance. This is a historical archive, not the current Executive Committee roster.
-        </p>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-12">
+    <section class="grid lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-4">
+        <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">Dataset scope</div>
+        <dl class="mt-5 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+          <div class="py-5">
+            <dt class="text-xs text-[var(--muted-foreground)]">Recorded entries</dt>
+            <dd class="mt-1 font-display font-black text-3xl text-[var(--foreground)]">
+              {organization.totalLeadershipTerms}
+            </dd>
+          </div>
+          <div class="py-5">
+            <dt class="text-xs text-[var(--muted-foreground)]">First archive entry</dt>
+            <dd class="mt-1 text-sm font-semibold text-[var(--foreground)]">Edmund Campos • 2nd Sem 84–85</dd>
+          </div>
+          <div class="py-5">
+            <dt class="text-xs text-[var(--muted-foreground)]">Latest repository entry</dt>
+            <dd class="mt-1 text-sm font-semibold text-[var(--foreground)]">
+              {organization.latestRecordedExecutive.name} • {organization.latestRecordedExecutive.term}
+            </dd>
+          </div>
+        </dl>
+
+        <div class="mt-6 flex items-start gap-3 text-xs leading-relaxed text-[var(--muted-foreground)]">
+          <ShieldCheck className="w-4 h-4 shrink-0 mt-0.5 text-[var(--primary)]" aria-hidden="true" />
+          <p>
+            Gaps or the final entry in this dataset should not be used to infer missing historical terms or
+            the present officer roster.
+          </p>
+        </div>
       </div>
 
-      <ExecutiveSearch client:load />
+      <div class="lg:col-span-8">
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
+          Search documented terms
+        </h2>
+        <p class="mt-2 text-sm text-[var(--muted-foreground)]">
+          Search by Senior Executive name or term label.
+        </p>
+        <div class="mt-6">
+          <ExecutiveSearch client:load />
+        </div>
+      </div>
     </section>
 
-    {/* Alumni contact */}
-    <section class="frosted-glass-card p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
-      <div class="space-y-2 text-center md:text-left">
-        <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-[var(--primary)]">
-          <Users class="w-4 h-4" aria-hidden="true" />
-          <span>ALUMNI RELATIONS</span>
-        </div>
-        <h3 class="font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
-          Are you a SAM-UP alumnus?
-        </h3>
-        <p class="text-sm text-[var(--muted-foreground)] max-w-xl">
-          Reach out to reconnect with the organization. The archive grows as past terms are documented.
+    <section class="border-t border-[var(--border)] pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+      <div>
+        <h2 class="font-display font-bold text-2xl text-[var(--foreground)]">
+          Looking for broader organizational history?
+        </h2>
+        <p class="mt-2 text-sm text-[var(--muted-foreground)]">
+          The Archive hub separates leadership records from approved publication history.
         </p>
       </div>
-
       <a
-        href={`mailto:${organization.socials.email}?subject=SAM-UP Alumni Reconnect`}
-        class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-all shrink-0 shadow-md shadow-[var(--primary)]/20"
+        href="/archive"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline shrink-0"
       >
-        <Mail class="w-4 h-4" aria-hidden="true" />
-        <span>Contact SAM-UP</span>
+        Open Archive hub
+        <ArrowRight className="w-4 h-4" aria-hidden="true" />
       </a>
     </section>
-  </div>
+  </main>
 </BaseLayout>

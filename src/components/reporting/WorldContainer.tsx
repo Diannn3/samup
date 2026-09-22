@@ -1,23 +1,25 @@
-import React from "react";
-import { SpatialCanvas } from "./SpatialCanvas";
-import { StationDrawer } from "./StationDrawer";
-import { PortfolioModal } from "./PortfolioModal";
-import { CommandPalette } from "./CommandPalette";
-import { PresenterBar } from "./PresenterBar";
-import { MobileNarrativeDeck } from "./MobileNarrativeDeck";
-import { useReportingStore } from "../../stores/reportingStore";
+import React from 'react';
+import { SpatialCanvas } from './SpatialCanvas';
+import { StationDrawer } from './StationDrawer';
+import { PortfolioModal } from './PortfolioModal';
+import { CommandPalette } from './CommandPalette';
+import { PresenterBar } from './PresenterBar';
+import { MobileNarrativeDeck } from './MobileNarrativeDeck';
+import { useReportingStore } from '../../stores/reportingStore';
 
 export const WorldContainer: React.FC = () => {
   const currentChapter = useReportingStore((s) => s.currentChapter);
-  const isDark = currentChapter === "darkroom";
+  const isDark = currentChapter === 'darkroom';
 
   return (
-    <div className={`relative w-screen h-screen overflow-hidden select-none ${isDark ? "theme-darkroom" : ""}`}>
+    <div
+      className={`relative w-screen h-screen overflow-hidden select-none ${isDark ? 'theme-darkroom' : ''}`}
+    >
       {/* 2D PixiJS Spatial Canvas World */}
       <SpatialCanvas />
 
       {/* Luminous Apple 3D Glass Sphere & Ethereal Caustic Refraction */}
-      <div 
+      <div
         className="fixed top-8 right-8 lg:right-24 w-[480px] h-[480px] lg:w-[640px] lg:h-[640px] pointer-events-none z-10 select-none overflow-visible hidden md:flex items-center justify-center"
         aria-hidden="true"
       >
@@ -30,8 +32,8 @@ export const WorldContainer: React.FC = () => {
             alt=""
             className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-screen opacity-95 dark:opacity-80 apple-glass-orb"
             style={{
-              maskImage: "radial-gradient(circle at 50% 48%, black 46%, transparent 68%)",
-              WebkitMaskImage: "radial-gradient(circle at 50% 48%, black 46%, transparent 68%)",
+              maskImage: 'radial-gradient(circle at 50% 48%, black 46%, transparent 68%)',
+              WebkitMaskImage: 'radial-gradient(circle at 50% 48%, black 46%, transparent 68%)',
             }}
           />
         </div>
@@ -50,12 +52,15 @@ export const WorldContainer: React.FC = () => {
 
         <div className="space-y-1">
           <h1 className="text-3xl lg:text-4xl font-black tracking-tighter text-neutral-950 dark:text-white leading-[0.95]">
-            Design.<br />
-            Compute.<br />
+            Design.
+            <br />
+            Compute.
+            <br />
             <span className="text-neutral-400 dark:text-neutral-500">Architect.</span>
           </h1>
           <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium leading-relaxed pt-2">
-            Aedrian "Dian" Ponce — SAM-UP Applicant Reporting. Exploring 12 spatial stations, computational design, and creative archives.
+            Aedrian "Dian" Ponce — SAM-UP Applicant Reporting. Exploring 12 spatial stations, computational
+            design, and creative archives.
           </p>
         </div>
 

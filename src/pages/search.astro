@@ -1,0 +1,352 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { Search, ArrowRight } from 'lucide-react';
+
+const appliedMath = await getCollection(
+  'appliedMath',
+  ({ data }) =>
+    data.evidence.visibility === 'public' &&
+    data.evidence.status !== 'unknown' &&
+    data.evidence.status !== 'blocked' &&
+    data.evidence.status !== 'needs-approval',
+);
+
+const governance = await getCollection(
+  'governance',
+  ({ data }) =>
+    (data.evidence.visibility === 'public' || data.evidence.visibility === 'public-summary-only') &&
+    data.evidence.status !== 'unknown' &&
+    data.evidence.status !== 'blocked' &&
+    data.evidence.status !== 'needs-approval',
+);
+
+const chronicle = await getCollection(
+  'chronicle',
+  ({ data }) =>
+    (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
+    data.evidence.status !== 'unknown' &&
+    data.evidence.status !== 'blocked' &&
+    data.evidence.status !== 'needs-approval',
+);
+
+const programs = await getCollection(
+  'programs',
+  ({ data }) =>
+    (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
+    data.evidence.status !== 'unknown' &&
+    data.evidence.status !== 'blocked' &&
+    data.evidence.status !== 'needs-approval',
+);
+
+const resources = await getCollection(
+  'resources',
+  ({ data }) =>
+    (data.evidence.visibility === 'public' || data.evidence.visibility === 'public-summary-only') &&
+    data.evidence.status !== 'unknown' &&
+    data.evidence.status !== 'blocked' &&
+    data.evidence.status !== 'needs-approval',
+);
+
+const fixedPages = [
+  {
+    title: 'Explore Applied Mathematics',
+    description: 'Applied Mathematics explainers and models.',
+    href: '/explore',
+    type: 'section',
+  },
+  {
+    title: 'Programs & Updates',
+    description: 'Source-aware program status and official update links.',
+    href: '/programs',
+    type: 'section',
+  },
+  {
+    title: 'Academic Resources',
+    description: 'Approved public reviewers, guides, tutorials, and references.',
+    href: '/resources',
+    type: 'section',
+  },
+  {
+    title: 'Join SAM-UP',
+    description: 'Current recruitment guidance and OSA application scope.',
+    href: '/join',
+    type: 'section',
+  },
+  {
+    title: 'Partner with SAM-UP',
+    description: 'Public-safe partnership and collaboration information.',
+    href: '/partners',
+    type: 'section',
+  },
+  {
+    title: 'About SAM-UP',
+    description: 'Documented identity, objectives, principles, seal, and history.',
+    href: '/about',
+    type: 'section',
+  },
+  {
+    title: 'Governance',
+    description: 'Public-safe governance source summaries.',
+    href: '/governance',
+    type: 'section',
+  },
+  {
+    title: 'Archive',
+    description: 'Historical leadership and publication archives.',
+    href: '/archive',
+    type: 'section',
+  },
+  {
+    title: 'Leadership Archive',
+    description: 'Search documented Senior Executive term records.',
+    href: '/alumni',
+    type: 'archive',
+  },
+  {
+    title: 'The Chronicle',
+    description: 'Approved public newsletter issues and articles.',
+    href: '/chronicle',
+    type: 'archive',
+  },
+];
+
+const indexedItems = [
+  ...fixedPages,
+  ...appliedMath.map((entry) => ({
+    title: entry.data.title,
+    description: entry.data.summary,
+    href: `/explore/${entry.data.slug}`,
+    type: 'applied math',
+  })),
+  ...programs.map((entry) => ({
+    title: entry.data.title,
+    description: entry.data.summary,
+    href: `/events/${entry.data.slug}/`,
+    type: entry.data.lifecycle === 'historical' ? 'historical program' : 'program',
+  })),
+  ...governance.map((entry) => ({
+    title: entry.data.title,
+    description: entry.data.summary,
+    href: `/governance/${entry.data.slug}`,
+    type: 'governance',
+  })),
+  ...chronicle.map((entry) => ({
+    title: entry.data.title,
+    description: entry.data.summary,
+    href: entry.data.sourceUrl ?? '/chronicle',
+    type: 'chronicle',
+  })),
+  ...resources.map((entry) => ({
+    title: entry.data.title,
+    description: entry.data.summary,
+    href: entry.data.externalUrl ?? '/resources',
+    type: 'resource',
+  })),
+];
+---
+
+<BaseLayout
+  title="Search | Society of Applied Mathematics of UPLB"
+  description="Search public SAM-UP pages, Applied Mathematics explainers, governance summaries, resources, and archives."
+  indexInSearch={false}
+>
+  <section class="border-b border-[var(--border)] py-16 sm:py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
+        <Search className="w-4 h-4" aria-hidden="true" />
+        <span>Public site search</span>
+      </div>
+      <h1 class="mt-5 font-display font-black text-4xl sm:text-6xl tracking-[-0.035em] text-[var(--foreground)]">
+        Find something in <span class="text-gold-gradient">SAM-UP.</span>
+      </h1>
+      <p class="mt-5 max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
+        Search institutional pages and approved public content. Internal, private, and needs-approval records
+        are intentionally excluded from this index.
+      </p>
+    </div>
+  </section>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <div class="relative">
+      <label for="site-search-input" class="sr-only">
+        Search SAM-UP public content
+      </label>
+      <Search
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted-foreground)] pointer-events-none"
+        aria-hidden="true"
+      />
+      <input
+        id="site-search-input"
+        type="search"
+        autocomplete="off"
+        enterkeyhint="search"
+        placeholder="Search Applied Math, governance, joining, archives…"
+        class="w-full min-h-14 rounded-xl border border-[var(--border)] bg-[var(--background)] pl-12 pr-4 py-3.5 text-base text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:border-[var(--border-primary)] transition-colors"
+      />
+    </div>
+
+    <div class="mt-4 flex items-center justify-between gap-4 text-xs font-mono text-[var(--muted-foreground)]">
+      <div id="site-search-count" aria-live="polite" aria-atomic="true">
+        {indexedItems.length} public entries
+      </div>
+      <noscript>JavaScript is off; all indexed entries remain visible below.</noscript>
+    </div>
+
+    <ul
+      id="site-search-results"
+      class="mt-8 divide-y divide-[var(--border)] border-y border-[var(--border)] list-none p-0"
+    >
+      {indexedItems.map((item) => (
+        <li
+          data-search-item
+          data-search-text={`${item.title} ${item.description} ${item.type}`.toLocaleLowerCase()}
+          class="search-index-item"
+        >
+          <a href={item.href} class="group grid sm:grid-cols-[8rem_1fr_auto] gap-4 sm:gap-6 py-6">
+            <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">
+              {item.type}
+            </div>
+            <div>
+              <h2 class="font-display font-bold text-xl text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+                {item.title}
+              </h2>
+              <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">{item.description}</p>
+            </div>
+            <ArrowRight
+              className="hidden sm:block w-5 h-5 text-[var(--muted-foreground)] group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all"
+              aria-hidden="true"
+            />
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div id="site-search-empty" hidden class="mt-8 rounded-[1.25rem] border border-[var(--border)] p-8">
+      <h2 class="font-display font-bold text-xl text-[var(--foreground)]">No public result matched.</h2>
+      <p class="mt-2 text-sm text-[var(--muted-foreground)]">
+        Try a broader term such as “math”, “join”, “governance”, “archive”, or “partner”.
+      </p>
+    </div>
+  </main>
+</BaseLayout>
+
+<script is:inline type="module">
+  const input = document.querySelector('#site-search-input');
+  const results = document.querySelector('#site-search-results');
+  const count = document.querySelector('#site-search-count');
+  const empty = document.querySelector('#site-search-empty');
+
+  const fallbackMarkup = results?.innerHTML ?? '';
+  const fallbackItems = () => Array.from(results?.querySelectorAll('[data-search-item]') ?? []);
+
+  let pagefindApi = null;
+  let pagefindLoadAttempted = false;
+
+  const setCount = (visible) => {
+    if (count) count.textContent = `${visible} public ${visible === 1 ? 'entry' : 'entries'}`;
+    if (empty) empty.hidden = visible !== 0;
+  };
+
+  const restoreFallback = () => {
+    if (!results) return;
+    results.innerHTML = fallbackMarkup;
+    setCount(fallbackItems().length);
+  };
+
+  const filterFallback = (query) => {
+    const normalized = query.trim().toLocaleLowerCase();
+    let visible = 0;
+
+    for (const item of fallbackItems()) {
+      const haystack = item.dataset.searchText ?? '';
+      const matches = !normalized || haystack.includes(normalized);
+      item.hidden = !matches;
+      if (matches) visible += 1;
+    }
+
+    setCount(visible);
+  };
+
+  const loadPagefind = async () => {
+    if (pagefindApi || pagefindLoadAttempted) return pagefindApi;
+    pagefindLoadAttempted = true;
+
+    try {
+      pagefindApi = await import('/pagefind/pagefind.js');
+      await pagefindApi.init();
+      return pagefindApi;
+    } catch {
+      pagefindApi = null;
+      return null;
+    }
+  };
+
+  const renderResult = (data) => {
+    const item = document.createElement('li');
+    item.className = 'search-index-item';
+
+    const link = document.createElement('a');
+    link.href = data.url;
+    link.className = 'group grid sm:grid-cols-[8rem_1fr_auto] gap-4 sm:gap-6 py-6';
+
+    const type = document.createElement('div');
+    type.className = 'font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]';
+    type.textContent = 'search result';
+
+    const body = document.createElement('div');
+
+    const title = document.createElement('h2');
+    title.className =
+      'font-display font-bold text-xl text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors';
+    title.textContent = data.meta?.title || data.url;
+
+    const excerpt = document.createElement('p');
+    excerpt.className = 'mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]';
+    excerpt.textContent = data.plain_excerpt || '';
+
+    body.append(title, excerpt);
+
+    const arrow = document.createElement('span');
+    arrow.className =
+      'hidden sm:block text-[var(--muted-foreground)] group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all';
+    arrow.setAttribute('aria-hidden', 'true');
+    arrow.textContent = '→';
+
+    link.append(type, body, arrow);
+    item.append(link);
+    return item;
+  };
+
+  const runSearch = async () => {
+    if (!input || !results) return;
+    const query = input.value.trim();
+
+    if (!query) {
+      restoreFallback();
+      return;
+    }
+
+    const pagefind = await loadPagefind();
+    if (!pagefind) {
+      filterFallback(query);
+      return;
+    }
+
+    const search = await pagefind.debouncedSearch(query, {}, 180);
+    if (search === null) return;
+
+    const loaded = await Promise.all(search.results.slice(0, 20).map((result) => result.data()));
+    const publicResults = loaded.filter((result) => !result.url.startsWith('/reporting'));
+
+    results.replaceChildren(...publicResults.map(renderResult));
+    setCount(publicResults.length);
+  };
+
+  input?.addEventListener('focus', () => {
+    void loadPagefind();
+  });
+  input?.addEventListener('input', () => {
+    void runSearch();
+  });
+</script>

@@ -1,43 +1,45 @@
 ---
 import { organization } from '../../data/organization';
-import { mainNav } from '../../data/navigation';
+import { mainNav, membershipAction, utilityNav } from '../../data/navigation';
 ---
 
-<footer class="relative bg-[var(--background)]/80 backdrop-blur-2xl border-t border-[var(--border)] pt-16 pb-12 text-[var(--muted-foreground)] overflow-hidden">
-  {/* Ambient gradient backing */}
-  <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(240,204,78,0.06)_0%,transparent_70%)] top-0 left-1/2 -translate-x-1/2" aria-hidden="true" />
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="grid md:grid-cols-12 gap-10 pb-12 border-b border-[var(--border)]">
-      {/* Col 1: Organization Identity */}
-      <div class="md:col-span-5 space-y-4">
+<footer class="relative border-t border-[var(--border)] bg-[var(--background)] pt-16 pb-10 text-[var(--muted-foreground)] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[var(--border)]">
+      <div class="lg:col-span-4 space-y-4">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center font-display font-black text-xl shadow-md">
-            Π
+          <img
+            src="/sam-up-seal.png"
+            alt="SAM-UP seal"
+            width="44"
+            height="44"
+            class="w-11 h-11 object-contain"
+          />
+          <div>
+            <div class="font-display font-bold text-lg text-[var(--foreground)]">SAM-UP</div>
+            <div class="font-mono text-[10px] uppercase tracking-wider">
+              Society of Applied Mathematics of UPLB
+            </div>
           </div>
-          <span class="font-display font-bold text-lg text-[var(--foreground)] tracking-wide">
-            {organization.name}
-          </span>
         </div>
-        <p class="text-sm leading-relaxed max-w-sm text-[var(--muted-foreground)]">
-          {organization.tagline}. A self-governing academic student organization of applied mathematics at the University of the Philippines Los Baños since 1984.
+        <p class="text-sm leading-relaxed max-w-sm">
+          A self-governing academic organization at UPLB whose constitutional objectives include promoting the
+          relevance and wider application of Applied Mathematics to Philippine society.
         </p>
-        <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs text-[var(--primary)]">
-          {organization.mottos.map(m => (
-            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">
-              {m.tag}
-            </span>
-          ))}
-        </div>
+        <a
+          href={membershipAction.href}
+          class="inline-flex items-center gap-2 rounded-lg bg-[var(--primary)] px-4 py-2.5 text-xs font-bold text-[var(--primary-foreground)]"
+        >
+          {membershipAction.label} →
+        </a>
       </div>
 
-      {/* Col 2: Institutional Navigation */}
-      <div class="md:col-span-3 space-y-3">
-        <h4 class="font-display font-bold text-sm text-[var(--foreground)] uppercase tracking-wider">
-          Explore SAM-UP
-        </h4>
-        <ul class="space-y-2 text-sm list-none p-0 m-0">
-          {mainNav.map(item => (
+      <div class="lg:col-span-3">
+        <h2 class="font-display font-bold text-sm text-[var(--foreground)] uppercase tracking-wider">
+          Explore
+        </h2>
+        <ul class="mt-4 space-y-2.5 text-sm list-none p-0">
+          {mainNav.map((item) => (
             <li>
               <a href={item.href} class="hover:text-[var(--primary)] transition-colors">
                 {item.label}
@@ -47,40 +49,65 @@ import { mainNav } from '../../data/navigation';
         </ul>
       </div>
 
-      {/* Col 3: Academic Affiliation & Location */}
-      <div class="md:col-span-4 space-y-3 text-sm">
-        <h4 class="font-display font-bold text-sm text-[var(--foreground)] uppercase tracking-wider">
-          Campus Headquarters
-        </h4>
-        <address class="not-italic space-y-1.5 leading-relaxed">
+      <div class="lg:col-span-2">
+        <h2 class="font-display font-bold text-sm text-[var(--foreground)] uppercase tracking-wider">
+          Archive & trust
+        </h2>
+        <ul class="mt-4 space-y-2.5 text-sm list-none p-0">
+          {utilityNav.map((item) => (
+            <li>
+              <a href={item.href} class="hover:text-[var(--primary)] transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/about#mission" class="hover:text-[var(--primary)] transition-colors">
+              Constitutional objectives
+            </a>
+          </li>
+          <li>
+            <a href="/join" class="hover:text-[var(--primary)] transition-colors">
+              Recruitment guidance
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3 text-sm">
+        <h2 class="font-display font-bold text-sm text-[var(--foreground)] uppercase tracking-wider">
+          Institutional context
+        </h2>
+        <address class="not-italic mt-4 space-y-1.5 leading-relaxed">
           <div class="font-semibold text-[var(--foreground)]">{organization.department}</div>
           <div>{organization.college}</div>
           <div>{organization.institution}</div>
-          <div class="text-xs font-mono text-[var(--muted-foreground)] pt-1">
-            {organization.location.building} • {organization.location.coordinates}
-          </div>
+          <div class="text-xs font-mono pt-1">{organization.location.building}</div>
         </address>
-        <div class="pt-2">
+        <div class="mt-4 flex flex-col gap-2 text-xs">
           <a
             href={organization.socials.facebook}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--primary)] hover:underline"
+            class="text-[var(--primary)] hover:underline"
           >
-            Official Facebook Page →
+            Official Facebook page ↗
+          </a>
+          <a
+            href={`mailto:${organization.socials.email}`}
+            class="hover:text-[var(--foreground)] transition-colors"
+          >
+            {organization.socials.email}
           </a>
         </div>
       </div>
     </div>
 
-    {/* Bottom Bar */}
-    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+    <div class="pt-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
       <div>
-        © 1984–{new Date().getFullYear()} {organization.name}. All rights reserved.
+        © 1984–{new Date().getFullYear()} {organization.name}.
       </div>
-      <div class="font-mono text-[var(--muted-foreground)]">
-        Official Colors: Black & Gold • Est. Nov 27, 1984
-      </div>
+      <div class="font-mono">Black & Gold • Constitution: 10 Nov 2018 • Founded 27 Nov 1984</div>
     </div>
   </div>
 </footer>

@@ -1,70 +1,103 @@
 import { chromium } from '@playwright/test';
 
-const BASE = 'http://localhost:4322';
+const BASE = process.env.SAM_UP_BASE_URL || 'http://127.0.0.1:4321';
+const failures = [];
 const browser = await chromium.launch();
 
-// 1. Reduced motion: split-flap must render settled text, no flap animation
-const ctx1 = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
-const p1 = await ctx1.newPage();
-await p1.goto(`${BASE}/`, { waitUntil: 'networkidle' });
-await p1.waitForTimeout(6000); // wait past one full cycle delay (2600ms) — animation must NOT have advanced
-const reduced = await p1.evaluate(() => {
-  const flap = document.querySelector('.split-flap-text');
-  if (!flap) return { found: false };
-  return {
-    found: true,
-    label: flap.getAttribute('aria-label'),
-    flapCount: flap.querySelectorAll('.split-flap-text__flap').length,
-    // settled text = first phrase tiles only, no flipping elements
-    settled: flap.querySelectorAll('.split-flap-text__flap').length === 0
-  };
+// 1. Reduced motion remains supported globally and the public homepage does not
+// depend on legacy decorative animation components.
+const reducedContext = await browser.newContext({
+  viewport: { width: 1440, height: 900 },
+  reducedMotion: 'reduce',
 });
-console.log('REDUCED-MOTION SPLIT-FLAP:', JSON.stringify(reduced));
-await ctx1.close();
+const reducedPage = await reducedContext.newPage();
+await reducedPage.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+const reduced = await reducedPage.evaluate(() => ({
+  prefersReduced: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  legacySplitFlap: Boolean(document.querySelector('.split-flap-text')),
+  legacy3DControls: Boolean(document.querySelector('.hero-3d-controls')),
+  canvasCount: document.querySelectorAll('canvas').length,
+}));
+if (!reduced.prefersReduced)
+  failures.push('reduced motion: browser context did not expose prefers-reduced-motion');
+if (reduced.legacySplitFlap) failures.push('homepage: legacy split-flap animation is still mounted');
+if (reduced.legacy3DControls) failures.push('homepage: legacy 3D hero controls are still mounted');
+if (reduced.canvasCount > 0)
+  failures.push(
+    `homepage: expected static-first public hero, found ${reduced.canvasCount} canvas element(s)`,
+  );
+await reducedContext.close();
 
-// 2. Normal motion: flap animation runs (flipping elements present after hydration + cycle)
-const ctx2 = await browser.newContext({ viewport: { width: 1440, height: 900 } });
-const p2 = await ctx2.newPage();
-await p2.goto(`${BASE}/`, { waitUntil: 'networkidle' });
-// scroll proof strip into view to trigger client:visible hydration
-await p2.evaluate(() => document.querySelector('section[aria-label="Verified society facts"]')?.scrollIntoView({ block: 'center' }));
-await p2.waitForTimeout(3200); // past first cycle delay — should be mid-animation to phrase 2
-const animated = await p2.evaluate(() => {
-  const flap = document.querySelector('.split-flap-text');
-  if (!flap) return { found: false };
-  return {
-    found: true,
-    label: flap.getAttribute('aria-label')?.slice(0, 60),
-    ariaLabelChanged: flap.getAttribute('aria-label') !== 'Active term 2nd Sem 26-27, 46 leadership terms, founded 1984',
-    flapCount: flap.querySelectorAll('.split-flap-text__flap').length
-  };
+// 2. Core public homepage tasks must survive with JavaScript disabled.
+const noJsContext = await browser.newContext({
+  viewport: { width: 1440, height: 900 },
+  javaScriptEnabled: false,
 });
-console.log('NORMAL-MOTION SPLIT-FLAP:', JSON.stringify(animated));
+const noJsPage = await noJsContext.newPage();
+await noJsPage.goto(`${BASE}/`, { waitUntil: 'load' });
+const noJsHome = await noJsPage.evaluate(() => ({
+  h1: document.querySelector('h1')?.textContent?.trim() || '',
+  explore: Boolean(document.querySelector('a[href="/explore"]')),
+  join: Boolean(document.querySelector('a[href="/join"]')),
+  partners: Boolean(document.querySelector('a[href="/partners"]')),
+  mainTextLength: document.querySelector('main')?.textContent?.trim().length || 0,
+}));
+if (!noJsHome.h1) failures.push('no-js homepage: missing h1');
+if (!noJsHome.explore || !noJsHome.join || !noJsHome.partners) {
+  failures.push(`no-js homepage: core task links missing (${JSON.stringify(noJsHome)})`);
+}
+if (noJsHome.mainTextLength < 500)
+  failures.push('no-js homepage: core content appears to depend on JavaScript');
 
-// 3. JS disabled: SSR fallback shows settled first phrase
-const ctx3 = await browser.newContext({ viewport: { width: 1440, height: 900 }, javaScriptEnabled: false });
-const p3 = await ctx3.newPage();
-await p3.goto(`${BASE}/`, { waitUntil: 'load' });
-const nojs = await p3.evaluate(() => {
-  const flap = document.querySelector('.split-flap-text');
-  if (!flap) return { found: false };
-  const chars = [...flap.querySelectorAll('.split-flap-text__char')].map((c) => c.textContent).join('');
-  return { found: true, ssrText: chars.trim() };
-});
-console.log('NO-JS SPLIT-FLAP SSR:', JSON.stringify(nojs));
-await ctx3.close();
+await noJsPage.goto(`${BASE}/explore/shortest-paths/`, { waitUntil: 'load' });
+const noJsExplainer = await noJsPage.evaluate(() => ({
+  h1: document.querySelector('h1')?.textContent?.trim() || '',
+  graph: Boolean(document.querySelector('svg[role="img"]')),
+  graphDescription: Boolean(document.querySelector('svg[role="img"] desc')),
+  articleTextLength: document.querySelector('article')?.textContent?.trim().length || 0,
+}));
+if (!noJsExplainer.h1) failures.push('no-js explainer: missing h1');
+if (!noJsExplainer.graph || !noJsExplainer.graphDescription)
+  failures.push('no-js explainer: accessible graph fallback is missing');
+if (noJsExplainer.articleTextLength < 500)
+  failures.push('no-js explainer: article content appears incomplete');
+await noJsContext.close();
 
-// 4. Touch coarse: no magnet transform; cards present
-const ctx4 = await browser.newContext({ viewport: { width: 375, height: 812 }, hasTouch: true, isMobile: true });
-const p4 = await ctx4.newPage();
-await ctx4.addInitScript(() => { Object.defineProperty(navigator, 'maxTouchPoints', { get: () => 5 }); });
-await p4.goto(`${BASE}/`, { waitUntil: 'networkidle' });
-await p4.waitForTimeout(2500);
-const touch = await p4.evaluate(() => {
-  const magnet = document.querySelector('[style*="translate3d"]');
-  return { magnetWrappers: magnet ? 1 : 0, magnetTransform: magnet ? magnet.style.transform : 'none' };
+// 3. Touch targets in the mobile institutional drawer should meet the planned
+// 44px practical minimum.
+const touchContext = await browser.newContext({
+  viewport: { width: 375, height: 812 },
+  hasTouch: true,
+  isMobile: true,
 });
-console.log('TOUCH MAGNET STATE:', JSON.stringify(touch));
-await ctx4.close();
+const touchPage = await touchContext.newPage();
+await touchPage.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+await touchPage.getByRole('button', { name: 'Open Navigation Menu' }).click();
+const targetSizes = await touchPage
+  .locator('#mobile-navigation-drawer a, #mobile-navigation-drawer button')
+  .evaluateAll((elements) =>
+    elements.map((element) => {
+      const rect = element.getBoundingClientRect();
+      return {
+        label:
+          element.getAttribute('aria-label') || element.textContent?.trim().slice(0, 50) || element.tagName,
+        width: rect.width,
+        height: rect.height,
+      };
+    }),
+  );
+const undersized = targetSizes.filter(({ width, height }) => width < 44 || height < 44);
+if (undersized.length) failures.push(`touch targets: below 44px minimum: ${JSON.stringify(undersized)}`);
+await touchContext.close();
 
 await browser.close();
+
+if (failures.length) {
+  console.error(`Motion/progressive-enhancement QA failed with ${failures.length} issue(s):`);
+  failures.forEach((failure) => console.error(`- ${failure}`));
+  process.exitCode = 1;
+} else {
+  console.log(
+    'Motion/progressive-enhancement QA passed: static-first homepage, no-JS core tasks, accessible explainer, and mobile target sizing.',
+  );
+}

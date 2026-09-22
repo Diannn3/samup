@@ -1,70 +1,62 @@
 ---
-// Split Flap data rail — verified institutional data only.
-// Source inspiration (Split Flap Text):
-// @url:`https://reactbits.dev/text-animations/split-flap-text`
-// Repository: @url:`https://github.com/DavidHDev/react-bits`
 import { organization } from '../../data/organization';
-import { objectives } from '../../data/mission';
-import { SplitFlapText } from '../ui/SplitFlapText';
-import { Compass, ShieldCheck, Award } from 'lucide-react';
+import { Compass, Archive, CalendarDays, ShieldCheck } from 'lucide-react';
 
-// All values derive from src/data/organization.ts + senior_executives.json (verified sources).
-const latestRecordedTerm = organization.latestRecordedExecutive.term; // e.g. "2nd Sem 26-27"
-const terms = String(organization.totalLeadershipTerms); // length of senior_executives.json
-const founding = String(organization.foundingYear); // 1984
-
-// Featured rail: cycles verified facts. SSR/first paint shows the latest recorded term.
-const railPhrases = [latestRecordedTerm, `${terms} TERMS`, `${founding}`];
+const latestRecordedTerm = organization.latestRecordedExecutive.term;
+const terms = organization.totalLeadershipTerms;
 ---
 
-<section class="relative py-8 border-b border-[var(--border)] bg-[var(--background)]/40 backdrop-blur-md overflow-hidden" aria-label="Verified society facts">
-  {/* Ambient gradient ribbon */}
-  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--primary)]/5 to-transparent pointer-events-none" aria-hidden="true"></div>
-
+<section
+  class="relative border-b border-[var(--border)] bg-[var(--background)]"
+  aria-label="Verified society facts"
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-
-      {/* 1. Split Flap data rail — active term / term count / founding epoch (verified) */}
-      <div class="frosted-glass-card p-4 sm:p-5 flex items-center gap-3.5 shadow-sm col-span-2 lg:col-span-2">
-        <div class="w-10 h-10 rounded-xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center text-[var(--primary)] shrink-0">
-          <Award class="w-5 h-5" aria-hidden="true" />
-        </div>
-        <div class="min-w-0">
-          <div class="text-[10px] font-mono text-[var(--muted-foreground)] uppercase tracking-wider mb-1.5">STATUS BOARD</div>
-          <SplitFlapText
-            client:visible
-            phrases={railPhrases}
-            charset="numeric"
-            fontSize={18}
-            padTo={12}
-            aria-label={`Latest recorded term ${latestRecordedTerm}, ${terms} leadership terms, founded ${founding}`}
-          />
-        </div>
+    <dl class="grid grid-cols-2 lg:grid-cols-4">
+      <div class="py-6 pr-5 border-b lg:border-b-0 border-[var(--border)] lg:border-r">
+        <dt class="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+          <CalendarDays className="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+          Founded
+        </dt>
+        <dd class="mt-2 font-display font-bold text-xl sm:text-2xl text-[var(--foreground)]">
+          {organization.foundingYear}
+        </dd>
+        <dd class="mt-1 text-xs text-[var(--muted-foreground)]">Constitution: recognized 27 Nov 1984</dd>
       </div>
 
-      {/* 2. Academic Home (verified) */}
-      <div class="frosted-glass-card p-4 sm:p-5 flex items-center gap-3.5 shadow-sm">
-        <div class="w-10 h-10 rounded-xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center text-[var(--primary)] shrink-0">
-          <Compass class="w-5 h-5" aria-hidden="true" />
-        </div>
-        <div>
-          <div class="text-[10px] font-mono text-[var(--muted-foreground)] uppercase tracking-wider">ACADEMIC HOME</div>
-          <div class="font-display font-bold text-sm text-[var(--foreground)] mt-0.5">UPLB IMSP • CAS</div>
-        </div>
+      <div class="py-6 pl-5 lg:px-5 border-b lg:border-b-0 border-[var(--border)] lg:border-r">
+        <dt class="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+          <Compass className="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+          Academic home
+        </dt>
+        <dd class="mt-2 font-display font-bold text-xl sm:text-2xl text-[var(--foreground)]">UPLB</dd>
+        <dd class="mt-1 text-xs text-[var(--muted-foreground)]">
+          Institute of Mathematical Sciences and Physics
+        </dd>
       </div>
 
-      {/* 3. Constitutional Objectives (verified, first three) */}
-      <div class="frosted-glass-card p-4 sm:p-5 shadow-sm col-span-2 lg:col-span-1">
-        <div class="text-[10px] font-mono text-[var(--muted-foreground)] uppercase tracking-wider mb-2">CONSTITUTIONAL OBJECTIVES</div>
-        <ul class="space-y-1.5">
-          {objectives.slice(0, 2).map((obj) => (
-            <li class="text-xs text-[var(--foreground)]/85 leading-snug flex items-start gap-1.5">
-              <ShieldCheck class="w-3.5 h-3.5 text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
-              <span>{obj.text.replace('to promote', 'Promote').replace('to contribute', 'Contribute').replace(';', '.')}</span>
-            </li>
-          ))}
-        </ul>
+      <div class="py-6 pr-5 lg:px-5 lg:border-r border-[var(--border)]">
+        <dt class="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+          <Archive className="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+          Leadership archive
+        </dt>
+        <dd class="mt-2 font-display font-bold text-xl sm:text-2xl text-[var(--foreground)]">
+          {terms} terms
+        </dd>
+        <dd class="mt-1 text-xs text-[var(--muted-foreground)]">
+          Historical records, not a current-officer roster
+        </dd>
       </div>
-    </div>
+
+      <div class="py-6 pl-5">
+        <dt class="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+          <ShieldCheck className="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+          Latest archive entry
+        </dt>
+        <dd class="mt-2 font-display font-bold text-xl sm:text-2xl text-[var(--foreground)]">
+          {latestRecordedTerm}
+        </dd>
+        <dd class="mt-1 text-xs text-[var(--muted-foreground)]">Labelled explicitly as archive data</dd>
+      </div>
+    </dl>
   </div>
 </section>

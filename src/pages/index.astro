@@ -2,26 +2,23 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
 import ProofStrip from '../components/sections/ProofStrip.astro';
+import CurrentStatusSection from '../components/sections/CurrentStatusSection.astro';
+import AppliedMathFeatureSection from '../components/sections/AppliedMathFeatureSection.astro';
 import ActivitiesSection from '../components/sections/ActivitiesSection.astro';
 import EventsPreview from '../components/sections/EventsPreview.astro';
 import HeritagePreview from '../components/sections/HeritagePreview.astro';
 import AlumniPreview from '../components/sections/AlumniPreview.astro';
-import MembershipSection from '../components/sections/MembershipSection.astro';
+import HomeActionsSection from '../components/sections/HomeActionsSection.astro';
 ---
 
 <BaseLayout>
-  {/* 1. Identity hero — who SAM-UP is */}
   <HeroSection />
-  {/* 2. Verified facts + status rail */}
   <ProofStrip />
-  {/* 3. Mission & principles (constitutional) */}
+  <CurrentStatusSection />
+  <AppliedMathFeatureSection />
   <ActivitiesSection />
-  {/* 4. Events & programs (canonical data) */}
   <EventsPreview />
-  {/* 5. Milestones (verified) */}
   <HeritagePreview />
-  {/* 6. Leadership archive preview */}
   <AlumniPreview />
-  {/* 7. Join CTA */}
-  <MembershipSection />
+  <HomeActionsSection />
 </BaseLayout>

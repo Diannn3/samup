@@ -1,109 +1,113 @@
-import React, { useState, useMemo } from 'react';
-import { Search, X, Award, RotateCcw } from 'lucide-react';
+import React, { useMemo, useRef, useState } from 'react';
+import { Search, X, RotateCcw } from 'lucide-react';
 import seniorExecs from '../../data/senior_executives.json';
 
 export const ExecutiveSearch: React.FC = () => {
   const [query, setQuery] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const filteredLeaders = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return seniorExecs;
+    const normalizedQuery = query.trim().toLocaleLowerCase();
+    if (!normalizedQuery) return seniorExecs;
+
     return seniorExecs.filter(
-      exec => exec.name.toLowerCase().includes(q) || exec.term.toLowerCase().includes(q)
+      (entry) =>
+        entry.name.toLocaleLowerCase().includes(normalizedQuery) ||
+        entry.term.toLocaleLowerCase().includes(normalizedQuery),
     );
   }, [query]);
 
   const handleClear = () => {
     setQuery('');
+    inputRef.current?.focus();
   };
 
   return (
-    <div className="space-y-6">
-      {/* Search Bar Header */}
-      <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between">
-        <div className="relative flex-grow max-w-md">
+    <div>
+      <div className="grid sm:grid-cols-[minmax(0,28rem)_1fr] gap-4 items-center">
+        <div className="relative">
           <label htmlFor="executive-search-input" className="sr-only">
-            Search Senior Executives by name or academic term
+            Search historical Senior Executive records by name or academic term
           </label>
-          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[var(--muted-foreground)]">
-            <Search className="w-4 h-4" aria-hidden="true" />
-          </div>
+          <Search
+            className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted-foreground)] pointer-events-none"
+            aria-hidden="true"
+          />
           <input
+            ref={inputRef}
             id="executive-search-input"
             name="executive-search"
-            type="text"
+            type="search"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search by leader name or term (e.g. Edmund, 84–85)…"
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search name or term, e.g. Edmund or 84–85"
             autoComplete="off"
             enterKeyHint="search"
-            className="w-full min-h-11 pl-10 pr-11 py-2.5 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 text-[var(--foreground)] placeholder-[var(--muted-foreground)] text-sm focus:border-[var(--border-primary)] focus:bg-white/10 transition-all shadow-sm"
+            aria-controls="executive-search-results"
+            className="w-full min-h-12 rounded-xl border border-[var(--border)] bg-[var(--background)] pl-10 pr-11 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:border-[var(--border-primary)] transition-colors"
           />
           {query && (
             <button
               type="button"
               onClick={handleClear}
-              aria-label="Clear search query"
-              className="absolute inset-y-0 right-0 w-11 flex items-center justify-center text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+              aria-label="Clear leadership archive search"
+              className="absolute right-0 top-0 min-h-12 min-w-11 flex items-center justify-center text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
             >
               <X className="w-4 h-4" aria-hidden="true" />
             </button>
           )}
         </div>
 
-        {/* Live Result Count */}
         <div
           aria-live="polite"
-          className="text-xs sm:text-sm font-mono text-[var(--muted-foreground)] flex items-center gap-2 self-end sm:self-center"
+          aria-atomic="true"
+          className="text-xs font-mono text-[var(--muted-foreground)] sm:text-right"
         >
-          <span>Showing <strong className="text-[var(--foreground)]">{filteredLeaders.length}</strong> of {seniorExecs.length} terms</span>
+          Showing <strong className="text-[var(--foreground)]">{filteredLeaders.length}</strong> of{' '}
+          {seniorExecs.length} documented entries
         </div>
       </div>
 
-      {/* Results Grid / List */}
       {filteredLeaders.length > 0 ? (
-        <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 list-none p-0 m-0">
-          {filteredLeaders.map((exec, idx) => (
+        <ul
+          id="executive-search-results"
+          className="mt-7 divide-y divide-[var(--border)] border-y border-[var(--border)] list-none p-0"
+        >
+          {filteredLeaders.map((entry, index) => (
             <li
-              key={`${exec.name}-${exec.term}-${idx}`}
-              className="frosted-glass-card p-3.5 flex items-center gap-3 shadow-sm hover:scale-[1.02] transition-transform"
+              key={`${entry.name}-${entry.term}-${index}`}
+              className="grid sm:grid-cols-[10rem_1fr_3rem] gap-2 sm:gap-5 items-center py-4"
             >
-              <div className="w-9 h-9 rounded-xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center text-xs font-mono font-bold text-[var(--primary)] shrink-0">
-                <Award className="w-4 h-4" aria-hidden="true" />
-              </div>
-              <div className="overflow-hidden min-w-0">
-                <div className="text-sm font-semibold text-[var(--foreground)] truncate">
-                  {exec.name}
-                </div>
-                <div className="text-xs font-mono text-[var(--muted-foreground)]">
-                  {exec.term}
-                </div>
-              </div>
+              <span className="font-mono text-xs text-[var(--primary)]">{entry.term}</span>
+              <span className="text-sm font-semibold text-[var(--foreground)]">{entry.name}</span>
+              <span className="hidden sm:block text-right font-mono text-[10px] text-[var(--muted-foreground)]">
+                {String(index + 1).padStart(2, '0')}
+              </span>
             </li>
           ))}
         </ul>
       ) : (
-        /* Empty State */
-        <div className="frosted-glass-card p-12 text-center rounded-2xl space-y-4 shadow-xl">
-          <div className="w-12 h-12 rounded-full bg-white/10 mx-auto flex items-center justify-center text-[var(--muted-foreground)]">
-            <Search className="w-6 h-6" aria-hidden="true" />
-          </div>
-          <div className="space-y-1">
-            <h4 className="text-base font-display font-bold text-[var(--foreground)]">
-              No senior executives found
-            </h4>
-            <p className="text-sm text-[var(--muted-foreground)] max-w-sm mx-auto">
-              No leadership records matched &ldquo;{query}&rdquo;. Check the spelling or search by academic year.
+        <div
+          id="executive-search-results"
+          className="mt-7 rounded-[1.25rem] border border-[var(--border)] p-8 sm:p-10"
+        >
+          <div className="max-w-md">
+            <Search className="w-5 h-5 text-[var(--primary)]" aria-hidden="true" />
+            <h3 className="mt-4 font-display font-bold text-xl text-[var(--foreground)]">
+              No matching archive entry
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+              No documented Senior Executive record matched “{query}”. Try a surname or academic term label.
             </p>
+            <button
+              type="button"
+              onClick={handleClear}
+              className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2.5 text-sm font-semibold text-[var(--foreground)] hover:border-[var(--border-primary)] transition-colors"
+            >
+              <RotateCcw className="w-4 h-4" aria-hidden="true" />
+              Reset search
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={handleClear}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 border border-white/15 text-sm font-medium text-[var(--foreground)] hover:border-[var(--border-primary)] transition-colors"
-          >
-            <RotateCcw className="w-4 h-4" aria-hidden="true" />
-            <span>Reset Search</span>
-          </button>
         </div>
       )}
     </div>

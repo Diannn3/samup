@@ -1,0 +1,11 @@
+dist/
+node_modules/
+.astro/
+.pagefind/
+.lighthouseci/
+qa-local/
+qa-screens/
+sam-up-discord/
+public/
+src/data/*.json
+package-lock.json

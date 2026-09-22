@@ -1,73 +1,68 @@
 ---
 import { organization } from '../../data/organization';
-import { FrostedGlassCard } from '../ui/FrostedGlassCard';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Archive } from 'lucide-react';
 ---
 
-<section class="relative py-24 border-b border-[var(--border)] overflow-hidden">
-  {/* Atmospheric gradient blobs */}
-  <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.1)_0%,transparent_70%)] top-10 right-[-10%]" aria-hidden="true" />
-  <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(16,185,129,0.08)_0%,transparent_70%)] bottom-10 left-[-10%]" aria-hidden="true" />
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      {/* Left Column: Context & Stats */}
-      <div class="lg:col-span-5 space-y-6">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--border)] text-xs font-mono text-[var(--primary)] shadow-sm">
-          <span>DOCUMENTED LEADERSHIP TERMS</span>
+<section class="relative py-20 sm:py-24 border-b border-[var(--border)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+      <div class="lg:col-span-5">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+          <Archive className="w-4 h-4" aria-hidden="true" />
+          <span>Leadership archive</span>
         </div>
-
-        <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-[var(--foreground)] tracking-tight">
-          The Leadership Archive
+        <h2 class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]">
+          Historical leadership, labeled as history.
         </h2>
-
-        <p class="text-base text-[var(--muted-foreground)] leading-relaxed">
-          From 1984 to the current academic year, SAM-UP's senior executives are recorded in a searchable archive. Each term represents one academic-semester of governance under the organization's Constitution.
+        <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+          The repository contains {organization.totalLeadershipTerms} documented Senior Executive term entries
+          beginning in 1984. They form a historical archive, not a current Executive Committee roster.
         </p>
 
-        {/* Static verified facts only */}
-        <div class="grid grid-cols-2 gap-4 pt-2">
-          <div class="frosted-glass-card p-5 shadow-md">
-            <div class="text-3xl font-mono font-bold text-[var(--primary)]">
+        <div class="mt-7 grid grid-cols-2 border-y border-[var(--border)]">
+          <div class="py-5 pr-5">
+            <div class="font-display font-black text-3xl text-[var(--primary)]">
               {organization.totalLeadershipTerms}
             </div>
-            <div class="text-xs text-[var(--muted-foreground)] mt-1.5 font-medium">Documented Leadership Terms</div>
+            <div class="mt-1 text-xs text-[var(--muted-foreground)]">Documented term entries</div>
           </div>
-          <div class="frosted-glass-card p-5 shadow-md">
-            <div class="text-3xl font-mono font-bold text-[var(--foreground)]">
-              1984
-            </div>
-            <div class="text-xs text-[var(--muted-foreground)] mt-1.5 font-medium">First Recorded Term</div>
+          <div class="py-5 pl-5 border-l border-[var(--border)]">
+            <div class="font-display font-black text-3xl text-[var(--foreground)]">1984</div>
+            <div class="mt-1 text-xs text-[var(--muted-foreground)]">Archive begins</div>
           </div>
         </div>
 
-        <div class="pt-2">
-          <a
-            href="/alumni"
-            class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
-          >
-            <span>Search the Archive of {organization.totalLeadershipTerms} Terms</span>
-            <ArrowRight class="w-4 h-4" aria-hidden="true" />
-          </a>
-        </div>
-      </div>
-
-      {/* Right Column: Latest archive entry — not a current-roster claim */}
-      <div class="lg:col-span-7">
-        <FrostedGlassCard
-          client:idle
-          tag={`LATEST ARCHIVE ENTRY — ${organization.latestRecordedExecutive.term}`}
-          title={`${organization.latestRecordedExecutive.name}`}
-          subtitle={`Senior Executive for the ${organization.latestRecordedExecutive.term} term. The latest entry in SAM-UP's documented leadership archive, which begins with Edmund Campos (1984).`}
+        <a
           href="/alumni"
-          showArrow={true}
+          class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
         >
-          <div class="pt-4 mt-4 border-t border-[var(--border-subtle)] text-xs font-mono text-[var(--muted-foreground)] flex items-center justify-between">
-            <span>ARCHIVE ENTRY {organization.totalLeadershipTerms} OF {organization.totalLeadershipTerms}</span>
-            <span class="text-[var(--primary)] font-medium">1984–LATEST RECORDED</span>
-          </div>
-        </FrostedGlassCard>
+          Search leadership records
+          <ArrowRight className="w-4 h-4" aria-hidden="true" />
+        </a>
       </div>
+
+      <article class="lg:col-span-7 rounded-[1.5rem] border border-[var(--border)] p-7 sm:p-9">
+        <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">
+          Latest entry in the repository archive
+        </div>
+        <div class="mt-2 font-mono text-xs text-[var(--primary)]">
+          {organization.latestRecordedExecutive.term}
+        </div>
+        <h3 class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]">
+          {organization.latestRecordedExecutive.name}
+        </h3>
+        <p class="mt-4 max-w-2xl text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+          Recorded as Senior Executive for {organization.latestRecordedExecutive.term}. “Latest archive entry”
+          means the last item in the available historical dataset; it should not be generalized into claims
+          about the complete current officer roster.
+        </p>
+        <div class="mt-7 pt-5 border-t border-[var(--border)] flex flex-wrap gap-x-6 gap-y-2 text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+          <span>
+            Entry {organization.totalLeadershipTerms} of {organization.totalLeadershipTerms}
+          </span>
+          <span>Dataset: senior_executives.json</span>
+        </div>
+      </article>
     </div>
   </div>
 </section>

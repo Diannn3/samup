@@ -1,7 +1,7 @@
-import React from "react";
-import { Compass, Film, UserCheck, HelpCircle, Terminal, RotateCcw } from "lucide-react";
-import { useReportingStore } from "../../stores/reportingStore";
-import { STATIONS } from "../../data/reporting/stations";
+import React from 'react';
+import { Compass, Film, UserCheck, HelpCircle, Terminal, RotateCcw } from 'lucide-react';
+import { useReportingStore } from '../../stores/reportingStore';
+import { STATIONS } from '../../data/reporting/stations';
 
 export const PresenterBar: React.FC = () => {
   const playerPos = useReportingStore((s) => s.playerPos);
@@ -13,15 +13,15 @@ export const PresenterBar: React.FC = () => {
   const toggleCommandPalette = useReportingStore((s) => s.toggleCommandPalette);
   const currentChapter = useReportingStore((s) => s.currentChapter);
 
-  const isDark = currentChapter === "darkroom";
+  const isDark = currentChapter === 'darkroom';
 
   return (
     <div className="hidden md:flex fixed bottom-6 inset-x-0 z-40 justify-center pointer-events-none px-4">
       <div
         className={`pointer-events-auto flex items-center gap-2 md:gap-4 px-4 py-2.5 rounded-full spatial-glass-pill transition-all duration-300 shadow-xl border ${
           isDark
-            ? "bg-neutral-900/80 border-white/15 text-white"
-            : "bg-white/80 border-black/10 text-neutral-900"
+            ? 'bg-neutral-900/80 border-white/15 text-white'
+            : 'bg-white/80 border-black/10 text-neutral-900'
         }`}
       >
         {/* Telemetry / Coordinates */}
@@ -35,9 +35,7 @@ export const PresenterBar: React.FC = () => {
         {/* Nearest Station Indicator or Action */}
         {nearestStation && (
           <div className="flex items-center gap-2">
-            <span className="text-[11px] font-mono text-neutral-400 hidden md:inline">
-              NEAR:
-            </span>
+            <span className="text-[11px] font-mono text-neutral-400 hidden md:inline">NEAR:</span>
             <span className="text-xs font-bold truncate max-w-[140px] md:max-w-[180px]">
               [{nearestStation.index}] {nearestStation.title}
             </span>
@@ -58,28 +56,28 @@ export const PresenterBar: React.FC = () => {
         {/* Rapid Presenter Navigation Shortcuts */}
         <div className="flex items-center gap-1 font-mono text-[11px]">
           <button
-            onClick={() => teleportToStation("st-01")}
+            onClick={() => teleportToStation('st-01')}
             className="px-2.5 py-1 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-neutral-600 dark:text-neutral-300"
             title="Jump to Start"
           >
             Start
           </button>
           <button
-            onClick={() => teleportToStation("st-06")}
+            onClick={() => teleportToStation('st-06')}
             className="px-2.5 py-1 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-neutral-600 dark:text-neutral-300 hidden md:inline"
             title="Jump to Math in Sight"
           >
             Cinema
           </button>
           <button
-            onClick={() => teleportToStation("st-10")}
+            onClick={() => teleportToStation('st-10')}
             className="px-2.5 py-1 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-neutral-600 dark:text-neutral-300"
             title="Jump to Applicant Profile"
           >
             Applicant
           </button>
           <button
-            onClick={() => teleportToStation("st-11")}
+            onClick={() => teleportToStation('st-11')}
             className="px-2.5 py-1 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-neutral-600 dark:text-neutral-300 font-bold"
             title="Jump to Why SAM-UP"
           >

@@ -4,38 +4,45 @@ import { ArrowLeft, Compass } from 'lucide-react';
 ---
 
 <BaseLayout
-  title="404 — Coordinate Undefined | SAM-UP"
-  description="The requested page coordinate does not exist in our topological space."
+  title="404 — Page not found | SAM-UP"
+  description="The requested SAM-UP page could not be found."
+  robots="noindex, follow"
+  indexInSearch={false}
 >
-  <div class="min-h-[75vh] flex items-center justify-center px-4 py-20 text-center relative overflow-hidden">
-    <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.12)_0%,transparent_70%)] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" aria-hidden="true" />
-
-    <div class="max-w-lg w-full relative z-10">
-      <div class="frosted-glass-card p-8 sm:p-12 text-center shadow-2xl">
-        <div class="w-16 h-16 rounded-2xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 mx-auto flex items-center justify-center text-[var(--primary)] shadow-xl mb-6">
-          <Compass class="w-8 h-8" aria-hidden="true" />
-        </div>
-
-        <div class="space-y-3 mb-8">
-          <h1 class="font-display font-black text-4xl sm:text-5xl text-[var(--foreground)] tracking-tight">
-            Coordinate Undefined
+  <section class="min-h-[72vh] flex items-center border-b border-[var(--border)]">
+    <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7">
+          <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
+            <Compass className="w-4 h-4" aria-hidden="true" />
+            <span>404 • Undefined route</span>
+          </div>
+          <h1 class="mt-5 font-display font-black text-5xl sm:text-7xl tracking-[-0.04em] text-[var(--foreground)]">
+            This point is not in the current map.
           </h1>
-          <p class="font-mono text-xs uppercase tracking-widest text-[var(--primary)]/90">
-            ERROR 404 // TOPOLOGY BOUNDARY
+          <p class="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
+            The requested path <span class="font-mono text-[var(--foreground)]">{Astro.url.pathname}</span>{' '}
+            does not correspond to a public page in the SAM-UP site.
           </p>
-          <p class="text-sm text-[var(--muted-foreground)] leading-relaxed max-w-sm mx-auto">
-            The requested route <span class="font-mono text-[var(--primary)]">{Astro.url.pathname}</span> lies outside the defined manifold of this platform.
-          </p>
+          <a
+            href="/"
+            class="mt-8 inline-flex min-h-12 items-center gap-2 rounded-xl bg-[var(--primary)] px-6 py-3.5 text-sm font-bold text-[var(--primary-foreground)] transition-transform hover:-translate-y-0.5"
+          >
+            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+            Return home
+          </a>
         </div>
 
-        <a
-          href="/"
-          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-bold text-sm hover:bg-[var(--primary-hover)] transition-all shadow-md shadow-[var(--primary)]/20"
-        >
-          <ArrowLeft class="w-4 h-4" aria-hidden="true" />
-          <span>Return to Origin</span>
-        </a>
+        <div class="lg:col-span-5" aria-hidden="true">
+          <div class="relative aspect-square max-w-sm mx-auto">
+            <div class="absolute inset-0 rounded-full border border-[var(--border)]"></div>
+            <div class="absolute inset-[18%] rounded-full border border-[var(--border-primary)]/50"></div>
+            <div class="absolute left-[18%] top-1/2 w-[64%] h-px bg-[var(--border)]"></div>
+            <div class="absolute top-[18%] left-1/2 h-[64%] w-px bg-[var(--border)]"></div>
+            <div class="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--primary)] shadow-[0_0_24px_rgba(228,189,79,0.5)]"></div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </BaseLayout>

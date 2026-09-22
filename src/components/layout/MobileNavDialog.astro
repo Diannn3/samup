@@ -1,0 +1,138 @@
+---
+import { mainNav, membershipAction } from '../../data/navigation';
+import { ArrowRight, ChevronRight, Menu, X } from 'lucide-react';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+---
+
+<div class="lg:hidden">
+  <button
+    id="mobile-nav-trigger"
+    type="button"
+    aria-haspopup="dialog"
+    aria-controls="mobile-navigation-drawer"
+    aria-label="Open Navigation Menu"
+    class="min-h-11 min-w-11 flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--border-primary)] transition-colors"
+  >
+    <Menu className="w-5 h-5" aria-hidden="true" />
+  </button>
+
+  <dialog
+    id="mobile-navigation-drawer"
+    aria-label="Site Navigation"
+    class="m-0 ml-auto h-dvh w-[88%] max-w-sm border-0 border-l border-[var(--border)] bg-[#0e0d0b] p-0 text-[var(--foreground)] shadow-2xl backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+  >
+    <div class="min-h-full p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-[var(--border)]">
+          <a href="/" data-mobile-nav-close class="min-h-11 flex items-center gap-2 rounded-lg pr-2">
+            <img
+              src="/sam-up-seal.png"
+              alt="SAM-UP seal"
+              width="32"
+              height="32"
+              class="w-8 h-8 object-contain"
+            />
+            <span class="font-display font-bold text-sm tracking-wide text-[var(--foreground)]">SAM-UP</span>
+          </a>
+
+          <button
+            id="mobile-nav-close"
+            type="button"
+            aria-label="Close Navigation Menu"
+            class="min-h-11 min-w-11 flex items-center justify-center rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--surface-raised)] transition-colors"
+          >
+            <X className="w-5 h-5" aria-hidden="true" />
+          </button>
+        </div>
+
+        <a
+          href={membershipAction.href}
+          data-mobile-nav-close
+          class="mt-5 flex min-h-12 items-center justify-between rounded-xl bg-[var(--primary)] px-4 py-3.5 text-sm font-bold text-[var(--primary-foreground)]"
+        >
+          <span>{membershipAction.label}</span>
+          <ArrowRight className="w-4 h-4" aria-hidden="true" />
+        </a>
+
+        <nav class="mt-5 space-y-1" aria-label="Mobile Main Navigation">
+          {mainNav.map((item) => {
+            const isActive =
+              currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+            return (
+              <a
+                href={item.href}
+                data-mobile-nav-close
+                aria-current={isActive ? 'page' : undefined}
+                class={`flex min-h-11 items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  isActive
+                    ? 'bg-[var(--surface-raised)] text-[var(--primary)] font-semibold border border-[var(--border-primary)]'
+                    : 'text-[var(--foreground)] hover:bg-[var(--surface-raised)]'
+                }`}
+              >
+                <span>{item.label}</span>
+                <ChevronRight className="w-4 h-4 text-[var(--muted-foreground)]" aria-hidden="true" />
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-[var(--border)]">
+        <p class="text-center text-xs text-[var(--muted-foreground)]">Est. Nov 27, 1984 • IMSP CAS UPLB</p>
+      </div>
+    </div>
+  </dialog>
+</div>
+
+<script>
+  const trigger = document.querySelector<HTMLButtonElement>('#mobile-nav-trigger');
+  const dialog = document.querySelector<HTMLDialogElement>('#mobile-navigation-drawer');
+  const closeButton = document.querySelector<HTMLButtonElement>('#mobile-nav-close');
+
+  const openMenu = () => {
+    if (!dialog || !trigger) return;
+    dialog.showModal();
+    document.body.style.overflow = 'hidden';
+    trigger.setAttribute('aria-label', 'Close Navigation Menu');
+    window.requestAnimationFrame(() => closeButton?.focus());
+  };
+
+  const restoreClosedState = () => {
+    document.body.style.overflow = '';
+    trigger?.setAttribute('aria-label', 'Open Navigation Menu');
+    trigger?.focus();
+  };
+
+  const closeMenu = () => {
+    if (!dialog?.open) return;
+    dialog.close();
+    restoreClosedState();
+  };
+
+  trigger?.addEventListener('click', () => {
+    if (dialog?.open) closeMenu();
+    else openMenu();
+  });
+
+  closeButton?.addEventListener('click', closeMenu);
+
+  dialog?.querySelectorAll<HTMLElement>('[data-mobile-nav-close]').forEach((element) => {
+    element.addEventListener('click', closeMenu);
+  });
+
+  dialog?.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    closeMenu();
+  });
+
+  dialog?.addEventListener('close', restoreClosedState);
+
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) closeMenu();
+  });
+</script>

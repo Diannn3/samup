@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { ArrowLeft, Calendar, ExternalLink, MapPin, ShieldCheck, Users } from 'lucide-react';
+
+export async function getStaticPaths() {
+  const entries = await getCollection(
+    'programs',
+    ({ data }) =>
+      (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
+      data.evidence.status !== 'unknown' &&
+      data.evidence.status !== 'blocked' &&
+      data.evidence.status !== 'needs-approval',
+  );
+
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'programs'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+
+const scheduleLabel =
+  data.startDate ??
+  data.recurringLabel ??
+  (data.lifecycle === 'historical' ? 'Historical record' : 'See current source');
+---
+
+<BaseLayout title={`${data.title} | Programs & Updates | SAM-UP`} description={data.summary}>
+  <article>
+    <header class="border-b border-[var(--border)] py-16 sm:py-20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <a
+          href="/events"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted-foreground)] hover:text-[var(--primary)] transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+          Programs & Updates
+        </a>
+
+        <div class="mt-8 flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-wider">
+          <span class="rounded-full border border-[var(--border)] px-3 py-1 text-[var(--primary)]">
+            {data.lifecycle}
+          </span>
+          <span class="text-[var(--muted-foreground)]">{data.organizer}</span>
+        </div>
+
+        <h1 class="mt-4 max-w-4xl font-display font-black text-4xl sm:text-6xl tracking-[-0.03em] leading-[1.02] text-[var(--foreground)]">
+          {data.title}
+        </h1>
+        <p class="mt-5 max-w-3xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
+          {data.summary}
+        </p>
+
+        <dl class="mt-7 grid sm:grid-cols-2 gap-x-8 gap-y-3 text-xs">
+          <div class="flex gap-2">
+            <dt class="font-mono text-[var(--primary)]">SAM-UP role</dt>
+            <dd class="text-[var(--muted-foreground)]">{data.samUpRole}</dd>
+          </div>
+          <div class="flex gap-2">
+            <dt class="inline-flex items-center gap-1.5 font-mono text-[var(--primary)]">
+              <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
+              Schedule
+            </dt>
+            <dd class="text-[var(--muted-foreground)]">{scheduleLabel}</dd>
+          </div>
+          {data.audience && (
+            <div class="flex gap-2">
+              <dt class="inline-flex items-center gap-1.5 font-mono text-[var(--primary)]">
+                <Users className="w-3.5 h-3.5" aria-hidden="true" />
+                Audience
+              </dt>
+              <dd class="text-[var(--muted-foreground)]">{data.audience}</dd>
+            </div>
+          )}
+          {data.location && (
+            <div class="flex gap-2">
+              <dt class="inline-flex items-center gap-1.5 font-mono text-[var(--primary)]">
+                <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
+                Location
+              </dt>
+              <dd class="text-[var(--muted-foreground)]">{data.location}</dd>
+            </div>
+          )}
+        </dl>
+      </div>
+    </header>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+        <div class="lg:col-span-8 article-prose">
+          <Content />
+        </div>
+
+        <aside class="lg:col-span-4">
+          <div class="sticky top-28 rounded-2xl border border-[var(--border)] p-5">
+            <div class="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-[var(--primary)]">
+              <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>Evidence record</span>
+            </div>
+
+            <dl class="mt-4 space-y-4 text-sm">
+              <div>
+                <dt class="text-xs text-[var(--muted-foreground)]">Source</dt>
+                <dd class="mt-1 text-[var(--foreground)]">{data.evidence.sourceLabel}</dd>
+              </div>
+              {data.evidence.sourceDate && (
+                <div>
+                  <dt class="text-xs text-[var(--muted-foreground)]">Source date</dt>
+                  <dd class="mt-1 text-[var(--foreground)]">{data.evidence.sourceDate}</dd>
+                </div>
+              )}
+              <div>
+                <dt class="text-xs text-[var(--muted-foreground)]">Reviewed</dt>
+                <dd class="mt-1 text-[var(--foreground)]">{data.evidence.reviewedAt}</dd>
+              </div>
+              <div>
+                <dt class="text-xs text-[var(--muted-foreground)]">Evidence state</dt>
+                <dd class="mt-1 text-[var(--foreground)]">{data.evidence.status}</dd>
+              </div>
+            </dl>
+
+            {data.evidence.sourceUrl && (
+              <a
+                href={data.evidence.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
+              >
+                Open source
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
+              </a>
+            )}
+
+            {data.evidence.notes && (
+              <p class="mt-5 pt-5 border-t border-[var(--border)] text-xs leading-relaxed text-[var(--muted-foreground)]">
+                {data.evidence.notes}
+              </p>
+            )}
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
