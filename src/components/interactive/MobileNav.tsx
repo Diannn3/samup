@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { Menu, X, ChevronRight, Compass } from 'lucide-react';
+import { Menu, X, ChevronRight } from 'lucide-react';
 import { mainNav } from '../../data/navigation';
 
 interface MobileNavProps {
@@ -17,7 +17,6 @@ export const MobileNav: React.FC<MobileNavProps> = ({ currentPath = '/' }) => {
     setMounted(true);
   }, []);
 
-  // Close on Escape & handle focus trap
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return;
@@ -79,23 +78,20 @@ export const MobileNav: React.FC<MobileNavProps> = ({ currentPath = '/' }) => {
 
   return (
     <div className="lg:hidden">
-      {/* Trigger Button */}
       <button
         ref={triggerRef}
         type="button"
         onClick={toggleMenu}
         aria-expanded={isOpen}
         aria-controls="mobile-navigation-drawer"
-        aria-label={isOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
+        aria-label={isOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
         className="min-h-11 min-w-11 flex items-center justify-center p-2.5 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--border-primary)] transition-colors"
       >
         {isOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
       </button>
 
-      {/* React Portal to document.body for flawless stacking context */}
       {mounted && createPortal(
         <>
-          {/* Backdrop */}
           {isOpen && (
             <div
               onClick={closeMenu}
@@ -104,7 +100,6 @@ export const MobileNav: React.FC<MobileNavProps> = ({ currentPath = '/' }) => {
             />
           )}
 
-          {/* Drawer */}
           <div
             id="mobile-navigation-drawer"
             ref={drawerRef}
@@ -119,7 +114,6 @@ export const MobileNav: React.FC<MobileNavProps> = ({ currentPath = '/' }) => {
             }`}
           >
             <div>
-              {/* Header */}
               <div className="flex items-center justify-between pb-6 border-b border-[var(--border)]">
                 <div className="flex items-center gap-2">
                   <img
@@ -137,35 +131,12 @@ export const MobileNav: React.FC<MobileNavProps> = ({ currentPath = '/' }) => {
                   type="button"
                   onClick={closeMenu}
                   aria-label="Close Navigation Menu"
-                  className="p-2 rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--surface-raised)] transition-colors"
+                  className="min-h-11 min-w-11 flex items-center justify-center rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--surface-raised)] transition-colors"
                 >
                   <X className="w-5 h-5" aria-hidden="true" />
                 </button>
               </div>
 
-              {/* Featured Spatial Reporting Dossier Card */}
-              <div className="mt-5">
-                <a
-                  href="/reporting"
-                  onClick={closeMenu}
-                  className="block p-3.5 rounded-xl bg-gradient-to-br from-amber-500/10 via-white/5 to-white/5 border border-amber-400/30 text-amber-300 hover:border-amber-400/60 transition-all shadow-sm group"
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-amber-400 font-bold">
-                      Interactive 2D World
-                    </span>
-                    <Compass className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform" />
-                  </div>
-                  <div className="font-display font-bold text-sm text-[var(--foreground)]">
-                    Spatial Reporting Dossier ↗
-                  </div>
-                  <div className="font-mono text-[11px] text-[var(--muted-foreground)] mt-0.5">
-                    Batch 2025 // 12 Spatial Stations
-                  </div>
-                </a>
-              </div>
-
-              {/* Navigation Links */}
               <nav className="mt-5 space-y-1" aria-label="Mobile Main Navigation">
                 {mainNav.map((item) => {
                   const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
@@ -175,7 +146,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ currentPath = '/' }) => {
                       href={item.href}
                       onClick={closeMenu}
                       aria-current={isActive ? 'page' : undefined}
-                      className={`flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                      className={`flex min-h-11 items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                         isActive
                           ? 'bg-[var(--surface-raised)] text-[var(--primary)] font-semibold border border-[var(--border-primary)]'
                           : 'text-[var(--foreground)] hover:bg-[var(--surface-raised)]'
@@ -189,7 +160,6 @@ export const MobileNav: React.FC<MobileNavProps> = ({ currentPath = '/' }) => {
               </nav>
             </div>
 
-            {/* Organization context */}
             <div className="pt-6 border-t border-[var(--border)]">
               <p className="text-center text-xs text-[var(--muted-foreground)]">
                 Est. Nov 27, 1984 • IMSP CAS UPLB
