@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /reporting/
+
+# /reporting is a separate applicant/personal experience and is intentionally
+# excluded from the institutional public index. Its page also carries noindex.
