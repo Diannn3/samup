@@ -1,0 +1,91 @@
+---
+import { currentRecruitment, recruitmentLinks } from '../../data/recruitment';
+import { flagshipEvents } from '../../data/events';
+import { ArrowRight, ShieldCheck, CalendarClock, BadgeCheck } from 'lucide-react';
+
+const verifiedProgramCount = flagshipEvents.length;
+---
+
+<section class="relative py-20 sm:py-24 border-b border-[var(--border)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+          <CalendarClock class="w-4 h-4" aria-hidden="true" />
+          <span>Current status</span>
+        </div>
+        <h2 class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
+          What is verified <span class="text-gold-gradient">now?</span>
+        </h2>
+        <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+          Time-sensitive claims are separated from historical identity. When the site cannot verify a current state, it says so and points to the official channel instead of guessing.
+        </p>
+      </div>
+
+      <div class="lg:col-span-8 grid sm:grid-cols-2 gap-px rounded-[1.5rem] overflow-hidden border border-[var(--border)] bg-[var(--border)]">
+        <article class="bg-[var(--background)] p-6 sm:p-7">
+          <div class="flex items-center justify-between gap-4">
+            <div class="w-10 h-10 rounded-xl bg-[var(--primary)]/10 border border-[var(--border-primary)] flex items-center justify-center text-[var(--primary)]">
+              <BadgeCheck class="w-5 h-5" aria-hidden="true" />
+            </div>
+            <span class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">Verified current</span>
+          </div>
+          <h3 class="mt-5 font-display font-bold text-xl text-[var(--foreground)]">OSA registration</h3>
+          <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+            SAM-UP is registered for {currentRecruitment.term}. Current OSA guidance states that only CAS students may apply.
+          </p>
+          <a
+            href={recruitmentLinks.osaRecord}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
+          >
+            Verify OSA record
+            <ArrowRight class="w-4 h-4" aria-hidden="true" />
+          </a>
+        </article>
+
+        <article class="bg-[var(--background)] p-6 sm:p-7">
+          <div class="flex items-center justify-between gap-4">
+            <div class="w-10 h-10 rounded-xl bg-[var(--primary)]/10 border border-[var(--border-primary)] flex items-center justify-center text-[var(--primary)]">
+              <ShieldCheck class="w-5 h-5" aria-hidden="true" />
+            </div>
+            <span class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">Source-aware fallback</span>
+          </div>
+          <h3 class="mt-5 font-display font-bold text-xl text-[var(--foreground)]">Recruitment window</h3>
+          <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+            The site does not assume applications are open. Check the latest SAM-UP announcement for the current application window and specific requirements.
+          </p>
+          <a
+            href="/join"
+            class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
+          >
+            Read recruitment guidance
+            <ArrowRight class="w-4 h-4" aria-hidden="true" />
+          </a>
+        </article>
+
+        <article class="sm:col-span-2 bg-[var(--background)] p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+          <div>
+            <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">Programs directory</div>
+            <h3 class="mt-2 font-display font-bold text-xl text-[var(--foreground)]">
+              {verifiedProgramCount > 0
+                ? `${verifiedProgramCount} source-backed public program${verifiedProgramCount === 1 ? '' : 's'}`
+                : 'Current program listings are being re-verified'}
+            </h3>
+            <p class="mt-2 max-w-2xl text-sm leading-relaxed text-[var(--muted-foreground)]">
+              Historical or recurring activities are not automatically labeled current. The Programs page links to the official update channel while records are reviewed.
+            </p>
+          </div>
+          <a
+            href="/events"
+            class="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--foreground)] hover:border-[var(--border-primary)] transition-colors"
+          >
+            Programs & updates
+            <ArrowRight class="w-4 h-4" aria-hidden="true" />
+          </a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
