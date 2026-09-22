@@ -1,42 +1,40 @@
 ---
 import { milestones } from '../../data/milestones';
-import GlassCard from '../ui/GlassCard.astro';
-import { Landmark, ArrowRight } from 'lucide-react';
+import { ArrowRight, Landmark } from 'lucide-react';
 ---
 
-<section class="relative py-24 border-b border-[var(--border)] overflow-hidden">
-  {/* Atmospheric gradient background blobs */}
-  <div class="glow-blob w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(240,204,78,0.09)_0%,transparent_70%)] top-10 left-1/4" aria-hidden="true" />
-  <div class="glow-blob w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(16,185,129,0.08)_0%,transparent_70%)] bottom-10 right-1/4" aria-hidden="true" />
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--border)] text-xs font-mono text-[var(--primary)]">
-        <Landmark class="w-3.5 h-3.5" aria-hidden="true" />
-        <span>ORGANIZATIONAL MILESTONES • 1984–PRESENT</span>
+<section class="relative py-20 sm:py-24 border-b border-[var(--border)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+          <Landmark class="w-4 h-4" aria-hidden="true" />
+          <span>Documented history</span>
+        </div>
+        <h2 class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]">
+          A short timeline with clear evidence.
+        </h2>
+        <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+          The redesign avoids padding SAM-UP's history with unsourced prestige claims. These milestones come from the Constitution and the documented leadership archive.
+        </p>
+        <a href="/about" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline">
+          About SAM-UP
+          <ArrowRight class="w-4 h-4" aria-hidden="true" />
+        </a>
       </div>
-      <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-[var(--foreground)] tracking-tight">
-        Four Decades of Documented History
-      </h2>
-      <p class="text-[var(--muted-foreground)] text-base sm:text-lg leading-relaxed">
-        Every milestone below is drawn from the SAM-UP Constitution and the organization's documented leadership archive.
-      </p>
-    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {milestones.map((m) => (
-        <GlassCard tag={m.year} title={m.title} subtitle={m.description} showArrow={false} />
-      ))}
-    </div>
-
-    <div class="mt-12 text-center">
-      <a
-        href="/about"
-        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--foreground)] font-semibold text-sm hover:border-[var(--border-primary)] transition-all shadow-sm"
-      >
-        <span>Read the Full Story on the About Page</span>
-        <ArrowRight class="w-4 h-4 text-[var(--primary)]" aria-hidden="true" />
-      </a>
+      <div class="lg:col-span-8 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+        {milestones.map((milestone) => (
+          <article class="grid sm:grid-cols-[6rem_1fr] gap-4 sm:gap-7 py-6">
+            <div class="font-mono text-sm text-[var(--primary)]">{milestone.year}</div>
+            <div>
+              <h3 class="font-display font-bold text-xl text-[var(--foreground)]">{milestone.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">{milestone.description}</p>
+              <p class="mt-2 text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">{milestone.source}</p>
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
   </div>
 </section>
