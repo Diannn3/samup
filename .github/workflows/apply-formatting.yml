@@ -1,4 +1,5 @@
 name: Apply formatting
+# One-shot formatter for the current redesign branch.
 
 on:
   push:
