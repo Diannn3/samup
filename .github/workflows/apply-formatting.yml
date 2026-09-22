@@ -1,5 +1,5 @@
 name: Apply formatting
-# One-shot formatter for the current redesign branch. Re-run after critical font preload.
+# One-shot formatter for the current redesign branch. Final formatting pass.
 
 on:
   push:
