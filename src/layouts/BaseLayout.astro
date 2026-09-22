@@ -11,6 +11,7 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   canonicalURL?: string;
   robots?: string;
   indexInSearch?: boolean;
@@ -20,6 +21,7 @@ const {
   title = `${organization.name} | SAM-UP`,
   description = 'The Society of Applied Mathematics of UPLB — a self-governing academic organization promoting the relevance and wider application of Applied Mathematics.',
   image = '/keyshot-samup-piu-yellow.jpg',
+  imageAlt = 'SAM-UP piu and institutional identity artwork',
   canonicalURL: requestedCanonicalURL,
   robots = 'index, follow',
   indexInSearch = true
@@ -60,18 +62,20 @@ const schemaOrg = {
     <meta name="theme-color" content="#080807" />
 
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={organization.shortName} />
+    <meta property="og:locale" content="en_PH" />
     {canonicalURL && <meta property="og:url" content={canonicalURL} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={socialImage} />
-    <meta property="og:image:alt" content="SAM-UP seal and piu identity artwork" />
+    <meta property="og:image:alt" content={imageAlt} />
 
     <meta property="twitter:card" content="summary_large_image" />
     {canonicalURL && <meta property="twitter:url" content={canonicalURL} />}
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImage} />
-    <meta property="twitter:image:alt" content="SAM-UP seal and piu identity artwork" />
+    <meta property="twitter:image:alt" content={imageAlt} />
 
     <link rel="icon" type="image/png" href="/sam-up-seal.png" />
 
