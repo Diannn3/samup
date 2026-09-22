@@ -13,7 +13,7 @@ interface Props {
 
 const {
   title = `${organization.name} | SAM-UP`,
-  description = `${organization.tagline}. A self-governing academic student organization of the Institute of Mathematical Sciences and Physics (IMSP) at UPLB since 1984.`,
+  description = 'The Society of Applied Mathematics of UPLB — a self-governing academic organization promoting the relevance and wider application of Applied Mathematics.',
   image = '/keyshot-samup-piu-yellow.jpg',
   canonicalURL: requestedCanonicalURL
 } = Astro.props;
@@ -28,7 +28,7 @@ const schemaOrg = {
   name: organization.name,
   alternateName: organization.shortName,
   foundingDate: '1984-11-27',
-  description: description,
+  description,
   ...(canonicalURL ? { url: canonicalURL } : {}),
   ...(Astro.site ? { logo: new URL('/sam-up-seal.png', Astro.site).href } : {}),
   address: {
@@ -49,59 +49,45 @@ const schemaOrg = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
-    <meta name="theme-color" content="#06080C" />
+    <meta name="theme-color" content="#080807" />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     {canonicalURL && <meta property="og:url" content={canonicalURL} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={socialImage} />
-    <meta property="og:image:alt" content="SAM-UP seal and gold Piu monolith" />
+    <meta property="og:image:alt" content="SAM-UP seal and piu identity artwork" />
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     {canonicalURL && <meta property="twitter:url" content={canonicalURL} />}
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImage} />
-    <meta property="twitter:image:alt" content="SAM-UP seal and gold Piu monolith" />
+    <meta property="twitter:image:alt" content="SAM-UP seal and piu identity artwork" />
 
-    <!-- Favicon & Fonts -->
     <link rel="icon" type="image/png" href="/sam-up-seal.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
   </head>
   <body class="min-h-screen flex flex-col bg-[var(--background)] text-[var(--foreground)] antialiased relative overflow-x-hidden">
-    {/* Global Chromatic Gradient Mesh Lights that shine through Frosted Glass */}
-    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-      <div class="glow-blob w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(240,204,78,0.14)_0%,transparent_65%)] -top-48 left-1/4 animate-pulse duration-[8000ms]" />
-      <div class="glow-blob w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(16,185,129,0.12)_0%,transparent_65%)] top-[35%] -right-48" />
-      <div class="glow-blob w-[850px] h-[850px] bg-[radial-gradient(circle,rgba(59,130,246,0.1)_0%,transparent_65%)] top-[65%] -left-48" />
-      <div class="glow-blob w-[750px] h-[750px] bg-[radial-gradient(circle,rgba(240,204,78,0.1)_0%,transparent_65%)] bottom-0 right-1/4" />
-    </div>
+    <div class="fixed inset-x-0 top-0 h-[38rem] pointer-events-none z-0 bg-[radial-gradient(ellipse_at_top,rgba(228,189,79,0.055),transparent_68%)]" aria-hidden="true" />
 
-    <!-- Accessible Skip Link -->
     <a href="#main-content" class="skip-link">
       Skip to main content
     </a>
 
-    <!-- Top Navigation Header -->
     <Header currentPath={currentPath} />
 
-    <!-- Main Content Shell -->
     <main id="main-content" class="flex-grow pt-20 relative z-10">
       <slot />
     </main>
 
-    <!-- Footer -->
     <Footer />
   </body>
 </html>
