@@ -1,7 +1,6 @@
 ---
 import { mainNav } from '../../data/navigation';
 import { MobileNav } from '../interactive/MobileNav';
-import { Compass } from 'lucide-react';
 
 interface Props {
   currentPath?: string;
@@ -11,12 +10,10 @@ const { currentPath = Astro.url.pathname } = Astro.props;
 ---
 
 <header class="fixed top-0 inset-x-0 z-40 bg-[var(--background)]/65 backdrop-blur-2xl border-b border-[var(--border)] transition-colors">
-  {/* Specular top highlight */}
   <div class="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" aria-hidden="true" />
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
-      {/* Brand Identity */}
       <a href="/" class="flex items-center gap-3 group focus-visible:outline-none">
         <img
           src="/sam-up-seal.png"
@@ -35,7 +32,6 @@ const { currentPath = Astro.url.pathname } = Astro.props;
         </div>
       </a>
 
-      {/* Desktop Navigation in Frosted Glass Pill */}
       <nav class="hidden lg:ml-auto lg:flex items-center gap-1.5 p-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 shadow-inner" aria-label="Primary Navigation">
         {mainNav.map((item) => {
           const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
@@ -55,18 +51,6 @@ const { currentPath = Astro.url.pathname } = Astro.props;
         })}
       </nav>
 
-      {/* Spatial Reporting Dossier Bridge Pill */}
-      <div class="hidden lg:flex items-center ml-3">
-        <a
-          href="/reporting"
-          class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/15 border border-[var(--border-primary)]/40 hover:border-[var(--border-primary)] text-[var(--primary)] hover:text-white font-mono text-xs font-semibold tracking-wider transition-all shadow-sm"
-        >
-          <Compass class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
-          <span>Reporting Dossier ↗</span>
-        </a>
-      </div>
-
-      {/* Mobile Navigation Island */}
       <div class="flex items-center gap-3 lg:hidden">
         <MobileNav client:load currentPath={currentPath} />
       </div>
