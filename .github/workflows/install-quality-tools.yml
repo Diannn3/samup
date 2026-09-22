@@ -32,7 +32,7 @@ jobs:
         run: npm ci
 
       - name: Add quality dependencies
-        run: npm install --save-dev @astrojs/check prettier prettier-plugin-astro @axe-core/playwright @lhci/cli
+        run: npm install --save-dev typescript@^6.0.3 @astrojs/check prettier prettier-plugin-astro @axe-core/playwright @lhci/cli
 
       - name: Verify dependency installation
         run: npm run build
@@ -46,6 +46,6 @@ jobs:
             echo "No quality dependency changes to commit."
             exit 0
           fi
-          git commit -m "chore(qa): add type accessibility formatting and Lighthouse tooling"
+          git commit -m "chore(qa): add Astro-compatible quality tooling"
           git pull --rebase origin feat/samup-trust-foundation
           git push origin HEAD:feat/samup-trust-foundation
