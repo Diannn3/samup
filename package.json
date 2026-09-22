@@ -13,8 +13,13 @@
     "astro": "astro",
     "qa:visual": "node scripts/visual-qa.mjs",
     "qa:motion": "node scripts/motion-touch-check.mjs",
-    "qa:all": "npm run qa:bundle && npm run qa:audit && npm run qa:motion && npm run qa:visual",
-    "qa:bundle": "node scripts/check-bundle-budget.mjs"
+    "qa:all": "npm run qa:bundle && npm run test:a11y && npm run qa:audit && npm run qa:motion && npm run qa:visual",
+    "qa:bundle": "node scripts/check-bundle-budget.mjs",
+    "format": "prettier --write \"src/**/*.{astro,ts,tsx,js,mjs,css,md}\" \"scripts/**/*.{js,mjs}\" \"docs/**/*.md\" \"*.{md,mjs,cjs}\"",
+    "format:check": "prettier --check \"src/**/*.{astro,ts,tsx,js,mjs,css,md}\" \"scripts/**/*.{js,mjs}\" \"docs/**/*.md\" \"*.{md,mjs,cjs}\"",
+    "check": "astro check",
+    "test:a11y": "node scripts/a11y-audit.mjs",
+    "perf:lhci": "lhci autorun --config=./lighthouserc.cjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.4",
