@@ -13,6 +13,7 @@ interface Props {
   image?: string;
   canonicalURL?: string;
   robots?: string;
+  indexInSearch?: boolean;
 }
 
 const {
@@ -20,7 +21,8 @@ const {
   description = 'The Society of Applied Mathematics of UPLB — a self-governing academic organization promoting the relevance and wider application of Applied Mathematics.',
   image = '/keyshot-samup-piu-yellow.jpg',
   canonicalURL: requestedCanonicalURL,
-  robots = 'index, follow'
+  robots = 'index, follow',
+  indexInSearch = true
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -84,7 +86,11 @@ const schemaOrg = {
 
     <Header currentPath={currentPath} />
 
-    <main id="main-content" class="flex-grow pt-20 relative z-10">
+    <main
+      id="main-content"
+      data-pagefind-body={indexInSearch ? true : undefined}
+      class="flex-grow pt-20 relative z-10"
+    >
       <slot />
     </main>
 
