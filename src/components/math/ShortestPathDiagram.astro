@@ -1,0 +1,77 @@
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<figure class="rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-8">
+  <svg
+    viewBox="0 0 700 440"
+    role="img"
+    aria-labelledby="shortest-path-title shortest-path-desc"
+    class="w-full h-auto"
+  >
+    <title id="shortest-path-title">Weighted graph showing two routes from A to E</title>
+    <desc id="shortest-path-desc">
+      A graph with nodes A, B, C, D, and E. The highlighted gold path A to C to D to E has total weight 12, less than A to B to E with total weight 17.
+    </desc>
+
+    <g stroke="rgba(169,163,154,0.32)" stroke-width="3" fill="none">
+      <path d="M105 220 L285 105" />
+      <path d="M105 220 L280 330" />
+      <path d="M285 105 L575 210" />
+      <path d="M280 330 L430 315" />
+      <path d="M430 315 L575 210" />
+      <path d="M285 105 L430 315" />
+    </g>
+
+    <g stroke="#e4bd4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M105 220 L280 330 L430 315 L575 210" />
+    </g>
+
+    <g fill="#080807" stroke="#e4bd4f" stroke-width="4">
+      <circle cx="105" cy="220" r="28" />
+      <circle cx="285" cy="105" r="28" />
+      <circle cx="280" cy="330" r="28" />
+      <circle cx="430" cy="315" r="28" />
+      <circle cx="575" cy="210" r="28" />
+    </g>
+
+    <g
+      fill="#f4f0e8"
+      font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+      font-weight="700"
+      font-size="18"
+      text-anchor="middle"
+      dominant-baseline="middle"
+    >
+      <text x="105" y="220">A</text>
+      <text x="285" y="105">B</text>
+      <text x="280" y="330">C</text>
+      <text x="430" y="315">D</text>
+      <text x="575" y="210">E</text>
+    </g>
+
+    <g fill="#a9a39a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15">
+      <text x="185" y="145">9</text>
+      <text x="182" y="292" fill="#e4bd4f">4</text>
+      <text x="435" y="135">8</text>
+      <text x="350" y="343" fill="#e4bd4f">5</text>
+      <text x="508" y="282" fill="#e4bd4f">3</text>
+      <text x="356" y="210">7</text>
+    </g>
+
+    {!compact && (
+      <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+        <text x="40" y="45" fill="#a9a39a" font-size="13">WEIGHT = COST</text>
+        <text x="40" y="68" fill="#e4bd4f" font-size="16" font-weight="700">A → C → D → E = 12</text>
+      </g>
+    )}
+  </svg>
+
+  <figcaption class="mt-4 text-xs font-mono leading-relaxed text-[var(--muted-foreground)]">
+    Highlighted route: A → C → D → E. Its total weight is 12, compared with 17 for A → B → E.
+  </figcaption>
+</figure>
