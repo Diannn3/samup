@@ -43,7 +43,11 @@ try {
         total: shifts.reduce((sum, entry) => sum + entry.value, 0),
         shifts,
         fonts: document.fonts
-          ? [...document.fonts].map((font) => ({ family: font.family, status: font.status, display: font.display }))
+          ? [...document.fonts].map((font) => ({
+              family: font.family,
+              status: font.status,
+              display: font.display,
+            }))
           : [],
       };
     });

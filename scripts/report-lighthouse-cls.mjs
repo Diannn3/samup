@@ -23,10 +23,7 @@ for (const name of reportFiles) {
 
   console.log('\nCLS ' + cls.toFixed(4) + ' — ' + (report.finalDisplayedUrl || report.finalUrl || name));
 
-  const audits = [
-    report.audits?.['layout-shift-elements'],
-    report.audits?.['layout-shifts'],
-  ].filter(Boolean);
+  const audits = [report.audits?.['layout-shift-elements'], report.audits?.['layout-shifts']].filter(Boolean);
 
   let printed = false;
 
