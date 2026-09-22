@@ -10,6 +10,7 @@ const ROUTES = [
   '/join',
   '/partners',
   '/governance',
+  '/programs',
   '/events',
   '/events/nimp-2026',
   '/resources',
