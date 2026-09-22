@@ -18,7 +18,7 @@ const { currentPath = Astro.url.pathname } = Astro.props;
     aria-label="Open Navigation Menu"
     class="min-h-11 min-w-11 flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--border-primary)] transition-colors"
   >
-    <Menu class="w-5 h-5" aria-hidden="true" />
+    <Menu className="w-5 h-5" aria-hidden="true" />
   </button>
 
   <dialog
@@ -46,7 +46,7 @@ const { currentPath = Astro.url.pathname } = Astro.props;
             aria-label="Close Navigation Menu"
             class="min-h-11 min-w-11 flex items-center justify-center rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--surface-raised)] transition-colors"
           >
-            <X class="w-5 h-5" aria-hidden="true" />
+            <X className="w-5 h-5" aria-hidden="true" />
           </button>
         </div>
 
@@ -75,7 +75,7 @@ const { currentPath = Astro.url.pathname } = Astro.props;
                 }`}
               >
                 <span>{item.label}</span>
-                <ChevronRight class="w-4 h-4 text-[var(--muted-foreground)]" aria-hidden="true" />
+                <ChevronRight className="w-4 h-4 text-[var(--muted-foreground)]" aria-hidden="true" />
               </a>
             );
           })}

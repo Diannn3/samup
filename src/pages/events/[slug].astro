@@ -66,7 +66,7 @@ const scheduleLabel =
           </div>
           <div class="flex gap-2">
             <dt class="inline-flex items-center gap-1.5 font-mono text-[var(--primary)]">
-              <Calendar class="w-3.5 h-3.5" aria-hidden="true" />
+              <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
               Schedule
             </dt>
             <dd class="text-[var(--muted-foreground)]">{scheduleLabel}</dd>
@@ -74,7 +74,7 @@ const scheduleLabel =
           {data.audience && (
             <div class="flex gap-2">
               <dt class="inline-flex items-center gap-1.5 font-mono text-[var(--primary)]">
-                <Users class="w-3.5 h-3.5" aria-hidden="true" />
+                <Users className="w-3.5 h-3.5" aria-hidden="true" />
                 Audience
               </dt>
               <dd class="text-[var(--muted-foreground)]">{data.audience}</dd>
@@ -83,7 +83,7 @@ const scheduleLabel =
           {data.location && (
             <div class="flex gap-2">
               <dt class="inline-flex items-center gap-1.5 font-mono text-[var(--primary)]">
-                <MapPin class="w-3.5 h-3.5" aria-hidden="true" />
+                <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
                 Location
               </dt>
               <dd class="text-[var(--muted-foreground)]">{data.location}</dd>
@@ -102,7 +102,7 @@ const scheduleLabel =
         <aside class="lg:col-span-4">
           <div class="sticky top-28 rounded-2xl border border-[var(--border)] p-5">
             <div class="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-[var(--primary)]">
-              <ShieldCheck class="w-3.5 h-3.5" aria-hidden="true" />
+              <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" />
               <span>Evidence record</span>
             </div>
 
@@ -135,7 +135,7 @@ const scheduleLabel =
                 class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
               >
                 Open source
-                <ExternalLink class="w-4 h-4" aria-hidden="true" />
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </a>
             )}
 

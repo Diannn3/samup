@@ -61,7 +61,7 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
               class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
             >
               View verified record
-              <ArrowRight class="w-4 h-4" aria-hidden="true" />
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </a>
 
             <dl class="mt-5 grid sm:grid-cols-2 gap-x-8 gap-y-3 text-xs">
@@ -79,7 +79,7 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
               {program.data.audience && (
                 <div class="flex gap-2">
                   <dt class="inline-flex items-center gap-1.5 font-mono text-[var(--primary)]">
-                    <Users class="w-3.5 h-3.5" aria-hidden="true" />
+                    <Users className="w-3.5 h-3.5" aria-hidden="true" />
                     Audience
                   </dt>
                   <dd class="text-[var(--muted-foreground)]">{program.data.audience}</dd>
@@ -88,7 +88,7 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
               {program.data.location && (
                 <div class="flex gap-2">
                   <dt class="inline-flex items-center gap-1.5 font-mono text-[var(--primary)]">
-                    <MapPin class="w-3.5 h-3.5" aria-hidden="true" />
+                    <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
                     Location
                   </dt>
                   <dd class="text-[var(--muted-foreground)]">{program.data.location}</dd>
@@ -103,7 +103,7 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
     <section class="grid lg:grid-cols-12 gap-8 items-start">
       <div class="lg:col-span-7 rounded-[1.5rem] border border-[var(--border)] p-8 sm:p-10">
         <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
-          <ShieldCheck class="w-4 h-4" aria-hidden="true" />
+          <ShieldCheck className="w-4 h-4" aria-hidden="true" />
           <span>Verification in progress</span>
         </div>
         <h2 class="mt-4 font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
@@ -133,7 +133,7 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
           class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
         >
           Official SAM-UP page
-          <ExternalLink class="w-4 h-4" aria-hidden="true" />
+          <ExternalLink className="w-4 h-4" aria-hidden="true" />
         </a>
       </aside>
     </section>

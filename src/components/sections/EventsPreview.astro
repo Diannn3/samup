@@ -59,18 +59,18 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
               </p>
               <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs font-mono text-[var(--muted-foreground)]">
                 <span class="inline-flex items-center gap-1.5">
-                  <Calendar class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+                  <Calendar className="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
                   {getScheduleLabel(program)}
                 </span>
                 {program.data.audience && (
                   <span class="inline-flex items-center gap-1.5">
-                    <Users class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+                    <Users className="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
                     {program.data.audience}
                   </span>
                 )}
                 {program.data.location && (
                   <span class="inline-flex items-center gap-1.5">
-                    <MapPin class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+                    <MapPin className="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
                     {program.data.location}
                   </span>
                 )}
@@ -82,7 +82,7 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
     ) : (
       <div class="mt-10 rounded-[1.5rem] border border-[var(--border)] p-7 sm:p-8 flex items-start gap-4">
         <div class="w-10 h-10 rounded-xl bg-[var(--primary)]/10 border border-[var(--border-primary)] flex items-center justify-center text-[var(--primary)] shrink-0">
-          <ShieldCheck class="w-5 h-5" aria-hidden="true" />
+          <ShieldCheck className="w-5 h-5" aria-hidden="true" />
         </div>
         <div class="max-w-2xl">
           <h3 class="font-display font-bold text-xl text-[var(--foreground)]">

@@ -35,7 +35,7 @@ import { ArrowRight, ExternalLink, ShieldCheck, Landmark, Mail, CheckCircle2 } f
     <section class="grid lg:grid-cols-12 gap-8">
       <article class="lg:col-span-8 frosted-glass-card p-7 sm:p-9">
         <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
-          <ShieldCheck class="w-4 h-4" aria-hidden="true" />
+          <ShieldCheck className="w-4 h-4" aria-hidden="true" />
           <span>{currentRecruitment.term}</span>
         </div>
         <h2 class="mt-4 font-display font-bold text-2xl sm:text-4xl text-[var(--foreground)]">
@@ -80,14 +80,14 @@ import { ArrowRight, ExternalLink, ShieldCheck, Landmark, Mail, CheckCircle2 } f
             class="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] px-6 py-3.5 text-sm font-semibold text-[var(--foreground)] hover:border-[var(--border-primary)] transition-colors"
           >
             Verify OSA record
-            <ExternalLink class="w-4 h-4" aria-hidden="true" />
+            <ExternalLink className="w-4 h-4" aria-hidden="true" />
           </a>
         </div>
       </article>
 
       <aside class="lg:col-span-4 frosted-glass-card p-7 sm:p-8">
         <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
-          <CheckCircle2 class="w-4 h-4" aria-hidden="true" />
+          <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
           <span>Before you apply</span>
         </div>
         <ol class="mt-5 space-y-5 text-sm text-[var(--muted-foreground)]">
@@ -110,7 +110,7 @@ import { ArrowRight, ExternalLink, ShieldCheck, Landmark, Mail, CheckCircle2 } f
     <section class="grid lg:grid-cols-2 gap-8">
       <article class="frosted-glass-card p-7 sm:p-8">
         <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
-          <Landmark class="w-4 h-4" aria-hidden="true" />
+          <Landmark className="w-4 h-4" aria-hidden="true" />
           <span>Constitutional context</span>
         </div>
         <h2 class="mt-4 font-display font-bold text-2xl text-[var(--foreground)]">
@@ -151,7 +151,7 @@ import { ArrowRight, ExternalLink, ShieldCheck, Landmark, Mail, CheckCircle2 } f
           href={`mailto:${organization.socials.email}`}
           class="mt-8 inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] px-6 py-3.5 text-sm font-semibold text-[var(--foreground)] hover:border-[var(--border-primary)] transition-colors"
         >
-          <Mail class="w-4 h-4 text-[var(--primary)]" aria-hidden="true" />
+          <Mail className="w-4 h-4 text-[var(--primary)]" aria-hidden="true" />
           {organization.socials.email}
         </a>
       </article>
