@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ArrowRight, Route, Network, Sigma, Compass } from 'lucide-react';
+---
+
+<BaseLayout
+  title="Explore Applied Mathematics | SAM-UP"
+  description="A public Applied Mathematics explainer from the Society of Applied Mathematics of UPLB."
+>
+  <section class="relative overflow-hidden border-b border-[var(--border)] py-20 sm:py-24 lg:py-28">
+    <div class="absolute inset-0 pointer-events-none opacity-60" aria-hidden="true">
+      <div class="absolute inset-y-0 left-1/2 w-px bg-[var(--border)]"></div>
+      <div class="absolute top-1/2 inset-x-0 h-px bg-[var(--border)]"></div>
+      <div class="absolute left-[20%] top-[18%] h-2 w-2 rounded-full bg-[var(--primary)]"></div>
+      <div class="absolute right-[18%] bottom-[24%] h-2 w-2 rounded-full bg-[var(--primary)]"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-4xl">
+        <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
+          <Sigma class="w-4 h-4" aria-hidden="true" />
+          <span>Explore Applied Mathematics</span>
+        </div>
+        <h1 class="mt-5 font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight text-[var(--foreground)]">
+          Mathematics becomes useful when it helps us <span class="text-gold-gradient">choose well.</span>
+        </h1>
+        <p class="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
+          Applied Mathematics turns real constraints into models we can reason about: routes, schedules, networks, queues, risk, growth, allocation, and countless other decisions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-16">
+    <section class="grid lg:grid-cols-12 gap-8 items-start">
+      <article class="lg:col-span-5">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+          <Route class="w-4 h-4" aria-hidden="true" />
+          <span>Module 01 / Shortest paths</span>
+        </div>
+        <h2 class="mt-4 font-display font-bold text-3xl sm:text-4xl text-[var(--foreground)]">
+          The shortest route is not always the route with the fewest stops.
+        </h2>
+        <p class="mt-5 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+          Imagine five locations connected by roads. Each road has a cost: it could mean travel time, fuel, distance, money, or even risk. Applied Mathematics lets us represent the places as <strong class="text-[var(--foreground)]">nodes</strong> and the connections as <strong class="text-[var(--foreground)]">weighted edges</strong>.
+        </p>
+        <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+          The problem is not “which path has the fewest lines?” It is “which available path has the smallest total cost?”
+        </p>
+
+        <div class="mt-7 rounded-2xl border border-[var(--border)] p-5 bg-white/[0.03]">
+          <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">Text alternative</div>
+          <p class="mt-2 text-sm leading-relaxed text-[var(--foreground)]/85">
+            From A to E, route A→B→E costs 9 + 8 = 17. Route A→C→D→E costs 4 + 5 + 3 = 12, so the three-edge route is cheaper even though it uses more connections.
+          </p>
+        </div>
+      </article>
+
+      <figure class="lg:col-span-7 frosted-glass-card p-5 sm:p-8">
+        <svg
+          viewBox="0 0 700 440"
+          role="img"
+          aria-labelledby="shortest-path-title shortest-path-desc"
+          class="w-full h-auto"
+        >
+          <title id="shortest-path-title">Weighted graph showing two routes from A to E</title>
+          <desc id="shortest-path-desc">
+            A graph with nodes A, B, C, D, and E. The highlighted gold path A to C to D to E has total weight 12, less than A to B to E with total weight 17.
+          </desc>
+
+          <g stroke="rgba(148,163,184,0.35)" stroke-width="3" fill="none">
+            <path d="M105 220 L285 105" />
+            <path d="M105 220 L280 330" />
+            <path d="M285 105 L575 210" />
+            <path d="M280 330 L430 315" />
+            <path d="M430 315 L575 210" />
+            <path d="M285 105 L430 315" />
+          </g>
+
+          <g stroke="#f0cc4e" stroke-width="7" stroke-linecap="round" fill="none">
+            <path d="M105 220 L280 330 L430 315 L575 210" />
+          </g>
+
+          <g fill="#06080c" stroke="#f0cc4e" stroke-width="4">
+            <circle cx="105" cy="220" r="28" />
+            <circle cx="285" cy="105" r="28" />
+            <circle cx="280" cy="330" r="28" />
+            <circle cx="430" cy="315" r="28" />
+            <circle cx="575" cy="210" r="28" />
+          </g>
+
+          <g fill="#f1f4f9" font-family="ui-monospace, monospace" font-weight="700" font-size="18" text-anchor="middle" dominant-baseline="middle">
+            <text x="105" y="220">A</text>
+            <text x="285" y="105">B</text>
+            <text x="280" y="330">C</text>
+            <text x="430" y="315">D</text>
+            <text x="575" y="210">E</text>
+          </g>
+
+          <g fill="#94a3b8" font-family="ui-monospace, monospace" font-size="15">
+            <text x="185" y="145">9</text>
+            <text x="182" y="292" fill="#f0cc4e">4</text>
+            <text x="435" y="135">8</text>
+            <text x="350" y="343" fill="#f0cc4e">5</text>
+            <text x="508" y="282" fill="#f0cc4e">3</text>
+            <text x="356" y="210">7</text>
+          </g>
+
+          <g font-family="ui-monospace, monospace">
+            <text x="40" y="45" fill="#94a3b8" font-size="13">WEIGHT = COST</text>
+            <text x="40" y="68" fill="#f0cc4e" font-size="16" font-weight="700">A → C → D → E = 12</text>
+          </g>
+        </svg>
+
+        <figcaption class="mt-4 flex items-center gap-2 text-xs font-mono text-[var(--muted-foreground)]">
+          <Network class="w-4 h-4 text-[var(--primary)]" aria-hidden="true" />
+          A small weighted graph. Real routing systems may contain millions of nodes and changing costs.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="grid md:grid-cols-3 gap-6">
+      <article class="border-t border-[var(--border)] pt-6">
+        <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--primary)]">MODEL</div>
+        <h2 class="mt-3 font-display font-bold text-xl text-[var(--foreground)]">Turn places into a graph</h2>
+        <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">Decide what the nodes represent and which connections are actually possible.</p>
+      </article>
+      <article class="border-t border-[var(--border)] pt-6">
+        <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--primary)]">MEASURE</div>
+        <h2 class="mt-3 font-display font-bold text-xl text-[var(--foreground)]">Define the cost</h2>
+        <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">Distance is only one option. A weight can encode time, price, fuel, risk, or a combination.</p>
+      </article>
+      <article class="border-t border-[var(--border)] pt-6">
+        <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--primary)]">OPTIMIZE</div>
+        <h2 class="mt-3 font-display font-bold text-xl text-[var(--foreground)]">Compare feasible routes</h2>
+        <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">An algorithm searches for the lowest-cost route under the model you defined.</p>
+      </article>
+    </section>
+
+    <section class="relative overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-8 sm:p-10">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+          <Compass class="w-4 h-4" aria-hidden="true" />
+          <span>Why SAM-UP exists</span>
+        </div>
+        <h2 class="mt-4 font-display font-bold text-2xl sm:text-4xl text-[var(--foreground)]">
+          The point is not the diagram. It is the decision the diagram helps you make.
+        </h2>
+        <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+          This is one small example of the wider idea behind Applied Mathematics: formal reasoning becomes valuable when it clarifies a real system, exposes trade-offs, and helps people act with better information.
+        </p>
+        <a href="/about" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline">
+          Read SAM-UP's constitutional objectives
+          <ArrowRight class="w-4 h-4" aria-hidden="true" />
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
