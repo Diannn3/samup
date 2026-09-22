@@ -10,7 +10,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "qa:audit": "node scripts/audit-site.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "qa:visual": "node scripts/visual-qa.mjs",
+    "qa:motion": "node scripts/motion-touch-check.mjs",
+    "qa:all": "npm run qa:audit && npm run qa:motion && npm run qa:visual"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.4",
