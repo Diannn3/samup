@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { Menu, X, ChevronRight } from 'lucide-react';
-import { mainNav } from '../../data/navigation';
+import { Menu, X, ChevronRight, ArrowRight } from 'lucide-react';
+import { mainNav, membershipAction } from '../../data/navigation';
 
 interface MobileNavProps {
   currentPath?: string;
@@ -109,7 +109,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ currentPath = '/' }) => {
             aria-hidden={!isOpen}
             hidden={!isOpen}
             style={{ backgroundColor: '#0e121a' }}
-            className={`fixed top-0 right-0 bottom-0 w-4/5 max-w-sm border-l border-[var(--border)] z-[9999] p-6 flex flex-col justify-between overscroll-contain shadow-2xl transition-transform duration-300 ease-out ${
+            className={`fixed top-0 right-0 bottom-0 w-[88%] max-w-sm border-l border-[var(--border)] z-[9999] p-6 flex flex-col justify-between overscroll-contain shadow-2xl transition-transform duration-300 ease-out ${
               isOpen ? 'translate-x-0' : 'translate-x-full pointer-events-none'
             }`}
           >
@@ -136,6 +136,15 @@ export const MobileNav: React.FC<MobileNavProps> = ({ currentPath = '/' }) => {
                   <X className="w-5 h-5" aria-hidden="true" />
                 </button>
               </div>
+
+              <a
+                href={membershipAction.href}
+                onClick={closeMenu}
+                className="mt-5 flex min-h-12 items-center justify-between rounded-xl bg-[var(--primary)] px-4 py-3.5 text-sm font-bold text-[var(--primary-foreground)]"
+              >
+                <span>{membershipAction.label}</span>
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </a>
 
               <nav className="mt-5 space-y-1" aria-label="Mobile Main Navigation">
                 {mainNav.map((item) => {
