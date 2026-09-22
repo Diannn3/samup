@@ -2,14 +2,18 @@
 import { getCollection } from 'astro:content';
 import { ArrowRight, Calendar, MapPin, ShieldCheck, Users } from 'lucide-react';
 
-const programs = (await getCollection('programs', ({ data }) =>
-  data.evidence.visibility === 'public' &&
-  data.evidence.status !== 'unknown' &&
-  data.evidence.status !== 'blocked' &&
-  data.evidence.status !== 'needs-approval' &&
-  data.lifecycle !== 'historical' &&
-  data.lifecycle !== 'cancelled'
-)).slice(0, 3);
+const programs = (
+  await getCollection(
+    'programs',
+    ({ data }) =>
+      data.evidence.visibility === 'public' &&
+      data.evidence.status !== 'unknown' &&
+      data.evidence.status !== 'blocked' &&
+      data.evidence.status !== 'needs-approval' &&
+      data.lifecycle !== 'historical' &&
+      data.lifecycle !== 'cancelled',
+  )
+).slice(0, 3);
 
 const getScheduleLabel = (program: (typeof programs)[number]) =>
   program.data.startDate ?? program.data.recurringLabel ?? 'See current source';
@@ -24,11 +28,15 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
           Current means source-backed.
         </h2>
         <p class="mt-3 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
-          A recurring activity is not automatically a currently scheduled activity. The site publishes program records only after organizer, SAM-UP role, and current status are verified.
+          A recurring activity is not automatically a currently scheduled activity. The site publishes program
+          records only after organizer, SAM-UP role, and current status are verified.
         </p>
       </div>
 
-      <a href="/programs" class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline shrink-0">
+      <a
+        href="/programs"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline shrink-0"
+      >
         Programs & official updates
         <ArrowRight class="w-4 h-4" aria-hidden="true" />
       </a>
@@ -39,16 +47,33 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
         {programs.map((program) => (
           <article class="grid lg:grid-cols-[12rem_1fr] gap-5 lg:gap-8 items-start py-7">
             <div>
-              <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">{program.data.lifecycle}</div>
+              <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">
+                {program.data.lifecycle}
+              </div>
               <div class="mt-2 text-xs text-[var(--muted-foreground)]">{program.data.organizer}</div>
             </div>
             <div>
               <h3 class="font-display font-bold text-xl text-[var(--foreground)]">{program.data.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">{program.data.summary}</p>
+              <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+                {program.data.summary}
+              </p>
               <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs font-mono text-[var(--muted-foreground)]">
-                <span class="inline-flex items-center gap-1.5"><Calendar class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />{getScheduleLabel(program)}</span>
-                {program.data.audience && <span class="inline-flex items-center gap-1.5"><Users class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />{program.data.audience}</span>}
-                {program.data.location && <span class="inline-flex items-center gap-1.5"><MapPin class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />{program.data.location}</span>}
+                <span class="inline-flex items-center gap-1.5">
+                  <Calendar class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+                  {getScheduleLabel(program)}
+                </span>
+                {program.data.audience && (
+                  <span class="inline-flex items-center gap-1.5">
+                    <Users class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+                    {program.data.audience}
+                  </span>
+                )}
+                {program.data.location && (
+                  <span class="inline-flex items-center gap-1.5">
+                    <MapPin class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
+                    {program.data.location}
+                  </span>
+                )}
               </div>
             </div>
           </article>
@@ -60,9 +85,12 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
           <ShieldCheck class="w-5 h-5" aria-hidden="true" />
         </div>
         <div class="max-w-2xl">
-          <h3 class="font-display font-bold text-xl text-[var(--foreground)]">Current program records are being verified.</h3>
+          <h3 class="font-display font-bold text-xl text-[var(--foreground)]">
+            Current program records are being verified.
+          </h3>
           <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
-            Legacy program names stay outside the public collection until their ownership, SAM-UP role, and status are source-backed.
+            Legacy program names stay outside the public collection until their ownership, SAM-UP role, and
+            status are source-backed.
           </p>
         </div>
       </div>

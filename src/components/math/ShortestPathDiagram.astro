@@ -15,7 +15,8 @@ const { compact = false } = Astro.props;
   >
     <title id="shortest-path-title">Weighted graph showing two routes from A to E</title>
     <desc id="shortest-path-desc">
-      A graph with nodes A, B, C, D, and E. The highlighted gold path A to C to D to E has total weight 12, less than A to B to E with total weight 17.
+      A graph with nodes A, B, C, D, and E. The highlighted gold path A to C to D to E has total weight 12,
+      less than A to B to E with total weight 17.
     </desc>
 
     <g stroke="rgba(169,163,154,0.32)" stroke-width="3" fill="none">
@@ -47,26 +48,52 @@ const { compact = false } = Astro.props;
       text-anchor="middle"
       dominant-baseline="middle"
     >
-      <text x="105" y="220">A</text>
-      <text x="285" y="105">B</text>
-      <text x="280" y="330">C</text>
-      <text x="430" y="315">D</text>
-      <text x="575" y="210">E</text>
+      <text x="105" y="220">
+        A
+      </text>
+      <text x="285" y="105">
+        B
+      </text>
+      <text x="280" y="330">
+        C
+      </text>
+      <text x="430" y="315">
+        D
+      </text>
+      <text x="575" y="210">
+        E
+      </text>
     </g>
 
     <g fill="#a9a39a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15">
-      <text x="185" y="145">9</text>
-      <text x="182" y="292" fill="#e4bd4f">4</text>
-      <text x="435" y="135">8</text>
-      <text x="350" y="343" fill="#e4bd4f">5</text>
-      <text x="508" y="282" fill="#e4bd4f">3</text>
-      <text x="356" y="210">7</text>
+      <text x="185" y="145">
+        9
+      </text>
+      <text x="182" y="292" fill="#e4bd4f">
+        4
+      </text>
+      <text x="435" y="135">
+        8
+      </text>
+      <text x="350" y="343" fill="#e4bd4f">
+        5
+      </text>
+      <text x="508" y="282" fill="#e4bd4f">
+        3
+      </text>
+      <text x="356" y="210">
+        7
+      </text>
     </g>
 
     {!compact && (
       <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
-        <text x="40" y="45" fill="#a9a39a" font-size="13">WEIGHT = COST</text>
-        <text x="40" y="68" fill="#e4bd4f" font-size="16" font-weight="700">A → C → D → E = 12</text>
+        <text x="40" y="45" fill="#a9a39a" font-size="13">
+          WEIGHT = COST
+        </text>
+        <text x="40" y="68" fill="#e4bd4f" font-size="16" font-weight="700">
+          A → C → D → E = 12
+        </text>
       </g>
     )}
   </svg>

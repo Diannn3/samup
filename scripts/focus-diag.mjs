@@ -9,18 +9,34 @@ for (let i = 0; i < 3; i++) await page.keyboard.press('Tab');
 
 const diag = await page.evaluate(() => {
   const el = document.activeElement;
-  const out = { tag: el.tagName, cls: el.className.toString().slice(0, 120), matches: el.matches(':focus-visible') };
+  const out = {
+    tag: el.tagName,
+    cls: el.className.toString().slice(0, 120),
+    matches: el.matches(':focus-visible'),
+  };
   // walk stylesheets for rules matching this element mentioning box-shadow
   const hits = [];
   for (const sheet of document.styleSheets) {
     let rules;
-    try { rules = sheet.cssRules; } catch { continue; }
+    try {
+      rules = sheet.cssRules;
+    } catch {
+      continue;
+    }
     for (const rule of rules) {
       if (!rule.selectorText) continue;
       let matchesEl = false;
-      try { matchesEl = el.matches(rule.selectorText); } catch { continue; }
+      try {
+        matchesEl = el.matches(rule.selectorText);
+      } catch {
+        continue;
+      }
       if (matchesEl && rule.style && rule.style.boxShadow) {
-        hits.push({ sel: rule.selectorText, shadow: rule.style.boxShadow.slice(0, 90), important: rule.style.getPropertyPriority('box-shadow') });
+        hits.push({
+          sel: rule.selectorText,
+          shadow: rule.style.boxShadow.slice(0, 90),
+          important: rule.style.getPropertyPriority('box-shadow'),
+        });
       }
     }
   }

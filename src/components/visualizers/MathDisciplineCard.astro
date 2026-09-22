@@ -9,15 +9,7 @@ interface Props {
   tag: string;
 }
 
-const {
-  title,
-  category,
-  formula,
-  description,
-  icon,
-  accentColor = "gold",
-  tag
-} = Astro.props;
+const { title, category, formula, description, icon, accentColor = 'gold', tag } = Astro.props;
 ---
 
 <div class="glass-panel glass-panel-hover rounded-3xl p-8 border border-[#D4AF37]/15 flex flex-col justify-between relative group overflow-hidden">
@@ -50,9 +42,7 @@ const {
     </div>
 
     <!-- Description -->
-    <p class="text-sm text-slate-300 leading-relaxed">
-      {description}
-    </p>
+    <p class="text-sm text-slate-300 leading-relaxed">{description}</p>
   </div>
 
   <!-- Bottom Interactive Accent -->

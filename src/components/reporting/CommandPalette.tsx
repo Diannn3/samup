@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Search, MapPin, Film, User, HelpCircle, X, Sparkles } from "lucide-react";
-import { STATIONS, type Station } from "../../data/reporting/stations";
-import { useReportingStore } from "../../stores/reportingStore";
+import React, { useState, useEffect, useRef } from 'react';
+import { Search, MapPin, Film, User, HelpCircle, X, Sparkles } from 'lucide-react';
+import { STATIONS, type Station } from '../../data/reporting/stations';
+import { useReportingStore } from '../../stores/reportingStore';
 
 export const CommandPalette: React.FC = () => {
   const isCommandPaletteOpen = useReportingStore((s) => s.isCommandPaletteOpen);
@@ -10,13 +10,13 @@ export const CommandPalette: React.FC = () => {
   const openPortfolio = useReportingStore((s) => s.openPortfolio);
   const togglePresenterMode = useReportingStore((s) => s.togglePresenterMode);
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isCommandPaletteOpen) {
-      setSearch("");
+      setSearch('');
       setSelectedIndex(0);
       setTimeout(() => inputRef.current?.focus(), 50);
     }
@@ -29,7 +29,7 @@ export const CommandPalette: React.FC = () => {
     (s) =>
       s.title.toLowerCase().includes(search.toLowerCase()) ||
       s.subtitle.toLowerCase().includes(search.toLowerCase()) ||
-      s.index.includes(search)
+      s.index.includes(search),
   );
 
   const handleSelectStation = (station: Station) => {
@@ -38,13 +38,13 @@ export const CommandPalette: React.FC = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowDown") {
+    if (e.key === 'ArrowDown') {
       e.preventDefault();
       setSelectedIndex((prev) => (prev + 1) % (matchingStations.length + 2));
-    } else if (e.key === "ArrowUp") {
+    } else if (e.key === 'ArrowUp') {
       e.preventDefault();
       setSelectedIndex((prev) => (prev - 1 + matchingStations.length + 2) % (matchingStations.length + 2));
-    } else if (e.key === "Enter") {
+    } else if (e.key === 'Enter') {
       e.preventDefault();
       if (selectedIndex < matchingStations.length) {
         handleSelectStation(matchingStations[selectedIndex]);
@@ -55,7 +55,7 @@ export const CommandPalette: React.FC = () => {
         togglePresenterMode();
         setCommandPaletteOpen(false);
       }
-    } else if (e.key === "Escape") {
+    } else if (e.key === 'Escape') {
       setCommandPaletteOpen(false);
     }
   };
@@ -75,7 +75,7 @@ export const CommandPalette: React.FC = () => {
               setSearch(e.target.value);
               setSelectedIndex(0);
             }}
-            style={{ outline: "none", boxShadow: "none" }}
+            style={{ outline: 'none', boxShadow: 'none' }}
             className="w-full bg-transparent text-sm font-medium outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 border-none placeholder:text-neutral-400 font-mono shadow-none"
           />
           <button
@@ -96,8 +96,8 @@ export const CommandPalette: React.FC = () => {
                 onMouseEnter={() => setSelectedIndex(idx)}
                 className={`flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer transition-colors text-xs font-mono ${
                   selectedIndex === idx
-                    ? "bg-black text-white dark:bg-white dark:text-black"
-                    : "hover:bg-black/5 dark:hover:bg-white/5 text-neutral-700 dark:text-neutral-300"
+                    ? 'bg-black text-white dark:bg-white dark:text-black'
+                    : 'hover:bg-black/5 dark:hover:bg-white/5 text-neutral-700 dark:text-neutral-300'
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -126,8 +126,8 @@ export const CommandPalette: React.FC = () => {
               onMouseEnter={() => setSelectedIndex(matchingStations.length)}
               className={`flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer text-xs font-mono ${
                 selectedIndex === matchingStations.length
-                  ? "bg-black text-white dark:bg-white dark:text-black"
-                  : "text-neutral-600 dark:text-neutral-400 hover:bg-black/5 dark:hover:bg-white/5"
+                  ? 'bg-black text-white dark:bg-white dark:text-black'
+                  : 'text-neutral-600 dark:text-neutral-400 hover:bg-black/5 dark:hover:bg-white/5'
               }`}
             >
               <div className="flex items-center gap-3">
@@ -145,8 +145,8 @@ export const CommandPalette: React.FC = () => {
               onMouseEnter={() => setSelectedIndex(matchingStations.length + 1)}
               className={`flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer text-xs font-mono ${
                 selectedIndex === matchingStations.length + 1
-                  ? "bg-black text-white dark:bg-white dark:text-black"
-                  : "text-neutral-600 dark:text-neutral-400 hover:bg-black/5 dark:hover:bg-white/5"
+                  ? 'bg-black text-white dark:bg-white dark:text-black'
+                  : 'text-neutral-600 dark:text-neutral-400 hover:bg-black/5 dark:hover:bg-white/5'
               }`}
             >
               <div className="flex items-center gap-3">

@@ -4,12 +4,16 @@ import ShortestPathDiagram from '../components/math/ShortestPathDiagram.astro';
 import { getCollection } from 'astro:content';
 import { ArrowRight, Sigma, BookOpen, Network, Calculator, LineChart } from 'lucide-react';
 
-const articles = (await getCollection('appliedMath', ({ data }) =>
-  data.evidence.visibility === 'public' &&
-  data.evidence.status !== 'unknown' &&
-  data.evidence.status !== 'blocked' &&
-  data.evidence.status !== 'needs-approval'
-)).sort((a, b) => b.data.publishedAt.localeCompare(a.data.publishedAt));
+const articles = (
+  await getCollection(
+    'appliedMath',
+    ({ data }) =>
+      data.evidence.visibility === 'public' &&
+      data.evidence.status !== 'unknown' &&
+      data.evidence.status !== 'blocked' &&
+      data.evidence.status !== 'needs-approval',
+  )
+).sort((a, b) => b.data.publishedAt.localeCompare(a.data.publishedAt));
 
 const featured = articles[0];
 ---
@@ -37,7 +41,8 @@ const featured = articles[0];
           Mathematics becomes useful when it helps us <span class="text-gold-gradient">choose well.</span>
         </h1>
         <p class="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
-          Models turn routes, schedules, networks, queues, risk, growth, and allocation problems into structures we can inspect, compare, and reason about.
+          Models turn routes, schedules, networks, queues, risk, growth, and allocation problems into
+          structures we can inspect, compare, and reason about.
         </p>
       </div>
     </div>
@@ -52,7 +57,10 @@ const featured = articles[0];
               <BookOpen class="w-4 h-4" aria-hidden="true" />
               <span>Featured explainer • {featured.data.level}</span>
             </div>
-            <h2 id="featured-explainer-heading" class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight">
+            <h2
+              id="featured-explainer-heading"
+              class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight"
+            >
               {featured.data.title}
             </h2>
             <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
@@ -92,8 +100,13 @@ const featured = articles[0];
 
     <section aria-labelledby="applied-math-lenses-heading">
       <div class="max-w-3xl">
-        <div class="text-xs font-mono uppercase tracking-wider text-[var(--primary)]">Three useful lenses</div>
-        <h2 id="applied-math-lenses-heading" class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]">
+        <div class="text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+          Three useful lenses
+        </div>
+        <h2
+          id="applied-math-lenses-heading"
+          class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]"
+        >
           What Applied Mathematics does
         </h2>
       </div>
@@ -128,8 +141,13 @@ const featured = articles[0];
     <section aria-labelledby="all-explainers-heading">
       <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
-          <div class="text-xs font-mono uppercase tracking-wider text-[var(--primary)]">SAM-UP explainers</div>
-          <h2 id="all-explainers-heading" class="mt-3 font-display font-black text-3xl text-[var(--foreground)]">
+          <div class="text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
+            SAM-UP explainers
+          </div>
+          <h2
+            id="all-explainers-heading"
+            class="mt-3 font-display font-black text-3xl text-[var(--foreground)]"
+          >
             Learn one model at a time
           </h2>
         </div>
@@ -153,7 +171,10 @@ const featured = articles[0];
               </h3>
               <p class="mt-1 text-sm text-[var(--muted-foreground)]">{article.data.summary}</p>
             </div>
-            <ArrowRight class="hidden sm:block w-5 h-5 text-[var(--muted-foreground)] group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all" aria-hidden="true" />
+            <ArrowRight
+              class="hidden sm:block w-5 h-5 text-[var(--muted-foreground)] group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all"
+              aria-hidden="true"
+            />
           </a>
         ))}
       </div>

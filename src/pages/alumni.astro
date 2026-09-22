@@ -20,7 +20,9 @@ import { Archive, ArrowRight, ShieldCheck } from 'lucide-react';
           Leadership <span class="text-gold-gradient">Archive</span>
         </h1>
         <p class="mt-6 max-w-3xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
-          Search {organization.totalLeadershipTerms} documented Senior Executive term entries beginning in 1984. This is a historical dataset—not a representation of SAM-UP's complete current Executive Committee.
+          Search {organization.totalLeadershipTerms} documented Senior Executive term entries beginning in
+          1984. This is a historical dataset—not a representation of SAM-UP's complete current Executive
+          Committee.
         </p>
       </div>
     </div>
@@ -33,7 +35,9 @@ import { Archive, ArrowRight, ShieldCheck } from 'lucide-react';
         <dl class="mt-5 divide-y divide-[var(--border)] border-y border-[var(--border)]">
           <div class="py-5">
             <dt class="text-xs text-[var(--muted-foreground)]">Recorded entries</dt>
-            <dd class="mt-1 font-display font-black text-3xl text-[var(--foreground)]">{organization.totalLeadershipTerms}</dd>
+            <dd class="mt-1 font-display font-black text-3xl text-[var(--foreground)]">
+              {organization.totalLeadershipTerms}
+            </dd>
           </div>
           <div class="py-5">
             <dt class="text-xs text-[var(--muted-foreground)]">First archive entry</dt>
@@ -49,13 +53,20 @@ import { Archive, ArrowRight, ShieldCheck } from 'lucide-react';
 
         <div class="mt-6 flex items-start gap-3 text-xs leading-relaxed text-[var(--muted-foreground)]">
           <ShieldCheck class="w-4 h-4 shrink-0 mt-0.5 text-[var(--primary)]" aria-hidden="true" />
-          <p>Gaps or the final entry in this dataset should not be used to infer missing historical terms or the present officer roster.</p>
+          <p>
+            Gaps or the final entry in this dataset should not be used to infer missing historical terms or
+            the present officer roster.
+          </p>
         </div>
       </div>
 
       <div class="lg:col-span-8">
-        <h2 class="font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">Search documented terms</h2>
-        <p class="mt-2 text-sm text-[var(--muted-foreground)]">Search by Senior Executive name or term label.</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-[var(--foreground)]">
+          Search documented terms
+        </h2>
+        <p class="mt-2 text-sm text-[var(--muted-foreground)]">
+          Search by Senior Executive name or term label.
+        </p>
         <div class="mt-6">
           <ExecutiveSearch client:load />
         </div>
@@ -64,10 +75,17 @@ import { Archive, ArrowRight, ShieldCheck } from 'lucide-react';
 
     <section class="border-t border-[var(--border)] pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
       <div>
-        <h2 class="font-display font-bold text-2xl text-[var(--foreground)]">Looking for broader organizational history?</h2>
-        <p class="mt-2 text-sm text-[var(--muted-foreground)]">The Archive hub separates leadership records from approved publication history.</p>
+        <h2 class="font-display font-bold text-2xl text-[var(--foreground)]">
+          Looking for broader organizational history?
+        </h2>
+        <p class="mt-2 text-sm text-[var(--muted-foreground)]">
+          The Archive hub separates leadership records from approved publication history.
+        </p>
       </div>
-      <a href="/archive" class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline shrink-0">
+      <a
+        href="/archive"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline shrink-0"
+      >
         Open Archive hub
         <ArrowRight class="w-4 h-4" aria-hidden="true" />
       </a>

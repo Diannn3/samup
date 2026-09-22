@@ -15,9 +15,13 @@ import { ArrowRight, Landmark } from 'lucide-react';
           A short timeline with clear evidence.
         </h2>
         <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
-          The redesign avoids padding SAM-UP's history with unsourced prestige claims. These milestones come from the Constitution and the documented leadership archive.
+          The redesign avoids padding SAM-UP's history with unsourced prestige claims. These milestones come
+          from the Constitution and the documented leadership archive.
         </p>
-        <a href="/about" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline">
+        <a
+          href="/about"
+          class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
+        >
           About SAM-UP
           <ArrowRight class="w-4 h-4" aria-hidden="true" />
         </a>
@@ -29,8 +33,12 @@ import { ArrowRight, Landmark } from 'lucide-react';
             <div class="font-mono text-sm text-[var(--primary)]">{milestone.year}</div>
             <div>
               <h3 class="font-display font-bold text-xl text-[var(--foreground)]">{milestone.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">{milestone.description}</p>
-              <p class="mt-2 text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">{milestone.source}</p>
+              <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+                {milestone.description}
+              </p>
+              <p class="mt-2 text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+                {milestone.source}
+              </p>
             </div>
           </article>
         ))}

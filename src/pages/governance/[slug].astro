@@ -4,11 +4,13 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { ArrowLeft, FileText, ShieldCheck } from 'lucide-react';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('governance', ({ data }) =>
-    (data.evidence.visibility === 'public' || data.evidence.visibility === 'public-summary-only') &&
-    data.evidence.status !== 'unknown' &&
-    data.evidence.status !== 'blocked' &&
-    data.evidence.status !== 'needs-approval'
+  const entries = await getCollection(
+    'governance',
+    ({ data }) =>
+      (data.evidence.visibility === 'public' || data.evidence.visibility === 'public-summary-only') &&
+      data.evidence.status !== 'unknown' &&
+      data.evidence.status !== 'blocked' &&
+      data.evidence.status !== 'needs-approval',
   );
 
   return entries.map((entry) => ({
@@ -30,14 +32,19 @@ const { data } = entry;
   <article>
     <header class="border-b border-[var(--border)] py-16 sm:py-20">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <a href="/governance" class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted-foreground)] hover:text-[var(--primary)] transition-colors">
+        <a
+          href="/governance"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted-foreground)] hover:text-[var(--primary)] transition-colors"
+        >
           <ArrowLeft class="w-4 h-4" aria-hidden="true" />
           Governance
         </a>
 
         <div class="mt-8 flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--primary)]">
           <FileText class="w-4 h-4" aria-hidden="true" />
-          <span>{data.documentType} • {data.versionLabel}</span>
+          <span>
+            {data.documentType} • {data.versionLabel}
+          </span>
         </div>
 
         <h1 class="mt-4 font-display font-black text-4xl sm:text-6xl tracking-[-0.03em] text-[var(--foreground)]">
@@ -62,7 +69,9 @@ const { data } = entry;
 
         <aside class="lg:col-span-4">
           <div class="sticky top-28 rounded-2xl border border-[var(--border)] p-5">
-            <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--primary)]">Source record</div>
+            <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--primary)]">
+              Source record
+            </div>
             <dl class="mt-4 space-y-4 text-sm">
               <div>
                 <dt class="text-xs text-[var(--muted-foreground)]">Source</dt>

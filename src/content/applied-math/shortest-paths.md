@@ -1,19 +1,19 @@
 ---
-title: "Shortest Paths: When Fewer Stops Cost More"
-slug: "shortest-paths"
-concept: "Weighted graphs and shortest-path reasoning"
-level: "introductory"
-summary: "A small weighted graph shows why the route with the fewest connections is not necessarily the route with the lowest total cost."
-accessibilityDescription: "A weighted graph with nodes A, B, C, D, and E. Route A to B to E costs 17, while route A to C to D to E costs 12, making the longer-by-edge-count route cheaper."
-publishedAt: "2026-09-22"
+title: 'Shortest Paths: When Fewer Stops Cost More'
+slug: 'shortest-paths'
+concept: 'Weighted graphs and shortest-path reasoning'
+level: 'introductory'
+summary: 'A small weighted graph shows why the route with the fewest connections is not necessarily the route with the lowest total cost.'
+accessibilityDescription: 'A weighted graph with nodes A, B, C, D, and E. Route A to B to E costs 17, while route A to C to D to E costs 12, making the longer-by-edge-count route cheaper.'
+publishedAt: '2026-09-22'
 sources:
-  - label: "E. W. Dijkstra, A note on two problems in connexion with graphs, Numerische Mathematik 1 (1959)"
+  - label: 'E. W. Dijkstra, A note on two problems in connexion with graphs, Numerische Mathematik 1 (1959)'
 evidence:
-  status: "verified-current"
-  visibility: "public"
-  sourceLabel: "SAM-UP Applied Mathematics editorial explainer"
-  reviewedAt: "2026-09-22"
-  notes: "Educational content reviewed for conceptual correctness; not an organizational policy or current-status claim."
+  status: 'verified-current'
+  visibility: 'public'
+  sourceLabel: 'SAM-UP Applied Mathematics editorial explainer'
+  reviewedAt: '2026-09-22'
+  notes: 'Educational content reviewed for conceptual correctness; not an organizational policy or current-status claim.'
 ---
 
 Applied Mathematics often starts by deciding **what a real-world cost means**.

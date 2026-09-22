@@ -65,13 +65,7 @@ Do not expose sponsor rates, unexecuted promises, MOA internals, compliance scre
 ## Public/private visibility model
 
 ```ts
-type Visibility =
-  | 'public'
-  | 'public-summary-only'
-  | 'historical'
-  | 'internal'
-  | 'needs-approval'
-  | 'private';
+type Visibility = 'public' | 'public-summary-only' | 'historical' | 'internal' | 'needs-approval' | 'private';
 ```
 
 Never publish `internal`, `needs-approval`, or `private` content by default.

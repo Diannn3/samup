@@ -8,14 +8,23 @@ import { mainNav, membershipAction, utilityNav } from '../../data/navigation';
     <div class="grid sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[var(--border)]">
       <div class="lg:col-span-4 space-y-4">
         <div class="flex items-center gap-3">
-          <img src="/sam-up-seal.png" alt="SAM-UP seal" width="44" height="44" class="w-11 h-11 object-contain" />
+          <img
+            src="/sam-up-seal.png"
+            alt="SAM-UP seal"
+            width="44"
+            height="44"
+            class="w-11 h-11 object-contain"
+          />
           <div>
             <div class="font-display font-bold text-lg text-[var(--foreground)]">SAM-UP</div>
-            <div class="font-mono text-[10px] uppercase tracking-wider">Society of Applied Mathematics of UPLB</div>
+            <div class="font-mono text-[10px] uppercase tracking-wider">
+              Society of Applied Mathematics of UPLB
+            </div>
           </div>
         </div>
         <p class="text-sm leading-relaxed max-w-sm">
-          A self-governing academic organization at UPLB whose constitutional objectives include promoting the relevance and wider application of Applied Mathematics to Philippine society.
+          A self-governing academic organization at UPLB whose constitutional objectives include promoting the
+          relevance and wider application of Applied Mathematics to Philippine society.
         </p>
         <a
           href={membershipAction.href}
@@ -26,27 +35,49 @@ import { mainNav, membershipAction, utilityNav } from '../../data/navigation';
       </div>
 
       <div class="lg:col-span-3">
-        <h2 class="font-display font-bold text-sm text-[var(--foreground)] uppercase tracking-wider">Explore</h2>
+        <h2 class="font-display font-bold text-sm text-[var(--foreground)] uppercase tracking-wider">
+          Explore
+        </h2>
         <ul class="mt-4 space-y-2.5 text-sm list-none p-0">
           {mainNav.map((item) => (
-            <li><a href={item.href} class="hover:text-[var(--primary)] transition-colors">{item.label}</a></li>
+            <li>
+              <a href={item.href} class="hover:text-[var(--primary)] transition-colors">
+                {item.label}
+              </a>
+            </li>
           ))}
         </ul>
       </div>
 
       <div class="lg:col-span-2">
-        <h2 class="font-display font-bold text-sm text-[var(--foreground)] uppercase tracking-wider">Archive & trust</h2>
+        <h2 class="font-display font-bold text-sm text-[var(--foreground)] uppercase tracking-wider">
+          Archive & trust
+        </h2>
         <ul class="mt-4 space-y-2.5 text-sm list-none p-0">
           {utilityNav.map((item) => (
-            <li><a href={item.href} class="hover:text-[var(--primary)] transition-colors">{item.label}</a></li>
+            <li>
+              <a href={item.href} class="hover:text-[var(--primary)] transition-colors">
+                {item.label}
+              </a>
+            </li>
           ))}
-          <li><a href="/about#mission" class="hover:text-[var(--primary)] transition-colors">Constitutional objectives</a></li>
-          <li><a href="/join" class="hover:text-[var(--primary)] transition-colors">Recruitment guidance</a></li>
+          <li>
+            <a href="/about#mission" class="hover:text-[var(--primary)] transition-colors">
+              Constitutional objectives
+            </a>
+          </li>
+          <li>
+            <a href="/join" class="hover:text-[var(--primary)] transition-colors">
+              Recruitment guidance
+            </a>
+          </li>
         </ul>
       </div>
 
       <div class="lg:col-span-3 text-sm">
-        <h2 class="font-display font-bold text-sm text-[var(--foreground)] uppercase tracking-wider">Institutional context</h2>
+        <h2 class="font-display font-bold text-sm text-[var(--foreground)] uppercase tracking-wider">
+          Institutional context
+        </h2>
         <address class="not-italic mt-4 space-y-1.5 leading-relaxed">
           <div class="font-semibold text-[var(--foreground)]">{organization.department}</div>
           <div>{organization.college}</div>
@@ -54,10 +85,18 @@ import { mainNav, membershipAction, utilityNav } from '../../data/navigation';
           <div class="text-xs font-mono pt-1">{organization.location.building}</div>
         </address>
         <div class="mt-4 flex flex-col gap-2 text-xs">
-          <a href={organization.socials.facebook} target="_blank" rel="noopener noreferrer" class="text-[var(--primary)] hover:underline">
+          <a
+            href={organization.socials.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[var(--primary)] hover:underline"
+          >
             Official Facebook page ↗
           </a>
-          <a href={`mailto:${organization.socials.email}`} class="hover:text-[var(--foreground)] transition-colors">
+          <a
+            href={`mailto:${organization.socials.email}`}
+            class="hover:text-[var(--foreground)] transition-colors"
+          >
             {organization.socials.email}
           </a>
         </div>
@@ -65,7 +104,9 @@ import { mainNav, membershipAction, utilityNav } from '../../data/navigation';
     </div>
 
     <div class="pt-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
-      <div>© 1984–{new Date().getFullYear()} {organization.name}.</div>
+      <div>
+        © 1984–{new Date().getFullYear()} {organization.name}.
+      </div>
       <div class="font-mono">Black & Gold • Constitution: 10 Nov 2018 • Founded 27 Nov 1984</div>
     </div>
   </div>

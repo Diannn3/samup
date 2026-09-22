@@ -1,7 +1,7 @@
-import React from "react";
-import { ChevronLeft, ChevronRight, Compass, Film, ExternalLink, ArrowLeft } from "lucide-react";
-import { STATIONS } from "../../data/reporting/stations";
-import { useReportingStore } from "../../stores/reportingStore";
+import React from 'react';
+import { ChevronLeft, ChevronRight, Compass, Film, ExternalLink, ArrowLeft } from 'lucide-react';
+import { STATIONS } from '../../data/reporting/stations';
+import { useReportingStore } from '../../stores/reportingStore';
 
 export const MobileNarrativeDeck: React.FC = () => {
   const nearestStation = useReportingStore((s) => s.nearestStation) || STATIONS[0];
@@ -53,9 +53,7 @@ export const MobileNarrativeDeck: React.FC = () => {
 
         {/* Station Title & Subtitle */}
         <div className="space-y-1 mb-4">
-          <h3 className="font-bold text-lg tracking-tight line-clamp-1">
-            {nearestStation.title}
-          </h3>
+          <h3 className="font-bold text-lg tracking-tight line-clamp-1">{nearestStation.title}</h3>
           <p className="font-mono text-[11px] text-neutral-500 tracking-wide line-clamp-1">
             {nearestStation.subtitle}
           </p>

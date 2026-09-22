@@ -20,8 +20,7 @@ export interface OrgEvent {
   evidence: EvidenceMeta;
 }
 
-export const getEventLocationLabel = (event: OrgEvent) =>
-  event.venue ?? 'See official updates';
+export const getEventLocationLabel = (event: OrgEvent) => event.venue ?? 'See official updates';
 
 /**
  * Records retained for verification work. These MUST NOT be rendered publicly
@@ -67,6 +66,4 @@ export const programRecords: OrgEvent[] = [
 ];
 
 /** Only publish records that pass the evidence policy. */
-export const flagshipEvents = programRecords.filter((event) =>
-  isPublishableEvidence(event.evidence),
-);
+export const flagshipEvents = programRecords.filter((event) => isPublishableEvidence(event.evidence));

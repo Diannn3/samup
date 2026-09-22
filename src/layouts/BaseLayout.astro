@@ -24,11 +24,12 @@ const {
   imageAlt = 'SAM-UP piu and institutional identity artwork',
   canonicalURL: requestedCanonicalURL,
   robots = 'index, follow',
-  indexInSearch = true
+  indexInSearch = true,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
-const canonicalURL = requestedCanonicalURL ?? (Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined);
+const canonicalURL =
+  requestedCanonicalURL ?? (Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined);
 const socialImage = Astro.site ? new URL(image, Astro.site).href : image;
 
 const schemaOrg = {
@@ -45,8 +46,8 @@ const schemaOrg = {
     streetAddress: 'Institute of Mathematical Sciences and Physics, UPLB',
     addressLocality: 'Los Baños',
     addressRegion: 'Laguna',
-    addressCountry: 'PH'
-  }
+    addressCountry: 'PH',
+  },
 };
 ---
 
@@ -79,10 +80,13 @@ const schemaOrg = {
 
     <link rel="icon" type="image/png" href="/sam-up-seal.png" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)}></script>
   </head>
   <body class="min-h-screen flex flex-col bg-[var(--background)] text-[var(--foreground)] antialiased relative overflow-x-hidden">
-    <div class="fixed inset-x-0 top-0 h-[38rem] pointer-events-none z-0 bg-[radial-gradient(ellipse_at_top,rgba(228,189,79,0.055),transparent_68%)]" aria-hidden="true" />
+    <div
+      class="fixed inset-x-0 top-0 h-[38rem] pointer-events-none z-0 bg-[radial-gradient(ellipse_at_top,rgba(228,189,79,0.055),transparent_68%)]"
+      aria-hidden="true"
+    />
 
     <a href="#main-content" class="skip-link">
       Skip to main content

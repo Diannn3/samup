@@ -6,7 +6,10 @@ const latestRecordedTerm = organization.latestRecordedExecutive.term;
 const terms = organization.totalLeadershipTerms;
 ---
 
-<section class="relative border-b border-[var(--border)] bg-[var(--background)]" aria-label="Verified society facts">
+<section
+  class="relative border-b border-[var(--border)] bg-[var(--background)]"
+  aria-label="Verified society facts"
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <dl class="grid grid-cols-2 lg:grid-cols-4">
       <div class="py-6 pr-5 border-b lg:border-b-0 border-[var(--border)] lg:border-r">
@@ -26,7 +29,9 @@ const terms = organization.totalLeadershipTerms;
           Academic home
         </dt>
         <dd class="mt-2 font-display font-bold text-xl sm:text-2xl text-[var(--foreground)]">UPLB</dd>
-        <p class="mt-1 text-xs text-[var(--muted-foreground)]">Institute of Mathematical Sciences and Physics</p>
+        <p class="mt-1 text-xs text-[var(--muted-foreground)]">
+          Institute of Mathematical Sciences and Physics
+        </p>
       </div>
 
       <div class="py-6 pr-5 lg:px-5 lg:border-r border-[var(--border)]">
@@ -34,8 +39,12 @@ const terms = organization.totalLeadershipTerms;
           <Archive class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
           Leadership archive
         </dt>
-        <dd class="mt-2 font-display font-bold text-xl sm:text-2xl text-[var(--foreground)]">{terms} terms</dd>
-        <p class="mt-1 text-xs text-[var(--muted-foreground)]">Historical records, not a current-officer roster</p>
+        <dd class="mt-2 font-display font-bold text-xl sm:text-2xl text-[var(--foreground)]">
+          {terms} terms
+        </dd>
+        <p class="mt-1 text-xs text-[var(--muted-foreground)]">
+          Historical records, not a current-officer roster
+        </p>
       </div>
 
       <div class="py-6 pl-5">
@@ -43,7 +52,9 @@ const terms = organization.totalLeadershipTerms;
           <ShieldCheck class="w-3.5 h-3.5 text-[var(--primary)]" aria-hidden="true" />
           Latest archive entry
         </dt>
-        <dd class="mt-2 font-display font-bold text-xl sm:text-2xl text-[var(--foreground)]">{latestRecordedTerm}</dd>
+        <dd class="mt-2 font-display font-bold text-xl sm:text-2xl text-[var(--foreground)]">
+          {latestRecordedTerm}
+        </dd>
         <p class="mt-1 text-xs text-[var(--muted-foreground)]">Labelled explicitly as archive data</p>
       </div>
     </dl>

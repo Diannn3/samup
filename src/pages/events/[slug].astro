@@ -4,11 +4,13 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { ArrowLeft, Calendar, ExternalLink, MapPin, ShieldCheck, Users } from 'lucide-react';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('programs', ({ data }) =>
-    (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
-    data.evidence.status !== 'unknown' &&
-    data.evidence.status !== 'blocked' &&
-    data.evidence.status !== 'needs-approval'
+  const entries = await getCollection(
+    'programs',
+    ({ data }) =>
+      (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
+      data.evidence.status !== 'unknown' &&
+      data.evidence.status !== 'blocked' &&
+      data.evidence.status !== 'needs-approval',
   );
 
   return entries.map((entry) => ({
@@ -35,13 +37,18 @@ const scheduleLabel =
   <article>
     <header class="border-b border-[var(--border)] py-16 sm:py-20">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <a href="/events" class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted-foreground)] hover:text-[var(--primary)] transition-colors">
+        <a
+          href="/events"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted-foreground)] hover:text-[var(--primary)] transition-colors"
+        >
           <ArrowLeft class="w-4 h-4" aria-hidden="true" />
           Programs & Updates
         </a>
 
         <div class="mt-8 flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-wider">
-          <span class="rounded-full border border-[var(--border)] px-3 py-1 text-[var(--primary)]">{data.lifecycle}</span>
+          <span class="rounded-full border border-[var(--border)] px-3 py-1 text-[var(--primary)]">
+            {data.lifecycle}
+          </span>
           <span class="text-[var(--muted-foreground)]">{data.organizer}</span>
         </div>
 
@@ -59,14 +66,16 @@ const scheduleLabel =
           </div>
           <div class="flex gap-2">
             <dt class="inline-flex items-center gap-1.5 font-mono text-[var(--primary)]">
-              <Calendar class="w-3.5 h-3.5" aria-hidden="true" />Schedule
+              <Calendar class="w-3.5 h-3.5" aria-hidden="true" />
+              Schedule
             </dt>
             <dd class="text-[var(--muted-foreground)]">{scheduleLabel}</dd>
           </div>
           {data.audience && (
             <div class="flex gap-2">
               <dt class="inline-flex items-center gap-1.5 font-mono text-[var(--primary)]">
-                <Users class="w-3.5 h-3.5" aria-hidden="true" />Audience
+                <Users class="w-3.5 h-3.5" aria-hidden="true" />
+                Audience
               </dt>
               <dd class="text-[var(--muted-foreground)]">{data.audience}</dd>
             </div>
@@ -74,7 +83,8 @@ const scheduleLabel =
           {data.location && (
             <div class="flex gap-2">
               <dt class="inline-flex items-center gap-1.5 font-mono text-[var(--primary)]">
-                <MapPin class="w-3.5 h-3.5" aria-hidden="true" />Location
+                <MapPin class="w-3.5 h-3.5" aria-hidden="true" />
+                Location
               </dt>
               <dd class="text-[var(--muted-foreground)]">{data.location}</dd>
             </div>

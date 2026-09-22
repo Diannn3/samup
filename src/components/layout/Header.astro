@@ -11,7 +11,10 @@ const { currentPath = Astro.url.pathname } = Astro.props;
 ---
 
 <header class="fixed top-0 inset-x-0 z-40 bg-[var(--background)]/78 backdrop-blur-xl border-b border-[var(--border)] transition-colors">
-  <div class="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" aria-hidden="true" />
+  <div
+    class="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"
+    aria-hidden="true"
+  />
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20 gap-6">
@@ -36,7 +39,8 @@ const { currentPath = Astro.url.pathname } = Astro.props;
       <div class="hidden lg:flex items-center gap-2 ml-auto">
         <nav class="flex items-center gap-0.5" aria-label="Primary Navigation">
           {mainNav.map((item) => {
-            const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+            const isActive =
+              currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
             return (
               <a
                 href={item.href}

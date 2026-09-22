@@ -1,10 +1,5 @@
 export type Visibility =
-  | 'public'
-  | 'public-summary-only'
-  | 'historical'
-  | 'internal'
-  | 'needs-approval'
-  | 'private';
+  'public' | 'public-summary-only' | 'historical' | 'internal' | 'needs-approval' | 'private';
 
 export type EvidenceStatus =
   | 'verified-current'
@@ -28,9 +23,7 @@ export interface EvidenceMeta {
 }
 
 export const isPublicVisibility = (visibility: Visibility) =>
-  visibility === 'public' ||
-  visibility === 'public-summary-only' ||
-  visibility === 'historical';
+  visibility === 'public' || visibility === 'public-summary-only' || visibility === 'historical';
 
 export const isPublishableEvidence = (evidence: EvidenceMeta) =>
   isPublicVisibility(evidence.visibility) &&
@@ -52,10 +45,7 @@ export const constitutionEvidence = (
   notes,
 });
 
-export const needsVerificationEvidence = (
-  sourceLabel: string,
-  notes: string,
-): EvidenceMeta => ({
+export const needsVerificationEvidence = (sourceLabel: string, notes: string): EvidenceMeta => ({
   status: 'needs-approval',
   visibility: 'needs-approval',
   sourceLabel,

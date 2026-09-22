@@ -15,11 +15,15 @@ for (let i = 0; i < 6; i++) {
       tag: el.tagName,
       text: (el.textContent || '').trim().slice(0, 30),
       focusVisible: el.matches(':focus-visible'),
-      boxShadow: cs.boxShadow.slice(0, 80)
+      boxShadow: cs.boxShadow.slice(0, 80),
     };
   });
   if (info) results.push(info);
 }
 
-results.forEach((r) => console.log(`${r.focusVisible ? 'FOCUS-VISIBLE' : 'no-focus-visible'} | ${r.tag} "${r.text}" | ${r.boxShadow}`));
+results.forEach((r) =>
+  console.log(
+    `${r.focusVisible ? 'FOCUS-VISIBLE' : 'no-focus-visible'} | ${r.tag} "${r.text}" | ${r.boxShadow}`,
+  ),
+);
 await browser.close();

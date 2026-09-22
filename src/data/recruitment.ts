@@ -1,9 +1,6 @@
 import type { EvidenceMeta } from './evidence';
 
-export type RecruitmentStatus =
-  | 'open'
-  | 'closed'
-  | 'check-latest-announcement';
+export type RecruitmentStatus = 'open' | 'closed' | 'check-latest-announcement';
 
 export interface RecruitmentGuidance {
   term: string;
@@ -27,7 +24,8 @@ export interface RecruitmentGuidance {
 export const currentRecruitment: RecruitmentGuidance = {
   term: 'First Semester, A.Y. 2026–2027',
   registrationState: 'registered',
-  applicationScope: 'Current OSA guidance: only students from the College of Arts and Sciences (CAS) may apply.',
+  applicationScope:
+    'Current OSA guidance: only students from the College of Arts and Sciences (CAS) may apply.',
   status: 'check-latest-announcement',
   statusLabel: 'Check the latest recruitment announcement',
   nextStep:

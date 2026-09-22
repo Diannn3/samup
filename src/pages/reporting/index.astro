@@ -1,8 +1,8 @@
 ---
-import "../../styles/global.css";
-import "../../styles/monochrome-spatial.css";
-import { WorldContainer } from "../../components/reporting/WorldContainer";
-import { STATIONS } from "../../data/reporting/stations";
+import '../../styles/global.css';
+import '../../styles/monochrome-spatial.css';
+import { WorldContainer } from '../../components/reporting/WorldContainer';
+import { STATIONS } from '../../data/reporting/stations';
 ---
 
 <!doctype html>
@@ -12,10 +12,18 @@ import { STATIONS } from "../../data/reporting/stations";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>SAM-UP Applicant Reporting // Aedrian "Dian" Ponce</title>
-    <meta name="description" content="A monochrome spatial reporting and applicant conversation experience for the Society of Applied Mathematics of UPLB (SAM-UP)." />\n    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="A monochrome spatial reporting and applicant conversation experience for the Society of Applied Mathematics of UPLB (SAM-UP)."
+    />
+    \n
+    <meta name="robots" content="noindex, nofollow, noarchive" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body class="bg-[#fafafa] text-neutral-900 antialiased overflow-hidden m-0 p-0">
     <header class="sr-only">
@@ -27,7 +35,9 @@ import { STATIONS } from "../../data/reporting/stations";
       <ol>
         {STATIONS.map((station) => (
           <li>
-            <h2>[{station.index}] {station.title}</h2>
+            <h2>
+              [{station.index}] {station.title}
+            </h2>
             <p>{station.subtitle}</p>
             <p>{station.description}</p>
           </li>

@@ -85,7 +85,7 @@ console.log(`Outer raw contour length: ${outerRaw.length}`);
 // Find inner hole starting point (inside the central square counter-space)
 let holeStart = null;
 for (let y = Math.floor(height * 0.35); y < Math.floor(height * 0.65); y++) {
-  for (let x = Math.floor(width * 0.40); x < Math.floor(width * 0.65); x++) {
+  for (let x = Math.floor(width * 0.4); x < Math.floor(width * 0.65); x++) {
     // 0 pixel that has a 1 pixel directly above it
     if (grid[y * width + x] === 0 && grid[(y - 1) * width + x] === 1) {
       holeStart = { x, y: y - 1 };
@@ -113,7 +113,10 @@ function rdp(pts, epsilon) {
     if (denom === 0) {
       d = Math.hypot(pts[i].x - first.x, pts[i].y - first.y);
     } else {
-      d = Math.abs((last.y - first.y) * pts[i].x - (last.x - first.x) * pts[i].y + last.x * first.y - last.y * first.x) / denom;
+      d =
+        Math.abs(
+          (last.y - first.y) * pts[i].x - (last.x - first.x) * pts[i].y + last.x * first.y - last.y * first.x,
+        ) / denom;
     }
     if (d > maxDist) {
       maxDist = d;
@@ -140,14 +143,14 @@ const cx = width / 2;
 const cy = height / 2;
 const scale = 3.6 / Math.max(width, height);
 
-const normalizedOuter = simplifiedOuter.map(pt => ({
+const normalizedOuter = simplifiedOuter.map((pt) => ({
   x: parseFloat(((pt.x - cx) * scale).toFixed(4)),
-  y: parseFloat((-(pt.y - cy) * scale).toFixed(4))
+  y: parseFloat((-(pt.y - cy) * scale).toFixed(4)),
 }));
 
-const normalizedHole = simplifiedHole.map(pt => ({
+const normalizedHole = simplifiedHole.map((pt) => ({
   x: parseFloat(((pt.x - cx) * scale).toFixed(4)),
-  y: parseFloat((-(pt.y - cy) * scale).toFixed(4))
+  y: parseFloat((-(pt.y - cy) * scale).toFixed(4)),
 }));
 
 // Create SVG path string for 400x400 viewBox
@@ -157,11 +160,15 @@ const svgOffsetY = 200 - cy * svgScale;
 
 function makeSvgPath(pts) {
   if (!pts || pts.length === 0) return '';
-  return pts.map((pt, i) => {
-    const sx = (pt.x * svgScale + svgOffsetX).toFixed(1);
-    const sy = (pt.y * svgScale + svgOffsetY).toFixed(1);
-    return `${i === 0 ? 'M' : 'L'} ${sx} ${sy}`;
-  }).join(' ') + ' Z';
+  return (
+    pts
+      .map((pt, i) => {
+        const sx = (pt.x * svgScale + svgOffsetX).toFixed(1);
+        const sy = (pt.y * svgScale + svgOffsetY).toFixed(1);
+        return `${i === 0 ? 'M' : 'L'} ${sx} ${sy}`;
+      })
+      .join(' ') + ' Z'
+  );
 }
 
 const outerSvgPath = makeSvgPath(simplifiedOuter);
@@ -173,7 +180,7 @@ const outputData = {
   height,
   outer: normalizedOuter,
   hole: normalizedHole,
-  svgPath: combinedSvgPath
+  svgPath: combinedSvgPath,
 };
 
 fs.mkdirSync('src/data', { recursive: true });

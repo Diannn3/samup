@@ -28,6 +28,6 @@ export default defineConfig({
   site,
   integrations,
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });

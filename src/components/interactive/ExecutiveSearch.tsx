@@ -58,13 +58,21 @@ export const ExecutiveSearch: React.FC = () => {
           )}
         </div>
 
-        <div aria-live="polite" aria-atomic="true" className="text-xs font-mono text-[var(--muted-foreground)] sm:text-right">
-          Showing <strong className="text-[var(--foreground)]">{filteredLeaders.length}</strong> of {seniorExecs.length} documented entries
+        <div
+          aria-live="polite"
+          aria-atomic="true"
+          className="text-xs font-mono text-[var(--muted-foreground)] sm:text-right"
+        >
+          Showing <strong className="text-[var(--foreground)]">{filteredLeaders.length}</strong> of{' '}
+          {seniorExecs.length} documented entries
         </div>
       </div>
 
       {filteredLeaders.length > 0 ? (
-        <ul id="executive-search-results" className="mt-7 divide-y divide-[var(--border)] border-y border-[var(--border)] list-none p-0">
+        <ul
+          id="executive-search-results"
+          className="mt-7 divide-y divide-[var(--border)] border-y border-[var(--border)] list-none p-0"
+        >
           {filteredLeaders.map((entry, index) => (
             <li
               key={`${entry.name}-${entry.term}-${index}`}
@@ -79,10 +87,15 @@ export const ExecutiveSearch: React.FC = () => {
           ))}
         </ul>
       ) : (
-        <div id="executive-search-results" className="mt-7 rounded-[1.25rem] border border-[var(--border)] p-8 sm:p-10">
+        <div
+          id="executive-search-results"
+          className="mt-7 rounded-[1.25rem] border border-[var(--border)] p-8 sm:p-10"
+        >
           <div className="max-w-md">
             <Search className="w-5 h-5 text-[var(--primary)]" aria-hidden="true" />
-            <h3 className="mt-4 font-display font-bold text-xl text-[var(--foreground)]">No matching archive entry</h3>
+            <h3 className="mt-4 font-display font-bold text-xl text-[var(--foreground)]">
+              No matching archive entry
+            </h3>
             <p className="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
               No documented Senior Executive record matched “{query}”. Try a surname or academic term label.
             </p>

@@ -1,9 +1,10 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --font-serif: "Newsreader Variable", Georgia, "Times New Roman", serif;
-  --font-sans: "Plus Jakarta Sans Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
+  --font-sans:
+    'Plus Jakarta Sans Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -84,7 +85,7 @@ body {
 
 /* High-DPI Organic Film Grain Noise Overlay */
 body::before {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   z-index: 1;
@@ -95,7 +96,8 @@ body::before {
 }
 
 /* Section scroll margins */
-section[id], div[id] {
+section[id],
+div[id] {
   scroll-margin-top: 5.5rem;
 }
 
@@ -107,7 +109,9 @@ select:focus-visible,
 textarea:focus-visible,
 [tabindex]:focus-visible {
   outline: none !important;
-  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring) !important;
+  box-shadow:
+    0 0 0 2px var(--background),
+    0 0 0 4px var(--ring) !important;
 }
 
 /* Skip link */
@@ -172,7 +176,7 @@ textarea:focus-visible,
 }
 
 .frosted-glass-card::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   inset-inline: 0;
@@ -221,7 +225,6 @@ textarea:focus-visible,
     scroll-behavior: auto !important;
   }
 }
-
 
 /* Editorial article rhythm for collection-driven Applied Mathematics content. */
 .article-prose {
@@ -291,7 +294,6 @@ textarea:focus-visible,
   font-size: 0.9em;
 }
 
-
 /* Windows High Contrast / forced-colors support. */
 @media (forced-colors: active) {
   :root {
@@ -315,7 +317,7 @@ textarea:focus-visible,
   button,
   input,
   dialog,
-  [role="button"] {
+  [role='button'] {
     forced-color-adjust: auto;
   }
 

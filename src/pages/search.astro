@@ -3,52 +3,112 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { Search, ArrowRight } from 'lucide-react';
 
-const appliedMath = await getCollection('appliedMath', ({ data }) =>
-  data.evidence.visibility === 'public' &&
-  data.evidence.status !== 'unknown' &&
-  data.evidence.status !== 'blocked' &&
-  data.evidence.status !== 'needs-approval'
+const appliedMath = await getCollection(
+  'appliedMath',
+  ({ data }) =>
+    data.evidence.visibility === 'public' &&
+    data.evidence.status !== 'unknown' &&
+    data.evidence.status !== 'blocked' &&
+    data.evidence.status !== 'needs-approval',
 );
 
-const governance = await getCollection('governance', ({ data }) =>
-  (data.evidence.visibility === 'public' || data.evidence.visibility === 'public-summary-only') &&
-  data.evidence.status !== 'unknown' &&
-  data.evidence.status !== 'blocked' &&
-  data.evidence.status !== 'needs-approval'
+const governance = await getCollection(
+  'governance',
+  ({ data }) =>
+    (data.evidence.visibility === 'public' || data.evidence.visibility === 'public-summary-only') &&
+    data.evidence.status !== 'unknown' &&
+    data.evidence.status !== 'blocked' &&
+    data.evidence.status !== 'needs-approval',
 );
 
-const chronicle = await getCollection('chronicle', ({ data }) =>
-  (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
-  data.evidence.status !== 'unknown' &&
-  data.evidence.status !== 'blocked' &&
-  data.evidence.status !== 'needs-approval'
+const chronicle = await getCollection(
+  'chronicle',
+  ({ data }) =>
+    (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
+    data.evidence.status !== 'unknown' &&
+    data.evidence.status !== 'blocked' &&
+    data.evidence.status !== 'needs-approval',
 );
 
-const programs = await getCollection('programs', ({ data }) =>
-  (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
-  data.evidence.status !== 'unknown' &&
-  data.evidence.status !== 'blocked' &&
-  data.evidence.status !== 'needs-approval'
+const programs = await getCollection(
+  'programs',
+  ({ data }) =>
+    (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
+    data.evidence.status !== 'unknown' &&
+    data.evidence.status !== 'blocked' &&
+    data.evidence.status !== 'needs-approval',
 );
 
-const resources = await getCollection('resources', ({ data }) =>
-  (data.evidence.visibility === 'public' || data.evidence.visibility === 'public-summary-only') &&
-  data.evidence.status !== 'unknown' &&
-  data.evidence.status !== 'blocked' &&
-  data.evidence.status !== 'needs-approval'
+const resources = await getCollection(
+  'resources',
+  ({ data }) =>
+    (data.evidence.visibility === 'public' || data.evidence.visibility === 'public-summary-only') &&
+    data.evidence.status !== 'unknown' &&
+    data.evidence.status !== 'blocked' &&
+    data.evidence.status !== 'needs-approval',
 );
 
 const fixedPages = [
-  { title: 'Explore Applied Mathematics', description: 'Applied Mathematics explainers and models.', href: '/explore', type: 'section' },
-  { title: 'Programs & Updates', description: 'Source-aware program status and official update links.', href: '/programs', type: 'section' },
-  { title: 'Academic Resources', description: 'Approved public reviewers, guides, tutorials, and references.', href: '/resources', type: 'section' },
-  { title: 'Join SAM-UP', description: 'Current recruitment guidance and OSA application scope.', href: '/join', type: 'section' },
-  { title: 'Partner with SAM-UP', description: 'Public-safe partnership and collaboration information.', href: '/partners', type: 'section' },
-  { title: 'About SAM-UP', description: 'Documented identity, objectives, principles, seal, and history.', href: '/about', type: 'section' },
-  { title: 'Governance', description: 'Public-safe governance source summaries.', href: '/governance', type: 'section' },
-  { title: 'Archive', description: 'Historical leadership and publication archives.', href: '/archive', type: 'section' },
-  { title: 'Leadership Archive', description: 'Search documented Senior Executive term records.', href: '/alumni', type: 'archive' },
-  { title: 'The Chronicle', description: 'Approved public newsletter issues and articles.', href: '/chronicle', type: 'archive' },
+  {
+    title: 'Explore Applied Mathematics',
+    description: 'Applied Mathematics explainers and models.',
+    href: '/explore',
+    type: 'section',
+  },
+  {
+    title: 'Programs & Updates',
+    description: 'Source-aware program status and official update links.',
+    href: '/programs',
+    type: 'section',
+  },
+  {
+    title: 'Academic Resources',
+    description: 'Approved public reviewers, guides, tutorials, and references.',
+    href: '/resources',
+    type: 'section',
+  },
+  {
+    title: 'Join SAM-UP',
+    description: 'Current recruitment guidance and OSA application scope.',
+    href: '/join',
+    type: 'section',
+  },
+  {
+    title: 'Partner with SAM-UP',
+    description: 'Public-safe partnership and collaboration information.',
+    href: '/partners',
+    type: 'section',
+  },
+  {
+    title: 'About SAM-UP',
+    description: 'Documented identity, objectives, principles, seal, and history.',
+    href: '/about',
+    type: 'section',
+  },
+  {
+    title: 'Governance',
+    description: 'Public-safe governance source summaries.',
+    href: '/governance',
+    type: 'section',
+  },
+  {
+    title: 'Archive',
+    description: 'Historical leadership and publication archives.',
+    href: '/archive',
+    type: 'section',
+  },
+  {
+    title: 'Leadership Archive',
+    description: 'Search documented Senior Executive term records.',
+    href: '/alumni',
+    type: 'archive',
+  },
+  {
+    title: 'The Chronicle',
+    description: 'Approved public newsletter issues and articles.',
+    href: '/chronicle',
+    type: 'archive',
+  },
 ];
 
 const indexedItems = [
@@ -101,15 +161,21 @@ const indexedItems = [
         Find something in <span class="text-gold-gradient">SAM-UP.</span>
       </h1>
       <p class="mt-5 max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
-        Search institutional pages and approved public content. Internal, private, and needs-approval records are intentionally excluded from this index.
+        Search institutional pages and approved public content. Internal, private, and needs-approval records
+        are intentionally excluded from this index.
       </p>
     </div>
   </section>
 
   <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <div class="relative">
-      <label for="site-search-input" class="sr-only">Search SAM-UP public content</label>
-      <Search class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted-foreground)] pointer-events-none" aria-hidden="true" />
+      <label for="site-search-input" class="sr-only">
+        Search SAM-UP public content
+      </label>
+      <Search
+        class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted-foreground)] pointer-events-none"
+        aria-hidden="true"
+      />
       <input
         id="site-search-input"
         type="search"
@@ -121,11 +187,16 @@ const indexedItems = [
     </div>
 
     <div class="mt-4 flex items-center justify-between gap-4 text-xs font-mono text-[var(--muted-foreground)]">
-      <div id="site-search-count" aria-live="polite" aria-atomic="true">{indexedItems.length} public entries</div>
+      <div id="site-search-count" aria-live="polite" aria-atomic="true">
+        {indexedItems.length} public entries
+      </div>
       <noscript>JavaScript is off; all indexed entries remain visible below.</noscript>
     </div>
 
-    <ul id="site-search-results" class="mt-8 divide-y divide-[var(--border)] border-y border-[var(--border)] list-none p-0">
+    <ul
+      id="site-search-results"
+      class="mt-8 divide-y divide-[var(--border)] border-y border-[var(--border)] list-none p-0"
+    >
       {indexedItems.map((item) => (
         <li
           data-search-item
@@ -133,12 +204,19 @@ const indexedItems = [
           class="search-index-item"
         >
           <a href={item.href} class="group grid sm:grid-cols-[8rem_1fr_auto] gap-4 sm:gap-6 py-6">
-            <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">{item.type}</div>
+            <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">
+              {item.type}
+            </div>
             <div>
-              <h2 class="font-display font-bold text-xl text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">{item.title}</h2>
+              <h2 class="font-display font-bold text-xl text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+                {item.title}
+              </h2>
               <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">{item.description}</p>
             </div>
-            <ArrowRight class="hidden sm:block w-5 h-5 text-[var(--muted-foreground)] group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all" aria-hidden="true" />
+            <ArrowRight
+              class="hidden sm:block w-5 h-5 text-[var(--muted-foreground)] group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all"
+              aria-hidden="true"
+            />
           </a>
         </li>
       ))}
@@ -146,7 +224,9 @@ const indexedItems = [
 
     <div id="site-search-empty" hidden class="mt-8 rounded-[1.25rem] border border-[var(--border)] p-8">
       <h2 class="font-display font-bold text-xl text-[var(--foreground)]">No public result matched.</h2>
-      <p class="mt-2 text-sm text-[var(--muted-foreground)]">Try a broader term such as “math”, “join”, “governance”, “archive”, or “partner”.</p>
+      <p class="mt-2 text-sm text-[var(--muted-foreground)]">
+        Try a broader term such as “math”, “join”, “governance”, “archive”, or “partner”.
+      </p>
     </div>
   </main>
 </BaseLayout>
@@ -217,7 +297,8 @@ const indexedItems = [
     const body = document.createElement('div');
 
     const title = document.createElement('h2');
-    title.className = 'font-display font-bold text-xl text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors';
+    title.className =
+      'font-display font-bold text-xl text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors';
     title.textContent = data.meta?.title || data.url;
 
     const excerpt = document.createElement('p');
@@ -227,7 +308,8 @@ const indexedItems = [
     body.append(title, excerpt);
 
     const arrow = document.createElement('span');
-    arrow.className = 'hidden sm:block text-[var(--muted-foreground)] group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all';
+    arrow.className =
+      'hidden sm:block text-[var(--muted-foreground)] group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all';
     arrow.setAttribute('aria-hidden', 'true');
     arrow.textContent = '→';
 

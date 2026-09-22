@@ -59,8 +59,9 @@ try {
         const unsafeBlankLinks = [...document.querySelectorAll('a[target="_blank"]')]
           .filter((link) => !/\bnoopener\b/.test(link.getAttribute('rel') || ''))
           .map((link) => link.getAttribute('href'));
-        const headerHrefs = [...document.querySelectorAll('header a[href]')]
-          .map((link) => link.getAttribute('href'));
+        const headerHrefs = [...document.querySelectorAll('header a[href]')].map((link) =>
+          link.getAttribute('href'),
+        );
         const robots = document.querySelector('meta[name="robots"]')?.getAttribute('content') || '';
         const externalFontLinks = [...document.querySelectorAll('link[href]')]
           .map((link) => link.getAttribute('href') || '')
@@ -84,15 +85,20 @@ try {
         };
       });
 
-      if (route !== '/404/' && status !== 200) addIssue(`${viewport.name} ${route}: expected 200, got ${status}`);
-      if (route === '/404/' && status !== 200) addIssue(`${viewport.name} ${route}: expected generated 404 page to return 200, got ${status}`);
+      if (route !== '/404/' && status !== 200)
+        addIssue(`${viewport.name} ${route}: expected 200, got ${status}`);
+      if (route === '/404/' && status !== 200)
+        addIssue(`${viewport.name} ${route}: expected generated 404 page to return 200, got ${status}`);
       if (!result.title) addIssue(`${viewport.name} ${route}: missing document title`);
-      if (result.h1Count !== 1) addIssue(`${viewport.name} ${route}: expected exactly one h1, got ${result.h1Count}`);
+      if (result.h1Count !== 1)
+        addIssue(`${viewport.name} ${route}: expected exactly one h1, got ${result.h1Count}`);
       if (!result.hasMain) addIssue(`${viewport.name} ${route}: missing #main-content main landmark`);
       if (!result.hasSkipLink) addIssue(`${viewport.name} ${route}: missing skip link`);
 
       if (result.scrollWidth > result.clientWidth) {
-        addIssue(`${viewport.name} ${route}: horizontal overflow ${result.scrollWidth}px > ${result.clientWidth}px`);
+        addIssue(
+          `${viewport.name} ${route}: horizontal overflow ${result.scrollWidth}px > ${result.clientWidth}px`,
+        );
       }
 
       if (result.canonical && /localhost|127\.0\.0\.1/.test(result.canonical)) {
@@ -104,11 +110,15 @@ try {
       }
 
       if (result.invalidImages.length) {
-        addIssue(`${viewport.name} ${route}: images missing alt or intrinsic dimensions: ${result.invalidImages.join(', ')}`);
+        addIssue(
+          `${viewport.name} ${route}: images missing alt or intrinsic dimensions: ${result.invalidImages.join(', ')}`,
+        );
       }
 
       if (result.unsafeBlankLinks.length) {
-        addIssue(`${viewport.name} ${route}: target=_blank links missing noopener: ${result.unsafeBlankLinks.join(', ')}`);
+        addIssue(
+          `${viewport.name} ${route}: target=_blank links missing noopener: ${result.unsafeBlankLinks.join(', ')}`,
+        );
       }
 
       if (result.headerHrefs.some((href) => href === '/reporting' || href?.startsWith('/reporting/'))) {
@@ -116,7 +126,9 @@ try {
       }
 
       if (result.externalFontLinks.length) {
-        addIssue(`${viewport.name} ${route}: external Google Fonts link detected: ${result.externalFontLinks.join(', ')}`);
+        addIssue(
+          `${viewport.name} ${route}: external Google Fonts link detected: ${result.externalFontLinks.join(', ')}`,
+        );
       }
 
       if (route === '/404/' && !/noindex/i.test(result.robots)) {
@@ -127,7 +139,10 @@ try {
         addIssue(`${viewport.name} /events/: misattributed UPLB Math Wizard content is still public`);
       }
 
-      if (route === '/join/' && !/only students from the College of Arts and Sciences \(CAS\) may apply/i.test(result.text)) {
+      if (
+        route === '/join/' &&
+        !/only students from the College of Arts and Sciences \(CAS\) may apply/i.test(result.text)
+      ) {
         addIssue(`${viewport.name} /join/: current CAS-only OSA guidance is missing`);
       }
 
@@ -157,7 +172,8 @@ try {
       if (drawerState.bodyOverflow !== 'hidden') addIssue('mobile navigation: body scroll was not locked');
       if (!drawerState.activeInsideDrawer) addIssue('mobile navigation: focus did not move into the drawer');
       if (!drawerState.hasJoinAction) addIssue('mobile navigation: primary Join action is missing');
-      if (drawerState.hasReportingLink) addIssue('mobile navigation: /reporting must remain outside institutional navigation');
+      if (drawerState.hasReportingLink)
+        addIssue('mobile navigation: /reporting must remain outside institutional navigation');
 
       await page.keyboard.press('Escape');
       if (await drawer.isVisible()) addIssue('mobile navigation: Escape did not close the drawer');
@@ -166,7 +182,8 @@ try {
         activeLabel: document.activeElement?.getAttribute('aria-label') || '',
       }));
       if (afterClose.bodyOverflow) addIssue('mobile navigation: body scroll lock was not released');
-      if (afterClose.activeLabel !== 'Open Navigation Menu') addIssue('mobile navigation: focus was not restored to the trigger');
+      if (afterClose.activeLabel !== 'Open Navigation Menu')
+        addIssue('mobile navigation: focus was not restored to the trigger');
 
       await page.close();
     }
@@ -183,11 +200,13 @@ try {
   const searchInput = searchPage.locator('#site-search-input');
   await searchInput.fill('shortest path');
   await searchPage.waitForTimeout(700);
-  const searchResultHrefs = await searchPage.locator('#site-search-results a[href]').evaluateAll((links) =>
-    links.map((link) => link.getAttribute('href')),
-  );
+  const searchResultHrefs = await searchPage
+    .locator('#site-search-results a[href]')
+    .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
   if (!searchResultHrefs.some((href) => href?.includes('/explore/shortest-paths'))) {
-    addIssue(`search: Pagefind did not return the shortest-path explainer (${JSON.stringify(searchResultHrefs)})`);
+    addIssue(
+      `search: Pagefind did not return the shortest-path explainer (${JSON.stringify(searchResultHrefs)})`,
+    );
   }
   await searchPage.close();
   await searchContext.close();
@@ -200,7 +219,8 @@ try {
   });
   await reportingPage.waitForTimeout(350);
 
-  if (reportingResponse?.status() !== 200) addIssue(`reporting: expected 200, got ${reportingResponse?.status() ?? 0}`);
+  if (reportingResponse?.status() !== 200)
+    addIssue(`reporting: expected 200, got ${reportingResponse?.status() ?? 0}`);
 
   const reportingState = await reportingPage.evaluate(() => {
     const viewport = document.querySelector('meta[name="viewport"]')?.getAttribute('content') || '';
@@ -219,7 +239,8 @@ try {
   }
   if (!/noindex/i.test(reportingState.robots)) addIssue('reporting: applicant route is missing noindex');
   if (reportingState.h1Count < 1) addIssue('reporting: semantic fallback is missing an h1');
-  if (!reportingState.hasReturnLink) addIssue('reporting: experience is missing a return path to institutional home');
+  if (!reportingState.hasReturnLink)
+    addIssue('reporting: experience is missing a return path to institutional home');
 
   await reportingPage.close();
   await reportingContext.close();
@@ -230,7 +251,8 @@ try {
     waitUntil: 'domcontentloaded',
     timeout: 30_000,
   });
-  if (unknownResponse?.status() !== 404) addIssue(`unknown route: expected 404, got ${unknownResponse?.status() ?? 0}`);
+  if (unknownResponse?.status() !== 404)
+    addIssue(`unknown route: expected 404, got ${unknownResponse?.status() ?? 0}`);
   await unknownPage.close();
   await unknownContext.close();
 } finally {

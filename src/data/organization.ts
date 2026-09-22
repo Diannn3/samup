@@ -13,11 +13,11 @@ export const organization = {
   latestRecordedExecutive: seniorExecs[seniorExecs.length - 1],
   socials: {
     facebook: 'https://facebook.com/SAMUPLB',
-    email: 'samup.uplb@gmail.com'
+    email: 'samup.uplb@gmail.com',
   },
   location: {
     building: 'UPLB Mathematics Building',
     coordinates: '14.1675° N, 121.2433° E',
-    campus: 'UPLB Campus, Los Baños, Laguna, Philippines'
-  }
+    campus: 'UPLB Campus, Los Baños, Laguna, Philippines',
+  },
 };

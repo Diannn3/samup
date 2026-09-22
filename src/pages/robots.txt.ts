@@ -3,11 +3,7 @@ import type { APIRoute } from 'astro';
 export const prerender = true;
 
 export const GET: APIRoute = ({ site }) => {
-  const lines = [
-    'User-agent: *',
-    'Allow: /',
-    'Disallow: /reporting/',
-  ];
+  const lines = ['User-agent: *', 'Allow: /', 'Disallow: /reporting/'];
 
   if (site) {
     lines.push('', `Sitemap: ${new URL('sitemap-index.xml', site).href}`);

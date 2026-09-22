@@ -11,7 +11,10 @@ import { ArrowRight, ExternalLink, ShieldCheck, Landmark, Mail, CheckCircle2 } f
   description="Current source-aware recruitment guidance for students interested in joining the Society of Applied Mathematics of UPLB."
 >
   <section class="relative overflow-hidden border-b border-[var(--border)] py-20 sm:py-24">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_75%_15%,rgba(240,204,78,0.12),transparent_35%)] pointer-events-none" aria-hidden="true" />
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_75%_15%,rgba(240,204,78,0.12),transparent_35%)] pointer-events-none"
+      aria-hidden="true"
+    />
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="max-w-4xl">
         <p class="font-mono text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
@@ -21,7 +24,8 @@ import { ArrowRight, ExternalLink, ShieldCheck, Landmark, Mail, CheckCircle2 } f
           Join <span class="text-gold-gradient">SAM-UP</span>
         </h1>
         <p class="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
-          Start with what is verified now, then confirm the current application window and program-specific requirements through SAM-UP’s latest official announcement.
+          Start with what is verified now, then confirm the current application window and program-specific
+          requirements through SAM-UP’s latest official announcement.
         </p>
       </div>
     </div>
@@ -39,12 +43,20 @@ import { ArrowRight, ExternalLink, ShieldCheck, Landmark, Mail, CheckCircle2 } f
         </h2>
         <div class="mt-6 grid sm:grid-cols-2 gap-5">
           <div class="p-5 rounded-2xl border border-[var(--border)] bg-white/[0.03]">
-            <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">Registration</div>
-            <p class="mt-2 text-sm font-semibold text-[var(--foreground)]">Registered for {currentRecruitment.term}</p>
+            <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+              Registration
+            </div>
+            <p class="mt-2 text-sm font-semibold text-[var(--foreground)]">
+              Registered for {currentRecruitment.term}
+            </p>
           </div>
           <div class="p-5 rounded-2xl border border-[var(--border)] bg-white/[0.03]">
-            <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">Current application scope</div>
-            <p class="mt-2 text-sm font-semibold text-[var(--foreground)]">{currentRecruitment.applicationScope}</p>
+            <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
+              Current application scope
+            </div>
+            <p class="mt-2 text-sm font-semibold text-[var(--foreground)]">
+              {currentRecruitment.applicationScope}
+            </p>
           </div>
         </div>
         <p class="mt-6 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
@@ -106,12 +118,20 @@ import { ArrowRight, ExternalLink, ShieldCheck, Landmark, Mail, CheckCircle2 } f
         </h2>
         <div class="mt-6 space-y-5">
           <div>
-            <h3 class="text-sm font-semibold text-[var(--foreground)]">Resident Member — 2018 Constitution</h3>
-            <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">{membershipRules.resident}</p>
+            <h3 class="text-sm font-semibold text-[var(--foreground)]">
+              Resident Member — 2018 Constitution
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+              {membershipRules.resident}
+            </p>
           </div>
           <div class="pt-5 border-t border-[var(--border-subtle)]">
-            <h3 class="text-sm font-semibold text-[var(--foreground)]">Affiliate Member — 2018 Constitution</h3>
-            <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">{membershipRules.affiliate}</p>
+            <h3 class="text-sm font-semibold text-[var(--foreground)]">
+              Affiliate Member — 2018 Constitution
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+              {membershipRules.affiliate}
+            </p>
           </div>
         </div>
       </article>
@@ -123,7 +143,8 @@ import { ArrowRight, ExternalLink, ShieldCheck, Landmark, Mail, CheckCircle2 } f
             Ask the organization directly.
           </h2>
           <p class="mt-3 text-sm leading-relaxed text-[var(--muted-foreground)]">
-            If a current announcement is unclear or your case is not covered by the public guidance, contact SAM-UP instead of guessing from historical rules.
+            If a current announcement is unclear or your case is not covered by the public guidance, contact
+            SAM-UP instead of guessing from historical rules.
           </p>
         </div>
         <a

@@ -5,7 +5,9 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 await page.goto('http://localhost:4322/', { waitUntil: 'networkidle' });
 
 // scroll proof strip into view and wait for hydration + animation start
-await page.evaluate(() => document.querySelector('section[aria-label="Verified society facts"]')?.scrollIntoView({ block: 'center' }));
+await page.evaluate(() =>
+  document.querySelector('section[aria-label="Verified society facts"]')?.scrollIntoView({ block: 'center' }),
+);
 
 // sample flap state every 500ms for 6s to catch mid-animation frames
 for (let t = 0; t <= 6000; t += 500) {

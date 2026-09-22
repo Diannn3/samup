@@ -12,7 +12,7 @@ const BASE_URL = 'http://127.0.0.1:4321';
 
 async function run() {
   const browser = await chromium.launch({ headless: true });
-  
+
   // 1. Desktop captures (1440 x 900)
   const desktopContext = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const desktopPage = await desktopContext.newPage();
@@ -23,7 +23,7 @@ async function run() {
     { path: '/events/', name: '03_desktop_events' },
     { path: '/alumni/', name: '04_desktop_alumni' },
     { path: '/resources/', name: '05_desktop_resources' },
-    { path: '/reporting/', name: '06_desktop_reporting' }
+    { path: '/reporting/', name: '06_desktop_reporting' },
   ];
 
   for (const r of routes) {
@@ -48,7 +48,7 @@ async function run() {
   // 2. Tablet captures (768 x 1024)
   const tabletContext = await browser.newContext({ viewport: { width: 768, height: 1024 } });
   const tabletPage = await tabletContext.newPage();
-  
+
   console.log('Capturing Tablet Home...');
   await tabletPage.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
   await tabletPage.waitForTimeout(1000);

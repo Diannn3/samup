@@ -8,14 +8,14 @@ The public website is not a scratchpad for organizational memory. A fact being k
 
 Identify the content class:
 
-| Content class | Typical source | Freshness expectation |
-| --- | --- | --- |
-| Foundational identity | Constitution | Stable until formally amended |
-| Current operational guidance | Current OSA / current bylaws / current official announcement | Re-check when term, policy, or application cycle changes |
-| Program/event status | Current official announcement or approved organizer record | Current date/status required |
-| Historical archive | Approved archive file / dated publication | Preserve historical label |
-| Educational Applied Math content | Reliable mathematical source + editorial review | Re-review when edited |
-| Partnership/public case study | Approved public agreement, announcement, or deliverable | Approval required before publication |
+| Content class                    | Typical source                                               | Freshness expectation                                    |
+| -------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------- |
+| Foundational identity            | Constitution                                                 | Stable until formally amended                            |
+| Current operational guidance     | Current OSA / current bylaws / current official announcement | Re-check when term, policy, or application cycle changes |
+| Program/event status             | Current official announcement or approved organizer record   | Current date/status required                             |
+| Historical archive               | Approved archive file / dated publication                    | Preserve historical label                                |
+| Educational Applied Math content | Reliable mathematical source + editorial review              | Re-review when edited                                    |
+| Partnership/public case study    | Approved public agreement, announcement, or deliverable      | Approval required before publication                     |
 
 ## Required evidence metadata
 
@@ -27,8 +27,8 @@ Minimum fields:
 evidence:
   status: verified-current
   visibility: public
-  sourceLabel: "Name of authoritative source"
-  reviewedAt: "YYYY-MM-DD"
+  sourceLabel: 'Name of authoritative source'
+  reviewedAt: 'YYYY-MM-DD'
 ```
 
 Use `sourceUrl`, `sourceDocument`, `sourceDate`, `validUntil`, and `notes` when relevant.

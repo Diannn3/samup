@@ -3,13 +3,15 @@ import { getCollection } from 'astro:content';
 import { currentRecruitment, recruitmentLinks } from '../../data/recruitment';
 import { ArrowRight, ShieldCheck, CalendarClock, BadgeCheck } from 'lucide-react';
 
-const verifiedPrograms = await getCollection('programs', ({ data }) =>
-  data.evidence.visibility === 'public' &&
-  data.evidence.status !== 'unknown' &&
-  data.evidence.status !== 'blocked' &&
-  data.evidence.status !== 'needs-approval' &&
-  data.lifecycle !== 'historical' &&
-  data.lifecycle !== 'cancelled'
+const verifiedPrograms = await getCollection(
+  'programs',
+  ({ data }) =>
+    data.evidence.visibility === 'public' &&
+    data.evidence.status !== 'unknown' &&
+    data.evidence.status !== 'blocked' &&
+    data.evidence.status !== 'needs-approval' &&
+    data.lifecycle !== 'historical' &&
+    data.lifecycle !== 'cancelled',
 );
 
 const verifiedProgramCount = verifiedPrograms.length;
@@ -27,7 +29,8 @@ const verifiedProgramCount = verifiedPrograms.length;
           What is verified <span class="text-gold-gradient">now?</span>
         </h2>
         <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
-          Time-sensitive claims are separated from historical identity. When the site cannot verify a current state, it says so and points to the official channel instead of guessing.
+          Time-sensitive claims are separated from historical identity. When the site cannot verify a current
+          state, it says so and points to the official channel instead of guessing.
         </p>
       </div>
 
@@ -37,11 +40,14 @@ const verifiedProgramCount = verifiedPrograms.length;
             <div class="w-10 h-10 rounded-xl bg-[var(--primary)]/10 border border-[var(--border-primary)] flex items-center justify-center text-[var(--primary)]">
               <BadgeCheck class="w-5 h-5" aria-hidden="true" />
             </div>
-            <span class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">Verified current</span>
+            <span class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">
+              Verified current
+            </span>
           </div>
           <h3 class="mt-5 font-display font-bold text-xl text-[var(--foreground)]">OSA registration</h3>
           <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
-            SAM-UP is registered for {currentRecruitment.term}. Current OSA guidance states that only CAS students may apply.
+            SAM-UP is registered for {currentRecruitment.term}. Current OSA guidance states that only CAS
+            students may apply.
           </p>
           <a
             href={recruitmentLinks.osaRecord}
@@ -59,11 +65,14 @@ const verifiedProgramCount = verifiedPrograms.length;
             <div class="w-10 h-10 rounded-xl bg-[var(--primary)]/10 border border-[var(--border-primary)] flex items-center justify-center text-[var(--primary)]">
               <ShieldCheck class="w-5 h-5" aria-hidden="true" />
             </div>
-            <span class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">Source-aware fallback</span>
+            <span class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">
+              Source-aware fallback
+            </span>
           </div>
           <h3 class="mt-5 font-display font-bold text-xl text-[var(--foreground)]">Recruitment window</h3>
           <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
-            The site does not assume applications are open. Check the latest SAM-UP announcement for the current application window and specific requirements.
+            The site does not assume applications are open. Check the latest SAM-UP announcement for the
+            current application window and specific requirements.
           </p>
           <a
             href="/join"
@@ -76,14 +85,17 @@ const verifiedProgramCount = verifiedPrograms.length;
 
         <article class="sm:col-span-2 bg-[var(--background)] p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
           <div>
-            <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">Programs directory</div>
+            <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">
+              Programs directory
+            </div>
             <h3 class="mt-2 font-display font-bold text-xl text-[var(--foreground)]">
               {verifiedProgramCount > 0
                 ? `${verifiedProgramCount} source-backed current program${verifiedProgramCount === 1 ? '' : 's'}`
                 : 'Current program listings are being re-verified'}
             </h3>
             <p class="mt-2 max-w-2xl text-sm leading-relaxed text-[var(--muted-foreground)]">
-              Historical or recurring activities are not automatically labeled current. The Programs page only reads publishable entries from the typed content collection.
+              Historical or recurring activities are not automatically labeled current. The Programs page only
+              reads publishable entries from the typed content collection.
             </p>
           </div>
           <a

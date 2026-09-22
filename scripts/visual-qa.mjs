@@ -75,7 +75,10 @@ for (const route of ROUTES) {
         };
       });
 
-      if (!focusState.visible) failures.push(`home keyboard: first focused element lacks visible focus (${JSON.stringify(focusState)})`);
+      if (!focusState.visible)
+        failures.push(
+          `home keyboard: first focused element lacks visible focus (${JSON.stringify(focusState)})`,
+        );
     }
 
     await context.close();

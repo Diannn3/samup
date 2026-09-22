@@ -1,8 +1,8 @@
-import { create } from "zustand";
-import { STATIONS, type Station } from "../data/reporting/stations";
-import { PORTFOLIO_ITEMS, type PortfolioItem } from "../data/reporting/portfolio";
+import { create } from 'zustand';
+import { STATIONS, type Station } from '../data/reporting/stations';
+import { PORTFOLIO_ITEMS, type PortfolioItem } from '../data/reporting/portfolio';
 
-export type WorldChapter = "light" | "darkroom" | "applicant";
+export type WorldChapter = 'light' | 'darkroom' | 'applicant';
 
 interface ReportingState {
   // Player & Kinematics
@@ -53,11 +53,11 @@ export const useReportingStore = create<ReportingState>((set, get) => ({
   distanceToNearest: 0,
   isInspecting: false,
 
-  currentChapter: "light",
+  currentChapter: 'light',
 
   isPortfolioOpen: false,
   selectedPortfolioItem: null,
-  portfolioCategory: "all",
+  portfolioCategory: 'all',
   isCommandPaletteOpen: false,
   isPresenterMode: false,
 
@@ -80,11 +80,11 @@ export const useReportingStore = create<ReportingState>((set, get) => ({
     }
 
     // Determine current chapter based on closest station and coordinate bounds
-    let chapter: WorldChapter = "light";
-    if (closest?.theme === "darkroom" || (player.x >= 3300 && player.x <= 4000 && player.y >= 2000)) {
-      chapter = "darkroom";
-    } else if (closest?.theme === "applicant" || player.x >= 5100) {
-      chapter = "applicant";
+    let chapter: WorldChapter = 'light';
+    if (closest?.theme === 'darkroom' || (player.x >= 3300 && player.x <= 4000 && player.y >= 2000)) {
+      chapter = 'darkroom';
+    } else if (closest?.theme === 'applicant' || player.x >= 5100) {
+      chapter = 'applicant';
     }
 
     set({

@@ -1,18 +1,18 @@
 ---
-title: "SAM-UP Constitution"
-slug: "constitution-2018"
-documentType: "constitution"
-versionLabel: "As of November 10, 2018"
-effectiveDate: "2018-11-10"
+title: 'SAM-UP Constitution'
+slug: 'constitution-2018'
+documentType: 'constitution'
+versionLabel: 'As of November 10, 2018'
+effectiveDate: '2018-11-10'
 summary: "The foundational document defining SAM-UP's identity, official colors and emblem, principles, objectives, membership classifications, organizational structure, and core governance framework."
 evidence:
-  status: "verified-foundational"
-  visibility: "public-summary-only"
-  sourceLabel: "SAM-UP Constitution"
-  sourceDocument: "SAM-UP Constitution.docx"
-  sourceDate: "2018-11-10"
-  reviewedAt: "2026-09-22"
-  notes: "Public page summarizes foundational clauses. The source document remains the authority for exact wording."
+  status: 'verified-foundational'
+  visibility: 'public-summary-only'
+  sourceLabel: 'SAM-UP Constitution'
+  sourceDocument: 'SAM-UP Constitution.docx'
+  sourceDate: '2018-11-10'
+  reviewedAt: '2026-09-22'
+  notes: 'Public page summarizes foundational clauses. The source document remains the authority for exact wording.'
 ---
 
 The Constitution establishes the organization as the **Society of Applied Mathematics of the University of the Philippines Los Baños (SAM-UP)**, a self-governing academic organization based at UPLB.

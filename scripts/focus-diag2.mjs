@@ -15,7 +15,7 @@ const info = await page.evaluate(() => {
     zIndex: cs.zIndex,
     isolation: cs.isolation,
     parentCls: el.parentElement?.className?.toString().slice(0, 80),
-    navHasBackdrop: !!el.closest('nav') && getComputedStyle(el.closest('nav')).backdropFilter
+    navHasBackdrop: !!el.closest('nav') && getComputedStyle(el.closest('nav')).backdropFilter,
   };
 });
 console.log(JSON.stringify(info, null, 2));

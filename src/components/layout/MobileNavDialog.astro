@@ -61,7 +61,8 @@ const { currentPath = Astro.url.pathname } = Astro.props;
 
         <nav class="mt-5 space-y-1" aria-label="Mobile Main Navigation">
           {mainNav.map((item) => {
-            const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+            const isActive =
+              currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
             return (
               <a
                 href={item.href}

@@ -3,12 +3,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { ArrowRight, Newspaper, ShieldCheck } from 'lucide-react';
 
-const issues = (await getCollection('chronicle', ({ data }) =>
-  (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
-  data.evidence.status !== 'unknown' &&
-  data.evidence.status !== 'blocked' &&
-  data.evidence.status !== 'needs-approval'
-)).sort((a, b) => b.data.publishedAt.localeCompare(a.data.publishedAt));
+const issues = (
+  await getCollection(
+    'chronicle',
+    ({ data }) =>
+      (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
+      data.evidence.status !== 'unknown' &&
+      data.evidence.status !== 'blocked' &&
+      data.evidence.status !== 'needs-approval',
+  )
+).sort((a, b) => b.data.publishedAt.localeCompare(a.data.publishedAt));
 ---
 
 <BaseLayout
@@ -26,7 +30,8 @@ const issues = (await getCollection('chronicle', ({ data }) =>
           The <span class="text-gold-gradient">Chronicle</span>
         </h1>
         <p class="mt-6 max-w-3xl text-base sm:text-lg leading-relaxed text-[var(--muted-foreground)]">
-          The A.Y. 2026–2027 Bylaws identify The Chronicle as SAM-UP's newsletter. This public archive only displays issues or articles after their public status and source record are verified.
+          The A.Y. 2026–2027 Bylaws identify The Chronicle as SAM-UP's newsletter. This public archive only
+          displays issues or articles after their public status and source record are verified.
         </p>
       </div>
     </div>
@@ -39,11 +44,16 @@ const issues = (await getCollection('chronicle', ({ data }) =>
           <a href={issue.data.sourceUrl ?? '#'} class="group grid sm:grid-cols-[9rem_1fr_auto] gap-5 py-7">
             <div class="font-mono text-xs text-[var(--muted-foreground)]">{issue.data.publishedAt}</div>
             <div>
-              <h2 class="font-display font-bold text-xl text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">{issue.data.title}</h2>
+              <h2 class="font-display font-bold text-xl text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+                {issue.data.title}
+              </h2>
               <p class="mt-2 text-sm text-[var(--muted-foreground)]">{issue.data.summary}</p>
               <p class="mt-2 text-xs font-mono text-[var(--muted-foreground)]">By {issue.data.author}</p>
             </div>
-            <ArrowRight class="hidden sm:block w-5 h-5 text-[var(--muted-foreground)] group-hover:text-[var(--primary)]" aria-hidden="true" />
+            <ArrowRight
+              class="hidden sm:block w-5 h-5 text-[var(--muted-foreground)] group-hover:text-[var(--primary)]"
+              aria-hidden="true"
+            />
           </a>
         ))}
       </section>
@@ -57,7 +67,9 @@ const issues = (await getCollection('chronicle', ({ data }) =>
           No issue is being invented just to fill the page.
         </h2>
         <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
-          Approved Chronicle issues will appear here after the source file, publication date, author/editor information, and public visibility are verified. Until then, this route remains an explicit empty archive.
+          Approved Chronicle issues will appear here after the source file, publication date, author/editor
+          information, and public visibility are verified. Until then, this route remains an explicit empty
+          archive.
         </p>
       </section>
     )}

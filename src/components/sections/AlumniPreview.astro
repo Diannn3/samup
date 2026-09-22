@@ -15,12 +15,15 @@ import { ArrowRight, Archive } from 'lucide-react';
           Historical leadership, labeled as history.
         </h2>
         <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
-          The repository contains {organization.totalLeadershipTerms} documented Senior Executive term entries beginning in 1984. They form a historical archive, not a current Executive Committee roster.
+          The repository contains {organization.totalLeadershipTerms} documented Senior Executive term entries
+          beginning in 1984. They form a historical archive, not a current Executive Committee roster.
         </p>
 
         <div class="mt-7 grid grid-cols-2 border-y border-[var(--border)]">
           <div class="py-5 pr-5">
-            <div class="font-display font-black text-3xl text-[var(--primary)]">{organization.totalLeadershipTerms}</div>
+            <div class="font-display font-black text-3xl text-[var(--primary)]">
+              {organization.totalLeadershipTerms}
+            </div>
             <div class="mt-1 text-xs text-[var(--muted-foreground)]">Documented term entries</div>
           </div>
           <div class="py-5 pl-5 border-l border-[var(--border)]">
@@ -29,7 +32,10 @@ import { ArrowRight, Archive } from 'lucide-react';
           </div>
         </div>
 
-        <a href="/alumni" class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline">
+        <a
+          href="/alumni"
+          class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:underline"
+        >
           Search leadership records
           <ArrowRight class="w-4 h-4" aria-hidden="true" />
         </a>
@@ -39,15 +45,21 @@ import { ArrowRight, Archive } from 'lucide-react';
         <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">
           Latest entry in the repository archive
         </div>
-        <div class="mt-2 font-mono text-xs text-[var(--primary)]">{organization.latestRecordedExecutive.term}</div>
+        <div class="mt-2 font-mono text-xs text-[var(--primary)]">
+          {organization.latestRecordedExecutive.term}
+        </div>
         <h3 class="mt-4 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]">
           {organization.latestRecordedExecutive.name}
         </h3>
         <p class="mt-4 max-w-2xl text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
-          Recorded as Senior Executive for {organization.latestRecordedExecutive.term}. “Latest archive entry” means the last item in the available historical dataset; it should not be generalized into claims about the complete current officer roster.
+          Recorded as Senior Executive for {organization.latestRecordedExecutive.term}. “Latest archive entry”
+          means the last item in the available historical dataset; it should not be generalized into claims
+          about the complete current officer roster.
         </p>
         <div class="mt-7 pt-5 border-t border-[var(--border)] flex flex-wrap gap-x-6 gap-y-2 text-[10px] font-mono uppercase tracking-wider text-[var(--muted-foreground)]">
-          <span>Entry {organization.totalLeadershipTerms} of {organization.totalLeadershipTerms}</span>
+          <span>
+            Entry {organization.totalLeadershipTerms} of {organization.totalLeadershipTerms}
+          </span>
           <span>Dataset: senior_executives.json</span>
         </div>
       </article>
