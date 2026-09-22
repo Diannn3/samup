@@ -1,45 +1,96 @@
 ---
-import { SamUp3DExperience } from '../interactive/SamUp3DExperience';
 import { organization } from '../../data/organization';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ExternalLink, Sigma } from 'lucide-react';
 ---
 
-<section class="relative min-h-[85vh] lg:min-h-[90vh] flex items-center border-b border-[var(--border)] overflow-hidden">
-  {/* Full-Hero 3D Background Universe */}
-  <SamUp3DExperience client:load />
+<section class="relative min-h-[78vh] lg:min-h-[84vh] flex items-center border-b border-[var(--border)] overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-y-0 left-[8%] w-px bg-[var(--border-subtle)]"></div>
+    <div class="absolute inset-y-0 right-[8%] w-px bg-[var(--border-subtle)]"></div>
+    <div class="absolute top-[26%] inset-x-0 h-px bg-[var(--border-subtle)]"></div>
+    <div class="absolute bottom-[20%] inset-x-0 h-px bg-[var(--border-subtle)]"></div>
+    <div class="absolute top-[-15%] right-[5%] w-[520px] h-[520px] rounded-full border border-[var(--border)] opacity-50"></div>
+    <div class="absolute top-[-7%] right-[9%] w-[420px] h-[420px] rounded-full border border-[var(--border)] opacity-40"></div>
+  </div>
 
-  {/* Ambient Textured Depth Overlays */}
-  <div class="absolute inset-0 bg-dots-pattern opacity-15 pointer-events-none [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_60%,transparent_100%)]" aria-hidden="true" />
-  <div class="absolute top-0 inset-x-0 h-44 bg-gradient-to-b from-[var(--background)] via-[var(--background)]/70 to-transparent pointer-events-none" aria-hidden="true" />
-  <div class="absolute bottom-0 inset-x-0 h-44 bg-gradient-to-t from-[var(--background)] via-[var(--background)]/70 to-transparent pointer-events-none" aria-hidden="true" />
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative z-10 w-full">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div class="lg:col-span-7">
+        <div class="flex items-center gap-2 font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-[var(--primary)]">
+          <Sigma class="w-4 h-4" aria-hidden="true" />
+          <span>Society of Applied Mathematics of UPLB • Est. {organization.foundingYear}</span>
+        </div>
 
-  {/* Foreground Editorial Content */}
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-28 sm:py-16 lg:py-24 relative z-10 w-full pointer-events-none">
-    <div class="max-w-xl md:max-w-md lg:max-w-2xl space-y-6 text-left pointer-events-auto p-6 sm:p-0 rounded-3xl bg-[#06080C]/85 sm:bg-transparent backdrop-blur-xl sm:backdrop-blur-none border border-white/10 sm:border-none shadow-2xl sm:shadow-none">
-      {/* Identity Headline — what SAM-UP is, plainly without kicker pills */}
-      <div class="space-y-3">
-        <h1 class="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-[var(--foreground)] tracking-tight leading-[1.08] drop-shadow-lg">
-          The Society of Applied Mathematics of <span class="text-gold-gradient">UPLB</span>
+        <h1 class="mt-5 max-w-4xl font-display font-black text-4xl sm:text-6xl lg:text-7xl xl:text-[5.25rem] text-[var(--foreground)] tracking-[-0.035em] leading-[0.98]">
+          Applied Mathematics for <span class="text-gold-gradient">real-world impact.</span>
         </h1>
-        <p class="font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[var(--primary)]/95 drop-shadow">
-          1984.11.27 // UPLB.IMSP • Self-Governing Academic Society
+
+        <p class="mt-7 max-w-2xl text-base sm:text-lg text-[var(--muted-foreground)] leading-relaxed">
+          SAM-UP is a self-governing academic organization at the University of the Philippines Los Baños. Its constitutional purpose includes promoting the relevance, deeper appreciation, and wider application of Applied Mathematics to Philippine society.
         </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a
+            href="/explore"
+            class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-6 py-3.5 text-sm font-bold text-[var(--primary-foreground)] transition-transform hover:-translate-y-0.5"
+          >
+            Explore Applied Math
+            <ArrowRight class="w-4 h-4" aria-hidden="true" />
+          </a>
+          <a
+            href="/join"
+            class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-6 py-3.5 text-sm font-semibold text-[var(--foreground)] hover:border-[var(--border-primary)] transition-colors"
+          >
+            Join SAM-UP
+          </a>
+          <a
+            href="/partners"
+            class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+          >
+            Partner with us
+            <ExternalLink class="w-4 h-4" aria-hidden="true" />
+          </a>
+        </div>
+
+        <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 max-w-2xl border-t border-[var(--border)]">
+          <div class="pt-5 pr-5">
+            <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">Founded</div>
+            <div class="mt-1 font-display font-bold text-xl text-[var(--foreground)]">{organization.foundingYear}</div>
+          </div>
+          <div class="pt-5 px-5 border-l border-[var(--border)]">
+            <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">Official colors</div>
+            <div class="mt-1 font-display font-bold text-xl text-[var(--foreground)]">Black + Gold</div>
+          </div>
+          <div class="pt-5 pl-0 sm:pl-5 mt-5 sm:mt-0 sm:border-l border-[var(--border)] col-span-2 sm:col-span-1">
+            <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">Academic home</div>
+            <div class="mt-1 font-display font-bold text-xl text-[var(--foreground)]">UPLB</div>
+          </div>
+        </div>
       </div>
 
-      {/* Who We Are — constitutional positioning, no prestige inflation */}
-      <p class="text-sm sm:text-lg text-[var(--foreground)]/90 leading-relaxed max-w-xl drop-shadow-md font-normal">
-        A self-governing academic organization of BS Applied Mathematics students at the University of the Philippines Los Baños, promoting the relevance of Applied Mathematics to Philippine society since 1984.
-      </p>
+      <div class="lg:col-span-5 relative">
+        <div class="relative aspect-square max-w-[520px] mx-auto">
+          <div class="absolute inset-[4%] rounded-full border border-[var(--border)]"></div>
+          <div class="absolute inset-[13%] rounded-full border border-[var(--border-primary)]/50"></div>
+          <div class="absolute inset-[22%] rounded-full bg-[var(--primary)]/[0.04] border border-[var(--border)]"></div>
 
-      {/* Primary CTA — direct path to the organization story */}
-      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
-        <a
-          href="/about"
-          class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[var(--surface)]/90 backdrop-blur-md border border-[var(--border)] text-[var(--foreground)] font-semibold text-sm hover:border-[var(--border-primary)] hover:bg-[var(--surface-raised)] transition-all shadow-sm"
-        >
-          Learn About SAM-UP
-          <ArrowRight class="w-4 h-4 ml-2" aria-hidden="true" />
-        </a>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <img
+              src="/sam-up-seal.png"
+              alt="Official SAM-UP seal"
+              width="300"
+              height="300"
+              class="w-[48%] h-[48%] object-contain drop-shadow-[0_24px_70px_rgba(240,204,78,0.16)]"
+            />
+          </div>
+
+          <div class="absolute left-[4%] top-1/2 -translate-y-1/2 -translate-x-1/2 h-3 w-3 rounded-full bg-[var(--primary)] shadow-[0_0_24px_rgba(240,204,78,0.65)]" aria-hidden="true"></div>
+          <div class="absolute right-[13%] top-[18%] h-2 w-2 rounded-full bg-[var(--primary)]/70" aria-hidden="true"></div>
+
+          <div class="absolute bottom-[5%] left-1/2 -translate-x-1/2 rounded-full border border-[var(--border)] bg-[var(--background)] px-4 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted-foreground)] whitespace-nowrap">
+            Piu • Summation of members' efforts & capabilities
+          </div>
+        </div>
       </div>
     </div>
   </div>
