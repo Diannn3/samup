@@ -80,20 +80,8 @@ const schemaOrg = {
     <meta property="twitter:image" content={socialImage} />
     <meta property="twitter:image:alt" content={imageAlt} />
 
-    <link
-      rel="preload"
-      href={plusJakartaLatinUrl}
-      as="font"
-      type="font/woff2"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
-      href={newsreaderLatinUrl}
-      as="font"
-      type="font/woff2"
-      crossorigin="anonymous"
-    />
+    <link rel="preload" href={plusJakartaLatinUrl} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={newsreaderLatinUrl} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="icon" type="image/png" href="/sam-up-seal.png" />
 
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)}></script>
