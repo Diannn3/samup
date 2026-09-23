@@ -210,7 +210,6 @@ try {
   await searchPage.close();
   await searchContext.close();
 
-
   const unknownContext = await browser.newContext({ viewport: viewports[0] });
   const unknownPage = await unknownContext.newPage();
   const unknownResponse = await unknownPage.goto(new URL('/not-a-real-route', baseURL).href, {
