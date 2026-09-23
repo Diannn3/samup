@@ -2,10 +2,9 @@
 
 Public web platform for the **Society of Applied Mathematics of UPLB (SAM-UP)**.
 
-This repository contains two deliberately separate product scopes:
+This repository contains the **public SAM-UP institutional website** — identity, Applied Mathematics promotion, verified programs/resources, recruitment guidance, partnerships, governance, Chronicle/history, and public archives.
 
-1. the **public SAM-UP institutional website** — identity, Applied Mathematics promotion, verified programs/resources, recruitment guidance, partnerships, governance, Chronicle/history, and public archives; and
-2. the **applicant reporting experience** under `/reporting` — a separate personal reporting/portfolio surface that must not be treated as institutional navigation or a source of public organizational facts.
+The former applicant **Reporting Dossier** has been removed from the public codebase.
 
 ## Implementation doctrine
 
@@ -41,7 +40,6 @@ Do not infer current officers, event status, recruitment eligibility, sponsor cl
 - TypeScript
 - Playwright for browser, progressive-enhancement, touch, and visual QA
 - Fontsource variable families for self-hosted typography
-- PixiJS + Pixi Viewport + Zustand only for the separate reporting experience
 
 The public website follows a **static-first Astro** policy. Core content should remain readable and usable without JavaScript.
 
@@ -56,14 +54,12 @@ The public website follows a **static-first Astro** policy. Core content should 
 │   ├── components/
 │   │   ├── interactive/      # React islands
 │   │   ├── layout/           # site shell
-│   │   ├── reporting/        # reporting-only UI
 │   │   ├── sections/         # public-page sections
 │   │   ├── ui/               # reusable UI primitives
 │   │   └── visualizers/      # legacy/special visual components
 │   ├── data/                 # typed data and evidence-backed records
 │   ├── layouts/
 │   ├── pages/
-│   ├── stores/               # reporting-only state at present
 │   └── styles/
 └── package.json
 ```
@@ -115,16 +111,9 @@ High-risk content includes:
 - unapproved sponsor obligations;
 - personal reporting material.
 
-## Public vs. reporting scope
+## Removed applicant reporting scope
 
-The public institutional navigation must not promote `/reporting`.
-
-The reporting experience may remain in this repository for now because it uses its own Pixi/Zustand architecture, but it should:
-
-- restore normal browser zoom;
-- be explicitly scoped as applicant/personal reporting;
-- be excluded from public search/indexing;
-- not leak its dependencies into ordinary public routes.
+The former Reporting Dossier is not part of the institutional website and should not be reintroduced without an explicit product decision and a separate privacy/content review.
 
 ## Design direction
 

@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { gzipSync } from 'node:zlib';
 
@@ -62,17 +62,6 @@ for (const file of files) {
     failures.push(
       `${file.assetPath} is ${gzip} bytes gzip, above the ${maxSingleJsGzip}-byte single-chunk budget`,
     );
-  }
-}
-
-const reportingAssets = [];
-const reportingDir = join(distDir, '_astro');
-if (existsSync(reportingDir)) {
-  for (const name of readdirSync(reportingDir)) {
-    const path = join(reportingDir, name);
-    if (statSync(path).isFile() && /\.(js|mjs)$/.test(name)) {
-      reportingAssets.push(name);
-    }
   }
 }
 

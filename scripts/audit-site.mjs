@@ -211,39 +211,6 @@ try {
   await searchPage.close();
   await searchContext.close();
 
-  const reportingContext = await browser.newContext({ viewport: viewports[0] });
-  const reportingPage = await reportingContext.newPage();
-  const reportingResponse = await reportingPage.goto(new URL('/reporting/', baseURL).href, {
-    waitUntil: 'domcontentloaded',
-    timeout: 30_000,
-  });
-  await reportingPage.waitForTimeout(350);
-
-  if (reportingResponse?.status() !== 200)
-    addIssue(`reporting: expected 200, got ${reportingResponse?.status() ?? 0}`);
-
-  const reportingState = await reportingPage.evaluate(() => {
-    const viewport = document.querySelector('meta[name="viewport"]')?.getAttribute('content') || '';
-    const robots = document.querySelector('meta[name="robots"]')?.getAttribute('content') || '';
-
-    return {
-      viewport,
-      robots,
-      h1Count: document.querySelectorAll('h1').length,
-      hasReturnLink: Boolean(document.querySelector('a[href="/"]')),
-    };
-  });
-
-  if (/maximum-scale|user-scalable\s*=\s*no/i.test(reportingState.viewport)) {
-    addIssue(`reporting: viewport disables or limits browser zoom (${reportingState.viewport})`);
-  }
-  if (!/noindex/i.test(reportingState.robots)) addIssue('reporting: applicant route is missing noindex');
-  if (reportingState.h1Count < 1) addIssue('reporting: semantic fallback is missing an h1');
-  if (!reportingState.hasReturnLink)
-    addIssue('reporting: experience is missing a return path to institutional home');
-
-  await reportingPage.close();
-  await reportingContext.close();
 
   const unknownContext = await browser.newContext({ viewport: viewports[0] });
   const unknownPage = await unknownContext.newPage();
@@ -265,6 +232,6 @@ if (issues.length) {
   process.exitCode = 1;
 } else {
   console.log(
-    `SAM-UP browser audit passed: ${publicRoutes.length} public routes × ${viewports.length} viewports, plus mobile navigation, reporting isolation, and unknown-route checks.`,
+    `SAM-UP browser audit passed: ${publicRoutes.length} public routes × ${viewports.length} viewports, plus mobile navigation and unknown-route checks.`,
   );
 }

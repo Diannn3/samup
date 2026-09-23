@@ -13,7 +13,7 @@ if (site) {
     sitemap({
       filter: (page) => {
         const { pathname } = new URL(page);
-        return !pathname.startsWith('/reporting') && pathname !== '/404/';
+        return pathname !== '/404/';
       },
       namespaces: {
         news: false,

@@ -337,10 +337,8 @@ const indexedItems = [
     if (search === null) return;
 
     const loaded = await Promise.all(search.results.slice(0, 20).map((result) => result.data()));
-    const publicResults = loaded.filter((result) => !result.url.startsWith('/reporting'));
-
-    results.replaceChildren(...publicResults.map(renderResult));
-    setCount(publicResults.length);
+    results.replaceChildren(...loaded.map(renderResult));
+    setCount(loaded.length);
   };
 
   input?.addEventListener('focus', () => {

@@ -59,8 +59,7 @@ Do not expose sponsor rates, unexecuted promises, MOA internals, compliance scre
 2. **Membership copy:** stop describing current application eligibility as simply "students outside BS Applied Mathematics" for Affiliate membership.
 3. **Resources syllabus:** remove unsupported inferred topic/course expansions and Math 165 unless approved evidence exists.
 4. **Program status:** peer tutorials/athletics names and status require current/approved evidence before appearing as active programs.
-5. **Reporting dossier:** `/reporting` is a separate personal applicant-reporting experience. It must not be promoted as part of the institutional public navigation.
-6. **Reporting viewport:** restore browser zoom; do not use `maximum-scale=1.0` or `user-scalable=no`.
+5. **Reporting dossier:** removed from the institutional codebase. Do not reintroduce applicant/personal reporting material without explicit approval and a dedicated privacy review.
 
 ## Public/private visibility model
 
@@ -174,7 +173,7 @@ Primary navigation target:
 
 Utility/footer: Search, Chronicle/Archive, Governance.
 
-Do not include `/reporting` in institutional navigation.
+The former `/reporting` experience is removed and must not be reintroduced through institutional navigation.
 
 Target route family (add only when content exists):
 
@@ -192,7 +191,6 @@ Target route family (add only when content exists):
 /archive/leadership/
 /chronicle/
 /search/
-/reporting/  # separate scope, no public-nav promotion
 ```
 
 ## Content architecture
@@ -218,7 +216,6 @@ Existing dependency disposition:
 - GSAP: remove if still unused;
 - Motion: intentionally use for a small number of interactions or remove;
 - Three.js: retain only if progressive hero survives performance/usability review;
-- Pixi/Pixi Viewport/Zustand: reporting-only and must not leak into public bundles.
 
 ## QA policy
 
@@ -278,7 +275,7 @@ Keep every commit buildable and scoped. Split further when needed.
 ### Phase 4 — navigation and shell
 
 24. task-led public navigation
-25. remove reporting dossier from institutional nav
+25. remove the Reporting Dossier feature from the institutional codebase
 26. Pagefind indexing
 27. accessible global search
 28. institutional footer/trust links
@@ -311,10 +308,10 @@ Keep every commit buildable and scoped. Split further when needed.
 46. first sourced Applied Math explainer
 47. accessible visualization enhancement only after static content passes review
 
-### Phase 8 — reporting scope
+### Phase 8 — removed applicant-reporting scope
 
 48. restore zoom
-49. noindex reporting route
+49. remove the legacy applicant-reporting route and implementation
 50. keyboard/semantic fallback coverage
 
 ### Phase 9 — restrained polish
@@ -359,4 +356,4 @@ Do not invent a solution when current event ownership, recruitment eligibility, 
 
 ## Definition of done
 
-The redesign is not done until factual P0s are resolved, task-led IA is in place, reporting is separate in scope, current states are evidence-aware, unsupported claims are gone, typography is self-hosted, public pages work without JS, 3D is progressive, search/accessibility/performance gates pass, Partners and Applied Math systems exist, dependency baggage is pruned, publishing workflow is documented, and implementation history remains atomic.
+The redesign is not done until factual P0s are resolved, task-led IA is in place, the legacy Reporting Dossier is removed, current states are evidence-aware, unsupported claims are gone, typography is self-hosted, public pages work without JS, 3D is progressive, search/accessibility/performance gates pass, Partners and Applied Math systems exist, dependency baggage is pruned, publishing workflow is documented, and implementation history remains atomic.

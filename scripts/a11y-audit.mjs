@@ -62,32 +62,6 @@ try {
     await context.close();
   }
 
-  const reportingContext = await browser.newContext({ viewport: viewports[0] });
-  const reportingPage = await reportingContext.newPage();
-  await reportingPage.goto(new URL('/reporting/', baseURL).href, {
-    waitUntil: 'domcontentloaded',
-    timeout: 30_000,
-  });
-  await reportingPage.waitForTimeout(700);
-
-  const reportingResults = await new AxeBuilder({ page: reportingPage })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
-    .analyze();
-
-  for (const violation of reportingResults.violations) {
-    violations.push({
-      viewport: 'mobile',
-      route: '/reporting/',
-      id: violation.id,
-      impact: violation.impact,
-      help: violation.help,
-      helpUrl: violation.helpUrl,
-      targets: violation.nodes.flatMap((node) => node.target),
-    });
-  }
-
-  await reportingPage.close();
-  await reportingContext.close();
 } finally {
   await browser.close();
 }
@@ -105,5 +79,5 @@ if (violations.length) {
 }
 
 console.log(
-  `Accessibility audit passed: ${routes.length} institutional routes × ${viewports.length} viewports, plus reporting fallback.`,
+  `Accessibility audit passed: ${routes.length} institutional routes × ${viewports.length} viewports.`,
 );
