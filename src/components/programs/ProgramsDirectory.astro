@@ -1,11 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
 import { Calendar, Users, ArrowRight, MapPin, ShieldCheck, ExternalLink } from 'lucide-react';
+import EventRecordTemplate from './EventRecordTemplate.astro';
 
 const programs = (
   await getCollection(
     'programs',
     ({ data }) =>
+      data.publication === 'published' &&
       (data.evidence.visibility === 'public' || data.evidence.visibility === 'historical') &&
       data.evidence.status !== 'unknown' &&
       data.evidence.status !== 'blocked' &&
@@ -110,8 +112,8 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
           No legacy program is being labeled current just to make this page look full.
         </h2>
         <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
-          Existing repository records are checked for ownership, SAM-UP's specific role, schedule, audience,
-          and public status. Records remain quarantined until the evidence is publishable.
+          No event record is published yet. Future entries stay in draft until title, organizer, SAM-UP role,
+          schedule, venue, audience, and source evidence are explicitly verified.
         </p>
       </div>
 
@@ -138,4 +140,6 @@ const getScheduleLabel = (program: (typeof programs)[number]) =>
       </aside>
     </section>
   )}
+
+  <EventRecordTemplate />
 </div>

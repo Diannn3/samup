@@ -61,6 +61,7 @@ const programs = defineCollection({
       slug: z.string().min(1),
       organizer: z.string().min(1),
       samUpRole: z.string().min(1),
+      publication: z.enum(['draft', 'published']).default('draft'),
       lifecycle: z.enum(['current', 'scheduled', 'historical', 'cancelled', 'needs-verification']),
       startDate: z.string().optional(),
       endDate: z.string().optional(),
@@ -71,23 +72,41 @@ const programs = defineCollection({
       evidence: evidenceSchema,
     })
     .superRefine((program, ctx) => {
-      if (program.lifecycle === 'historical') {
-        if (program.evidence.status !== 'historical' || program.evidence.visibility !== 'historical') {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: 'Historical programs must use historical evidence status and visibility.',
-            path: ['evidence'],
-          });
-        }
+      if (program.publication === 'draft' && publishableVisibilities.has(program.evidence.visibility)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Draft programs must not use a publishable visibility state.',
+          path: ['evidence', 'visibility'],
+        });
       }
 
-      if (program.lifecycle === 'current' || program.lifecycle === 'scheduled') {
-        if (program.evidence.status !== 'verified-current' || program.evidence.visibility !== 'public') {
+      if (program.publication === 'published') {
+        if (program.lifecycle === 'historical') {
+          if (program.evidence.status !== 'historical' || program.evidence.visibility !== 'historical') {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message: 'Published historical programs must use historical evidence status and visibility.',
+              path: ['evidence'],
+            });
+          }
+        }
+
+        if (program.lifecycle === 'current' || program.lifecycle === 'scheduled') {
+          if (program.evidence.status !== 'verified-current' || program.evidence.visibility !== 'public') {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message:
+                'Published current or scheduled programs require verified-current evidence with public visibility.',
+              path: ['evidence'],
+            });
+          }
+        }
+
+        if (program.lifecycle === 'needs-verification') {
           ctx.addIssue({
             code: z.ZodIssueCode.custom,
-            message:
-              'Current or scheduled programs require verified-current evidence with public visibility.',
-            path: ['evidence'],
+            message: 'A program that still needs verification cannot be published.',
+            path: ['publication'],
           });
         }
       }

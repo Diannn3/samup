@@ -6,6 +6,7 @@ const programs = (
   await getCollection(
     'programs',
     ({ data }) =>
+      data.publication === 'published' &&
       data.evidence.visibility === 'public' &&
       data.evidence.status !== 'unknown' &&
       data.evidence.status !== 'blocked' &&

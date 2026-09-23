@@ -9,7 +9,6 @@ const publicRoutes = [
   '/explore/shortest-paths/',
   '/programs/',
   '/events/',
-  '/events/nimp-2026/',
   '/resources/',
   '/join/',
   '/partners/',

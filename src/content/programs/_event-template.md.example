@@ -1,0 +1,43 @@
+---
+# TEMPLATE ONLY — this file is intentionally not loaded by Astro.
+# Copy to <slug>.md only after the event has been verified.
+publication: 'draft'
+title: 'REPLACE WITH VERIFIED EVENT TITLE'
+slug: 'replace-with-verified-slug'
+organizer: 'REPLACE WITH VERIFIED ORGANIZER'
+samUpRole: 'REPLACE WITH VERIFIED SAM-UP ROLE'
+lifecycle: 'needs-verification'
+startDate: 'YYYY-MM-DD'
+endDate: 'YYYY-MM-DD'
+location: 'REPLACE WITH VERIFIED VENUE'
+audience: 'REPLACE WITH VERIFIED AUDIENCE'
+summary: 'REPLACE WITH A SOURCE-BACKED SUMMARY'
+evidence:
+  status: 'needs-approval'
+  visibility: 'needs-approval'
+  sourceLabel: 'REPLACE WITH OFFICIAL SOURCE'
+  sourceUrl: 'https://example.invalid/replace-me'
+  sourceDate: 'YYYY-MM-DD'
+  reviewedAt: 'YYYY-MM-DD'
+  notes: 'Record stays draft until all public claims are verified.'
+---
+
+## Event details
+
+Add only details supported by the approved source. Omit unknown fields rather than filling them from memory.
+
+## Mechanics / requirements
+
+Add only source-backed mechanics, eligibility, deadlines, fees, registration instructions, or program flow.
+
+## Verification checklist
+
+- [ ] Title matches the approved source.
+- [ ] Organizer is verified.
+- [ ] SAM-UP's specific role is verified.
+- [ ] Schedule/date is verified and still applicable.
+- [ ] Venue/platform is verified.
+- [ ] Audience/eligibility is verified.
+- [ ] Registration/update URL is official.
+- [ ] Evidence metadata is complete.
+- [ ] Change `publication` to `published` only after review.

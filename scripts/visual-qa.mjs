@@ -12,7 +12,6 @@ const ROUTES = [
   '/governance',
   '/programs',
   '/events',
-  '/events/nimp-2026',
   '/resources',
   '/archive',
   '/search',

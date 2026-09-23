@@ -8,7 +8,6 @@ const routes = [
   '/explore/',
   '/explore/shortest-paths/',
   '/programs/',
-  '/events/nimp-2026/',
   '/resources/',
   '/join/',
   '/partners/',

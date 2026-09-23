@@ -1,0 +1,89 @@
+---
+import { Calendar, MapPin, ShieldCheck, Users, Link as LinkIcon } from 'lucide-react';
+---
+
+<section class="border-t border-[var(--border)] pt-12 sm:pt-14" aria-labelledby="event-detail-template-heading">
+  <div class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--primary)]">
+    <ShieldCheck className="w-4 h-4" aria-hidden="true" />
+    <span>Event detail template · placeholder only</span>
+  </div>
+
+  <div class="mt-5 grid lg:grid-cols-12 gap-8 lg:gap-12">
+    <div class="lg:col-span-8 rounded-[1.5rem] border border-dashed border-[var(--border-primary)] p-7 sm:p-9">
+      <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">
+        [Verified lifecycle / status]
+      </div>
+      <h2 id="event-detail-template-heading" class="mt-3 font-display font-black text-3xl sm:text-4xl text-[var(--foreground)]">
+        [Verified event title]
+      </h2>
+      <p class="mt-4 max-w-2xl text-sm sm:text-base leading-relaxed text-[var(--muted-foreground)]">
+        [One-sentence event summary copied or faithfully paraphrased from an approved source.]
+      </p>
+
+      <dl class="mt-7 grid sm:grid-cols-2 gap-x-8 gap-y-5 text-sm">
+        <div>
+          <dt class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">Organizer</dt>
+          <dd class="mt-1 text-[var(--muted-foreground)]">[Verified organizer]</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">SAM-UP role</dt>
+          <dd class="mt-1 text-[var(--muted-foreground)]">[Verified role — host, partner, participant, etc.]</dd>
+        </div>
+        <div>
+          <dt class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">
+            <Calendar className="w-3.5 h-3.5" aria-hidden="true" /> Date & time
+          </dt>
+          <dd class="mt-1 text-[var(--muted-foreground)]">[Verified schedule]</dd>
+        </div>
+        <div>
+          <dt class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">
+            <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> Venue
+          </dt>
+          <dd class="mt-1 text-[var(--muted-foreground)]">[Verified venue / platform]</dd>
+        </div>
+        <div>
+          <dt class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">
+            <Users className="w-3.5 h-3.5" aria-hidden="true" /> Audience
+          </dt>
+          <dd class="mt-1 text-[var(--muted-foreground)]">[Verified eligibility / intended audience]</dd>
+        </div>
+        <div>
+          <dt class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">
+            <LinkIcon className="w-3.5 h-3.5" aria-hidden="true" /> Registration / update
+          </dt>
+          <dd class="mt-1 text-[var(--muted-foreground)]">[Official link only, when verified]</dd>
+        </div>
+      </dl>
+
+      <div class="mt-8 border-t border-[var(--border)] pt-6">
+        <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">Event details</div>
+        <p class="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+          [Mechanics, requirements, program flow, fees, deadlines, or other details appear only when supported
+          by the approved source. Unknown fields stay omitted rather than guessed.]
+        </p>
+      </div>
+    </div>
+
+    <aside class="lg:col-span-4 rounded-[1.5rem] border border-[var(--border)] p-6">
+      <div class="font-mono text-[10px] uppercase tracking-wider text-[var(--primary)]">Evidence record</div>
+      <dl class="mt-5 space-y-5 text-sm">
+        <div>
+          <dt class="text-xs text-[var(--muted-foreground)]">Source</dt>
+          <dd class="mt-1 text-[var(--foreground)]">[Official announcement / approved document]</dd>
+        </div>
+        <div>
+          <dt class="text-xs text-[var(--muted-foreground)]">Source date</dt>
+          <dd class="mt-1 text-[var(--foreground)]">[YYYY-MM-DD]</dd>
+        </div>
+        <div>
+          <dt class="text-xs text-[var(--muted-foreground)]">Reviewed</dt>
+          <dd class="mt-1 text-[var(--foreground)]">[YYYY-MM-DD]</dd>
+        </div>
+        <div>
+          <dt class="text-xs text-[var(--muted-foreground)]">Publication gate</dt>
+          <dd class="mt-1 text-[var(--foreground)]">Draft until explicitly verified and published</dd>
+        </div>
+      </dl>
+    </aside>
+  </div>
+</section>
